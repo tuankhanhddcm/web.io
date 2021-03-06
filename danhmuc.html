@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./mvc/public/css/base.css">
+  <link rel="stylesheet" href="./mvc/public/css/main.css">
+  <link rel="stylesheet" href="./mvc/public/css/container.css">
+  <link rel="stylesheet" href="./mvc/public/css/lightslider.css">
+  <title>KStore</title>
+</head>
+<body>
+  <div class="app">
+    <!-- header -->
+    <header class="header">
+      <div class="grid">
+        <nav class="header__navbar">
+          <ul class="header__navbar-list header__navbar-socials">
+            <li class="header__navbar-item">
+              Kết nối 
+              <i class='bx bxl-facebook-circle nav__icon'></i>
+              <i class='bx bxl-google nav__icon' ></i>
+            </li>
+          </ul>
+          <ul class="header__navbar-list">
+              <li class="header__navbar-item header__navbar-user">
+                <a href="" class="header__navbar-user-link">
+                  <img src="https://yt3.ggpht.com/yti/ANoDKi4u6XzxVZups14lSw3SRRGG-7S4XqREzn0-rVCo=s88-c-k-c0x00ffffff-no-rj-mo" alt="" class="header__navbar-user-img">
+                  <span class="header__navbar-user-name">Tuấn Khanh</span>
+                </a>
+                <ul class="header__navbar-user-menu">
+                  <li class="header__navbar-user-item">
+                    <a href="">Tài khoản của tôi</a>
+                  </li>
+                  <li class="header__navbar-user-item">
+                    <a href="">Đơn mua</a>
+                  </li>
+                  <li class="header__navbar-user-item header__navbar-user-item--separate ">
+                    <a href="">Đăng xuất</a>
+                  </li>
+                </ul>
+              </li>
+          </ul>
+        </nav>
+        <!-- header search -->
+        <div class="header-with-search">
+          <div class="header__logo">
+            <a href="" class="header__logo-link">
+              <img src="./mvc/public/img/kstore1.png" alt="" class="logo">
+            </a>
+          </div>
+          <div class="header__search">
+            <div class="header__search-input-wrap">
+              <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
+              <div class="header__search-history">
+                <ul class="header__search-history-list">
+                  <li class="header__search-history-item">
+                    <a href=""> TVs</a>
+                  </li>
+                  <li class="header__search-history-item">
+                    <a href=""> TVs</a>
+                  </li>
+                  <li class="header__search-history-item">
+                    <a href=""> TVs</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <button class="header__search-btn">
+              <i class=' header__search-btn-icon bx bx-search' ></i>
+            </button>
+          </div>
+          <!--  header cart -->
+          <div class="header__cart">
+            <div class="header__Cart-wrap">
+              <a href="">
+                <i class='header__cart-icon bx bx-cart-alt' ></i>
+                <span class="header__cart-notice">3</span>
+              </a>
+              <!-- không có sản phẩm: header__cart-list--no-cart  -->
+              <div class="header__cart-list ">
+                <img src="./mvc/public/img/cartempty.jpg" alt="" class="header__cart-no-cart-img">
+                <span class="header__cart-list-no-cart-msg ">Chưa có sản phẩm</span>
+                <div class="header__cart-list--has-cart">
+                  <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                  <ul class="header__cart-list-item">
+                    <li class="header__cart-item">
+                      <img src="https://cdn.tgdd.vn/Products/Images/1942/212647/samsung-ua43r6000-24-550x340.jpg" alt="" class="header__cart-img">
+                      <div class="header__cart-item-info">
+                        <div class="header__cart-item-head">
+                          <h5 class="header__cart-item-name">Smart Tivi Samsung 43 inch UA43R6000</h5>
+                          <div class="header__cart-item-price-wrap">
+                            <span class="header__cart-item-price">7.900.000₫</span>
+                            <span class="header__cart-item-nhan">x</span>
+                            <span class="header__cart-item-soluong">2</span>
+                          </div>
+                        </div>
+                        <div class="header__cart-item-body">
+                          <span class="header__cart-item-mota">Phân loại: bạc</span>
+                          <span class="header__cart-item-remove">Xóa</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="header__cart-item">
+                      <img src="https://cdn.tgdd.vn/Products/Images/1942/212647/samsung-ua43r6000-24-550x340.jpg" alt="" class="header__cart-img">
+                      <div class="header__cart-item-info">
+                        <div class="header__cart-item-head">
+                          <h5 class="header__cart-item-name">Smart Tivi Samsung 43 inch UA43R6000</h5>
+                          <div class="header__cart-item-price-wrap">
+                            <span class="header__cart-item-price">7.900.000₫</span>
+                            <span class="header__cart-item-nhan">x</span>
+                            <span class="header__cart-item-soluong">2</span>
+                          </div>
+                        </div>
+                        <div class="header__cart-item-body">
+                          <span class="header__cart-item-mota">Phân loại: bạc</span>
+                          <span class="header__cart-item-remove">Xóa</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="header__cart-item">
+                      <img src="https://cdn.tgdd.vn/Products/Images/1942/212647/samsung-ua43r6000-24-550x340.jpg" alt="" class="header__cart-img">
+                      <div class="header__cart-item-info">
+                        <div class="header__cart-item-head">
+                          <h5 class="header__cart-item-name">Smart Tivi Samsung 43 inch UA43R6000</h5>
+                          <div class="header__cart-item-price-wrap">
+                            <span class="header__cart-item-price">7.900.000₫</span>
+                            <span class="header__cart-item-nhan">x</span>
+                            <span class="header__cart-item-soluong">2</span>
+                          </div>
+                        </div>
+                        <div class="header__cart-item-body">
+                          <span class="header__cart-item-mota">Phân loại: bạc</span>
+                          <span class="header__cart-item-remove">Xóa</span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <a href="" class="btn-cart btn-cart-them">Xem Giỏ Hàng</a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End header -->
+    <!-- container -->
+    <div class="main">
+        <section class="url-heading">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="col-xs-12">
+                        <ul class="url-list">
+                            <li class="url-item home">
+                                <a href="/" class="url-link">Trang chủ</a>
+                                <span><i class=' right-icon bx bx-chevron-right'></i></span>
+                            </li>
+                            <li class="url-item">
+                                <span class="url-name">TV & SmartTV</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="grid">
+            <div class="grid__row">
+                <div class="col-sm-2">
+                    div.home-filter
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- end container -->
+    <footer class="footer">
+      <div class="grid">
+        <div class="grid__row">
+          <div class="col-2-4">
+            <h3 class="footer__heading">Chăm sóc khách hàng</h3>
+            <ul class="footer-list">
+              <li class="footer-item">Trung Tâm Trợ Giúp</li>
+              <li class="footer-item">Hướng dẫn mua hàng</li>
+              <li class="footer-item">Thanh toán</li>
+              <li class="footer-item">Vận chuyển</li>
+              <li class="footer-item">Chính sách bảo hành</li>
+            </ul>
+          </div>
+          <div class="col-2-4">
+            <h3 class="footer__heading">Về Shop</h3>
+            <ul class="footer-list">
+              <li class="footer-item">Giới thiệu về Kstore</li>
+              <li class="footer-item">Chính hãng</li>
+              <li class="footer-item">Chính sách bảo mật</li>
+            </ul>
+          </div>
+          <div class="col-2-4">
+            <h3 class="footer__heading">Thanh toán</h3>
+            <ul class="footer-list footer-list__img">
+              <li class="footer-item ">
+                <img src="/mvc/public/img/Visa_Inc._logo.svg.png" alt="">
+              </li>
+              <li class="footer-item">
+                <img src="/mvc/public/img/mastercard.png" alt="">
+              </li>
+              <li class="footer-item">
+                <img src="/mvc/public/img/jcb.png" alt="">
+              </li>
+            </ul>
+          </div>
+          <div class="col-2-4">
+            <h3 class="footer__heading">Theo dõi chúng tôi</h3>
+            <ul class="footer-list">
+              <li class="footer-item"><i class='bx bxl-facebook-circle'></i>Facebook</li>
+              <li class="footer-item"><i class='bx bxl-instagram-alt'></i>Instagram</li>
+            </ul>
+          </div>
+          <div class="col-2-4">
+            <h3 class="footer__heading">Đơn vị vận chuyển</h3>
+            <ul class="footer-list footer-list__img">
+              <li class="footer-item">
+                <img id="footer-img" src="/mvc/public/img/ghtk.jfif" alt="">
+              </li>
+              <li class="footer-item">
+                <img id="footer-img" src="/mvc/public/img/viettel.jpg" alt="">
+              </li>
+              <li class="footer-item">
+                <img id="footer-img" src="/mvc/public/img/vc1.png" alt="">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-title">
+        <p class="footer-text">© 2021 - Bản quyền thuộc về KStore</p>
+      </div>
+    </footer>
+  </div>
+  <script src="./mvc/public/js/lightslider.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+</body>
+
+</html>

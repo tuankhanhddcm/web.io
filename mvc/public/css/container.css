@@ -1,0 +1,280 @@
+.main_container {
+    margin-top: 140px;
+}
+
+.container__slide{
+    width: 60%;
+}
+
+.container__banner{
+    display: flex;
+    justify-content: space-between;
+}
+
+.banner__sale{
+    width: 40%;
+    margin-left: 10px;
+}
+
+.banner__sale-item {
+    margin-bottom: 10px;
+}
+
+.banner__Sales-img{
+    width: 100%;
+    height: 138px;
+}
+
+.product__sale-title{
+    margin-top: 40px;
+    background-color: #fff;
+    border: 1px solid #f30;
+    text-align: center;
+}
+
+.product__sale-title--a {
+    display: inline-block;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 20px;
+    background-color: #f30;
+    color: var(--white-color);
+    text-transform: uppercase;
+    padding: 10px 25px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    position: relative;
+    top: -20px;
+}
+
+.product__sale-title--a:hover {
+    text-decoration: none;
+    color: var(--white-color);
+    cursor: default;
+}
+
+.product__sale-title--a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    border: 1px solid transparent;
+    border-width: 20px;
+    border-left-color: #f30;
+    margin-top: -20px;
+}
+
+.product__sale-title--a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    border: 1px solid transparent;
+    border-width: 20px;
+    border-right-color: #f30;
+    margin-top: -20px;
+}
+
+
+/* product sale */
+
+
+.product__row {
+    margin: 0 20px;
+    
+}
+.product__col {
+    padding: 0;
+}
+
+.card {
+    width: 232px;
+}
+.card__item {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.card-img-top {
+    padding: 20px 15px;
+    
+}
+.card-body {
+    text-align: left;
+}
+
+.card-body__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-text {
+    font-size:1.5rem;
+    color: #f30;
+    font-weight: 400;
+}
+
+.card-body{
+    padding: 0;
+}
+
+.card-body__cart {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 5px 5px 0 5px;
+    text-align: center
+}
+
+.card-body__cart-icon {
+    font-size: 3rem;
+    color: var(--text-color);
+}
+
+.card-body__cart-icon:hover{
+    color: tomato;
+}
+
+
+/* product category */
+
+.product-category{
+    margin-top: 20px;
+    background-color: white;
+}
+.product-categor__label {
+    margin: 10px 0;
+}
+
+.product-category__item {
+    display: block;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.05);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+
+.product-category__item:hover {
+    transform: translateZ(0);
+    z-index: 1;
+    border-color: rgba(0,0,0,0.12);
+    box-shadow: 0 0 0.8125rem 0 rgb(0 0 0 / 5%);
+    color: var(--text-color);
+    font-weight: 350;
+}
+
+
+.category-img {
+    text-align: center;
+    width: 100%;
+}
+
+.product-category__img {
+    width: 30%;
+}
+.product-category__text {
+    width: 100%;
+    height: 61px;
+    padding: 0 20px;
+    line-height: 61px;
+}
+
+.product-category__title {
+    font-size: 2rem;
+    color: rgba(0,0,0,0.8);
+    font-weight: 400;
+}
+
+/*  product list */
+
+.product-list {
+    margin-top: 20px;
+}
+
+.product-list__heading {
+    width: 100%;
+    background-color: white;
+}
+
+.product-list__title {
+    display: block;
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--text-color);
+}
+
+.product-list__home {
+    padding-top: 5px;
+}
+
+
+/* product card */
+
+.card-item {
+    display: block;
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    color: var(--text-color);
+    border-radius: 2px;
+    transition:  transform linear 0.2s;
+    will-change: transform;
+}
+
+.card-item:hover {
+    color: var(--text-color);
+    transform: rotateZ(1);
+    box-shadow: 0 0 0.8125rem 0 rgb(0 0 0 / 5%);
+    border: 1px solid;
+    border-color: #f30;
+    transform: translateY(-1px);
+    border-radius: 2px;
+}
+
+.card__img {
+    padding: 20px 0;
+    width: 100%;
+}
+
+.card__name {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.card__name-sp {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.card__body {
+    margin: 10px 0;
+}
+
+.card__price {
+    display: block;
+    font-size: 1.6rem;
+    color: #d12c1f;
+    font-weight: bold;
+}
+
+.card__oldprice {
+    display: inline-block;
+    color: #333;
+    text-decoration: line-through;
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+
+.card__precent {
+    color: #d12c1f;
+    font-size: 1.4rem;
+}
