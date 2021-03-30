@@ -52,18 +52,10 @@
             </div>
             <div class="header__search">
                 <div class="header__search-input-wrap">
-                    <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm">
+                    <input type="text" class="header__search-input" id="input-search" onkeyup="search_header()" placeholder="Nhập để tìm kiếm sản phẩm">
                     <div class="header__search-history">
-                        <ul class="header__search-history-list">
-                            <li class="header__search-history-item">
-                                <a href=""> TVs</a>
-                            </li>
-                            <li class="header__search-history-item">
-                                <a href=""> TVs</a>
-                            </li>
-                            <li class="header__search-history-item">
-                                <a href=""> TVs</a>
-                            </li>
+                        <ul class="header__search-history-list" id='list-search'>
+                           
                         </ul>
                     </div>
                 </div>

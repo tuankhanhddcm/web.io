@@ -10,44 +10,7 @@
             $this->usermodel= $this->model("Usermodel");
             
         }
-        //sap xep theo giá
-        public function loctheogia(){
-            if(isset($_POST['ma_loai']) && isset( $_POST["order"])){
-                $ma_loai = $_POST['ma_loai'];
-                $order = $_POST["order"];
-                $data = $this->sanpham->filter_gia($ma_loai,$order);
-                $ouput ="";
-                    if(!empty($data)){
-                        foreach ($data as $row){
-                            $giasale =number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
-                            $gia =number_format($row['sp_giaban']);
-                            $ouput .='
-                            <div class="col-2-4 ">
-                                <a class="card-item " href="../Detail/'.$row['sp_url'].'">
-                                    <div class="card-item__img">
-                                        <img src="http://localhost/web_mvc/'.$row['sp_img'].' " class="card__img">
-                                    </div>
-                                    <div class="card__name">
-                                        <span class="card__name-sp">'.$row['sp_name'].'</span>
-                                    </div>
-                                    <div class="card__body">
-                                        <strong class="card__price">'. $giasale.'đ</strong>
-                                        <strong class="card__oldprice">'.$gia.'đ</strong>
-                                        <span class="card__precent">-20%</span>
-                                    </div>
-                                </a>
-                            </div>
-                            ';   
-                        }
-                    }else {
-                        $ouput ='   <div class="danhmuc_rong ">
-                                        <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-                                    </div>';
-                    }
-                    echo $ouput;
-            }
-            
-        }
+        
            
         public function banchay(){
             if(isset($_POST['ma_loai'])){
@@ -286,6 +249,36 @@
             }
         }
 
+
+        public function search_product(){
+            if(isset($_POST['text']) && !empty($_POST['text'])){
+                $text =$_POST['text'];
+                $kq = $this->sanpham->search($text);
+                $out = "";
+                if($kq){
+                    foreach($kq as $val){
+                        $out .=' <li class="header__cart-item" style="padding-top: 15px;">
+                                    <a href="http://localhost/web_mvc/Detail/'.$val['sp_url'].'" class="header__cart-item">
+                                        <div class="header__search--img">
+                                            <img src="http://localhost/web_mvc/'.$val['sp_img'].'" alt="" class="header__cart-img">
+                                        </div>
+                                        <div class="header__search-item-info">
+                                            <div class="header__search--info">
+                                                <h5 class="header__search-item-name">'.$val['sp_name'].'</h5>
+                                                <div class="header__search--price">
+                                                    <span class="header__search-item-price">'.number_format($val["sp_giaban"]-$val["sp_giaban"]*0.2).'đ</span>
+                                                    <span class="header__search--price_sale ">'.number_format($val["sp_giaban"]).'đ</span>
+                                                    <span class="header__search--percent_sale ">-20%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>';
+                    }
+                    echo $out;
+                }
+            }
+        }
 }
 
 ?>

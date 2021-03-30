@@ -684,9 +684,26 @@ button.header__search-btn{
   font-size: 2.4rem;
   color: var(--white-color);
 }
+.header__search--img {
+  width: 120px;
+  min-width: 50px;
+}
 
-.header__search-input:focus ~ .header__search-history{
-  display: block;
+
+.header__search--info {
+  margin-left: 30px;
+}
+
+.header__search-item-price {
+  font-size: 1.8rem;
+  color: red;
+}
+
+.header__search-item-name{
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-color);
+  padding-bottom: 10px;
 }
 
 .header__search-history {
@@ -697,9 +714,21 @@ button.header__search-btn{
   background-color: var(--white-color);
   border-radius: 2px;
   box-shadow: 0 1px 5px rgb(189,189,189);
-  display: none;
+  display: block;
 }
 
+.header__search--price_sale {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  padding-left: 10px;
+  text-decoration: line-through;
+}
+
+.header__search--percent_sale{
+  font-size: 1.4rem;
+  color: red;
+  padding-left: 10px;
+}
 
 .header__search-history-list{
   padding-left:  0px;

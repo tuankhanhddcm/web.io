@@ -3,7 +3,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
     header('location:http://localhost/web_mvc/home');
 } else {
 ?>
-    <div class="main">
+    <div class="main" >
         <section class="url-heading">
             <div class="grid">
                 <div class="grid__row">
@@ -25,7 +25,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                 </div>
             </div>
         </section>
-        <div class="container-fluid " style="background-color: white;">
+        <div class="container-fluid " style="background-color: white; margin-top: 50px">
             <div class="grid pay-wrap">
                 <div class="grid__row">
                     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                                 <div class="oder-detail__title">
                                     <i class='bx bx-clipboard pay-icon'></i>
                                     <h3 class="pay-text oder-detail-text ">Đơn hàng</h3>
-                                    <h3 class="pay-text oder-detail-text ma_hd">#</h3>
+                                    <h3 class="pay-text oder-detail-text ma_hd">#<?= $_SESSION['mahd'] ?></h3>
                                     <span class="cart-title__text oder-detail__text">(
                                         <span class="cart_count-product">
                                             <?php if (isset($_SESSION['hd_detail'])) {
@@ -161,7 +161,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                     </div>
                     <div class="col-sm-12">
                         <div class="thank--btn">
-                            <a href="../home<?php unset($_SESSION['hd_detail']) ?>" class="btn_cus btn-thank">Tiếp tục mua hàng</a>
+                            <a href="../home<?php unset($_SESSION['hd_detail']); unset($_SESSION['mahd']); ?>" class="btn_cus btn-thank">Tiếp tục mua hàng</a>
                         </div>
                     </div>
                 </div>

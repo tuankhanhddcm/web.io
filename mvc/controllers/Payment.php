@@ -97,6 +97,7 @@
                         }
                         $detail = $this->Hoadon->select_hd_detail($mahd);
                         $_SESSION['hd_detail']=$detail;
+                        $_SESSION['mahd']= $mahd;
                     }
                 }  
 

@@ -200,6 +200,11 @@ class sanpham extends DB {
         return $kq;
     }
     
+
+    public function search($text,$count=5){
+        $sql = "SELECT * from sanpham where sp_name like '%$text%' limit $count ";
+        return $this->_query($sql);
+    }
 }
 
 

@@ -636,7 +636,7 @@ function logout(){
 
 function district(val) {
     var kq='';
-    if (val !== 'undefined' && val !== '') {
+    if (val !== 'undefined' && val !==' ') {
         var provi = val;
         kq = "true";
         $.ajax({
@@ -666,7 +666,7 @@ function district(val) {
 function ward() {
     $('#district').change(function () {
         var dis = $(this).val();
-        if (dis !== '') {
+        if (dis !== ' ') {
             $.ajax({
                 url: "./Payment/ward",
                 method: 'post',
@@ -719,4 +719,21 @@ function street() {
         }
     });
 
+}
+
+function search_header(){
+    var text = $("#input-search").val();
+    console.log(text);
+    if(text !==' '){
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/search_product",
+            method: "post",
+            data:{
+                text:text
+            },
+            success: function(data){
+                $('#list-search').html(data);
+            }
+        });
+    }
 }

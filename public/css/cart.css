@@ -549,12 +549,11 @@ button.btn-pay {
 
 /* page cảm ơn */
 
-
 .thank{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .thank--icon{
@@ -566,9 +565,7 @@ button.btn-pay {
     font-size: 5rem;
 }
 
-.info-pay {
-    border: 1px solid rgba(0, 0, 0, 0.25);
-}
+
 
 .info-item {
     margin-bottom: 10px;

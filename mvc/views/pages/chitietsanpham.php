@@ -60,7 +60,7 @@
                                     <button type="button" onclick="giamsl('<?= $val['sp_ma'] ?>')" class="btn-calc btn-sl_tru tru">
                                         <i class='btn-sl__icon bx bx-minus'></i>
                                     </button>
-                                    <input class="btn-sl sl" name="soluong" id="<?= $val['sp_ma'] ?>" min="1" value="1">
+                                    <input class="btn-sl sl" name="soluong" id="<?= $val['sp_ma'] ?>"  min="1" value="1">
                                     <button type="button" onclick="tangsl('<?= $val['sp_ma'] ?>')" class=" btn-calc btn-sl_cong cong">
                                         <i class='btn-sl__icon bx bx-plus'></i>
                                     </button>
