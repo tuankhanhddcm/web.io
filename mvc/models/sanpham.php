@@ -202,7 +202,22 @@ class sanpham extends DB {
     
 
     public function search($text,$count=5){
-        $sql = "SELECT * from sanpham where sp_name like '%$text%' limit $count ";
+        $sql = "SELECT * from sanpham where sp_name like '%$text%' limit $count";
+        
+        return $this->_query($sql);
+    }
+
+    public function search_home($text,$count=5,$sort,$banchay){
+        $sql = "SELECT * from sanpham where sp_name like '%$text%'  ";
+        if(!empty($banchay)){
+            $sql .=' and sp_sl >'.$banchay;
+        }
+
+        if(!empty($sort)){
+            $sql .=' order by sp_giaban '.$sort;
+        }
+        
+        $sql .=' limit '. $count;
         return $this->_query($sql);
     }
 }

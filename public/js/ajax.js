@@ -126,8 +126,6 @@ function get_filter(class_name) {
 
 // lọc theo giá
 function filter_gia(gia) {
-
-    $("#danhmuc").html('<div class="loading" style= ""></div>');
     var ma_loai = $('#ma_loai').val();
     var order = gia;
     $.ajax({
@@ -141,18 +139,32 @@ function filter_gia(gia) {
             $('#danhmuc').html(data);
         }
     });
-
-
 }
+function filter_gia_search(gia) {
+    var sort = gia;
+    $.ajax({
+        url: "../Ajax/filter_search",
+        method: "POST",
+        data: {
+            sort: sort
+        },
+        success: function (data) {
+            $('#danhmuc').html(data);
+        }
+    });
+}
+
+
 // ban chay
 function filter_banchay() {
     var ma_loai = $('#ma_loai').val();
-
+    var banchay = 2;
     $.ajax({
         url: "../Ajax/banchay",
         method: "POST",
         data: {
             ma_loai: ma_loai,
+            banchay:banchay,
         },
         success: function (data) {
             $('#danhmuc').html(data);
@@ -529,6 +541,7 @@ function toast({
             if (e.target.closest('.toast__close')) {
                 main.removeChild(toast);
                 clearTimeout(autoremove);
+                location.reload();
             }
         }
 
@@ -575,7 +588,7 @@ function showproduct(){
     });
     setTimeout(function(){
         location.reload();
-    },4000);
+    },3500);
 }
 
 
@@ -723,7 +736,6 @@ function street() {
 
 function search_header(){
     var text = $("#input-search").val();
-    console.log(text);
     if(text !==' '){
         $.ajax({
             url: "http://localhost/web_mvc/Ajax/search_product",
@@ -737,3 +749,5 @@ function search_header(){
         });
     }
 }
+
+

@@ -16,36 +16,40 @@
             if(isset($_POST['ma_loai'])){
                 $ma_loai = $_POST['ma_loai'];
                 $data = $this->sanpham->filter_banchay($ma_loai);
-                $ouput ="";
-                    if(!empty($data)){
-                        foreach ($data as $row){
-                            $giasale =number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
-                            $gia =number_format($row['sp_giaban']);
-                            $ouput .='
-                            <div class="col-2-4 ">
-                                <a class="card-item " href="../Detail/'.$row['sp_url'].'">
-                                    <div class="card-item__img">
-                                        <img src="http://localhost/web_mvc/'.$row['sp_img'].' " class="card__img">
-                                    </div>
-                                    <div class="card__name">
-                                        <span class="card__name-sp">'.$row['sp_name'].'</span>
-                                    </div>
-                                    <div class="card__body">
-                                        <strong class="card__price">'. $giasale.'đ</strong>
-                                        <strong class="card__oldprice">'.$gia.'đ</strong>
-                                        <span class="card__precent">-20%</span>
-                                    </div>
-                                </a>
-                            </div>
-                            ';   
-                        }
-                    }else {
-                        $ouput ='   <div class="danhmuc_rong ">
-                                        <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-                                    </div>';
-                    }
-                    echo $ouput;
+                $col =4;
+            }else if(isset($_POST['banchay']) && !empty($_POST['banchay']) && isset($_SESSION['search']) && !empty($_SESSION['search']) ){
+                $data = $this->sanpham->search_home($_SESSION['search'],20,$sort='',$_POST['banchay']);
+                $col=5;
             }
+            $ouput ="";
+            if(!empty($data)){
+                foreach ($data as $row){
+                    $giasale =number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
+                    $gia =number_format($row['sp_giaban']);
+                    $ouput .='
+                    <div class="col-2-'.$col.' ">
+                        <a class="card-item " href="../Detail/'.$row['sp_url'].'">
+                            <div class="card-item__img">
+                                <img src="http://localhost/web_mvc/'.$row['sp_img'].' " class="card__img">
+                            </div>
+                            <div class="card__name">
+                                <span class="card__name-sp">'.$row['sp_name'].'</span>
+                            </div>
+                            <div class="card__body">
+                                <strong class="card__price">'. $giasale.'đ</strong>
+                                <strong class="card__oldprice">'.$gia.'đ</strong>
+                                <span class="card__precent">-20%</span>
+                            </div>
+                        </a>
+                    </div>
+                    ';   
+                }
+            }else {
+                $ouput ='   <div class="danhmuc_rong ">
+                                <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
+                            </div>';
+            }
+            echo $ouput;
         }
 
 
@@ -112,6 +116,49 @@
             }
             
         }
+
+
+        public function filter_search(){
+            $sort ='';
+            $banchay ='';
+            $text ='';
+            if(isset($_SESSION['search']) && !empty($_SESSION['search'])){
+                $text =$_SESSION['search']  ;
+            }
+            if(isset($_POST['sort']) && !empty($_POST['sort'])){
+                $sort = $_POST['sort'];
+            }
+            if(isset($_POST['banchay']) && !empty($_POST['banchay'])){
+                $banchay = $_POST['banchay'];
+            }
+            $sp = $this->sanpham->search_home($text,20,$sort,$banchay);
+            $ouput ="";
+            if(!empty($sp) && isset($sp) && $sp !==null){
+                foreach ($sp as $row){
+                    $giasale =number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
+                    $gia =number_format($row['sp_giaban']);
+                    $ouput .='
+                    <div class="col-2-5 ">
+                        <a class="card-item " href="../Detail/'.$row['sp_url'].'">
+                            <div class="card-item__img">
+                                <img src="http://localhost/web_mvc/'.$row['sp_img'].' " class="card__img">
+                            </div>
+                            <div class="card__name">
+                                <span class="card__name-sp">'.$row['sp_name'].'</span>
+                            </div>
+                            <div class="card__body">
+                                <strong class="card__price">'. $giasale.'đ</strong>
+                                <strong class="card__oldprice">'.$gia.'đ</strong>
+                                <span class="card__precent">-20%</span>
+                            </div>
+                        </a>
+                    </div>
+                    ';   
+                }
+            }
+             echo $ouput ;
+        }
+
 
         public function sp_cart(){
             if(isset($_SESSION["cart"])  && !empty($_SESSION['cart'])){

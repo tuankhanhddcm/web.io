@@ -13,7 +13,7 @@
                     <li class="header__navbar-item header__navbar-user">
                         <a href="" class="header__navbar-user-link">
                             <img src="https://yt3.ggpht.com/yti/ANoDKi4u6XzxVZups14lSw3SRRGG-7S4XqREzn0-rVCo=s88-c-k-c0x00ffffff-no-rj-mo" alt="" class="header__navbar-user-img">
-                            <span class="header__navbar-user-name"><?=$_SESSION['user']['username'] ?></span>
+                            <span class="header__navbar-user-name"><?= $_SESSION['user']['username'] ?></span>
                         </a>
                         <ul class="header__navbar-user-menu">
                             <li class="header__navbar-user-item">
@@ -23,7 +23,7 @@
                                 <a href="">Đơn mua</a>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate  ">
-                                <button  class="logout" onclick="logout();" >Đăng xuất</button>
+                                <button class="logout" onclick="logout();">Đăng xuất</button>
                             </li>
                         </ul>
                     </li>
@@ -51,17 +51,19 @@
                 </a>
             </div>
             <div class="header__search">
-                <div class="header__search-input-wrap">
-                    <input type="text" class="header__search-input" id="input-search" onkeyup="search_header()" placeholder="Nhập để tìm kiếm sản phẩm">
-                    <div class="header__search-history">
-                        <ul class="header__search-history-list" id='list-search'>
-                           
-                        </ul>
+                <form class="header__search" style="margin-left: 0px;" action="http://localhost/web_mvc/Home/tim_kiem" method="post">
+                    <div class="header__search-input-wrap">
+                        <input type="text" class="header__search-input" id="input-search" name="input-search" onkeyup="search_header()" placeholder="Nhập để tìm kiếm sản phẩm">
+                        <div class="header__search-history">
+                            <ul class="header__search-history-list" id='list-search'>
+
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <button class="header__search-btn">
-                    <i class=' header__search-btn-icon bx bx-search'></i>
-                </button>
+                    <button class="header__search-btn"  type="submit">
+                        <i class=' header__search-btn-icon bx bx-search'></i>
+                    </button>
+                </form>
             </div>
             <!--  header cart -->
             <div class="header__cart">
@@ -119,38 +121,38 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab1Id" role="tabpanel" aria-label="dangnhap_tab">
-                                <div class="sign-form">
-                                    <div class="error__wrap" style="margin-bottom: 20px;">
-                                        <div class="pay-input ">
-                                            <input type="text" class="form__input user " name="username"  placeholder=" " value="">
-                                            <label for="" class="form__label  ">Tên đăng nhập</label>
-                                        </div>
-                                        <div style="display: flex;">
-                                            <i class='bx bxs-error-circle user_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
-                                            <span class="error_user error"></span>
-                                        </div>
+                            <div class="sign-form">
+                                <div class="error__wrap" style="margin-bottom: 20px;">
+                                    <div class="pay-input ">
+                                        <input type="text" class="form__input user " name="username" placeholder=" " value="">
+                                        <label for="" class="form__label  ">Tên đăng nhập</label>
                                     </div>
-                                    <div class="error__wrap" style="margin-bottom: 20px;">
-                                        <div class="pay-input ">
-                                            <input type="password" class="form__input passs" name="pass"  placeholder=" " value="">
-                                            <label for="" class="form__label  ">Mật khẩu</label>
-                                        </div>
-                                        <div style="display: flex;">
-                                            <i class='bx bxs-error-circle passs_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
-                                            <span class="error_passs error"></span>
-                                        </div>
-                                    </div>
-                                    <div class="sign-header__aside">
-                                        <div class="sign-header__help">
-                                            <a href="" class="sign-header__help-link sign-header__help-forgot">Quên mật khẩu?</a>
-                                            <span class="sign-header__help-separate"></span>
-                                            <a href="/" class="sign-header__help-link">Cần trợ giúp?</a>
-                                        </div>
-                                    </div>
-                                    <div class="btn-sign__controller">
-                                        <button type="submit" class="btn-sign__dangky " onclick="login()" id="login" name="login">Đăng nhập</button>
+                                    <div style="display: flex;">
+                                        <i class='bx bxs-error-circle user_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
+                                        <span class="error_user error"></span>
                                     </div>
                                 </div>
+                                <div class="error__wrap" style="margin-bottom: 20px;">
+                                    <div class="pay-input ">
+                                        <input type="password" class="form__input passs" name="pass" placeholder=" " value="">
+                                        <label for="" class="form__label  ">Mật khẩu</label>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <i class='bx bxs-error-circle passs_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
+                                        <span class="error_passs error"></span>
+                                    </div>
+                                </div>
+                                <div class="sign-header__aside">
+                                    <div class="sign-header__help">
+                                        <a href="" class="sign-header__help-link sign-header__help-forgot">Quên mật khẩu?</a>
+                                        <span class="sign-header__help-separate"></span>
+                                        <a href="/" class="sign-header__help-link">Cần trợ giúp?</a>
+                                    </div>
+                                </div>
+                                <div class="btn-sign__controller">
+                                    <button type="submit" class="btn-sign__dangky " onclick="login()" id="login" name="login">Đăng nhập</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="tab2Id" role="tabpanel" aria-label="dangky_tab">
                             <div class="sign-form">
@@ -215,7 +217,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-sign__controller">
-                                    <button type="button" class="btn-sign__dangky "  id="dangky">Đăng ký</button>
+                                    <button type="button" class="btn-sign__dangky " id="dangky">Đăng ký</button>
                                 </div>
                             </div>
                         </div>

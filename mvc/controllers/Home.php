@@ -17,7 +17,21 @@
         }
 
         public function tim_kiem(){
+            $sort ='';
+            $banchay ='';
+            if(isset($_POST['input-search']) && $_POST['input-search'] !==' '){
+                $text =$_POST['input-search'];
+                $_SESSION['search'] =$text;
+            }
+            $sp = $this->sanpham->search_home($text,20,$sort,$banchay);
+            $sl = count($sp);
+            $this->view('index',[
+                    'page' =>'search',
+                    'sanpham' =>$sp,
+                    'ketqua' =>$sl,
+                    "loaisp" =>$this->danhmuc->getloaisp()
+                ]);
+            
             
         }
     }
-?>
