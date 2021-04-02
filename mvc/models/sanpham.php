@@ -220,6 +220,23 @@ class sanpham extends DB {
         $sql .=' limit '. $count;
         return $this->_query($sql);
     }
+
+
+    public function list_product($text='',$ma_loai='',$ma_nsx='',$count=15){
+        $sql ="SELECT * FROM `sanpham` JOIN loaisanpham on sanpham.ma_loai=loaisanpham.ma_loai JOIN nhasanxuat on sanpham.ma_nsx = nhasanxuat.ma_nsx where 1";
+        if($text !==''){
+            $sql .= " and sanpham.sp_ma like '%$text%' or sanpham.sp_name like '%$text%' ";
+        }
+
+        if($ma_loai !==""){
+            $sql .= " and sanpham.ma_loai=$ma_loai";
+        }
+        if(!empty($ma_nsx)){
+            $sql .= " and sanpham.ma_nsx=$ma_nsx";
+        }
+        $sql .= " limit ".$count;
+        return $this->_query($sql);
+    }
 }
 
 

@@ -92,13 +92,11 @@ $(document).ready(function () {
 
 
 function filter_data(order) {
-    $("#danhmuc").html('<div class="loading" style= ""></div>');
     var action = 'fetch_data';
     var gia = get_filter("gia")
     var nsx = get_filter("hang");
     var kich_co = get_filter("removebtn");
     var ma_loai = $('#ma_loai').val();
-    console.log(order);
     $.ajax({
         url: "../Ajax/filter_data",
         method: "POST",

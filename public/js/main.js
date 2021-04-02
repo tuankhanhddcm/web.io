@@ -29,8 +29,17 @@ $(document).ready(function () {
         }
         
     });
+    $("#search").keyup(function(){
+        fliter_admin('');
+    });
 
+    $(".select-loaisp").click(function(){
+        fliter_admin();
+    });
 
+    $('.select-nsx').click(function(){
+        fliter_admin();
+    });
 });
 
 
@@ -104,6 +113,21 @@ function giamsl(id) {
 }
 
 
-
-
+function fliter_admin(){
+    var text = $("#search").val();
+    var ma_loai = $('#loaisp option:selected').val();
+    var nsx =$('#nsx option:selected').val();
+        $.ajax({
+            url: "../Ajax/filter_admin",
+            method: "post",
+            data: {
+                text:text,
+                ma_loai:ma_loai,
+                nsx:nsx
+            },
+            success: function(data){
+                $("#list_product").html(data);
+            }
+        });
+}
 

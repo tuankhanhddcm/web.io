@@ -326,6 +326,45 @@
                 }
             }
         }
-}
 
-?>
+        // lọc sp của trang admin
+        public function filter_admin(){
+            $text='';
+            $ma_loai='';
+            $nsx ='';
+            if(isset($_POST['text']) && !empty($_POST['text'])){
+                $text = $_POST['text'];
+            }
+            if(isset($_POST['ma_loai']) && !empty($_POST['ma_loai'])){
+                $ma_loai = $_POST['ma_loai'];
+            }
+            if(isset($_POST['nsx']) && !empty($_POST['nsx'])){
+                $nsx = $_POST['nsx'];
+            }
+            $kq = $this->sanpham->list_product($text,$ma_loai,$nsx,10);
+            $out ="";
+            if($kq){
+                foreach($kq as $val){
+                    $out .='<tr class="body-table">
+                                <td style="width: 50px;border-left: 1px solid rgba(0,0,0,.1);"><img src="http://localhost/web_mvc/'.$val["sp_img"].'" alt="" style="width: 50px;min-height: 10px;"></td>
+                                <td>'.$val["sp_ma"].'</td>
+                                <td><a href="" style="color: #357ebd;">'.$val["sp_name"].'</a> </td>
+                                <td style="text-align: center;">'.$val["sp_sl"].'</td>
+                                <td style="color: black;font-weight: 400;text-align: end;">'.number_format($val['sp_gia']).'đ</td>
+                                <td style="color: black;font-weight: 400;text-align: end;">'.number_format($val['sp_gia']).'đ</td>
+                                <td>'.$val["ten_loai"].'</td>
+                                <td>'.$val["ten_nsx"].'</td>
+                                <td style="display: flex;align-items: center;justify-content: center;padding-top: 20px;border-right: none;">
+                                    <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                                    <button type="button" class=" btn-copy" title="Copy"><i class="bx bx-copy-alt"></i></button>
+                                    <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
+                                </td>
+                            </tr>';
+                }
+            }else {
+                $out .='<tr">Không có tìm thấy sản phẩm</tr>';
+            }
+            echo $out;
+        }
+        
+}
