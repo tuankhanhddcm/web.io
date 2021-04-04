@@ -1,4 +1,4 @@
-<div class="grid main_container">
+<div class="grid main_container" >
     <div class="container__banner">
         <div class="grid">
             <div class="grid__row">

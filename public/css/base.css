@@ -8,13 +8,20 @@
   box-sizing: inherit;
 }
 
+
+
+
 body,html{
   font-size: 62.5%;
   line-height: 1.6rem;
   font-family:'Roboto', sans-serif;
   box-sizing: border-box;
+  
+}
+body {
   background-color: #f3f3f3;
 }
+
 
 .padding-9 {
   padding: 0 10px 10px 0;

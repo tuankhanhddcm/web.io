@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="vi">
 
@@ -22,20 +19,22 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color: #ffff; min-height: 684px; margin-top: 70px;">
-        <div class="row">
-                <!-- header -->
-                <?php require_once "./mvc/views/blocks/header_admin.php"; ?>
-                <div class="col-sm-12"style="padding: 0;">
-                    <div class="row">
-                        <!-- slider -->
-                        <?php require_once "./mvc/views/blocks/slider.php"; ?>
-                        <!-- main admin -->
-                        <?php require_once "./mvc/views/admin/" . $data["page"] . ".php"; ?>
-                    </div>
-                </div>
+  <div class="container-fluid" style="background-color: #ffff; margin-top: 70px;">
+    <div class="row">
+      <!-- header -->
+      <?php require_once "./mvc/views/blocks/header_admin.php"; ?>
+      <div class="col-sm-12" style="padding: 0;">
+        <div class="row" style="margin-right: 10px;">
+          <!-- slider -->
+          <?php require_once "./mvc/views/blocks/slider.php"; ?>
+          <!-- main admin -->
+          <?php require_once "./mvc/views/admin/" . $data["page"] . ".php"; ?>
         </div>
+      </div>
     </div>
+  </div>
+  <?php require_once "./mvc/views/blocks/modal_admin.php" ?>
+  <div id="toast"></div>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

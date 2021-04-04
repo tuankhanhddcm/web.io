@@ -10,6 +10,15 @@ class sanpham extends DB {
 
     }
 
+    public function num_rows(){
+        return $this->num_row('sanpham');
+    }
+
+    public function max_id($table,$col,$str){
+        $sql = "SELECT max($col) as $col from $table where $col like '%$str%'";
+        return mysqli_fetch_assoc(mysqli_query($this->conn,$sql));
+    }
+
     public function find_sp_byID($column,$id){
         $data = $this->find($this->table,$column, $id);
         return $data;
@@ -236,6 +245,18 @@ class sanpham extends DB {
         }
         $sql .= " limit ".$count;
         return $this->_query($sql);
+    }
+
+    public function insert_product($masp, $tensp,$sl,$gia, $giaban,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$update){
+        $sql = "INSERT INTO sanpham (id, sp_ma, sp_name, sp_sl, sp_gia, sp_giaban, sp_url, sp_img, sp_mota, ma_loai, ma_nsx, created, updated)
+                values('','$masp','$tensp','$sl','$gia','$giaban','$sp_url','$sp_img','$sp_mota','$ma_loai','$ma_nsx', current_timestamp(), '$update')";
+
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else {
+            $kq = " false";
+        }
+        return $kq;
     }
 }
 

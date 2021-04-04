@@ -22,6 +22,11 @@
             return $mang;
         }
 
+        public function num_row($table){
+            $sql = "SELECT * from $table ";
+            return mysqli_num_rows(mysqli_query($this->conn,$sql));
+        }
+        
         public function fristquery($qr){
             $query = mysqli_query($this->conn,$qr);
             return  mysqli_fetch_assoc($query);

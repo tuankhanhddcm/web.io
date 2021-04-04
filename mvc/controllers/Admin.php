@@ -12,7 +12,7 @@
             $this->Nhasanxuat = $this->model("Nhasanxuat");
         }
 
-        public function home(){
+        public function trangchu(){
             $this->view('admin',[
                 "page" =>'home',
             ]);
@@ -27,6 +27,16 @@
                 "sanpham" =>$sp,
                 "loai" =>$loai,
                 "nsx" =>$nsx
+            ]);
+        }
+
+        public function create_sp(){
+            $loai = $this->Danhmuc->getloaisp();
+            $nsx = $this->Nhasanxuat->select_all_nsx();
+            $this->view("admin",[
+                "page" =>"insert_product",
+                "loai" =>$loai,
+                "nsx" =>$nsx    
             ]);
         }
     }

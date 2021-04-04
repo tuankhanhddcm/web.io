@@ -36,7 +36,7 @@ $(document).ready(function () {
     //đăng ký user
     $("#dangky").click(function () {
         $(".dk").each(function () {
-            id = '#'+$(this).attr("id")
+            id = '#' + $(this).attr("id")
             kq = check(id);
         })
         sdt();
@@ -56,20 +56,12 @@ $(document).ready(function () {
         }
 
     });
-    // đăng nhập bầm phím enter
-    // $(".pass").keyup(function(e){
-    //     if(e.keyCode ===13){
-    //         $('#login').click(function(){
-    //             login();
-    //         });
-    //     }
-    // });
 
-// thanh toán
-    $('#btn-tt').click(function(){
+    // thanh toán
+    $('#btn-tt').click(function () {
         check('.hoten');
         check('#tinh')
-        if(email('.email')=='true' && check('.hoten')=='true' && check('#tinh')=='true'){
+        if (email('.email') == 'true' && check('.hoten') == 'true' && check('#tinh') == 'true') {
             thanhtoan();
         }
     });
@@ -83,9 +75,41 @@ $(document).ready(function () {
             ward();
             street();
         }
+
+    });
+
+    $('.select-loaisp').click(function () {
+        check("#loaisp");
+    });
+
+    $('.select-loaisp').click(function () {
+        check("#loaisp");
+    });
+
+    $(".btn-save").click(function () {
+        check("#loaisp");
+        check("#loainsx");
+        check(".sp");
+        check(".sl");
+        check(".gia");
+        check(".giaban");
+        check('#file_upload');
+        if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
+            && check(".sl") == 'true' && check(".sp") == 'true'
+            && check(".gia") == 'true' && check(".giaban") == 'true' && check("#file_upload") == 'true') {
+            insert_sp();
+            showinsert_pr();
+        }
+        
+
+    });
+
+
+    $('.href_sp').click(function(){
+        location.href=' http://localhost/web_mvc/Admin/list_sp';
         
     });
-   
+
 });
 
 
@@ -106,7 +130,7 @@ function filter_data(order) {
             gia: gia,
             ma_loai: ma_loai,
             kich_co: kich_co,
-            order:order
+            order: order
         },
         success: function (data) {
             $('#danhmuc').html(data);
@@ -162,7 +186,7 @@ function filter_banchay() {
         method: "POST",
         data: {
             ma_loai: ma_loai,
-            banchay:banchay,
+            banchay: banchay,
         },
         success: function (data) {
             $('#danhmuc').html(data);
@@ -308,6 +332,20 @@ function check(id) {
             break;
         case 'tinh': text = 'chọn tỉnh';
             break;
+        case 'sp': text = 'nhập tên sản phẩm';
+            break;
+        case 'sl': text = 'nhập số lượng';
+            break;
+        case 'gia': text = 'nhập giá vốn';
+            break;
+        case 'giaban': text = 'nhập giá bán';
+            break;
+        case 'loaisp': text = 'chọn nhóm hàng hóa';
+            break;
+        case 'loainsx': text = 'chọn thương hiệu';
+            break;
+        case 'file_upload': text = 'chọn hình ảnh';
+            break;
         case 'pass_again': text = 'nhập lại mật khẩu';
             break;
     }
@@ -409,20 +447,20 @@ function sdt() {
 
 function email(email) {
     var e = email.slice(1);
-    if (check(email) =='true') {
+    if (check(email) == 'true') {
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         var val = $(email).val();
         if (filter.test(val) == false) {
             $(email).addClass('error_input');
-            $("."+e+"_icon").css("display", "block");
-            $(".error_"+e).text("Email không hợp lệ (Example@gmail.com)!!!");
-            $(".error_"+e).css("display", "block");
+            $("." + e + "_icon").css("display", "block");
+            $(".error_" + e).text("Email không hợp lệ (Example@gmail.com)!!!");
+            $(".error_" + e).css("display", "block");
             kq = "false";
         } else {
-            $(email).removeClass('error_input'); 
-            $("."+e+"_icon").css("display", "none");
-            $(".error_"+e).css("display", "none");
-            
+            $(email).removeClass('error_input');
+            $("." + e + "_icon").css("display", "none");
+            $(".error_" + e).css("display", "none");
+
             kq = "true";
         }
         return kq;
@@ -474,12 +512,12 @@ function check_pass() {
 
 //đăng nhập
 
-function login(){
+function login() {
     var user = $('.user').val();
     var pass = $('.passs').val();
     check('.user');
     check('.passs');
-    if(check('.user')=='true' && check('.passs')=='true'){
+    if (check('.user') == 'true' && check('.passs') == 'true') {
         $.ajax({
             url: "http://localhost/web_mvc/Ajax/login",
             method: 'post',
@@ -488,32 +526,32 @@ function login(){
                 pass: pass,
             },
             dataType: "json",
-            success: function(data){
+            success: function (data) {
                 console.log(data);
-                if(data[0] =="false"){
+                if (data[0] == "false") {
                     $('.user').addClass('error_input');
                     $(".user_icon").css("display", "block");
                     $(".error_user").text("Tên đăng nhập không tồn tại!!!");
                     $(".error_user").css("display", "block");
-                }else{
+                } else {
                     $('.user').removeClass('error_input');
                     $(".user_icon").css("display", "none");
                     $(".error_user").css("display", "none");
                 }
-                if(data[1] == "false"){
+                if (data[1] == "false") {
                     $('.passs').addClass('error_input');
                     $(".passs_icon").css("display", "block");
                     $(".error_passs").text("Mật khẩu không đúng");
                     $(".error_passs").css("display", "block");
-                }else{
+                } else {
                     $('.passs').removeClass('error_input');
                     $(".passss_icon").css("display", "none");
                     $(".error_passs").css("display", "none");
                 }
-                if(data[0]=='true' && data[1]=='true'){
+                if (data[0] == 'true' && data[1] == 'true') {
                     location.reload();
                 }
-              
+
             }
         });
     }
@@ -525,7 +563,8 @@ function toast({
     title = '',
     message = "",
     type = "",
-    duration = 3000
+    duration = 3000,
+    load =''
 }) {
     const main = document.getElementById("toast");
     if (main) {
@@ -539,6 +578,12 @@ function toast({
             if (e.target.closest('.toast__close')) {
                 main.removeChild(toast);
                 clearTimeout(autoremove);
+                
+            }
+            if(load =='insert'){
+                location.href ="http://localhost/web_mvc/Admin/list_sp";
+            }
+            if(load == 'addsp'){
                 location.reload();
             }
         }
@@ -577,77 +622,91 @@ function showsuccess() {
 
 //hiện thông thêm sản phẩm thành công
 
-function showproduct(){
+function showproduct() {
     toast({
         title: 'Thành công !',
         message: "Bạn thêm sản phẩm thành công",
         type: "success",
-        duration: 3000
+        duration: 3000,
+        load:'addsp'
     });
-    setTimeout(function(){
+    setTimeout(function () {
         location.reload();
-    },3500);
+    }, 3500);
+}
+
+function showinsert_pr(){
+    toast({
+        title: 'Thành công !',
+        message: "Bạn tạo sản phẩm thành công",
+        type: "success",
+        duration: 2000,
+        load:'insert'
+    });
+    setTimeout(function () {
+        location.href='http://localhost/web_mvc/Admin/list_sp';
+    }, 2500);
 }
 
 
-function thanhtoan(){
-    var hoten =$('.hoten').val();
+function thanhtoan() {
+    var hoten = $('.hoten').val();
     var email = $('.email').val();
     var sdt = $(".sdt").val();
     var note = $('#note').val();
     var total = $('#total').val();
-    var diachi ='';
+    var diachi = '';
     var provi = $('#tinh option:selected').text();
-    var district =$('#district option:selected').text();
+    var district = $('#district option:selected').text();
     var ward = $('#ward option:selected').text();
     var street = $('#street option:selected').text();
-    if(street !==''){
-        diachi +=street +', ';
+    if (street !== '') {
+        diachi += street + ', ';
     }
-    if(ward !==''){
-        diachi += ward +', ';
+    if (ward !== '') {
+        diachi += ward + ', ';
     }
-    if(district !==''){
-        diachi += district +', ';
+    if (district !== '') {
+        diachi += district + ', ';
     }
-    if(provi !==''){
+    if (provi !== '') {
         diachi += provi;
     }
     console.log(diachi);
     $.ajax({
-        url:"./Payment/thanhtoan",
+        url: "./Payment/thanhtoan",
         method: "post",
-        data:{
-            hoten:hoten,
-            sdt:sdt,
-            email:email,
-            note:note,
-            total:total,
-            diachi:diachi
+        data: {
+            hoten: hoten,
+            sdt: sdt,
+            email: email,
+            note: note,
+            total: total,
+            diachi: diachi
         },
-        success: function(data){
-            location.href='http://localhost/web_mvc/Payment/camon';
+        success: function (data) {
+            location.href = 'http://localhost/web_mvc/Payment/camon';
         }
 
     });
 }
 
-function logout(){
+function logout() {
     $.ajax({
         url: "http://localhost/web_mvc/Login/logout",
         method: "POST",
         data: {
         },
         success: function (data) {
-            location.href='http://localhost/web_mvc/home';
+            location.href = 'http://localhost/web_mvc/home';
         }
     });
 }
 
 
 function district(val) {
-    var kq='';
-    if (val !== 'undefined' && val !==' ') {
+    var kq = '';
+    if (val !== 'undefined' && val !== ' ') {
         var provi = val;
         kq = "true";
         $.ajax({
@@ -668,8 +727,8 @@ function district(val) {
             }
 
         });
-    }else{
-        kq ='false';
+    } else {
+        kq = 'false';
     }
     return kq;
 
@@ -699,7 +758,7 @@ function ward() {
             });
 
         }
-        
+
     });
 
 
@@ -732,16 +791,16 @@ function street() {
 
 }
 
-function search_header(){
+function search_header() {
     var text = $("#input-search").val();
-    if(text !==' '){
+    if (text !== ' ') {
         $.ajax({
             url: "http://localhost/web_mvc/Ajax/search_product",
             method: "post",
-            data:{
-                text:text
+            data: {
+                text: text
             },
-            success: function(data){
+            success: function (data) {
                 $('#list-search').html(data);
             }
         });
@@ -749,3 +808,51 @@ function search_header(){
 }
 
 
+function insert_sp() {
+    var tensp = $('.sp').val();
+    var sl = $('.sl').val();
+    var txt_gia = $('.gia').val();
+    var txt_giaban = $('.giaban').val();
+    var maloai = $('#loaisp option:selected').val();
+    var mansx = $('#loainsx option:selected').val();
+    var file = $('#file_upload').prop('files')[0];
+    var sp_mota = $("#mota").val();
+    var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
+    var gia = txt_gia.slice(0, txt_gia.search('₫'));
+    gia = gia.replaceAll('.', '');
+    var giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
+    giaban = giaban.replaceAll('.', '');
+    if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
+        var type = file.type;
+        var name = file.name;
+        var form_data = new FormData();
+        if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
+            form_data.append('file', file);
+            $.ajax({
+                url: "../Ajax/upload_file",
+                method: "post",
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: form_data,
+
+            });
+        }
+        $.ajax({
+            url: '../Ajax/insert_sp',
+            method: 'post',
+            data: {
+                tensp: tensp,
+                sl: sl,
+                gia: gia,
+                giaban: giaban,
+                maloai: maloai,
+                mansx: mansx,
+                img: name,
+                sp_mota: sp_mota
+            },
+        });
+
+    }
+
+}

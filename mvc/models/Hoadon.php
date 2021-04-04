@@ -8,9 +8,8 @@ class Hoadon extends DB {
         return $this->_query($sql);
     }
 
-    public function num_row($table){
-        $sql = "SELECT * from $table ";
-        return mysqli_num_rows(mysqli_query($this->conn,$sql));
+    public function num_rows(){
+        return $this->num_row('hoadon');
     }
     public function max_id($table,$col,$str){
         $sql = "SELECT max($col) as $col from $table where $col like '%$str%'";

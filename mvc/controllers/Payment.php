@@ -56,7 +56,7 @@
                     $total = $_POST['total'];
                     $kq = $this->Usermoder->update_user($user,$pass,$hoten,$sdt,$email,$diachi,$avatar,$updated);
                     if($kq=='true'){
-                        $row = $this->Hoadon->num_row('hoadon');
+                        $row = $this->Hoadon->num_rows();
                         $max_id = $this->Hoadon->max_id('hoadon','ma_hd','HD');
                         if($max_id !==null){
                             $id = (int)(str_replace('HD','',$max_id['ma_hd']))+1;
