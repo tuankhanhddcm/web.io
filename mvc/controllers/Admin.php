@@ -19,12 +19,10 @@
         }
 
         public function list_sp(){
-            $sp = $this->sanpham->list_product('','','',10);
             $loai = $this->Danhmuc->getloaisp();
             $nsx = $this->Nhasanxuat->select_all_nsx();
             $this->view('admin',[
                 "page" =>'list_product',
-                "sanpham" =>$sp,
                 "loai" =>$loai,
                 "nsx" =>$nsx
             ]);
@@ -39,5 +37,8 @@
                 "nsx" =>$nsx    
             ]);
         }
+
+
+        
     }
 ?>

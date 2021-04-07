@@ -18,6 +18,10 @@ $(document).ready(function () {
         $(this).addClass("nav-active").siblings().removeClass("nav-active");
     });
     
+    $(".page_items").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+
     $(".removebtn ").click(function () {
         $(".sapxep").siblings().removeClass("btn--primary");
     });
@@ -33,21 +37,35 @@ $(document).ready(function () {
         }
 
     });
+
+    // lọc trang admin
+    fliter_admin(1);
     $("#search").keyup(function () {
-        fliter_admin('');
+        fliter_admin(1);
     });
 
     $(".select-loaisp").click(function () {
-        fliter_admin();
+        fliter_admin(1);
     });
 
     $('.select-nsx').click(function () {
-        fliter_admin();
+        fliter_admin(1);
+    });
+    //end lọc
+
+    //check img
+    $("#img_group").click(function () {
+        $("#img_dm").click();
+    });
+    
+    $("#thuong_hieu").click(function () {
+        $("#img_nsx").click();
     });
 
-    $(".display-img").click(function () {
-        $("#file_upload").click();
+    $("#img_pro").click(function () {
+        $("#img_temp").click();
     });
+
 
     $('.sl').inputFilter(function (value) {
         return /^\d*$/.test(value);
@@ -68,6 +86,16 @@ $(document).ready(function () {
     $('.giaban').change(function(){
         var text =txtmoney($(this).val());
         $(this).val(text);
+    });
+
+
+
+
+    $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        phan_trang_nsx(page);
+        phan_trang_loai(page);
+        fliter_admin(page);
     });
 });
 
@@ -142,7 +170,7 @@ function giamsl(id) {
 }
 
 
-function fliter_admin() {
+function fliter_admin(trang) {
     var text = $("#search").val();
     var ma_loai = $('#loaisp option:selected').val();
     var nsx = $('#nsx option:selected').val();
@@ -152,7 +180,8 @@ function fliter_admin() {
         data: {
             text: text,
             ma_loai: ma_loai,
-            nsx: nsx
+            nsx: nsx,
+            trang:trang
         },
         success: function (data) {
             $("#list_product").html(data);
@@ -160,27 +189,27 @@ function fliter_admin() {
     });
 }
 
-function readURL(input) {
+function readURL(input,id_img,img) {
     var file = input.files;
     var kq = '';
+    var id = id_img.slice(1);
     if (file.length > 0 && file != "") {
         kq = 'true';
         var reader = new FileReader();
-        var files = input.files[0];
-        var filename = file['name'];
         reader.onload = function (e) {
-            $('#img_temp').attr('src', e.target.result);
+            $(img).attr('src', e.target.result);
         }
-        $(".label-img").css("display", 'none');
+        $(".label-"+id).css("display", 'none');
         reader.readAsDataURL(input.files[0]);
-        $(".file_upload_icon").css("display", 'none');
-        $(".error_file_upload").text('');
+        $('.'+id+'_icon').css("display", 'none');
+        $(".error_"+id).text('');
     } else {
-        $(".error_file_upload").text('Vui lòng chọn hình ảnh');
-        $(".error_file_upload").css("display", 'block');
-        $(".label-img").css("display", 'block');
-        $(".file_upload_icon").css("display", 'block');
-        $('#img_temp').attr('src', '');
+        $(".error_"+id).text('Vui lòng chọn hình ảnh');
+        $(".error_"+id).css("display", 'block');
+        $(".label-"+id).css("display", 'block');
+        $('.'+id+'_icon').css("display", 'block');
+        $(img).attr('src', '');
+       
     }
 
 }
@@ -210,3 +239,29 @@ function txtmoney(val){
     }
 }
 
+
+
+function phan_trang_nsx(trang){
+    $.ajax({
+        url: "../Ajax/page/nhasanxuat/8",
+        method: "post",
+        data: {
+            trang:trang
+        },
+        success: function(data){
+            $("#list_nsx").html(data);
+        }
+    });
+}
+function phan_trang_loai(trang){
+    $.ajax({
+        url: "../Ajax/page/loaisanpham/8",
+        method: "post",
+        data: {
+            trang:trang
+        },
+        success: function(data){
+            $("#list_loai").html(data);
+        }
+    });
+}

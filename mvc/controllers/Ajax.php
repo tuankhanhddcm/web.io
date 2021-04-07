@@ -4,11 +4,15 @@ class Ajax extends Controller
 
     public $sanpham;
     public $usermodel;
+    public $Danhmuc;
+    public $Nhasanxuat;
 
     public function __construct()
     {
         $this->sanpham = $this->model("sanpham");
         $this->usermodel = $this->model("Usermodel");
+        $this->Danhmuc = $this->model("Danhmucmodel");
+        $this->Nhasanxuat = $this->model("Nhasanxuat");
     }
 
 
@@ -272,6 +276,18 @@ class Ajax extends Controller
             echo $this->usermodel->checkuser(($_POST['username']));
         }
     }
+    public function check_name($table)
+    {
+        if (isset($_POST['name'])) {
+            if ($table == 'danhmuc') {
+                echo $this->Danhmuc->check_loai(($_POST['name']));
+            }
+            if ($table == 'nsx') {
+                echo $this->Nhasanxuat->check_nsx(($_POST['name']));
+            }
+        }
+    }
+
     public function check_sdt()
     {
         if (isset($_POST['sdt'])) {
@@ -347,7 +363,20 @@ class Ajax extends Controller
         if (isset($_POST['nsx']) && !empty($_POST['nsx'])) {
             $nsx = $_POST['nsx'];
         }
-        $kq = $this->sanpham->list_product($text, $ma_loai, $nsx, 10);
+        if(isset($_POST['trang']) && !empty($_POST['trang'])){
+            $page = 1;
+            $limit = 8;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+        }
+        $sotrang = $this->sanpham->list_product($text, $ma_loai, $nsx);
+       
+        $kq = $this->sanpham->list_product($text, $ma_loai,$nsx,$start,$limit);
+        $row =count($sotrang);
         $out = "";
         if ($kq) {
             foreach ($kq as $val) {
@@ -367,9 +396,11 @@ class Ajax extends Controller
                                 </td>
                             </tr>';
             }
+            $out.=$this->_trang($row,$page,$limit,9);
         } else {
             $out .= '<tr class="no_product" ><td  colspan="9">Không tìm thấy sản phẩm</td></tr>';
         }
+        
         echo $out;
     }
 
@@ -412,20 +443,192 @@ class Ajax extends Controller
             } else if ($id < 1000000) {
                 $masp = 'SP' . ($id);
             }
-            $sp_img = "public/img/upload/".$img;
+            $sp_img = "public/img/upload/" . $img;
             $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
-           
         }
     }
 
-    public function upload_file(){
-        if(isset($_FILES['file'])){
-            $file_type = explode('.',$_FILES['file']['name']);
-            $file_type = $file_type[(count($file_type)-1)];
-            if($file_type ==='jpg' || $file_type ==='png'|| $file_type ==='gif'|| $file_type ==='jfif' || $file_type ==='jpeg'){
-                move_uploaded_file($_FILES['file']['tmp_name'],'./public/img/upload/'.$_FILES['file']['name']);
+    public function upload_file($text)
+    {
+        if (isset($_FILES['file'])) {
+            $file_type = explode('.', $_FILES['file']['name']);
+            $path = $text;
+            $file_type = $file_type[(count($file_type) - 1)];
+            if ($file_type === 'jpg' || $file_type === 'png' || $file_type === 'gif' || $file_type === 'jfif' || $file_type === 'jpeg') {
+                move_uploaded_file($_FILES['file']['tmp_name'], './public/img/' . $path . '/' . $_FILES['file']['name']);
             }
         }
-        
+    }
+
+    public function insert_group($table)
+    {
+        if (!empty($_POST['ten']) && !empty($_POST['img'])) {
+            $updated = date("Y-m-d H:i:s", time());
+            $ten = $_POST['ten'];
+            if ($table == 'danhmuc') {
+                $img = 'public/img/danhmuc/' . $_POST['img'];
+                $row = $this->Danhmuc->num_rows();
+                $ma = $row + 1;
+                $this->Danhmuc->insert_loai($ma, $ten, $img, $updated);
+            }
+            if ($table == "nsx") {
+                $img = 'public/img/nsx/' . $_POST['img'];
+                $row = $this->Nhasanxuat->num_rows();
+                $ma = $row + 1;
+                $this->Nhasanxuat->insert_nsx($ma, $ten, $img, $updated);
+            }
+        }
+    }
+
+    public function page($table, $limit)
+    {
+        if (isset($_POST['trang']) && !empty($_POST['trang'])) {
+            $page = 1;
+            $limit = $limit;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+            $ouput = '';
+            if ($table == 'nhasanxuat') {
+                $row = $this->Nhasanxuat->num_rows();
+                $kq = $this->Danhmuc->phan_trang($table, $start, $limit);
+                if ($kq) {
+                    foreach ($kq as $val) {
+                        $ouput .= '
+                        <tr>
+                        <td class="text_td item_' . $val['ma_nsx'] . '" style=" padding-top: 15px;">' . $val['ten_nsx'] . '</td>
+                        <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                          <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                          <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
+                        </td>
+                        </tr>
+                        ';
+                    }
+                }
+                $ouput.=$this->_trang($row,$page,$limit);
+            }
+            if( $table =="loaisanpham"){
+                $row = $this->Danhmuc->num_rows();
+                
+                $kq = $this->Danhmuc->phan_trang($table, $start, $limit);
+                if ($kq) {
+                    foreach ($kq as $val) {
+                        $ouput .= '
+                        <tr>
+                        <td class="text_td item_' . $val['ma_loai'] . '" style=" padding-top: 15px;">' . $val['ten_loai'] . '</td>
+                        <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                          <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                          <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
+                        </td>
+                        </tr>
+                        ';
+                    }
+                }
+                $ouput.=$this->_trang($row,$page,$limit);
+            }
+            
+            echo $ouput;
+        }
+    }
+
+
+    public function _trang($row,$page,$limit,$colspan=2)
+    {
+        $ouput = '
+        <tr>
+                <td colspan="'.$colspan.'" style="border: none;">
+            <div align="center">
+            <ul class="pagination justify-content-end" style="margin-right: 30px">
+            ';
+        $total_links = ceil($row / $limit);
+        $previous_link = '';
+        $next_link = '';
+        $page_link = '';
+
+        if ($total_links > 4) {
+            if ($page < 5) {
+                for ($count = 1; $count <= 5; $count++) {
+                    $page_array[] = $count;
+                }
+
+                $page_array[] = '...';
+                $page_array[] = $total_links;
+            } else {
+                $end_limit = $total_links - 5;
+                if ($page > $end_limit) {
+                    $page_array[] = 1;
+                    $page_array[] = '...';
+                    for ($count = $end_limit; $count <= $total_links; $count++) {
+                        $page_array[] = $count;
+                    }
+                } else {
+                    $page_array[] = 1;
+                    $page_array[] = '...';
+                    for ($count = $page - 1; $count <= $page + 1; $count++) {
+                        $page_array[] = $count;
+                    }
+
+                    $page_array[] = '...';
+                    $page_array[] = $total_links;
+                }
+            }
+        } else {
+            for ($count = 1; $count <= $total_links; $count++) {
+                $page_array[] = $count;
+            }
+        }
+        for ($count = 0; $count < count($page_array); $count++) {
+            if ($page == $page_array[$count]) {
+                $page_link .= '
+            <li class="page-item active">
+            <a class="page-link" href="javascript:void(0)" data-page_number=' . $page . '>' . $page_array[$count] . ' <span class="sr-only">(current)</span></a>
+            </li>
+            ';
+                $previous_id = $page_array[$count] - 1;
+                if ($previous_id > 0) {
+                    $previous_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="' . $previous_id . '">Quay lại</a></li>';
+                } else {
+                    $previous_link = '
+                <li class="page-item disabled">
+                <a class="page-link" href="#">Quay lại</a>
+                </li>
+                ';
+                }
+                $next_id = $page_array[$count] + 1;
+                if ($next_id > $total_links) {
+                    $next_link = '
+                <li class="page-item disabled">
+                <a class="page-link" href="#">Tiếp</a>
+                </li> 
+                ';
+                } else {
+                    $next_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="' . $next_id . '">Tiếp</a></li>';
+                }
+            } else {
+                if ($page_array[$count] == '...') {
+                    $page_link .= '
+                <li class="page-item disabled">
+                <a class="page-link" href="#">...</a>
+                </li>
+                ';
+                } else {
+                    $page_link .= '
+                <li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="' . $page_array[$count] . '">' . $page_array[$count] . '</a></li>
+                ';
+                }
+            }
+        }
+        $ouput .= $previous_link . $page_link . $next_link;
+        $ouput .= '
+                </ul>
+            </div>
+            
+            </td>
+            </tr>
+            ';
+        return $ouput;
     }
 }

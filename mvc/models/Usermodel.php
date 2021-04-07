@@ -33,6 +33,7 @@ class Usermodel extends DB {
         }
         return $kq;
     }
+    
     public function checksdt($sdt){
         $sql = "SELECT * from user where sdt ='$sdt'";
         if(mysqli_num_rows(mysqli_query($this->conn,$sql))>0){

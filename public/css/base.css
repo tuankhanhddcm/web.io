@@ -296,3 +296,17 @@ button.btn-sort {
   background: #ddd;
   color: var(--text-color);
 }
+
+
+/* phân trang  */
+
+.page-link {
+  margin-top: 20px;
+  border-radius: 3px 0px 3px 0px;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+}
+
+.form-check-input{
+  cursor: pointer;
+}

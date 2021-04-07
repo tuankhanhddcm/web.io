@@ -82,33 +82,10 @@ $(document).ready(function () {
         check("#loaisp");
     });
 
-    $('.select-loaisp').click(function () {
-        check("#loaisp");
-    });
-
-    $(".btn-save").click(function () {
-        check("#loaisp");
+    $('.select-loainsx').click(function () {
         check("#loainsx");
-        check(".sp");
-        check(".sl");
-        check(".gia");
-        check(".giaban");
-        check('#file_upload');
-        if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
-            && check(".sl") == 'true' && check(".sp") == 'true'
-            && check(".gia") == 'true' && check(".giaban") == 'true' && check("#file_upload") == 'true') {
-            insert_sp();
-            showinsert_pr();
-        }
-        
-
     });
 
-
-    $('.href_sp').click(function(){
-        location.href=' http://localhost/web_mvc/Admin/list_sp';
-        
-    });
 
 });
 
@@ -344,7 +321,15 @@ function check(id) {
             break;
         case 'loainsx': text = 'chọn thương hiệu';
             break;
-        case 'file_upload': text = 'chọn hình ảnh';
+        case 'img_temp': text = 'chọn hình ảnh';
+            break;
+        case 'img_dm': text = 'chọn hình ảnh';
+            break;
+        case 'prd_group_name': text = 'nhập tên nhóm hàng hóa';
+            break;
+        case 'img_nsx': text = 'chọn hình ảnh';
+            break;
+        case 'prd_nsx_name': text = 'nhập tên thương hiệu';
             break;
         case 'pass_again': text = 'nhập lại mật khẩu';
             break;
@@ -362,6 +347,7 @@ function check(id) {
         return "true";
     }
 }
+
 //kiểm tra tên đăng nhập
 function check_user() {
     if (check('#username') == "true") {
@@ -466,9 +452,9 @@ function email(email) {
         return kq;
     }
 
-
-
 }
+
+
 function pass() {
     if (check('#pass')) {
         var pass = $("#pass").val();
@@ -564,7 +550,7 @@ function toast({
     message = "",
     type = "",
     duration = 3000,
-    load =''
+    load = ''
 }) {
     const main = document.getElementById("toast");
     if (main) {
@@ -578,12 +564,15 @@ function toast({
             if (e.target.closest('.toast__close')) {
                 main.removeChild(toast);
                 clearTimeout(autoremove);
-                
+
             }
-            if(load =='insert'){
-                location.href ="http://localhost/web_mvc/Admin/list_sp";
+            if (load == 'insert') {
+                location.href = "http://localhost/web_mvc/Admin/list_sp";
             }
-            if(load == 'addsp'){
+            if (load == 'insert_loai') {
+                location.href = "http://localhost/web_mvc/Admin/create_sp";
+            }
+            if (load == 'addsp') {
                 location.reload();
             }
         }
@@ -593,20 +582,18 @@ function toast({
         toast.classList.add('toast', `toast--${type}`);
         toast.style.animation = `slideleft ease .3s, fadeout linear 1s ${delay}s forwards`;
         toast.innerHTML = `
-        <div class="toast__icon">
-          <i class='bx bxs-check-circle'></i>
-        </div>
-        <div class="toast__body">
-          <h3 class="toast__title">${title} !</h3>
-          <p class="toast__msg">${message}</p>
-        </div>
-        <div class="toast__close">
-          <i class='bx bx-x'></i>
-        </div>
-      `;
+                    <div class="toast__icon">
+                    <i class='bx bxs-check-circle'></i>
+                    </div>
+                    <div class="toast__body">
+                    <h3 class="toast__title">${title} !</h3>
+                    <p class="toast__msg">${message}</p>
+                    </div>
+                    <div class="toast__close">
+                    <i class='bx bx-x'></i>
+                    </div>
+                `;
         main.appendChild(toast);
-
-
     }
 }
 //hiện thông báo thành công
@@ -628,24 +615,23 @@ function showproduct() {
         message: "Bạn thêm sản phẩm thành công",
         type: "success",
         duration: 3000,
-        load:'addsp'
+        load: 'addsp'
     });
     setTimeout(function () {
         location.reload();
     }, 3500);
 }
 
-function showinsert_pr(){
+
+
+function showinsert(text, mess) {
     toast({
         title: 'Thành công !',
-        message: "Bạn tạo sản phẩm thành công",
+        message: "Bạn thêm " + mess + " thành công",
         type: "success",
         duration: 2000,
-        load:'insert'
+        load: text
     });
-    setTimeout(function () {
-        location.href='http://localhost/web_mvc/Admin/list_sp';
-    }, 2500);
 }
 
 
@@ -808,51 +794,210 @@ function search_header() {
 }
 
 
-function insert_sp() {
+function insert_sp(val) {
     var tensp = $('.sp').val();
     var sl = $('.sl').val();
     var txt_gia = $('.gia').val();
     var txt_giaban = $('.giaban').val();
     var maloai = $('#loaisp option:selected').val();
     var mansx = $('#loainsx option:selected').val();
-    var file = $('#file_upload').prop('files')[0];
+    var file = $('#img_temp').prop('files')[0];
     var sp_mota = $("#mota").val();
     var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
     var gia = txt_gia.slice(0, txt_gia.search('₫'));
     gia = gia.replaceAll('.', '');
     var giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
     giaban = giaban.replaceAll('.', '');
-    if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
+    check("#loaisp");
+    check("#loainsx");
+    check(".sp");
+    check(".sl");
+    check(".gia");
+    check(".giaban");
+    check('#img_temp');
+    if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
+        && check(".sl") == 'true' && check(".sp") == 'true'
+        && check(".gia") == 'true' && check(".giaban") == 'true' && check("#file_upload") == 'true') {
+        if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
+            var type = file.type;
+            var name = file.name;
+            var form_data = new FormData();
+            if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
+                form_data.append('file', file);
+                $.ajax({
+                    url: "../Ajax/upload_file/upload",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    mimeType: "multipart/form-data",
+                    data: form_data,
+
+                });
+            }
+            $.ajax({
+                url: '../Ajax/insert_sp',
+                method: 'post',
+                data: {
+                    tensp: tensp,
+                    sl: sl,
+                    gia: gia,
+                    giaban: giaban,
+                    maloai: maloai,
+                    mansx: mansx,
+                    img: name,
+                    sp_mota: sp_mota,
+                },
+            });
+
+            if (val == 0) {
+                showinsert('insert', 'sản phẩm');
+                setTimeout(function () {
+                    location.href = 'http://localhost/web_mvc/Admin/list_sp';
+                }, 2000)
+            }
+            if (val == 1) {
+                showinsert('', 'sản phẩm');
+                $('input').val('');
+                $('textarea').val('');
+                $("#img_insert").attr('src', '');
+                $(".label-img_temp").css('display', 'block');
+                $(".select").val('');
+                $(".select").selectpicker("refresh");
+            }
+
+        }
+    }
+
+
+
+}
+
+function check_name(text, table) {
+    var name = $('#prd_' + text + '_name').val();
+    var kq = '';
+    check("#prd_" + text + "_name");
+    if (check("#prd_" + text + "_name") == 'true') {
+        $.ajax({
+            url: "../Ajax/check_name/" + table,
+            method: "post",
+            data: {
+                name: name
+            },
+            async: false,
+            success: function (data) {
+                if (data == 'false') {
+                    $("#prd_" + text + "_name").addClass('error_input');
+                    $(".prd_" + text + "_name_icon").css("display", "block");
+                    $(".error_prd_" + text + "_name").text("Tên đã tồn tại!!!");
+                    $(".error_prd_" + text + "_name").css("display", "block");
+                } else {
+                    $("#prd_" + text + "_name").removeClass('error_input');
+                    $(".prd_" + text + "_name_icon").css("display", "none");
+                    $(".error_prd_" + text + "_name").css("display", "none");
+                }
+
+                kq = data;
+            }
+        });
+        return kq;
+    }
+
+}
+
+
+function insert_loai(val) {
+    check("#img_dm");
+    if (check_name('group', 'danhmuc') == 'true' && check("#img_dm") == 'true') {
+        var name = $('#prd_group_name').val();
+        var file = $('#img_dm').prop('files')[0];
+        var img = file.name;
+        var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
         var type = file.type;
-        var name = file.name;
         var form_data = new FormData();
         if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
             form_data.append('file', file);
             $.ajax({
-                url: "../Ajax/upload_file",
+                url: "../Ajax/upload_file/danhmuc",
                 method: "post",
                 processData: false,
                 contentType: false,
                 mimeType: "multipart/form-data",
                 data: form_data,
-
+                success: function (data) {
+                    console.log(data);
+                }
             });
         }
         $.ajax({
-            url: '../Ajax/insert_sp',
+            url: "../Ajax/insert_group/danhmuc",
             method: 'post',
             data: {
-                tensp: tensp,
-                sl: sl,
-                gia: gia,
-                giaban: giaban,
-                maloai: maloai,
-                mansx: mansx,
-                img: name,
-                sp_mota: sp_mota
+                ten: name,
+                img: img,
+
             },
+
+
+
+        });
+        if (val == 0) {
+            showinsert('insert_loai', 'nhóm hàng hóa');
+            setTimeout(function () {
+                location.href = 'http://localhost/web_mvc/Admin/create_sp';
+            }, 2000)
+        }
+        if (val == 1) {
+            showinsert('', 'nhóm hàng hóa');
+            $('#prd_group_name').val('');
+            $("#img_loai").attr('src', '');
+            $(".label-img_dm").css('display', 'block');
+        }
+    }
+}
+
+function insert_nsx(val) {
+    check("#img_nsx");
+    if (check_name('nsx', 'nsx') == 'true' && check("#img_nsx") == 'true') {
+        var name = $('#prd_nsx_name').val();
+        var file = $('#img_nsx').prop('files')[0];
+        var img = file.name;
+        var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
+        var type = file.type;
+        var form_data = new FormData();
+        if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
+            form_data.append('file', file);
+            $.ajax({
+                url: "../Ajax/upload_file/nsx",
+                method: "post",
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: form_data,
+            });
+        }
+        $.ajax({
+            url: "../Ajax/insert_group/nsx",
+            method: 'post',
+            data: {
+                ten: name,
+                img: img,
+
+            },
+
         });
 
+        if (val == 0) {
+            showinsert('insert_loai', 'thương hiệu');
+            setTimeout(function () {
+                location.href = 'http://localhost/web_mvc/Admin/create_sp';
+            }, 2000)
+        }
+        if (val == 1) {
+            showinsert('', 'thương hiệu');
+            $('#prd_nsx_name').val('');
+            $("#img_nsx_temp").attr('src', '');
+            $(".label-img_nsx").css('display', 'block');
+        }
     }
 
 }

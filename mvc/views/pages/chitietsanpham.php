@@ -60,7 +60,7 @@
                                     <button type="button" onclick="giamsl('<?= $val['sp_ma'] ?>')" class="btn-calc btn-sl_tru tru">
                                         <i class='btn-sl__icon bx bx-minus'></i>
                                     </button>
-                                    <input class="btn-sl sl" name="soluong" id="<?= $val['sp_ma'] ?>"  min="1" value="1">
+                                    <input class="btn-sl sl" name="soluong" id="<?= $val['sp_ma'] ?>" min="1" value="1">
                                     <button type="button" onclick="tangsl('<?= $val['sp_ma'] ?>')" class=" btn-calc btn-sl_cong cong">
                                         <i class='btn-sl__icon bx bx-plus'></i>
                                     </button>
@@ -137,90 +137,7 @@
                                 </ul>
                             <?php endforeach; ?>
                             <button type="button" class="btn_cus btn-detail-info " data-toggle="modal" data-target="#thongsokythuat">Xem chi tiết thông số kỹ thuật</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="thongsokythuat" tabindex="-1" role="dialog" aria-labelledby="info-text" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="info-text">Thông số kỹ thuật</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body body-info">
-                                            <?php foreach ($data['thongso'] as $thongso) : ?>
-                                                <ul class="detail-info-list">
-                                                    <li>
-                                                        <span class="detail-info-name">Loại tivi:</span>
-                                                        <span class="detail-info-value"><?= $thongso['loai_sp'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Kích cỡ màn hình:</span>
-                                                        <span class="detail-info-value"><?= $thongso['kich_co_tv'] ?> ich</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Độ phân giải:</span>
-                                                        <span class="detail-info-value"><?= $thongso['do_phan_giai'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Hệ điều hành:</span>
-                                                        <span class="detail-info-value"><?= $thongso['he_dieu_hanh'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Ứng dụng:</span>
-                                                        <span class="detail-info-value"><?= $thongso['ung_dung'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Công nghệ hình ảnh:</span>
-                                                        <span class="detail-info-value"><?= $thongso['cong_nghe'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Tính năng thông minh:</span>
-                                                        <span class="detail-info-value"><?= $thongso['tinh_nang'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">kết nối:</span>
-                                                        <span class="detail-info-value"><?= $thongso['ket_noi'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Công nghệ loa:</span>
-                                                        <span class="detail-info-value"><?= $thongso['loa'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Công suất:</span>
-                                                        <span class="detail-info-value"><?= $thongso['cong_suat'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Kích thước:</span>
-                                                        <span class="detail-info-value"><?= $thongso['kich_thuoc'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Khối lượng:</span>
-                                                        <span class="detail-info-value"><?= $thongso['khoi_luong'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Nơi sản xuất:</span>
-                                                        <span class="detail-info-value"><?= $thongso['noi_san_xuat'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Bảo hành:</span>
-                                                        <span class="detail-info-value"><?= $thongso['bao_hanh'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Năm ra mắt:</span>
-                                                        <span class="detail-info-value"><?= $thongso['nam_sx'] ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="detail-info-name">Hãng:</span>
-                                                        <span class="detail-info-value"><?= $data['nsx'] ?></span>
-                                                    </li>
-                                                </ul>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end modal -->
+
                         </div>
                     </div>
                 </div>
@@ -228,3 +145,87 @@
         </div>
     <?php endforeach; ?>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="thongsokythuat" tabindex="-1" role="dialog" aria-labelledby="info-text" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="info-text">Thông số kỹ thuật</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-info">
+                <?php foreach ($data['thongso'] as $thongso) : ?>
+                    <ul class="detail-info-list">
+                        <li>
+                            <span class="detail-info-name">Loại tivi:</span>
+                            <span class="detail-info-value"><?= $thongso['loai_sp'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Kích cỡ màn hình:</span>
+                            <span class="detail-info-value"><?= $thongso['kich_co_tv'] ?> ich</span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Độ phân giải:</span>
+                            <span class="detail-info-value"><?= $thongso['do_phan_giai'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Hệ điều hành:</span>
+                            <span class="detail-info-value"><?= $thongso['he_dieu_hanh'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Ứng dụng:</span>
+                            <span class="detail-info-value"><?= $thongso['ung_dung'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Công nghệ hình ảnh:</span>
+                            <span class="detail-info-value"><?= $thongso['cong_nghe'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Tính năng thông minh:</span>
+                            <span class="detail-info-value"><?= $thongso['tinh_nang'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">kết nối:</span>
+                            <span class="detail-info-value"><?= $thongso['ket_noi'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Công nghệ loa:</span>
+                            <span class="detail-info-value"><?= $thongso['loa'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Công suất:</span>
+                            <span class="detail-info-value"><?= $thongso['cong_suat'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Kích thước:</span>
+                            <span class="detail-info-value"><?= $thongso['kich_thuoc'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Khối lượng:</span>
+                            <span class="detail-info-value"><?= $thongso['khoi_luong'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Nơi sản xuất:</span>
+                            <span class="detail-info-value"><?= $thongso['noi_san_xuat'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Bảo hành:</span>
+                            <span class="detail-info-value"><?= $thongso['bao_hanh'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Năm ra mắt:</span>
+                            <span class="detail-info-value"><?= $thongso['nam_sx'] ?></span>
+                        </li>
+                        <li>
+                            <span class="detail-info-name">Hãng:</span>
+                            <span class="detail-info-value"><?= $data['nsx'] ?></span>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal -->

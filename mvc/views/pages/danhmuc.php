@@ -87,7 +87,7 @@
                                      <div class="col-sm-6">
                                          <div class="form-check home-sceen__item">
                                              <input class="form-check-input hang removebtn" type="checkbox" value="<?= $nsx["ma_nsx"] ?>">
-                                             <img src=".<?= $nsx["nsx_img"] ?>" alt="">
+                                             <img src="http://localhost/web_mvc/<?= $nsx["nsx_img"] ?>" alt="">
                                          </div>
                                      </div>
                                  <?php } ?>
