@@ -363,7 +363,7 @@ class Ajax extends Controller
         if (isset($_POST['nsx']) && !empty($_POST['nsx'])) {
             $nsx = $_POST['nsx'];
         }
-        if(isset($_POST['trang']) && !empty($_POST['trang'])){
+        if (isset($_POST['trang']) && !empty($_POST['trang'])) {
             $page = 1;
             $limit = 8;
             if ($_POST['trang'] > 1) {
@@ -374,9 +374,9 @@ class Ajax extends Controller
             }
         }
         $sotrang = $this->sanpham->list_product($text, $ma_loai, $nsx);
-       
-        $kq = $this->sanpham->list_product($text, $ma_loai,$nsx,$start,$limit);
-        $row =count($sotrang);
+
+        $kq = $this->sanpham->list_product($text, $ma_loai, $nsx, $start, $limit);
+        $row = count($sotrang);
         $out = "";
         if ($kq) {
             foreach ($kq as $val) {
@@ -396,11 +396,11 @@ class Ajax extends Controller
                                 </td>
                             </tr>';
             }
-            $out.=$this->_trang($row,$page,$limit,9);
+            $out .= $this->_trang($row, $page, $limit, 9);
         } else {
             $out .= '<tr class="no_product" ><td  colspan="9">Không tìm thấy sản phẩm</td></tr>';
         }
-        
+
         echo $out;
     }
 
@@ -508,11 +508,11 @@ class Ajax extends Controller
                         ';
                     }
                 }
-                $ouput.=$this->_trang($row,$page,$limit);
+                $ouput .= $this->_trang($row, $page, $limit);
             }
-            if( $table =="loaisanpham"){
+            if ($table == "loaisanpham") {
                 $row = $this->Danhmuc->num_rows();
-                
+
                 $kq = $this->Danhmuc->phan_trang($table, $start, $limit);
                 if ($kq) {
                     foreach ($kq as $val) {
@@ -527,19 +527,19 @@ class Ajax extends Controller
                         ';
                     }
                 }
-                $ouput.=$this->_trang($row,$page,$limit);
+                $ouput .= $this->_trang($row, $page, $limit);
             }
-            
+
             echo $ouput;
         }
     }
 
 
-    public function _trang($row,$page,$limit,$colspan=2)
+    public function _trang($row, $page, $limit, $colspan = 2)
     {
         $ouput = '
         <tr>
-                <td colspan="'.$colspan.'" style="border: none;">
+                <td colspan="' . $colspan . '" style="border: none;">
             <div align="center">
             <ul class="pagination justify-content-end" style="margin-right: 30px">
             ';
@@ -630,5 +630,31 @@ class Ajax extends Controller
             </tr>
             ';
         return $ouput;
+    }
+
+    public function thongsokythuat()
+    {
+        if (isset($_POST['loaisp']) && !empty($_POST['loaisp'])) {
+            switch ((int)$_POST['loaisp']) {
+                case 1:
+                    echo require_once "./mvc/views/layout_tskt/tskt_tv.php";
+                    break;
+                case 2:
+                    echo require_once "./mvc/views/layout_tskt/tskt_maylanh.php";
+                    break;
+                case 3:
+                    echo require_once "./mvc/views/layout_tskt/tskt_tulanh.php";
+                    break;
+                case 4:
+                    echo require_once "./mvc/views/layout_tskt/tskt_loa.php";
+                    break;
+                case 5:
+                    echo require_once "./mvc/views/layout_tskt/tskt_lonuong.php";
+                    break;
+                case 6:
+                    echo require_once "./mvc/views/layout_tskt/tskt_maygiat.php";
+                    break;
+            }
+        }
     }
 }

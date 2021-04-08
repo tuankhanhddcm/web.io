@@ -1,4 +1,4 @@
-<div class="grid main_container" >
+<div class="grid main_container">
     <div class="container__banner">
         <div class="grid">
             <div class="grid__row">
@@ -34,6 +34,7 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -46,196 +47,28 @@
                 <div class="product__sale-title">
                     <span class="product__sale-title--a">Giá sốc cuối tuần</span>
                     <div class="product__sale-sile">
-                        <div id="silder_product" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="row  product__row ">
-                                        <div class="col-sm-2 product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="http://localhost/web_mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <div class="owl-carousel owl-theme" id="slider">
+                            <?php foreach ($data["sanpham"] as $val) { ?>
+                                <div class="item">
+                                        <a class="card-item card_height" href="./Detail/<?= $val['sp_url']; ?>">
+                                            <div class="card-item__img">
+                                                <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
                                             </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="card__name">
+                                                <span class="card__name-sp"><?= $val["sp_name"] ?></span>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="card__body">
+                                                <strong class="card__price"><?= number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) ?>đ</strong>
+                                                <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                                <span class="card__precent">-20%</span>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <div class="row  product__row ">
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2    product__col">
-                                            <div class="card card__item ">
-                                                <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                                                <div class="card-body">
-                                                    <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                                                    <div class="card-body__menu">
-                                                        <p class="card-text">6.400.000₫</p>
-                                                        <div class="card-body__cart">
-                                                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#silder_product" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#silder_product" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            <?php } ?>
+
+
+
                         </div>
-                        <!-- <div class="row  product__row ">
-                  <div class="col-sm-2    product__col">
-                    <div class="card card__item ">
-                      <img class="card-img-top" src="./mvc/public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg" alt="">
-                      <div class="card-body">
-                        <h4 class="card-title"> Smart Tivi Samsung 32 inch UA32T4500</h4>
-                        <div class="card-body__menu">
-                          <p class="card-text">6.400.000₫</p>
-                          <div class="card-body__cart">
-                            <a href=""><i class='card-body__cart-icon bx bxs-cart'></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
                     </div>
                 </div>
             </div>

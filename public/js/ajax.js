@@ -79,13 +79,38 @@ $(document).ready(function () {
     });
 
     $('.select-loaisp').click(function () {
-        check("#loaisp");
+        if (check("#loaisp") == "true") {
+            change_label($(".select-loaisp option:selected").val());
+        } else {
+            $("#thongso_sp").addClass("disabled");
+        }
     });
 
     $('.select-loainsx').click(function () {
         check("#loainsx");
     });
 
+
+    $("#thongso_sp").click(function () {
+        if (check("#loaisp") == 'true') {
+            $(this).removeClass('disabled');
+        }
+    });
+
+    // tạo sp 
+    $(".btn-save").click(function () {
+        check_thongso();
+        check_sp();
+        if(check_sp()=='true' && check_thongso()=='false'){
+            showerror('thông số kỹ thuật');
+        }else{
+            showerror('thông tin sản phẩm');
+        }
+        if (check_thongso() == 'true' && check_sp()=='true') {
+            insert_sp(0);
+        }
+        
+    });
 
 });
 
@@ -291,8 +316,30 @@ function dangky() {
 
 //check input rỗng
 function check(id) {
-    var dk = id.slice(1);
-    switch (dk) {
+    var lop = '';
+    var end = id.search("_lb");
+    if (end > 0) {
+        var t = id.slice(end + 1);
+
+    } else {
+        var t = id.slice(1);
+    }
+
+    if (end == -1) {
+
+        var dk = id.slice(1);
+        lop = id;
+
+    } else {
+
+        var dk = id.slice(1, end);
+        lop = id.slice(0, end);
+    }
+    var val = $(id).text();
+    val = val.toLowerCase().replaceAll(":", "");
+    switch (t) {
+        case 'lb': text = 'nhập ' + val;
+            break;
         case 'hoten': text = 'nhập họ tên';
             break;
         case 'username': text = ' nhập tên đăng nhập';
@@ -309,14 +356,6 @@ function check(id) {
             break;
         case 'tinh': text = 'chọn tỉnh';
             break;
-        case 'sp': text = 'nhập tên sản phẩm';
-            break;
-        case 'sl': text = 'nhập số lượng';
-            break;
-        case 'gia': text = 'nhập giá vốn';
-            break;
-        case 'giaban': text = 'nhập giá bán';
-            break;
         case 'loaisp': text = 'chọn nhóm hàng hóa';
             break;
         case 'loainsx': text = 'chọn thương hiệu';
@@ -325,23 +364,20 @@ function check(id) {
             break;
         case 'img_dm': text = 'chọn hình ảnh';
             break;
-        case 'prd_group_name': text = 'nhập tên nhóm hàng hóa';
-            break;
         case 'img_nsx': text = 'chọn hình ảnh';
-            break;
-        case 'prd_nsx_name': text = 'nhập tên thương hiệu';
             break;
         case 'pass_again': text = 'nhập lại mật khẩu';
             break;
+
     }
-    if ($(id).val() == "") {
-        $(id).addClass('error_input');
+    if ($(lop).val() == "") {
+        $(lop).addClass('error_input');
         $("." + dk + "_icon").css("display", "block");
         $(".error_" + dk).text("Vui lòng  " + text);
         $(".error_" + dk).css("display", "block");
         return "false";
     } else {
-        $(id).removeClass('error_input');
+        $(lop).removeClass('error_input');
         $("." + dk + "_icon").css("display", "none");
         $(".error_" + dk).css("display", "none");
         return "true";
@@ -634,6 +670,14 @@ function showinsert(text, mess) {
     });
 }
 
+function showerror(text) {
+    toast({
+        title: 'Thất bại',
+        message: "Vui lòng nhập "+text,
+        type: "error",
+        duration: 3000
+    });
+}
 
 function thanhtoan() {
     var hoten = $('.hoten').val();
@@ -793,6 +837,22 @@ function search_header() {
     }
 }
 
+function check_sp() {
+    check("#loaisp");
+    check("#loainsx");
+    check(".sp_lb");
+    check(".sl_lb");
+    check(".gia_lb");
+    check(".giaban_lb");
+    check('#img_temp');
+    var kq = 'false';
+    if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
+        && check(".sl_lb") == 'true' && check(".sp_lb") == 'true'
+        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' && check("#img_temp") == 'true') {
+        kq = 'true';
+    }
+    return kq;
+}
 
 function insert_sp(val) {
     var tensp = $('.sp').val();
@@ -808,75 +868,65 @@ function insert_sp(val) {
     gia = gia.replaceAll('.', '');
     var giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
     giaban = giaban.replaceAll('.', '');
-    check("#loaisp");
-    check("#loainsx");
-    check(".sp");
-    check(".sl");
-    check(".gia");
-    check(".giaban");
-    check('#img_temp');
-    if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
-        && check(".sl") == 'true' && check(".sp") == 'true'
-        && check(".gia") == 'true' && check(".giaban") == 'true' && check("#file_upload") == 'true') {
-        if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
-            var type = file.type;
-            var name = file.name;
-            var form_data = new FormData();
-            if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
-                form_data.append('file', file);
-                $.ajax({
-                    url: "../Ajax/upload_file/upload",
-                    method: "post",
-                    processData: false,
-                    contentType: false,
-                    mimeType: "multipart/form-data",
-                    data: form_data,
-
-                });
-            }
+    if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
+        var type = file.type;
+        var name = file.name;
+        var form_data = new FormData();
+        if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
+            form_data.append('file', file);
             $.ajax({
-                url: '../Ajax/insert_sp',
-                method: 'post',
-                data: {
-                    tensp: tensp,
-                    sl: sl,
-                    gia: gia,
-                    giaban: giaban,
-                    maloai: maloai,
-                    mansx: mansx,
-                    img: name,
-                    sp_mota: sp_mota,
-                },
+                url: "../Ajax/upload_file/upload",
+                method: "post",
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: form_data,
+
             });
-
-            if (val == 0) {
-                showinsert('insert', 'sản phẩm');
-                setTimeout(function () {
-                    location.href = 'http://localhost/web_mvc/Admin/list_sp';
-                }, 2000)
-            }
-            if (val == 1) {
-                showinsert('', 'sản phẩm');
-                $('input').val('');
-                $('textarea').val('');
-                $("#img_insert").attr('src', '');
-                $(".label-img_temp").css('display', 'block');
-                $(".select").val('');
-                $(".select").selectpicker("refresh");
-            }
-
         }
+        $.ajax({
+            url: '../Ajax/insert_sp',
+            method: 'post',
+            data: {
+                tensp: tensp,
+                sl: sl,
+                gia: gia,
+                giaban: giaban,
+                maloai: maloai,
+                mansx: mansx,
+                img: name,
+                sp_mota: sp_mota,
+            },
+        });
+
+        if (val == 0) {
+            showinsert('insert', 'sản phẩm');
+            setTimeout(function () {
+                location.href = 'http://localhost/web_mvc/Admin/list_sp';
+            }, 2000)
+        }
+        if (val == 1) {
+            showinsert('', 'sản phẩm');
+            $('input').val('');
+            $('textarea').val('');
+            $("#img_insert").attr('src', '');
+            $(".label-img_temp").css('display', 'block');
+            $(".select").val('');
+            $(".select").selectpicker("refresh");
+        }
+
     }
+
 
 
 
 }
 
 function check_name(text, table) {
-    var name = $('#prd_' + text + '_name').val();
+    var name = $('.prd_' + text + '_name').val();
     var kq = '';
-    check("#prd_" + text + "_name");
-    if (check("#prd_" + text + "_name") == 'true') {
+    check(".prd_" + text + "_name_lb");
+    if (check(".prd_" + text + "_name") == 'true') {
         $.ajax({
             url: "../Ajax/check_name/" + table,
             method: "post",
@@ -886,12 +936,12 @@ function check_name(text, table) {
             async: false,
             success: function (data) {
                 if (data == 'false') {
-                    $("#prd_" + text + "_name").addClass('error_input');
+                    $(".prd_" + text + "_name").addClass('error_input');
                     $(".prd_" + text + "_name_icon").css("display", "block");
                     $(".error_prd_" + text + "_name").text("Tên đã tồn tại!!!");
                     $(".error_prd_" + text + "_name").css("display", "block");
                 } else {
-                    $("#prd_" + text + "_name").removeClass('error_input');
+                    $(".prd_" + text + "_name").removeClass('error_input');
                     $(".prd_" + text + "_name_icon").css("display", "none");
                     $(".error_prd_" + text + "_name").css("display", "none");
                 }
@@ -908,7 +958,7 @@ function check_name(text, table) {
 function insert_loai(val) {
     check("#img_dm");
     if (check_name('group', 'danhmuc') == 'true' && check("#img_dm") == 'true') {
-        var name = $('#prd_group_name').val();
+        var name = $('.prd_group_name').val();
         var file = $('#img_dm').prop('files')[0];
         var img = file.name;
         var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
@@ -948,7 +998,7 @@ function insert_loai(val) {
         }
         if (val == 1) {
             showinsert('', 'nhóm hàng hóa');
-            $('#prd_group_name').val('');
+            $('.prd_group_name').val('');
             $("#img_loai").attr('src', '');
             $(".label-img_dm").css('display', 'block');
         }
@@ -958,7 +1008,7 @@ function insert_loai(val) {
 function insert_nsx(val) {
     check("#img_nsx");
     if (check_name('nsx', 'nsx') == 'true' && check("#img_nsx") == 'true') {
-        var name = $('#prd_nsx_name').val();
+        var name = $('.prd_nsx_name').val();
         var file = $('#img_nsx').prop('files')[0];
         var img = file.name;
         var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
@@ -994,10 +1044,69 @@ function insert_nsx(val) {
         }
         if (val == 1) {
             showinsert('', 'thương hiệu');
-            $('#prd_nsx_name').val('');
+            $('.prd_nsx_name').val('');
             $("#img_nsx_temp").attr('src', '');
             $(".label-img_nsx").css('display', 'block');
         }
     }
 
+}
+
+function change_label(val) {
+    if (val != '') {
+        $.ajax({
+            url: "../Ajax/thongsokythuat",
+            method: "post",
+            data: { loaisp: val },
+            success: function (data) {
+                $("#input_tskt").html(data);
+
+            }
+        });
+    }
+}
+
+function check_thongso_loai() {
+
+    check('.tv_ich_lb');
+    check('.phan_giai_lb');
+    check('.hdh_lb');
+    check('.tv_app_lb');
+
+    check('.ket_noi_lb');
+    check('.tv_loa_lb');
+
+    check('.kieu_tu_lb');
+    check('.so_canh_lb');
+    check('.dung-tich_lb');
+    check('.chat_lieu_lb');
+    check('.cn_kk_lb');
+    check('.kieu_tu_lb');
+    if (check('.loai_sp_lb') == 'true' && check('.tv_ich_lb') == 'true' && check('.phan_giai_lb') == 'true' && check('.hdh_lb') == 'true'
+
+    ) {
+
+    }
+
+}
+function check_thongso() {
+    check('.cong_suat_lb');
+    check('.loai_sp_lb');
+    check('.kich_thuoc_lb');
+    check('.kl_lb');
+    check('.noi_sx_lb');
+    check('.bh_lb');
+    check('.nam_lb');
+    check('.cong_nghe_lb');
+    check('.tien_ich_lb');
+    var kq = 'false'
+    if (check('.loai_sp_lb') == 'true' && check('.kich_thuoc_lb') == 'true' && check('.kl_lb') == 'true' && check('.noi_sx_lb') == 'true'
+        && check('.bh_lb') == 'true'
+        && check('.nam_lb') == 'true'
+        && check('.cong_nghe_lb') == 'true'
+        && check('.tien_ich_lb') == 'true'
+        && check('.cong_suat_lb') == 'true') {
+        kq= 'true';
+    }
+    return kq;
 }

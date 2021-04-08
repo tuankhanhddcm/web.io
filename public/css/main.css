@@ -805,7 +805,13 @@ button.header__search-btn{
      opacity: 0;
   }
 }
+.toast--error {
+  border-color: red;
+}
 
+.toast--error .toast__icon{
+  color: red;
+}
 .toast--success {
   border-color: #47d864;
 }

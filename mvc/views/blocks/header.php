@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="error__wrap" style="margin-bottom: 20px;">
                                     <div class="pay-input ">
-                                        <input type="text" class="form__input dk" name="email" id="email" onkeyup="email()" placeholder=" " value="">
+                                        <input type="text" class="form__input dk" name="email" id="email" onkeyup="email('#email')" placeholder=" " value="">
                                         <label for="" class="form__label  ">Email</label>
                                     </div>
                                     <div style="display: flex;">

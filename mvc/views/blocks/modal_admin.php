@@ -53,12 +53,12 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <div class="col-md-4">
-                      <label class="label_modal">Tên danh mục:</label>
+                      <label class="label_modal prd_group_name_lb">Tên danh mục:</label>
                     </div>
                     <div class="col-md-8">
                       <div class="pay-input ">
                         <!-- add: disabled input-block, label-block -->
-                        <input type="text" class="form__input" id="prd_group_name" onkeyup="check_name('group');" placeholder=" " value="">
+                        <input type="text" class="form__input prd_group_name"  onkeyup="check_name('group','danhmuc');" placeholder=" " value="">
                         <label for="" class="form__label  ">Tên nhóm hàng hóa</label>
                       </div>
                       <div style="display: flex;">
@@ -157,12 +157,12 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <div class="col-md-4">
-                      <label class="label_modal">Tên thương hiệu:</label>
+                      <label class="label_modal prd_nsx_name_lb">Tên thương hiệu:</label>
                     </div>
                     <div class="col-md-8" style="padding-top: 40px;">
                       <div class="pay-input ">
                         <!-- add: disabled input-block, label-block -->
-                        <input type="text" class="form__input" id="prd_nsx_name" onkeyup="check_name('nsx','nsx');" placeholder=" " value="">
+                        <input type="text" class="form__input prd_nsx_name" onkeyup="check_name('nsx','nsx');" placeholder=" " value="">
                         <label for="" class="form__label  ">Tên thương hiệu</label>
                       </div>
                       <div style="display: flex;">

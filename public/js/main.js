@@ -17,7 +17,7 @@ $(document).ready(function () {
     $(".nav-items").click(function () {
         $(this).addClass("nav-active").siblings().removeClass("nav-active");
     });
-    
+
     $(".page_items").click(function () {
         $(this).addClass("active").siblings().removeClass("active");
     });
@@ -27,7 +27,6 @@ $(document).ready(function () {
     });
 
     $("#code-sale").keyup(function () {
-        console.log($("#code-sale").val());
         if ($("#code-sale").val() == '') {
             $("#btn-sale").addClass('btn-code');
             $("#btn-sale").removeClass('btn-active');
@@ -38,65 +37,26 @@ $(document).ready(function () {
 
     });
 
-    // lọc trang admin
-    fliter_admin(1);
-    $("#search").keyup(function () {
-        fliter_admin(1);
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 5,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
     });
 
-    $(".select-loaisp").click(function () {
-        fliter_admin(1);
-    });
-
-    $('.select-nsx').click(function () {
-        fliter_admin(1);
-    });
-    //end lọc
-
-    //check img
-    $("#img_group").click(function () {
-        $("#img_dm").click();
-    });
-    
-    $("#thuong_hieu").click(function () {
-        $("#img_nsx").click();
-    });
-
-    $("#img_pro").click(function () {
-        $("#img_temp").click();
-    });
-
-
-    $('.sl').inputFilter(function (value) {
-        return /^\d*$/.test(value);
-    });
-
-    $('.gia').inputFilter(function (value) {
-        return /^\d*$/.test(value);
-    });
-    
-    $('.giaban').inputFilter(function (value) {
-        return /^\d*$/.test(value);
-    });
-    
-    $('.gia').change(function(){
-        var text =txtmoney($(this).val());
-        $(this).val(text);
-    });
-    $('.giaban').change(function(){
-        var text =txtmoney($(this).val());
-        $(this).val(text);
-    });
-
-
-
-
-    $(document).on('click', '.page-link', function(){
-        var page = $(this).data('page_number');
-        phan_trang_nsx(page);
-        phan_trang_loai(page);
-        fliter_admin(page);
-    });
+   
 });
 
 
@@ -170,26 +130,8 @@ function giamsl(id) {
 }
 
 
-function fliter_admin(trang) {
-    var text = $("#search").val();
-    var ma_loai = $('#loaisp option:selected').val();
-    var nsx = $('#nsx option:selected').val();
-    $.ajax({
-        url: "../Ajax/filter_admin",
-        method: "post",
-        data: {
-            text: text,
-            ma_loai: ma_loai,
-            nsx: nsx,
-            trang:trang
-        },
-        success: function (data) {
-            $("#list_product").html(data);
-        }
-    });
-}
 
-function readURL(input,id_img,img) {
+function readURL(input, id_img, img) {
     var file = input.files;
     var kq = '';
     var id = id_img.slice(1);
@@ -199,17 +141,17 @@ function readURL(input,id_img,img) {
         reader.onload = function (e) {
             $(img).attr('src', e.target.result);
         }
-        $(".label-"+id).css("display", 'none');
+        $(".label-" + id).css("display", 'none');
         reader.readAsDataURL(input.files[0]);
-        $('.'+id+'_icon').css("display", 'none');
-        $(".error_"+id).text('');
+        $('.' + id + '_icon').css("display", 'none');
+        $(".error_" + id).text('');
     } else {
-        $(".error_"+id).text('Vui lòng chọn hình ảnh');
-        $(".error_"+id).css("display", 'block');
-        $(".label-"+id).css("display", 'block');
-        $('.'+id+'_icon').css("display", 'block');
+        $(".error_" + id).text('Vui lòng chọn hình ảnh');
+        $(".error_" + id).css("display", 'block');
+        $(".label-" + id).css("display", 'block');
+        $('.' + id + '_icon').css("display", 'block');
         $(img).attr('src', '');
-       
+
     }
 
 }
@@ -232,36 +174,14 @@ function readURL(input,id_img,img) {
     };
 }(jQuery));
 
-function txtmoney(val){
-    if(val !=''){
-        var text =new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(val)
+function txtmoney(val) {
+    if (val != '') {
+        var text = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(val)
         return text;
     }
 }
 
 
 
-function phan_trang_nsx(trang){
-    $.ajax({
-        url: "../Ajax/page/nhasanxuat/8",
-        method: "post",
-        data: {
-            trang:trang
-        },
-        success: function(data){
-            $("#list_nsx").html(data);
-        }
-    });
-}
-function phan_trang_loai(trang){
-    $.ajax({
-        url: "../Ajax/page/loaisanpham/8",
-        method: "post",
-        data: {
-            trang:trang
-        },
-        success: function(data){
-            $("#list_loai").html(data);
-        }
-    });
-}
+
+
