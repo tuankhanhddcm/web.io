@@ -79,9 +79,7 @@ $(document).ready(function () {
     });
 
     $('.select-loaisp').click(function () {
-        if (check("#loaisp") == "true") {
-            change_label($(".select-loaisp option:selected").val());
-        } else {
+        if (check("#loaisp") == "false") {
             $("#thongso_sp").addClass("disabled");
         }
     });
@@ -90,27 +88,30 @@ $(document).ready(function () {
         check("#loainsx");
     });
 
-
     $("#thongso_sp").click(function () {
         if (check("#loaisp") == 'true') {
             $(this).removeClass('disabled');
+            change_label($(".select-loaisp option:selected").val());
         }
     });
 
-    // tạo sp 
-    $(".btn-save").click(function () {
-        check_thongso();
-        check_sp();
-        if(check_sp()=='true' && check_thongso()=='false'){
-            showerror('thông số kỹ thuật');
-        }else{
-            showerror('thông tin sản phẩm');
+    // go to top
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
         }
-        if (check_thongso() == 'true' && check_sp()=='true') {
-            insert_sp(0);
-        }
-        
     });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+
+    
 
 });
 
@@ -121,7 +122,9 @@ function filter_data(order) {
     var action = 'fetch_data';
     var gia = get_filter("gia")
     var nsx = get_filter("hang");
-    var kich_co = get_filter("removebtn");
+    var kich_co = get_filter("kich_co");
+    var loai_sp = get_filter('loai_sp');
+    var kieu_tu = get_filter("k_tu");
     var ma_loai = $('#ma_loai').val();
     $.ajax({
         url: "../Ajax/filter_data",
@@ -132,6 +135,8 @@ function filter_data(order) {
             gia: gia,
             ma_loai: ma_loai,
             kich_co: kich_co,
+            loai_sp:loai_sp,
+            kieu_tu:kieu_tu,
             order: order
         },
         success: function (data) {
@@ -602,7 +607,7 @@ function toast({
                 clearTimeout(autoremove);
 
             }
-            if (load == 'insert') {
+            if (load == 'insert'|| load=='update') {
                 location.href = "http://localhost/web_mvc/Admin/list_sp";
             }
             if (load == 'insert_loai') {
@@ -669,11 +674,20 @@ function showinsert(text, mess) {
         load: text
     });
 }
+function showupdate(text, mess) {
+    toast({
+        title: 'Thành công !',
+        message: "Bạn sửa " + mess + " thành công",
+        type: "success",
+        duration: 2000,
+        load: text
+    });
+}
 
 function showerror(text) {
     toast({
         title: 'Thất bại',
-        message: "Vui lòng nhập "+text,
+        message: "Vui lòng nhập " + text,
         type: "error",
         duration: 3000
     });
@@ -854,7 +868,7 @@ function check_sp() {
     return kq;
 }
 
-function insert_sp(val) {
+function insert_sp(val,url,ma_sp) {
     var tensp = $('.sp').val();
     var sl = $('.sl').val();
     var txt_gia = $('.gia').val();
@@ -864,10 +878,18 @@ function insert_sp(val) {
     var file = $('#img_temp').prop('files')[0];
     var sp_mota = $("#mota").val();
     var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
-    var gia = txt_gia.slice(0, txt_gia.search('₫'));
-    gia = gia.replaceAll('.', '');
-    var giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
-    giaban = giaban.replaceAll('.', '');
+    var gia ='';
+    var giaban ='';
+    if(txt_gia.search('₫') >0 && txt_giaban.search('₫')){
+        gia = txt_gia.slice(0, txt_gia.search('₫'));
+        gia = gia.replaceAll('.', '');
+        giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
+        giaban = giaban.replaceAll('.', '');
+    }else{
+        gia = txt_gia;
+        giaban = txt_giaban;
+    }
+    
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
         var type = file.type;
         var name = file.name;
@@ -875,7 +897,7 @@ function insert_sp(val) {
         if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
             form_data.append('file', file);
             $.ajax({
-                url: "../Ajax/upload_file/upload",
+                url: "http://localhost/web_mvc/Ajax/upload_file/upload",
                 method: "post",
                 processData: false,
                 contentType: false,
@@ -884,8 +906,9 @@ function insert_sp(val) {
 
             });
         }
+        var masp ='';
         $.ajax({
-            url: '../Ajax/insert_sp',
+            url: 'http://localhost/web_mvc/Ajax/sp/'+url,
             method: 'post',
             data: {
                 tensp: tensp,
@@ -896,17 +919,31 @@ function insert_sp(val) {
                 mansx: mansx,
                 img: name,
                 sp_mota: sp_mota,
+                ma_sp:ma_sp
             },
+            async: false,
+            success: function(data){
+                masp = data;
+            }
         });
 
         if (val == 0) {
-            showinsert('insert', 'sản phẩm');
+            if(url =='insert'){
+                showinsert(url, 'sản phẩm');
+            }else{
+                showupdate(url,'sản phẩm');
+            }
+            
             setTimeout(function () {
                 location.href = 'http://localhost/web_mvc/Admin/list_sp';
             }, 2000)
         }
         if (val == 1) {
-            showinsert('', 'sản phẩm');
+            if(url =='insert'){
+                showinsert('', 'sản phẩm');
+            }else{
+                showupdate('','sản phẩm');
+            }
             $('input').val('');
             $('textarea').val('');
             $("#img_insert").attr('src', '');
@@ -914,12 +951,10 @@ function insert_sp(val) {
             $(".select").val('');
             $(".select").selectpicker("refresh");
         }
+        
+        return masp;
 
     }
-
-
-
-
 }
 
 function check_name(text, table) {
@@ -967,7 +1002,7 @@ function insert_loai(val) {
         if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
             form_data.append('file', file);
             $.ajax({
-                url: "../Ajax/upload_file/danhmuc",
+                url: "http://localhost/web_mvc/Ajax/upload_file/danhmuc",
                 method: "post",
                 processData: false,
                 contentType: false,
@@ -979,7 +1014,7 @@ function insert_loai(val) {
             });
         }
         $.ajax({
-            url: "../Ajax/insert_group/danhmuc",
+            url: "http://localhost/web_mvc/Ajax/insert_group/danhmuc",
             method: 'post',
             data: {
                 ten: name,
@@ -1017,7 +1052,7 @@ function insert_nsx(val) {
         if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
             form_data.append('file', file);
             $.ajax({
-                url: "../Ajax/upload_file/nsx",
+                url: "http://localhost/web_mvc/Ajax/upload_file/nsx",
                 method: "post",
                 processData: false,
                 contentType: false,
@@ -1026,7 +1061,7 @@ function insert_nsx(val) {
             });
         }
         $.ajax({
-            url: "../Ajax/insert_group/nsx",
+            url: "http://localhost/web_mvc/Ajax/insert_group/nsx",
             method: 'post',
             data: {
                 ten: name,
@@ -1054,40 +1089,58 @@ function insert_nsx(val) {
 
 function change_label(val) {
     if (val != '') {
-        $.ajax({
-            url: "../Ajax/thongsokythuat",
-            method: "post",
-            data: { loaisp: val },
-            success: function (data) {
-                $("#input_tskt").html(data);
-
-            }
-        });
+        loaisp=val;
     }
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/thongsokythuat",
+        method: "post",
+        data: { loaisp: loaisp },
+        success: function (data) {
+            $("#input_tskt").html(data);
+        }
+    });
 }
 
 function check_thongso_loai() {
-
+    var kq = 'false';
     check('.tv_ich_lb');
     check('.phan_giai_lb');
     check('.hdh_lb');
-    check('.tv_app_lb');
-
     check('.ket_noi_lb');
     check('.tv_loa_lb');
-
     check('.kieu_tu_lb');
     check('.so_canh_lb');
     check('.dung-tich_lb');
     check('.chat_lieu_lb');
     check('.cn_kk_lb');
-    check('.kieu_tu_lb');
-    if (check('.loai_sp_lb') == 'true' && check('.tv_ich_lb') == 'true' && check('.phan_giai_lb') == 'true' && check('.hdh_lb') == 'true'
 
+    //tv
+    if (check('.tv_ich_lb') == 'true' && check('.phan_giai_lb') == 'true' && check('.hdh_lb') == 'true'
+        && check('.cn_kk_lb') == 'true' && check('.ket_noi_lb') == 'true' && check('tv_loa') == 'true'
     ) {
-
+        kq = 'true';
+    }
+    //tủ lạnh
+    if (check('.kieu_tu_lb') == 'true' && check('.co_canh_lb') == 'true' && check('.dung-tich_lb') == 'true'
+        && check('.chat_lieu_lb') == 'true' && check('.cn_kk_lb') == 'true') {
+        kq = 'true';
+    }
+    //máy lạnh
+    if (check('.kieu_tu_lb') == 'true' && check('.ket_noi_lb') == 'true' && check('.dung-tich_lb') == 'true'
+        && check('.chat_lieu_lb') == 'true' && check('.cn_kk_lb') == 'true') {
+        kq = 'true';
+    }
+    //máy giặt
+    if (check('.kieu_tu_lb') == 'true' && check('.co_canh_lb') == 'true' && check('.dung-tich_lb') == 'true'
+        && check('.chat_lieu_lb') == 'true' && check('.cn_kk_lb') == 'true' && check('.ket_noi_lb') == 'true') {
+        kq = 'true';
     }
 
+    if ( check('.hdh_lb') == 'true' && check('.ket_noi_lb') == 'true') {
+        kq = 'true';
+    }
+
+    return kq;
 }
 function check_thongso() {
     check('.cong_suat_lb');
@@ -1106,7 +1159,96 @@ function check_thongso() {
         && check('.cong_nghe_lb') == 'true'
         && check('.tien_ich_lb') == 'true'
         && check('.cong_suat_lb') == 'true') {
-        kq= 'true';
+        kq = 'true';
     }
     return kq;
 }
+
+
+function insert_tskt(masp,url){
+    var loai_sp = $('.loai_sp').val() || '';
+    var kich_thuoc= $('.kich_thuoc').val() || '';
+    var kl = $('.kl').val() || '';
+    var noi_sx = $('.noi_sx').val() || '';
+    var bh = $('.bh').val() || '';
+    var cong_nghe = $('.cong_nghe').val() || '';
+    var nam = $('.nam').val() || '';
+    var tien_ich = $('.tien_ich').val() || '';
+    var cong_suat = $('.cong_suat').val() || '';
+    var tv_ich =$('.tv_ich').val() || '';
+    var phan_giai = $('.phan_giai').val() || '';
+    var hdh = $('.hdh').val() || '';
+    var ket_noi = $('.ket_noi').val() || '';
+    var tv_loa =$('.tv_loa').val() || '';
+    var kieu_tu = $('.kieu_tu').val() || '';
+    var so_canh = $('.so_canh').val() || '';
+    var dung_tich = $('.dung-tich').val() || '';
+    var chat_lieu = $('.chat_lieu').val() || '';
+    var cn_kk =$('.cn_kk').val() || '';
+    var kieu_tu = $('.kieu_tu').val() || '';
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/tskt/"+url,
+        method: 'post',
+        data: {
+            masp: masp,
+            loai_sp:loai_sp,
+            kich_thuoc:kich_thuoc,
+            kl:kl,
+            noi_sx:noi_sx,
+            bh:bh,
+            cong_nghe:cong_nghe,
+            nam:nam,
+            tien_ich:tien_ich,
+            cong_suat:cong_suat,
+            tv_ich:tv_ich,
+            phan_giai:phan_giai,
+            hdh:hdh,
+            ket_noi:ket_noi,
+            tv_loa:tv_loa,
+            kieu_tu:kieu_tu,
+            so_canh:so_canh,
+            dung_tich:dung_tich,
+            cn_kk:cn_kk,
+            chat_lieu:chat_lieu
+        },
+        success:function(data){
+            console.log(data);
+        }
+    });
+
+}
+
+function insert_sp_tskt(val){
+    check_thongso_loai();
+        if (check_sp() == 'true' && check_thongso() == 'false') {
+            showerror('thông số kỹ thuật');
+        }
+        if(check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai()=='true') {
+            showerror('thông tin sản phẩm');
+        }
+
+        if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
+            if(masp = insert_sp(val,'insert')){
+                insert_tskt(masp,'insert');
+            }
+            
+        }
+}
+function update_sp_tskt(val){
+    ma_sp= $("#ma_sp").val();
+    check_thongso_loai();
+        if (check_sp() == 'true' && check_thongso() == 'false') {
+            showerror('thông số kỹ thuật');
+        }
+        if(check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai()=='true') {
+            showerror('thông tin sản phẩm');
+        }
+
+        if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
+            insert_tskt(ma_sp,'update');
+            insert_sp(val,'update',ma_sp);
+            
+            
+        }
+}
+

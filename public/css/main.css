@@ -865,3 +865,10 @@ button.logout{
   padding: 10px 20px;
   color: var(--text-color);
 }
+
+
+#img_tl {
+  width: 40px;
+  min-height: 34px;
+ 
+}

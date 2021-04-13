@@ -49,7 +49,7 @@
                             <th>Giá bán</th>
                             <th>Danh mục</th>
                             <th>Nhà sản xuất</th>
-                            <th style="width: 150px;border-right: none;">Action</th>
+                            <th style="width: 100px;border-right: none;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="list_product">

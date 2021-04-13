@@ -21,7 +21,7 @@
             $sptheoloai = $this->sanpham->sptheoloai("sp_url",$tensp);
             $ma_sp = $this->sanpham->get_sp_byId("sp_ma","sp_url",$tensp);
             $ma_nsx = $this->sanpham->get_sp_byId("ma_nsx","sp_url",$tensp);
-            $thongso = $this->thongsokythuat->get_thongso_byId("ma_sp",$ma_sp["sp_ma"]);
+            $thongso = $this->thongsokythuat->get_thongso_byId($ma_sp["sp_ma"]);
             $nsx = $this->Nhasanxuat->get_nsx_byId("ten_nsx","ma_nsx",$ma_nsx['ma_nsx']);
             //view
             $this->view('index',[

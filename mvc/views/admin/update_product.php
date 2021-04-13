@@ -1,11 +1,11 @@
 <div class="col-sm-10" style="min-height: 784px; background-color: white; padding-left: 10px; margin-bottom: 65px;">
     <div class="main_ward">
         <div class="main-name">
-            <h3 class="main-text">Tạo sản phẩm</h3>
+            <h3 class="main-text">Sửa sản phẩm</h3>
 
             <div class="form-btn">
-                <button class="btn_cus btn-save" onclick="insert_sp_tskt(0);" ><i class='bx bx-save'></i> Lưu</button>
-                <button class="btn_cus btn-conti"  onclick="insert_sp_tskt(1);"><i class='bx bx-save'></i> Lưu & Tiếp tục</button>
+                <input type="hidden" id="ma_sp" value="<?= $_SESSION['tskt']['sp_ma']?>">
+                <button class="btn_cus btn-save" onclick="update_sp_tskt(1)"><i class='bx bx-save'></i> Lưu</button>
                 <button class="btn_cus btn-back" onclick="location.href='http://localhost/web_mvc/Admin/list_sp'"><i class='bx bx-left-arrow-alt'></i> Trở về</button>
             </div>
 
@@ -30,7 +30,7 @@
                             <label for="" class="form-label sp_lb">Tên sản phẩm:</label>
                             <div class="form-wrap">
                                 <div class="form_input">
-                                    <input type="text" class="form-input sp" onkeyup="check('.sp_lb')" value="" placeholder="Nhập tên sản phẩm">
+                                    <input type="text" class="form-input sp" onkeyup="check('.sp_lb')" value="<?= $data['sp']['sp_name'] ?>" placeholder="Nhập tên sản phẩm">
                                 </div>
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle sp_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
@@ -44,14 +44,19 @@
                                 <div class="form_input">
                                     <div class="select_wrap form_input--items" style="width: 100%;">
                                         <select class=" select select-loaisp form-control" id="loaisp" data-dropup-auto="false" data-size='5' data-live-search="true">
+                                           
                                             <option value="">--Chọn nhóm hàng hóa--</option>
+                                            
                                             <?php if (!empty($data['loai'])) {
-                                                foreach ($data['loai'] as $val) :
-                                            ?>
-                                                    <option value="<?= $val['ma_loai'] ?>"><?= $val['ten_loai'] ?></option>
-                                            <?php endforeach;
-                                            }
-                                            ?>
+                                                foreach ($data['loai'] as $val) {
+                                                    if($data["sp"]['ma_loai'] == $val['ma_loai']){
+                                            ?>      
+                                                        <option selected value="<?= $val['ma_loai'] ?>"><?= $val['ten_loai'] ?></option>
+                                                    <?php }else{?>
+                                                        <option value="<?= $val['ma_loai'] ?>"><?= $val['ten_loai'] ?></option>
+                                                    <?php } 
+                                                }
+                                            }?>
                                         </select>
                                         <button class=" btn_plus" onclick="phan_trang_loai(1);" type="button" data-toggle="modal" data-target="#create_danhmuc"><i class='bx bx-plus'></i></button>
                                     </div>
@@ -70,12 +75,15 @@
                                         <select class=" select select-loainsx form-control" id="loainsx" data-dropup-auto="false" data-size='5' data-live-search="true">
                                             <option value="" selected>--Chọn Thương hiệu--</option>
                                             <?php if (!empty($data['nsx'])) {
-                                                foreach ($data['nsx'] as $val) :
-                                            ?>
-                                                    <option value="<?= $val['ma_nsx'] ?>"><?= $val['ten_nsx'] ?></option>
-                                            <?php endforeach;
-                                            }
-                                            ?>
+                                                foreach ($data['nsx'] as $val) {
+                                                    if($data["sp"]['ma_nsx'] == $val['ma_nsx']){
+                                            ?>      
+                                                        <option selected value="<?= $val['ma_nsx'] ?>"><?= $val['ten_nsx'] ?></option>
+                                                    <?php }else{?>
+                                                        <option value="<?= $val['ma_nsx'] ?>"><?= $val['ten_nsx'] ?></option>
+                                                    <?php } 
+                                                }
+                                            }?>
                                         </select>
                                         <button class=" btn_plus" onclick="phan_trang_nsx(1);" data-toggle="modal" data-target="#create_nsx"><i class='bx bx-plus'></i></button>
                                     </div>
@@ -92,8 +100,8 @@
                                 <div style="display: flex;">
                                     <label class="btn_upload"><input type="file" onchange="readURL(this,'#img_temp','#img_insert')" id="img_temp" hidden>Chọn ảnh</label>
                                     <div class="display-img " id="img_pro">
-                                        <label class="label-img_temp" style="cursor:pointer"><i class='bx bx-plus-circle'></i></label>
-                                        <img src="#" alt="" id="img_insert">
+                                        <label class="label-img_temp" style="cursor:pointer; display: none;"><i class='bx bx-plus-circle'></i></label>
+                                        <img src="<?php echo isset($data['sp']) ? 'http://localhost/web_mvc/'.$data['sp']['sp_img']:"#"; ?>" alt="" id="img_insert">
                                     </div>
                                 </div>
                                 <div style="display: flex;">
@@ -114,7 +122,7 @@
                             <label for="" class="form-label sl_lb">Số lượng:</label>
                             <div class="form-wrap">
                                 <div class="form_input">
-                                    <input type="text" class="form-input sl" onkeyup="check('.sl_lb')" value="" style="text-align: right;" placeholder="0">
+                                    <input type="text" class="form-input sl" onkeyup="check('.sl_lb')" value="<?= $data['sp']['sp_sl']?>" style="text-align: right;" placeholder="0">
                                 </div>
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle sl_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
@@ -126,7 +134,7 @@
                             <label for="" class="form-label gia_lb">Giá vốn:</label>
                             <div class="form-wrap">
                                 <div class="form_input">
-                                    <input type="text" class="form-input gia" onkeyup="check('.gia_lb')" value="" style="text-align: right;" placeholder="0">
+                                    <input type="text" class="form-input gia" onkeyup="check('.gia_lb')" value="<?= $data['sp']['sp_gia']?>" style="text-align: right;" placeholder="0">
                                 </div>
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle gia_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
@@ -138,7 +146,7 @@
                             <label for="" class="form-label giaban_lb">Giá bán:</label>
                             <div class="form-wrap">
                                 <div class="form_input">
-                                    <input type="text" class="form-input giaban" onkeyup="check('.giaban_lb')" pattern="([0-9]{1,3}).([0-9]{1,3})" value="" style="text-align: right;" placeholder="0">
+                                    <input type="text" class="form-input giaban" onkeyup="check('.giaban_lb')"  value="<?= $data['sp']['sp_giaban']?>" style="text-align: right;" placeholder="0">
                                 </div>
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle giaban_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
@@ -151,11 +159,12 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="tab2Id" role="tabpanel">
-                <div class="row" id ='input_tskt'>
-                    
+                <div class="row" id='input_tskt'>
+
 
                 </div>
             </div>
+
         </div>
     </div>
 </div>

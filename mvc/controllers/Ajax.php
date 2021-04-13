@@ -6,6 +6,7 @@ class Ajax extends Controller
     public $usermodel;
     public $Danhmuc;
     public $Nhasanxuat;
+    public $Thongsokythuat;
 
     public function __construct()
     {
@@ -13,6 +14,7 @@ class Ajax extends Controller
         $this->usermodel = $this->model("Usermodel");
         $this->Danhmuc = $this->model("Danhmucmodel");
         $this->Nhasanxuat = $this->model("Nhasanxuat");
+        $this->Thongsokythuat = $this->model("Thongsokythuat");
     }
 
 
@@ -65,17 +67,29 @@ class Ajax extends Controller
             $nsx = [];
             $kich_co = [];
             $gia = [];
+            $loai_sp =[];
             if (isset($_POST['ma_loai'])) {
                 $ma_loai = $_POST['ma_loai'];
             }
+
             if (isset($_POST['nsx'])) {
                 $nsx = $_POST['nsx'];
             }
+
             if (isset($_POST['kich_co'])) {
                 $kich_co = $_POST['kich_co'];
             }
+
             if (isset($_POST['gia'])) {
                 $gia = $_POST['gia'];
+            }
+
+            if (isset($_POST['loai_sp'])) {
+                $loai_sp = $_POST['loai_sp'];
+            }
+
+            if(isset($_POST['kieu_tu']) && !empty($_POST['kieu_tu'])){
+                $loai_sp = $_POST['kieu_tu'];
             }
             if (isset($_POST['order'])) {
 
@@ -85,8 +99,7 @@ class Ajax extends Controller
                     $order = $_POST['order'];
                 }
             }
-
-            $data = $this->sanpham->filter_data($ma_loai, $gia, $nsx, $kich_co, $order);
+            $data = $this->sanpham->filter_data($ma_loai, $gia, $nsx, $kich_co,$loai_sp, $order);
             $ouput = "";
             if (!empty($data) && isset($data) && $data !== null) {
                 foreach ($data as $row) {
@@ -158,6 +171,12 @@ class Ajax extends Controller
                     </div>
                     ';
             }
+        }else{
+            $ouput .='
+            <div class="danhmuc_rong ">
+                <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
+            </div>
+            ';
         }
         echo $ouput;
     }
@@ -380,6 +399,7 @@ class Ajax extends Controller
         $out = "";
         if ($kq) {
             foreach ($kq as $val) {
+                $ma = $val['sp_ma'];
                 $out .= '<tr class="body-table">
                                 <td style="width: 50px;border-left: 1px solid rgba(0,0,0,.1);"><img src="http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" style="width: 50px;min-height: 10px;"></td>
                                 <td>' . $val["sp_ma"] . '</td>
@@ -390,9 +410,9 @@ class Ajax extends Controller
                                 <td>' . $val["ten_loai"] . '</td>
                                 <td>' . $val["ten_nsx"] . '</td>
                                 <td style="display: flex;align-items: center;justify-content: center;padding-top: 20px;border-right: none;">
-                                    <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                                    <a  href="http://localhost/web_mvc/Admin/update_sp/'.$ma.'" type="button" class=" btn-update"  title="Sửa"><i class="fa fa-pencil-square-o"></i></a>
                                     <button type="button" class=" btn-copy" title="Copy"><i class="bx bx-copy-alt"></i></button>
-                                    <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
+                                    <a href="" type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></a>
                                 </td>
                             </tr>';
             }
@@ -405,8 +425,12 @@ class Ajax extends Controller
     }
 
 
-    public function insert_sp()
-    {
+    public function sp($method)
+    {   
+        $ma_sp='';
+        if(!empty($_POST['ma_sp'])){
+            $ma_sp= $_POST['ma_sp'];
+        }
         if (
             !empty($_POST['tensp']) && !empty($_POST['sl']) && !empty($_POST['gia']) && !empty($_POST['giaban'])
             && !empty($_POST['maloai']) && !empty($_POST['mansx']) && !empty($_POST['img'])
@@ -444,7 +468,12 @@ class Ajax extends Controller
                 $masp = 'SP' . ($id);
             }
             $sp_img = "public/img/upload/" . $img;
-            $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
+            if($method=='insert'){
+                $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
+            }elseif($method=='update'){
+                $kq = $this->sanpham->update_product($ma_sp,$tensp,$sl,$gia, $giaban,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$updated);
+            }
+            echo $masp;
         }
     }
 
@@ -656,5 +685,101 @@ class Ajax extends Controller
                     break;
             }
         }
+    }
+    public function tskt($method){
+        $loai_sp=null;
+        $kich_thuoc =null;
+        $kl =null;
+        $bh =null;       
+        $cong_nghe=null;
+        $nam =null;
+        $tien_ich =null;
+        $cong_suat=null;
+        $tv_ich=null;
+        $phan_giai=null;
+        $hdh=null;
+        $ket_noi=null;
+        $tv_loa=null;
+        $kieu_tu=null;
+        $so_canh=null;
+        $dung_tich=null;
+        $cn_kk=null;
+        $chat_lieu=null;
+        $noi_sx=null;
+        $updated = date("Y-m-d H:i:s", time());
+        if($_POST['loai_sp'] !==''){
+            $loai_sp = $_POST['loai_sp'] ;
+        }
+        if($_POST['kich_thuoc'] !==''){
+            $kich_thuoc = $_POST['kich_thuoc'] ;
+        }
+        if($_POST['kl'] !==''){
+            $kl = $_POST['kl'] ;
+        }
+        if($_POST['noi_sx'] !==''){
+            $noi_sx = $_POST['noi_sx'] ;
+        }
+        if($_POST['bh'] !==''){
+            $bh = $_POST['bh'] ;
+        }
+        if($_POST['cong_nghe'] !==''){
+            $cong_nghe = $_POST['cong_nghe'] ;
+        }
+        if($_POST['nam'] !==''){
+            $nam = $_POST['nam'] ;
+        }
+        if($_POST['tien_ich'] !==''){
+            $tien_ich = $_POST['tien_ich'] ;
+        }
+        if($_POST['cong_suat'] !==''){
+            $cong_suat = $_POST['cong_suat'] ;
+        }
+
+        if($_POST['tv_ich'] !==''){
+            $tv_ich = $_POST['tv_ich'] ;
+        }
+
+        if($_POST['phan_giai'] !==''){
+            $phan_giai = $_POST['phan_giai'] ;
+        }
+
+        if($_POST['hdh'] !==''){
+            $hdh = $_POST['hdh'] ;
+        }
+
+        if($_POST['ket_noi'] !==''){
+            $ket_noi = $_POST['ket_noi'] ;
+        }
+        if($_POST['tv_loa'] !==''){
+            $tv_loa = $_POST['tv_loa'] ;
+        }
+        if($_POST['kieu_tu'] !==''){
+            $kieu_tu = $_POST['kieu_tu'] ;
+        }
+        if($_POST['so_canh'] !==''){
+            $so_canh = $_POST['so_canh'] ;
+        }
+        if($_POST['dung_tich'] !==''){
+            $dung_tich = $_POST['dung_tich'] ;
+        }
+
+        if($_POST['cn_kk'] !==''){
+            $cn_kk = $_POST['cn_kk'] ;
+        }
+
+        if($_POST['chat_lieu'] !==''){
+            $chat_lieu = $_POST['chat_lieu'] ;
+        }
+
+        if( $_POST['masp']!==''){
+            $masp = $_POST['masp'];
+            if($method=='insert'){
+                $kq =$this->Thongsokythuat->_insert($masp,$kieu_tu,$so_canh,$dung_tich,$cong_nghe,$chat_lieu,$noi_sx,$nam,$loai_sp,$tv_ich,$phan_giai,$kich_thuoc,$tien_ich,$cn_kk,$ket_noi,$cong_suat,$tv_loa,$hdh,$kl,$bh,$updated);
+            }elseif($method=='update'){
+                $kq =$this->Thongsokythuat->_update($masp,$kieu_tu,$so_canh,$dung_tich,$cong_nghe,$chat_lieu,$noi_sx,$nam,$loai_sp,$tv_ich,$phan_giai,$kich_thuoc,$tien_ich,$cn_kk,$ket_noi,$cong_suat,$tv_loa,$hdh,$kl,$bh,$updated);
+            }
+            
+        }
+        echo $kq;
     }
 }

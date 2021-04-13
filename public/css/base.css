@@ -310,3 +310,54 @@ button.btn-sort {
 .form-check-input{
   cursor: pointer;
 }
+
+/* button viewmore */
+
+button.viewmore{
+  display: block;
+  overflow: hidden;
+  position: relative;
+  font-size: 1.6rem;
+  color: #ff3301;
+  border: 1px solid #eee;
+  text-align: center;
+  border-radius: 4px;
+  margin: 10px auto;
+  width: 400px;
+  height: 42px;
+  background: #fff;
+  outline: none;
+  font-weight: 400;
+  transition: background .2s linear;
+}
+.viewmore:hover{
+  background: #ff3301 ;
+  color: white;
+}
+
+.viewmore:after{
+  content: '';
+  width: 0;
+  right: 0;
+  border-top: 6px solid #ff3301;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -2px 0 0 5px;
+}
+.viewmore:hover:after{
+  border-top: 6px solid white;
+}
+
+/* go to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  display: none;
+  background-color: #ff3301;
+  font-size: 2rem;
+  color: white;
+  border-radius: 4px;
+}

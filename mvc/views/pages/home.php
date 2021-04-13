@@ -116,6 +116,9 @@
                         </a>
                     </div>
                 <?php } ?>
+                <div class="col-sm-12">
+                    <button class="btn_cus viewmore">Xem thêm 100 sản phẩm</button>
+                </div>
             </div>
         </div>
     </div>

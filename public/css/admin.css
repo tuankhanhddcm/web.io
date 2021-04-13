@@ -207,9 +207,10 @@ button.btn {
 }
 
 
-button.btn-update,
-button.btn-copy, 
-button.btn-deletd{
+.btn-update,
+.btn-copy, 
+.btn-deletd{
+    display: block;
     background-color: transparent;
     border: none;
     outline: none;

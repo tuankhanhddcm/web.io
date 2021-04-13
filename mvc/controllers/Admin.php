@@ -38,6 +38,20 @@
             ]);
         }
 
+        public function update_sp($ma){
+            $sanpham = $this->sanpham->sptheoloai("sp_ma",$ma);
+            $loai = $this->Danhmuc->getloaisp();
+            $nsx = $this->Nhasanxuat->select_all_nsx();
+            $tskt = $this->sanpham->sptheotskt("sp_ma",$ma);
+            $_SESSION['tskt']=$tskt;
+            $this->view("admin",[
+                "page" =>"update_product",
+                "sp" =>$sanpham,
+                "loai" =>$loai,
+                "nsx" =>$nsx,
+            ]);
+        }
+
 
         
     }
