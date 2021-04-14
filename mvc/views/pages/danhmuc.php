@@ -203,8 +203,8 @@
                                                     <img src="http://localhost/web_mvc/public/img/icon_maygiat2.png" style="width: 70%;" alt=""> 
                                                 </div> 
                                                 <div style="margin: 10px  0px 5px 25px">
-                                                    <input class="form-check-input k_tu " type="checkbox" value="Cửa ngang">
-                                                    <label for="" style="font-size: 1.4rem;margin-left: 10px; text-align: center; color:#2878d7">Cửa ngang</label>
+                                                    <input class="form-check-input k_tu " type="checkbox" value="Cửa trước">
+                                                    <label for="" style="font-size: 1.4rem;margin-left: 10px; text-align: center; color:#2878d7">Cửa trước</label>
                                                 </div>
                                             </div>
                                         </div>

@@ -21,6 +21,7 @@
         public function list_sp(){
             $loai = $this->Danhmuc->getloaisp();
             $nsx = $this->Nhasanxuat->select_all_nsx();
+            unset($_SESSION['tskt']);
             $this->view('admin',[
                 "page" =>'list_product',
                 "loai" =>$loai,

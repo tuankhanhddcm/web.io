@@ -190,7 +190,7 @@ class Ajax extends Controller
 
                 array_push($mang, $val);
             }
-            $sp = range(1, count($mang));
+            $sp = range(1, 6);
             for ($n = 0; $n < 6; $n++) {
                 if (isset($mang[$n])) {
                     $sp[$n] = $mang[$n];
@@ -406,7 +406,7 @@ class Ajax extends Controller
                                 <td><a href="" style="color: #357ebd;">' . $val["sp_name"] . '</a> </td>
                                 <td style="text-align: center;">' . $val["sp_sl"] . '</td>
                                 <td style="color: black;font-weight: 400;text-align: end;">' . number_format($val['sp_gia']) . 'đ</td>
-                                <td style="color: black;font-weight: 400;text-align: end;">' . number_format($val['sp_gia']) . 'đ</td>
+                                <td style="color: black;font-weight: 400;text-align: end;">' . number_format($val['sp_giaban']) . 'đ</td>
                                 <td>' . $val["ten_loai"] . '</td>
                                 <td>' . $val["ten_nsx"] . '</td>
                                 <td style="display: flex;align-items: center;justify-content: center;padding-top: 20px;border-right: none;">
@@ -428,19 +428,24 @@ class Ajax extends Controller
     public function sp($method)
     {   
         $ma_sp='';
+        $img ='';
         if(!empty($_POST['ma_sp'])){
             $ma_sp= $_POST['ma_sp'];
         }
+        if(!empty($_POST['img'])){
+            $img = $_POST['img'];
+        }
+        $img_sp = $this->sanpham->get_sp_byId("sp_img",'sp_ma',$ma_sp);
         if (
             !empty($_POST['tensp']) && !empty($_POST['sl']) && !empty($_POST['gia']) && !empty($_POST['giaban'])
-            && !empty($_POST['maloai']) && !empty($_POST['mansx']) && !empty($_POST['img'])
+            && !empty($_POST['maloai']) && !empty($_POST['mansx']) 
         ) {
             $tensp = $_POST['tensp'];
             $ma_loai = $_POST['maloai'];
             $ma_nsx = $_POST['mansx'];
             $sp_mota = $_POST['sp_mota'];
             $sl = $_POST['sl'];
-            $img = $_POST['img'];
+            
             $gia = $_POST['gia'];
             $giaban = $_POST['giaban'];
 
@@ -467,10 +472,16 @@ class Ajax extends Controller
             } else if ($id < 1000000) {
                 $masp = 'SP' . ($id);
             }
-            $sp_img = "public/img/upload/" . $img;
+            if($img ==''){
+                $sp_img=$img_sp['sp_img'];
+            }else{
+                $sp_img = "public/img/upload/" . $img;
+            }
+            
             if($method=='insert'){
                 $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
             }elseif($method=='update'){
+               
                 $kq = $this->sanpham->update_product($ma_sp,$tensp,$sl,$gia, $giaban,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$updated);
             }
             echo $masp;

@@ -26,7 +26,6 @@ class Cart extends Controller{
         if(isset($_POST["productID"]) && isset($_POST["soluong"])){
             $productID = $_POST["productID"];
             $product = $this->sanpham->get_sp_byId("*","sp_ma",$productID);
-            $productURL = $this->sanpham->get_sp_byId("sp_url","sp_ma",$productID);
             if(empty($_SESSION["cart"]) || !array_key_exists($productID,$_SESSION["cart"])){
 
                 $product["soluongdat"]= $_POST["soluong"];
@@ -40,7 +39,7 @@ class Cart extends Controller{
         } else{
             $messenger = "false";
         }
-
+        var_dump($_SESSION['cart']);
         echo $messenger;
         
     }

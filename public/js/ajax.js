@@ -79,8 +79,10 @@ $(document).ready(function () {
     });
 
     $('.select-loaisp').click(function () {
+        change_label($(".select-loaisp option:selected").val());
         if (check("#loaisp") == "false") {
             $("#thongso_sp").addClass("disabled");
+            
         }
     });
 
@@ -88,10 +90,11 @@ $(document).ready(function () {
         check("#loainsx");
     });
 
+    change_label($(".select-loaisp option:selected").val());
     $("#thongso_sp").click(function () {
         if (check("#loaisp") == 'true') {
             $(this).removeClass('disabled');
-            change_label($(".select-loaisp option:selected").val());
+           
         }
     });
 
@@ -858,12 +861,16 @@ function check_sp() {
     check(".sl_lb");
     check(".gia_lb");
     check(".giaban_lb");
-    check('#img_temp');
+    check("#img_temp") ;
     var kq = 'false';
+    var img = $("#img_insert").attr('src');
     if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
         && check(".sl_lb") == 'true' && check(".sp_lb") == 'true'
-        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' && check("#img_temp") == 'true') {
-        kq = 'true';
+        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' ) {
+            if(img!='#'|| check("#img_temp") == 'true'){
+                kq = 'true';
+            }
+        
     }
     return kq;
 }
@@ -891,21 +898,25 @@ function insert_sp(val,url,ma_sp) {
     }
     
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
-        var type = file.type;
-        var name = file.name;
-        var form_data = new FormData();
-        if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
-            form_data.append('file', file);
-            $.ajax({
-                url: "http://localhost/web_mvc/Ajax/upload_file/upload",
-                method: "post",
-                processData: false,
-                contentType: false,
-                mimeType: "multipart/form-data",
-                data: form_data,
-
-            });
+        if(file !==undefined){
+            var type = file.type;
+            var name = file.name;
+            var form_data = new FormData();
+            if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
+                form_data.append('file', file);
+                $.ajax({
+                    url: "http://localhost/web_mvc/Ajax/upload_file/upload",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    mimeType: "multipart/form-data",
+                    data: form_data,
+    
+                });
+            }
+            
         }
+       
         var masp ='';
         $.ajax({
             url: 'http://localhost/web_mvc/Ajax/sp/'+url,
@@ -923,6 +934,7 @@ function insert_sp(val,url,ma_sp) {
             },
             async: false,
             success: function(data){
+                
                 masp = data;
             }
         });
@@ -944,9 +956,8 @@ function insert_sp(val,url,ma_sp) {
             }else{
                 showupdate('','sản phẩm');
             }
-            $('input').val('');
             $('textarea').val('');
-            $("#img_insert").attr('src', '');
+            $("#img_insert").attr('src','');
             $(".label-img_temp").css('display', 'block');
             $(".select").val('');
             $(".select").selectpicker("refresh");
@@ -1090,15 +1101,16 @@ function insert_nsx(val) {
 function change_label(val) {
     if (val != '') {
         loaisp=val;
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/thongsokythuat",
+            method: "post",
+            data: { loaisp: loaisp },
+            success: function (data) {
+                $("#input_tskt").html(data);
+            }
+        });
     }
-    $.ajax({
-        url: "http://localhost/web_mvc/Ajax/thongsokythuat",
-        method: "post",
-        data: { loaisp: loaisp },
-        success: function (data) {
-            $("#input_tskt").html(data);
-        }
-    });
+   
 }
 
 function check_thongso_loai() {
@@ -1212,7 +1224,8 @@ function insert_tskt(masp,url){
             chat_lieu:chat_lieu
         },
         success:function(data){
-            console.log(data);
+            // console.log(data);
+            $('input').val('');
         }
     });
 
@@ -1247,8 +1260,7 @@ function update_sp_tskt(val){
         if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
             insert_tskt(ma_sp,'update');
             insert_sp(val,'update',ma_sp);
-            
-            
+              
         }
 }
 

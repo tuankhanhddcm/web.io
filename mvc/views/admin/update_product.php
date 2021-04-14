@@ -6,7 +6,7 @@
             <div class="form-btn">
                 <input type="hidden" id="ma_sp" value="<?= $_SESSION['tskt']['sp_ma']?>">
                 <button class="btn_cus btn-save" onclick="update_sp_tskt(1)"><i class='bx bx-save'></i> Lưu</button>
-                <button class="btn_cus btn-back" onclick="location.href='http://localhost/web_mvc/Admin/list_sp'"><i class='bx bx-left-arrow-alt'></i> Trở về</button>
+                <button class="btn_cus btn-back" onclick="location.href='http://localhost/web_mvc/Admin/list_sp';"><i class='bx bx-left-arrow-alt'></i> Trở về</button>
             </div>
 
         </div>
@@ -98,10 +98,10 @@
                             <label for="" class="form-label">Chọn ảnh đại diện:</label>
                             <div class="form-wrap">
                                 <div style="display: flex;">
-                                    <label class="btn_upload"><input type="file" onchange="readURL(this,'#img_temp','#img_insert')" id="img_temp" hidden>Chọn ảnh</label>
+                                    <label class="btn_upload"><input type="file" onchange="readURL(this,'#img_temp','#img_insert')"  id="img_temp" hidden>Chọn ảnh</label>
                                     <div class="display-img " id="img_pro">
                                         <label class="label-img_temp" style="cursor:pointer; display: none;"><i class='bx bx-plus-circle'></i></label>
-                                        <img src="<?php echo isset($data['sp']) ? 'http://localhost/web_mvc/'.$data['sp']['sp_img']:"#"; ?>" alt="" id="img_insert">
+                                        <img src="<?php echo isset($_SESSION['tskt']) ? 'http://localhost/web_mvc/'.$_SESSION['tskt']['sp_img']:"#"; ?>"  alt="" id="img_insert">
                                     </div>
                                 </div>
                                 <div style="display: flex;">

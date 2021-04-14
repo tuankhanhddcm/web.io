@@ -87,18 +87,25 @@ function fliter_admin(trang) {
 
 function readURL(input, id_img, img) {
     var file = input.files;
-    var kq = '';
     var id = id_img.slice(1);
-    if (file.length > 0 && file != "") {
-        kq = 'true';
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $(img).attr('src', e.target.result);
+    var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
+    if (file.length > 0 && file != ""  ) {
+        var files = $(id_img).prop('files')[0];
+        var type =files.type;
+        if(type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]){
+            kq = 'true';
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(img).attr('src', e.target.result);
+            }
+            $(".label-" + id).css("display", 'none');
+            reader.readAsDataURL(input.files[0]);
+            $('.' + id + '_icon').css("display", 'none');
+            $(".error_" + id).text('');
+        }else{
+            $(".error_" + id).text('File không đúng định dạng');
         }
-        $(".label-" + id).css("display", 'none');
-        reader.readAsDataURL(input.files[0]);
-        $('.' + id + '_icon').css("display", 'none');
-        $(".error_" + id).text('');
+        
     } else {
         $(".error_" + id).text('Vui lòng chọn hình ảnh');
         $(".error_" + id).css("display", 'block');
