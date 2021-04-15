@@ -32,7 +32,7 @@
             return  mysqli_fetch_assoc($query);
         }
 
-        public function selectall($table,$column = ['*'],$oderbys = [],$limit = 15){
+        public function selectall($table,$column = ['*'],$oderbys = [],$limit = 12){
             $columns = implode(",",$column);
             if(!empty($oderbys)){ 
                 $oderby = implode(" ",$oderbys);

@@ -98,10 +98,10 @@
             <span class="product-list__title">Sản phẩm nổi bật</span>
         </div>
         <div class="product-list__home">
-            <div class="grid__row">
+            <div class="grid__row" id="home_sp">
                 <?php foreach ($data["sanpham"] as $val) { ?>
                     <div class="col-sm-2 ">
-                        <a class="card-item card_height" href="./Detail/<?= $val['sp_url']; ?>">
+                        <a class="card-item card_height" href="http://localhost/web_mvc/Detail/<?= $val['sp_url']; ?>">
                             <div class="card-item__img">
                                 <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
                             </div>
@@ -116,9 +116,10 @@
                         </a>
                     </div>
                 <?php } ?>
-                <div class="col-sm-12">
-                    <button class="btn_cus viewmore">Xem thêm 100 sản phẩm</button>
-                </div>
+                
+            </div>
+            <div class="col-sm-12" id="div_view">
+                <button class="btn_cus viewmore" onclick="more_sp(18)">Xem thêm <span><?= $data['conlai'] ?></span> sản phẩm</button>
             </div>
         </div>
     </div>

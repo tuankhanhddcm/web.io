@@ -14,9 +14,7 @@ $(document).ready(function () {
         $(this).addClass("btn--primary").siblings().removeClass("btn--primary");
     });
 
-    $(".nav-items").click(function () {
-        $(this).addClass("nav-active").siblings().removeClass("nav-active");
-    });
+    
 
     $(".page_items").click(function () {
         $(this).addClass("active").siblings().removeClass("active");

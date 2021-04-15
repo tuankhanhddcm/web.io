@@ -30,6 +30,15 @@ $(document).ready(function () {
     });
 
 
+    // add class active
+    var path = window.location.pathname.split('/').pop();
+    if(path ==''){
+        path='home';
+    }
+    var target = $('ul a[href="./'+path+'"]');
+    target.addClass("nav-active");
+    
+
     $('.sl').inputFilter(function (value) {
         return /^\d*$/.test(value);
     });
@@ -61,7 +70,44 @@ $(document).ready(function () {
         fliter_admin(page);
     });
 
+    $(document).on("click",".btn-deletd",function(){
+        var id = $(this).data("mydata");
+        $.confirm({
+            title: 'Thông báo!!!',
+            content: 'Bạn có chắc muốn xóa sản phẩm',
+            draggable: true,
+            dragWindowBorder: false,
+            boxWidth: "30%",
+            useBootstrap: false,
+            type: 'red',
+            icon: 'fa fa-warning',
+            typeAnimated: true,
+            dragWindowGap: 50,
+            alignMiddle: true,
+            offsetTop: 0,
+            offsetBottom: 500,
+            buttons: {
+                Xóa:{
+                    btnClass: "btn-red",
+                    action: function(Xóa){
+                        $.ajax({
+                            url: "http://localhost/web_mvc/Ajax/delete_sp/"+id,
+                            method: "post",
+                            success: function(data){
+                                fliter_admin(1);
+                            }
+                        });
+                    }
+                },
+                Hủy: {
 
+                }
+                
+            }
+        });
+        
+    });
+    
 
 });
 

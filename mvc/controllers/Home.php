@@ -8,10 +8,14 @@
         }
 
         public function trangchu(){
+            $sp = $this->sanpham->getSP();
+            $row = $this->sanpham->num_rows();
+            $row = $row-count($sp);
             $this->view("index",[
                 "page" =>"home",
-                "sanpham" =>$this->sanpham->getSP(),
+                "sanpham" => $sp,
                 "loaisp" =>$this->danhmuc->getloaisp(),
+                "conlai" => $row
             ]);
             
         }

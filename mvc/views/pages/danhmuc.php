@@ -418,60 +418,15 @@
              <div class="col-sm-9">
                  <div class="home-sort">
                      <span class="home-sort__lable">Sắp xếp theo</span>
-                     <button class="btn_cus btn-sort  sapxep" id="banchay">Bán chạy</button>
-                     <button id="giacao" class="btn_cus btn-sort sapxep" value="desc">Giá cao đến thấp</button>
-                     <button class="btn_cus btn-sort sapxep" value="asc" id="giathap">Giá thấp đến cao</button>
+                     <button class="btn_cus btn-sort  sapxep" id="banchay" value="">Bán chạy</button>
+                     <button id="giacao" class="btn_cus btn-sort sapxep" data-order="0" value="desc">Giá cao đến thấp</button>
+                     <button class="btn_cus btn-sort sapxep" value="asc" data-order="0" id="giathap">Giá thấp đến cao</button>
                  </div>
-                 <style>
-                     #loading {
-                         border: 16px solid #f3f3f3;
-                         /* Light grey */
-                         border-top: 16px solid #3498db;
-                         /* Blue */
-                         border-radius: 50%;
-                         width: 120px;
-                         height: 120px;
-                         animation: spin 2s linear infinite;
-                     }
-
-                     @keyframes spin {
-                         0% {
-                             transform: rotate(0deg);
-                         }
-
-                         100% {
-                             transform: rotate(360deg);
-                         }
-                     }
-                 </style>
-                 <div class="grid__row " id="danhmuc">
-                     <?php
-                        if (!empty($data["sanpham"])) {
-                            foreach ($data["sanpham"] as $val) : ?>
-
-                             <div class="col-2-4 ">
-                                 <a class="card-item " href="../Detail/<?= $val["sp_url"] ?>">
-                                     <div class="card-item__img">
-                                         <img src="http://localhost/web_mvc/<?= $val["sp_img"] ?>" alt="" class="card__img">
-                                     </div>
-                                     <div class="card__name">
-                                         <span class="card__name-sp"><?= $val["sp_name"] ?></span>
-                                     </div>
-                                     <div class="card__body">
-                                         <strong class="card__price"><?= number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) ?>đ</strong>
-                                         <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                         <span class="card__precent">-20%</span>
-                                     </div>
-                                 </a>
-                             </div>
-                         <?php endforeach;
-                        } else {
-                            ?>
-                         <div class="danhmuc_rong ">
-                             <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-                         </div>
-                     <?php  } ?>
+                 <div class="grid__row " id="danhmuc_loai">
                  </div>
+                <div class="col-sm-12" id="div_view">
+                    <button class="btn_cus viewmore btn_view_dm" >Xem thêm <span></span> sản phẩm</button>
+                </div>
              </div>
          </div>
      </div>

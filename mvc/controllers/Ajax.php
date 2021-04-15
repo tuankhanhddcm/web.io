@@ -99,7 +99,25 @@ class Ajax extends Controller
                     $order = $_POST['order'];
                 }
             }
-            $data = $this->sanpham->filter_data($ma_loai, $gia, $nsx, $kich_co,$loai_sp, $order);
+            $sl=0;
+            if($_POST['sl'] >0){
+                $sl = $_POST['sl'];
+            }
+            $limit =12;
+            if($_POST['limit'] >0){
+                $limit += $_POST['limit'];
+            }
+           
+            
+            $data = $this->sanpham->filter_data($ma_loai, $gia, $nsx, $kich_co,$loai_sp, $order,$sl,$limit);
+            $temp =$this->sanpham->filter_data($ma_loai, $gia, $nsx, $kich_co,$loai_sp, $order);
+            $count =0;
+            if(!empty($temp)){
+                $row = count($temp);
+                if($row > count($data)){
+                    $count =$row - count($data);
+                }
+            }
             $ouput = "";
             if (!empty($data) && isset($data) && $data !== null) {
                 foreach ($data as $row) {
@@ -124,11 +142,14 @@ class Ajax extends Controller
                         ';
                 }
             } else {
-                $ouput = '   <div class="danhmuc_rong ">
-                                    <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-                                </div>';
+                $ouput = '  <div class="danhmuc_rong ">
+                                <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
+                            </div>';
             }
-            echo $ouput;
+            
+            $mang = [$count,$ouput];
+            echo json_encode($mang);
+            
         }
     }
 
@@ -187,10 +208,14 @@ class Ajax extends Controller
         if (isset($_SESSION["cart"])  && !empty($_SESSION['cart'])) {
             $mang = [];
             foreach ($_SESSION["cart"] as  $val) {
-
                 array_push($mang, $val);
             }
-            $sp = range(1, 6);
+            if(count($mang)==6){
+                $sp = range(1,6);
+            }elseif(count($mang)<6){
+                $sp = range(1,count($mang));
+            }
+           
             for ($n = 0; $n < 6; $n++) {
                 if (isset($mang[$n])) {
                     $sp[$n] = $mang[$n];
@@ -198,27 +223,28 @@ class Ajax extends Controller
             }
         }
         $kq = "";
-        foreach ($sp as $val) :
-            $kq .= '  <li class="header__cart-item">
-                            <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
-                                <div class="header_img">
-                                    <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
-                                </div>
-                                <div class="header__cart-item-info">
-                                    <div class="header__cart-item-head">
-                                        <h5 class="header__cart-item-name">' . $val["sp_name"] . '</h5>
-                                        <div class="header__cart-item-price-wrap">
-                                            <span class="header__cart-item-price">' . number_format($val["sp_giaban"]) . 'đ</span>
-                                            <span class="header__cart-item-nhan">x</span>
-                                            <span class="header__cart-item-soluong">' . $val["soluongdat"] . '</span>
-                                        </div>
+            foreach ($sp as $val) :
+                if(count($sp)<=6){
+                    $kq .= '  <li class="header__cart-item">
+                                <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
+                                    <div class="header_img">
+                                        <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
                                     </div>
-                                
-                                </div>
-                            </a>
-                        </li>';
-
-        endforeach;
+                                    <div class="header__cart-item-info">
+                                        <div class="header__cart-item-head">
+                                            <h5 class="header__cart-item-name">' . $val["sp_name"] . '</h5>
+                                            <div class="header__cart-item-price-wrap">
+                                                <span class="header__cart-item-price">' . number_format($val["sp_giaban"]) . 'đ</span>
+                                                <span class="header__cart-item-nhan">x</span>
+                                                <span class="header__cart-item-soluong">' . $val["soluongdat"] . '</span>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </a>
+                            </li>';
+                }
+            endforeach;
         echo $kq;
     }
 
@@ -410,9 +436,8 @@ class Ajax extends Controller
                                 <td>' . $val["ten_loai"] . '</td>
                                 <td>' . $val["ten_nsx"] . '</td>
                                 <td style="display: flex;align-items: center;justify-content: center;padding-top: 20px;border-right: none;">
-                                    <a  href="http://localhost/web_mvc/Admin/update_sp/'.$ma.'" type="button" class=" btn-update"  title="Sửa"><i class="fa fa-pencil-square-o"></i></a>
-                                    <button type="button" class=" btn-copy" title="Copy"><i class="bx bx-copy-alt"></i></button>
-                                    <a href="" type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></a>
+                                    <a  style="display: block;padding-right: 10px;" href="http://localhost/web_mvc/Admin/update_sp/'.$ma.'" type="button" class=" btn-update"  title="Sửa"><i class="fa fa-pencil-square-o"></i></a>
+                                    <button type="button" data-mydata="'.$val['sp_ma'].'" class="btn-deletd"  id="'.$val['sp_ma'].'" title="Xóa"><i class="bx bxs-trash"></i></button>
                                 </td>
                             </tr>';
             }
@@ -791,6 +816,47 @@ class Ajax extends Controller
             }
             
         }
+        echo $kq;
+    }
+
+    public function more_sp(){
+        if(isset($_POST['limit'])&& $_POST['limit'] !=""){
+            $limit =$_POST['limit'];
+        }
+        $limit +=18;
+        $sp = $this->sanpham->getSP(['*'],[],$limit);
+        $row = $this->sanpham->num_rows();
+        $dem = (int)$row-count($sp);
+        if(!empty($sp)){
+            $ouput ="";
+            foreach ($sp as $row) {
+                $giasale = number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
+                $gia = number_format($row['sp_giaban']);
+                $ouput .= '
+                    <div class="col-sm-2 ">
+                        <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
+                            <div class="card-item__img">
+                                <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
+                            </div>
+                            <div class="card__name">
+                                <span class="card__name-sp">' . $row['sp_name'] . '</span>
+                            </div>
+                            <div class="card__body">
+                                <strong class="card__price">' . $giasale . 'đ</strong>
+                                <strong class="card__oldprice">' . $gia . 'đ</strong>
+                                <span class="card__precent">-20%</span>
+                            </div>
+                        </a>
+                    </div>
+                    ';
+            }
+        }
+        $mang =[$dem,$ouput];
+        echo json_encode($mang);
+    }
+
+    public function delete_sp($id){
+        $kq = $this->sanpham->delete($id);
         echo $kq;
     }
 }

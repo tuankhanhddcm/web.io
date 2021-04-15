@@ -29,9 +29,12 @@ class sanpham extends DB {
         return $data;
     }
 
-    public function sptheoloai($column,$val){
+    public function sptheoloai($column,$val,$limit=0){
         $qr = "SELECT * from sanpham 
                 join loaisanpham on sanpham.ma_loai = loaisanpham.ma_loai join nhasanxuat on sanpham.ma_nsx=nhasanxuat.ma_nsx where sanpham.$column = '$val'";
+        if($limit >0){
+            $qr .= " limit $limit";
+        }
         if(mysqli_num_rows(mysqli_query($this->conn,$qr)) == 1){
             $kq = $this->fristquery($qr);
         }else{
@@ -50,7 +53,7 @@ class sanpham extends DB {
     }
 
 
-    public function filter_data($ma_loai,$gias =[],$hangs=[],$kichco =[],$loai_sp=[],$order){
+    public function filter_data($ma_loai,$gias =[],$hangs=[],$kichco =[],$loai_sp=[],$order,$sl=0,$limit=0){
         $dk = 0;
         $qr ="SELECT * FROM $this->table join thongsokythuat on sanpham.sp_ma = thongsokythuat.ma_sp  WHERE ma_loai =$ma_loai";
         if(!empty($hangs)){
@@ -139,9 +142,16 @@ class sanpham extends DB {
             }
             $qr .=" and (".$sql." )";
         }
+        if($sl >0){
+            $qr .=" and sp_sl > $sl";
+        }
 
         if(!empty($order)){
             $qr .=" ". "order by sp_giaban $order";
+        }
+
+        if($limit >0){
+            $qr .= " limit $limit";
         }
 
         $kq = null;
@@ -248,6 +258,15 @@ class sanpham extends DB {
             $kq = 'true';
         }else {
             $kq = " false";
+        }
+        return $kq;
+    }
+    public function delete($id){
+        $sql = "DELETE from sanpham where sp_ma = '$id'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = "true";
+        }else{
+            $kq = "false";
         }
         return $kq;
     }

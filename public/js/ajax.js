@@ -1,20 +1,51 @@
 $(document).ready(function () {
+
     //click button sapxep
     $("#giacao").click(function () {
         filter_data($('#giacao').val());
-    })
+        $(this).attr('data-order','1');
+        $("#banchay").val('');
+        $("#giathap").attr('data-order','0');
+    });
+
     $("#giathap").click(function () {
         filter_data($('#giathap').val());
-    })
-
+        $(this).attr('data-order','1');
+        $("#banchay").val('');
+        $("#giacao").attr('data-order','0');
+    });
+    filter_data('');
     // click button bán chạy
     $("#banchay").click(function () {
-        filter_banchay();
-    })
+        $(this).val(6);
+        filter_data('',6);
+        $("#giathap").attr('data-order','0');
+        $("#giacao").attr('data-order','0');
+    });
 
     $(".form-check-input").click(function () {
         filter_data('');
-    })
+    });
+
+    $(".btn_view_dm").click(function(){
+        var banchay=$("#banchay").val();
+        var giacao= $("#giacao").attr('data-order');
+        var giathap=$("#giathap").attr('data-order');
+        if(banchay==6){
+            filter_data('',banchay,12);
+        }else if(giacao == '1'){
+            
+            filter_data($('#giacao').val(),0,12);
+
+        }else if(giathap=="1"){
+            filter_data($('#giathap').val(),0,12); 
+        }else{
+            filter_data('',0,12);
+        }
+
+    });
+
+   
 
     //sản phẩm cart khi hover
     sp_cart();
@@ -113,7 +144,6 @@ $(document).ready(function () {
         }, 400);
         return false;
     });
-
     
 
 });
@@ -121,7 +151,7 @@ $(document).ready(function () {
 
 
 
-function filter_data(order) {
+function filter_data(order,sl=0,limit=0) {
     var action = 'fetch_data';
     var gia = get_filter("gia")
     var nsx = get_filter("hang");
@@ -130,7 +160,7 @@ function filter_data(order) {
     var kieu_tu = get_filter("k_tu");
     var ma_loai = $('#ma_loai').val();
     $.ajax({
-        url: "../Ajax/filter_data",
+        url: "http://localhost/web_mvc/Ajax/filter_data",
         method: "POST",
         data: {
             action: action,
@@ -140,10 +170,19 @@ function filter_data(order) {
             kich_co: kich_co,
             loai_sp:loai_sp,
             kieu_tu:kieu_tu,
-            order: order
+            order: order,
+            limit:limit,
+            sl:sl
         },
+        dataType: "json",
         success: function (data) {
-            $('#danhmuc').html(data);
+            if(data[0]==0){
+                $("#div_view").css("display","none");
+            }else{
+                $("#div_view").css("display","block");
+                $('.viewmore span').text(data[0]);
+            }
+            $('#danhmuc_loai').html(data[1]);
         }
     });
 }
@@ -156,22 +195,7 @@ function get_filter(class_name) {
     return filter;
 }
 
-// lọc theo giá
-function filter_gia(gia) {
-    var ma_loai = $('#ma_loai').val();
-    var order = gia;
-    $.ajax({
-        url: "../Ajax/loctheogia",
-        method: "POST",
-        data: {
-            ma_loai: ma_loai,
-            order: order
-        },
-        success: function (data) {
-            $('#danhmuc').html(data);
-        }
-    });
-}
+
 function filter_gia_search(gia) {
     var sort = gia;
     $.ajax({
@@ -1264,3 +1288,21 @@ function update_sp_tskt(val){
         }
 }
 
+
+function more_sp(limit){
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/more_sp",
+        method: "post",
+        data: {limit:limit},
+        dataType: 'json',
+        success: function(data){
+            if(data[0]==0){
+                $("#div_view").css("display","none");
+            }else{
+                $("#div_view").css("display","block");
+                $('.viewmore span').text(data[0]);
+            }
+            $("#home_sp").html(data[1]);
+        }
+    });
+}

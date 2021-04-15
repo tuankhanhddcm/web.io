@@ -31,10 +31,6 @@
 
 .nav-items{
     display: flex;
-    text-decoration: none;
-    color: black;
-    font-size: 1.6rem;
-    padding: 10px 20px;
     justify-content: end;
     align-items: center;
     font-weight: 300;
@@ -49,14 +45,24 @@
     padding-right: 10px;
 }
 
-.nav-items.nav-active{
+.nav-items a.nav-active{
     background-color: white;
     border-right: 4px solid #1ba8ff;
     color: #0b87c9;
     
 }
+.nav-items a{
+    display: block;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    color: black;
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    
+}
 
-.nav-items:hover {
+.nav-items a:hover {
     background-color: white;
     border-right: 4px solid #1ba8ff;
     color: #0b87c9;
@@ -506,4 +512,8 @@ button.btn-sm {
     font-size: 1.6rem;
     text-align: left;
     color: #357ebd;
+}
+
+.jconfirm-content div {
+    font-size: 1.4rem;
 }

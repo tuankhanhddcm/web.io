@@ -16,9 +16,10 @@
             $tenloai = $this->danhmuc->gettenloai($ma_loai);
             $nsx = $this->Nhasanxuat->select_all_nsx();
             $sp = $this->sanpham->loc_sp("ma_loai",$ma_loai,"ma_nsx");
-            $produt =$this->sanpham->sptheoloai("ma_loai",$ma_loai);
+            
             // lọc loai san pham theo nha san xuat
             $mang =[];
+            
             foreach ($sp as $v){
                 foreach($nsx as $k){
                     if($v['ma_nsx']==$k["ma_nsx"]){
@@ -29,7 +30,6 @@
          
             $this->view("index",[
                 "page" => "danhmuc",
-                "sanpham" => $produt,
                 "loaisp" => $tenloai,
                 "ma_loai" => $ma_loai,
                 "nsx" => $mang,
