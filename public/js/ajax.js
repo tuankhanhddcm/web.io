@@ -885,12 +885,13 @@ function check_sp() {
     check(".sl_lb");
     check(".gia_lb");
     check(".giaban_lb");
+    check(".giagiam_lb");
     check("#img_temp") ;
     var kq = 'false';
     var img = $("#img_insert").attr('src');
     if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
         && check(".sl_lb") == 'true' && check(".sp_lb") == 'true'
-        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' ) {
+        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' &&  check(".giagiam_lb")=='true' ) {
             if(img!='#'|| check("#img_temp") == 'true'){
                 kq = 'true';
             }
@@ -904,6 +905,7 @@ function insert_sp(val,url,ma_sp) {
     var sl = $('.sl').val();
     var txt_gia = $('.gia').val();
     var txt_giaban = $('.giaban').val();
+    var txt_giagiam = $('.giagiam').val();
     var maloai = $('#loaisp option:selected').val();
     var mansx = $('#loainsx option:selected').val();
     var file = $('#img_temp').prop('files')[0];
@@ -911,16 +913,19 @@ function insert_sp(val,url,ma_sp) {
     var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
     var gia ='';
     var giaban ='';
+    var giagiam ='';
     if(txt_gia.search('₫') >0 && txt_giaban.search('₫')){
         gia = txt_gia.slice(0, txt_gia.search('₫'));
         gia = gia.replaceAll('.', '');
         giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
         giaban = giaban.replaceAll('.', '');
+        giagiam = txt_giagiam.slice(0, txt_giagiam.search('₫'));
+        giagiam = giagiam.replaceAll('.', '');
     }else{
         gia = txt_gia;
         giaban = txt_giaban;
+        giagiam = txt_giagiam;
     }
-    
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
         if(file !==undefined){
             var type = file.type;
@@ -954,11 +959,11 @@ function insert_sp(val,url,ma_sp) {
                 mansx: mansx,
                 img: name,
                 sp_mota: sp_mota,
-                ma_sp:ma_sp
+                ma_sp:ma_sp,
+                giagiam:giagiam
             },
             async: false,
             success: function(data){
-                
                 masp = data;
             }
         });
@@ -1257,6 +1262,7 @@ function insert_tskt(masp,url){
 
 function insert_sp_tskt(val){
     check_thongso_loai();
+ 
         if (check_sp() == 'true' && check_thongso() == 'false') {
             showerror('thông số kỹ thuật');
         }
@@ -1274,6 +1280,7 @@ function insert_sp_tskt(val){
 function update_sp_tskt(val){
     ma_sp= $("#ma_sp").val();
     check_thongso_loai();
+
         if (check_sp() == 'true' && check_thongso() == 'false') {
             showerror('thông số kỹ thuật');
         }
@@ -1282,7 +1289,7 @@ function update_sp_tskt(val){
         }
 
         if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
-            insert_tskt(ma_sp,'update');
+            //insert_tskt(ma_sp,'update');
             insert_sp(val,'update',ma_sp);
               
         }

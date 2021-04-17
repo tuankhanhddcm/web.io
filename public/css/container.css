@@ -446,7 +446,6 @@ button.btn-sl_cong {
     justify-content: space-around;
     padding-bottom: 20px;
     margin-bottom: 40px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 
@@ -460,7 +459,8 @@ button.btn-sl-cart {
     font-weight: 400;
     background-image: linear-gradient(#f1f1f1,rgba(255, 87, 34, 0.15)) ;
     min-height: 50px;
-    min-width: 215px;
+    min-width: 200px;
+    border-radius: 4px;
 }
 
 
@@ -477,8 +477,9 @@ button.btn-sl-sell {
     outline: none;
     font-size: 1.6rem;
     padding: 21px 15px;
-    min-width: 215px;
+    min-width: 200px;
     min-height: 50px;
+    border-radius: 4px;
 }
 
 
@@ -571,3 +572,64 @@ button.btn-detail-info {
     font-size: 2.5rem;
     color: #357ebd;
 }
+
+.product-detail_mota {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.title_mota {
+    padding-top: 20px ;
+    font-size: 2rem;
+    color: #333;
+}
+
+.product-detail_mota ul {
+    list-style: none;
+    padding: 15px 0px 25px 0;
+    margin: 0 10px;
+}
+.product-detail_mota ul li {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #333;
+
+    line-height: 22px;
+}
+
+.product-detail_mota li::before {
+    content: '•';
+    color: #999;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 2rem;
+}
+
+.product-detail_tuongtu {
+    padding: 20px 0px;
+    border-top:1px solid rgba(0,0,0,0.1) ;
+}
+
+.title-tuongtu {
+    font-size: 2rem;
+    color: #333;
+    padding-bottom: 20px;
+}
+
+.empty-sp {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #333;
+    padding-left: 20px;
+}
+.detail-info-value p {
+    margin: 0;
+}
+.detail-info-value p:before {
+    content: "•";
+    color: #b7b7b7;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+

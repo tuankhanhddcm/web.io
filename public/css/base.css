@@ -361,4 +361,38 @@ button.viewmore{
   color: white;
   border-radius: 4px;
 }
+.owl-carousel .nav-btn{
+  height: 47px;
+  position: absolute;
+  width: 26px;
+  cursor: pointer;
+  top: 100px !important;
+}
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled{
+    pointer-events: none;
+    opacity: 0.2;
+}
 
+
+.owl-carousel .prev-slide{
+  font-size: 6rem;
+  font-weight: 300;
+  left: -40px;
+  color: rgb(134, 128, 128);
+
+}
+
+.owl-carousel .next-slide {
+  font-size: 6rem;
+  font-weight: 300;
+  right: -5px;
+  color: rgb(134, 128, 128);
+
+}
+
+
+.product__sale-sile {
+  width: 95%;
+  margin: 0 auto;
+}

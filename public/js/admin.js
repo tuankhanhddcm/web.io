@@ -51,6 +51,15 @@ $(document).ready(function () {
         return /^\d*$/.test(value);
     });
 
+    $('.giagiam').inputFilter(function (value) {
+        return /^\d*$/.test(value);
+    });
+
+    $('.giagiam').change(function () {
+        var text = txtmoney($(this).val());
+        $(this).val(text);
+    });
+
     $('.gia').change(function () {
         var text = txtmoney($(this).val());
         $(this).val(text);
@@ -116,7 +125,7 @@ function fliter_admin(trang) {
     var ma_loai = $('#loaisp option:selected').val();
     var nsx = $('#nsx option:selected').val();
     $.ajax({
-        url: "../Ajax/filter_admin",
+        url: "http://localhost/web_mvc/Ajax/filter_admin",
         method: "post",
         data: {
             text: text,
@@ -193,7 +202,7 @@ function txtmoney(val) {
 
 function phan_trang_nsx(trang) {
     $.ajax({
-        url: "../Ajax/page/nhasanxuat/8",
+        url: "http://localhost/web_mvc/Ajax/page/nhasanxuat/8",
         method: "post",
         data: {
             trang: trang
@@ -206,7 +215,7 @@ function phan_trang_nsx(trang) {
 
 function phan_trang_loai(trang) {
     $.ajax({
-        url: "../Ajax/page/loaisanpham/8",
+        url: "http://localhost/web_mvc/Ajax/page/loaisanpham/8",
         method: "post",
         data: {
             trang: trang

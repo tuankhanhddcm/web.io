@@ -53,6 +53,12 @@ class sanpham extends DB {
     }
 
 
+    public function sptheogia($gia_start,$gia_end,$ma_loai,$ma_sp){
+        $qr ="SELECT * from sanpham where ma_loai=$ma_loai and sp_ma != '$ma_sp' and sp_giaban  between $gia_start and $gia_end";
+        $kq = $this->_query($qr);
+        return $kq;
+    }
+
     public function filter_data($ma_loai,$gias =[],$hangs=[],$kichco =[],$loai_sp=[],$order,$sl=0,$limit=0){
         $dk = 0;
         $qr ="SELECT * FROM $this->table join thongsokythuat on sanpham.sp_ma = thongsokythuat.ma_sp  WHERE ma_loai =$ma_loai";
@@ -238,27 +244,29 @@ class sanpham extends DB {
         return $this->_query($sql);
     }
 
-    public function insert_product($masp, $tensp,$sl,$gia, $giaban,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$update){
-        $sql = "INSERT INTO sanpham (id, sp_ma, sp_name, sp_sl, sp_gia, sp_giaban, sp_url, sp_img, sp_mota, ma_loai, ma_nsx, created, updated)
-                values('','$masp','$tensp','$sl','$gia','$giaban','$sp_url','$sp_img','$sp_mota','$ma_loai','$ma_nsx', current_timestamp(), '$update')";
+    public function insert_product($masp, $tensp,$sl,$gia, $giaban,$giagiam,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$update){
+        $sql = "INSERT INTO sanpham (id, sp_ma, sp_name, sp_sl, sp_gia, sp_giaban,sp_giagiam, sp_url, sp_img, sp_mota, ma_loai, ma_nsx, created, updated)
+                values('','$masp','$tensp','$sl','$gia','$giaban','$giagiam','$sp_url','$sp_img','$sp_mota','$ma_loai','$ma_nsx', current_timestamp(), '$update')";
 
         if(mysqli_query($this->conn,$sql)){
             $kq = 'true';
         }else {
             $kq = " false";
         }
+        
         return $kq;
     }
 
 
-    public function update_product($ma_sp,$sp_name,$sp_sl,$sp_gia,$sp_giaban,$sp_url,$sp_img,$sp_mota,$ma_loai,$ma_nsx,$update){
-        $sql ="UPDATE sanpham set sp_name='$sp_name',sp_sl=$sp_sl,sp_gia = '$sp_gia',sp_giaban= '$sp_giaban',sp_url='$sp_url',sp_img='$sp_img',sp_mota='$sp_mota',ma_loai = $ma_loai,ma_nsx = $ma_nsx,updated='$update'
+    public function update_product($ma_sp,$sp_name,$sp_sl,$sp_gia,$sp_giaban,$gia_giam,$sp_url,$sp_img,$sp_mota,$ma_loai,$ma_nsx,$update){
+        $sql ="UPDATE sanpham set sp_name='$sp_name',sp_sl=$sp_sl,sp_gia = '$sp_gia',sp_giaban= '$sp_giaban',sp_giagiam='$gia_giam',sp_url='$sp_url',sp_img='$sp_img',sp_mota='$sp_mota',ma_loai = $ma_loai,ma_nsx = $ma_nsx,updated='$update'
                 where sp_ma ='$ma_sp'";
         if(mysqli_query($this->conn,$sql)){
             $kq = 'true';
         }else {
             $kq = " false";
         }
+        echo $sql;
         return $kq;
     }
     public function delete($id){

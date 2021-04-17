@@ -1,3 +1,100 @@
+<?php 
+    if(isset($_SESSION['tskt_sp']) && !empty($_SESSION['tskt_sp'])){ ?>
+<div class="col-sm-6">
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label loai_sp_lb">Loại tivi:</label>
+        <div class="form-wrap form-span">
+            <span><?= $_SESSION['tskt_sp']['loai_sp'] ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label tv_ich_lb">Kích cỡ màn hình:</label>
+        <div class="form-wrap form-span">
+           <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['kich_co_tv']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label phan_giai_lb">Độ phân giải: </label>
+        <div class="form-wrap form-span">
+           <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['do_phan_giai']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label hdh_lb">Hệ điều hành:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['he_dieu_hanh']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label cn_kk_lb">Ứng dụng:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['ung_dung']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label cong_nghe_lb">Công nghệ hình ảnh:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['cong_nghe']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label tien_ich_lb">Tính năng thông minh:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['tinh_nang']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label ket_noi_lb">Kết nối:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['ket_noi']:""; ?></span>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label tv_loa_lb">Công nghệ loa:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['loa']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label cong_suat_lb">Công suất:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['cong_suat']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label kich_thuoc_lb">Kích thước: </label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['kich_thuoc']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label kl_lb">Khối lượng:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['khoi_luong']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label noi_sx_lb">Nơi sản xuất:</label>
+        <div class="form-wrap form-span">
+           <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['noi_san_xuat']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label bh_lb">Bảo hành:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['bao_hanh']:""; ?></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 40px;">
+        <label for="" class="form-label nam_lb">Năm ra mắt:</label>
+        <div class="form-wrap form-span">
+            <span><?php echo isset($_SESSION['tskt_sp']) ? $_SESSION['tskt_sp']['nam_sx']:""; ?></span>
+        </div>
+    </div>
+</div>
+<?php }else { ?>
 <div class="col-sm-6">
     <div class="form-group">
         <label for="" class="form-label loai_sp_lb">Loại tivi:</label>
@@ -15,7 +112,7 @@
         <label for="" class="form-label tv_ich_lb">Kích cỡ màn hình:</label>
         <div class="form-wrap">
             <div class="form_input">
-                <input type="text" class="form-input tv_ich" onkeyup="check('.tv_ich_lb')" value="<?php echo isset($_SESSION['tskt']) ? $_SESSION['tskt']['kich_co_tv']:""; ?> " placeholder="Nhập kích cỡ màn hình">
+                <input type="text" class="form-input tv_ich" onkeyup="check('.tv_ich_lb')" value="<?php echo isset($_SESSION['tskt']) ? $_SESSION['tskt']['kich_co_tv']:""; ?>" placeholder="Nhập kích cỡ màn hình">
             </div>
             <div style="display: flex;">
                 <i class='bx bxs-error-circle tv_ich_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
@@ -182,3 +279,4 @@
         </div>
     </div>
 </div>
+<?php } ?>

@@ -50,24 +50,27 @@
                         <div class="owl-carousel owl-theme" id="slider">
                             <?php foreach ($data["sanpham"] as $val) { ?>
                                 <div class="item">
-                                        <a class="card-item card_height" href="./Detail/<?= $val['sp_url']; ?>">
-                                            <div class="card-item__img">
-                                                <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
-                                            </div>
-                                            <div class="card__name">
-                                                <span class="card__name-sp"><?= $val["sp_name"] ?></span>
-                                            </div>
-                                            <div class="card__body">
-                                                <strong class="card__price"><?= number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) ?>đ</strong>
+                                    <a class="card-item card_height" href="./Detail/<?= $val['sp_url']; ?>">
+                                        <div class="card-item__img">
+                                            <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
+                                        </div>
+                                        <div class="card__name">
+                                            <span class="card__name-sp"><?= $val["sp_name"] ?></span>
+                                        </div>
+                                        <div class="card__body">
+                                            <?php if ($val['sp_giagiam'] > 0) {
+                                                $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
+                                            ?>
+                                                <strong class="card__price"><?= number_format($val['sp_giagiam']) ?>đ</strong>
                                                 <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                                <span class="card__precent">-20%</span>
-                                            </div>
-                                        </a>
+                                                <span class="card__precent"><?= $phantram ?>%</span>
+                                            <?php } else { ?>
+                                                <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                            <?php } ?>
+                                        </div>
+                                    </a>
                                 </div>
                             <?php } ?>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -109,14 +112,20 @@
                                 <span class="card__name-sp"><?= $val["sp_name"] ?></span>
                             </div>
                             <div class="card__body">
-                                <strong class="card__price"><?= number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) ?>đ</strong>
-                                <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                <span class="card__precent">-20%</span>
+                                <?php if ($val['sp_giagiam'] > 0) {
+                                    $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
+                                ?>
+                                    <strong class="card__price"><?= number_format($val['sp_giagiam']) ?>đ</strong>
+                                    <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                    <span class="card__precent"><?= $phantram ?>%</span>
+                                <?php } else { ?>
+                                    <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                <?php } ?>
                             </div>
                         </a>
                     </div>
                 <?php } ?>
-                
+
             </div>
             <div class="col-sm-12" id="div_view">
                 <button class="btn_cus viewmore" onclick="more_sp(18)">Xem thêm <span><?= $data['conlai'] ?></span> sản phẩm</button>

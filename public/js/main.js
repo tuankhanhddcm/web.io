@@ -41,6 +41,8 @@ $(document).ready(function () {
         autoplay: true,
         autoplayTimeout: 3000,
         autoplayHoverPause: true,
+        nav: true,
+        navText:["<div class='nav-btn prev-slide'><i class='bx bx-chevron-left'></i></div>","<div class='nav-btn next-slide'><i class='bx bx-chevron-right'></i></div>"],
         responsive: {
             0: {
                 items: 1

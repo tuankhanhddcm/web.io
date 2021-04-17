@@ -113,7 +113,7 @@
                         <div class="form-group" style=" padding-top: 120px;">
                             <label for="" class="form-label">Mô tả sản phẩm:</label>
                             <div class="form-wrap" style="background-color: #ffff;">
-                                <textarea id='mota' style="display: block; font-size: 1.2rem;padding: 10px;" name="" id="" cols="100" rows="20"></textarea>
+                                <textarea id='mota' style="display: block; font-size: 1.2rem;padding: 10px;" name="" id="" cols="100" rows="20"><?= $data['sp']['sp_mota']?></textarea>
                             </div>
                         </div>
                     </div>
@@ -151,6 +151,18 @@
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle giaban_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
                                     <span class="error_giaban error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label giagiam_lb">Giá khuyến mãi:</label>
+                            <div class="form-wrap">
+                                <div class="form_input">
+                                    <input type="text" class="form-input giagiam" onkeyup="check('.giagiam_lb')"  value="<?= $data['sp']['sp_giagiam']?>" style="text-align: right;" placeholder="0">
+                                </div>
+                                <div style="display: flex;">
+                                    <i class='bx bxs-error-circle giagiam_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
+                                    <span class="error_giagiam error"></span>
                                 </div>
                             </div>
                         </div>

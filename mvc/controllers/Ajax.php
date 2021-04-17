@@ -18,46 +18,7 @@ class Ajax extends Controller
     }
 
 
-    public function banchay()
-    {
-        if (isset($_POST['ma_loai'])) {
-            $ma_loai = $_POST['ma_loai'];
-            $data = $this->sanpham->filter_banchay($ma_loai);
-            $col = 4;
-        } else if (isset($_POST['banchay']) && !empty($_POST['banchay']) && isset($_SESSION['search']) && !empty($_SESSION['search'])) {
-            $data = $this->sanpham->search_home($_SESSION['search'], 20, $sort = '', $_POST['banchay']);
-            $col = 5;
-        }
-        $ouput = "";
-        if (!empty($data)) {
-            foreach ($data as $row) {
-                $giasale = number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
-                $gia = number_format($row['sp_giaban']);
-                $ouput .= '
-                    <div class="col-2-' . $col . ' ">
-                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
-                            <div class="card-item__img">
-                                <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
-                            </div>
-                            <div class="card__name">
-                                <span class="card__name-sp">' . $row['sp_name'] . '</span>
-                            </div>
-                            <div class="card__body">
-                                <strong class="card__price">' . $giasale . 'đ</strong>
-                                <strong class="card__oldprice">' . $gia . 'đ</strong>
-                                <span class="card__precent">-20%</span>
-                            </div>
-                        </a>
-                    </div>
-                    ';
-            }
-        } else {
-            $ouput = '   <div class="danhmuc_rong ">
-                                <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-                            </div>';
-        }
-        echo $ouput;
-    }
+    
 
 
     // loc san pham
@@ -121,9 +82,13 @@ class Ajax extends Controller
             $ouput = "";
             if (!empty($data) && isset($data) && $data !== null) {
                 foreach ($data as $row) {
-                    $giasale = number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
+
                     $gia = number_format($row['sp_giaban']);
-                    $ouput .= '
+                    
+                    if($row['sp_giagiam'] > 0){
+                        $giasale = number_format($row['sp_giagiam']);
+                        $phantram = ($row['sp_giagiam'] / $row['sp_giaban'] -1)*100;
+                        $ouput .= '
                         <div class="col-2-4 ">
                             <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
                                 <div class="card-item__img">
@@ -135,11 +100,29 @@ class Ajax extends Controller
                                 <div class="card__body">
                                     <strong class="card__price">' . $giasale . 'đ</strong>
                                     <strong class="card__oldprice">' . $gia . 'đ</strong>
-                                    <span class="card__precent">-20%</span>
+                                    <span class="card__precent">'.$phantram.'%</span>
                                 </div>
                             </a>
                         </div>
                         ';
+                    }else{
+                        $ouput .= '
+                        <div class="col-2-4 ">
+                            <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                                <div class="card-item__img">
+                                    <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
+                                </div>
+                                <div class="card__name">
+                                    <span class="card__name-sp">' . $row['sp_name'] . '</span>
+                                </div>
+                                <div class="card__body">
+                                    <strong class="card__price">' . $gia . 'đ</strong>
+                                </div>
+                            </a>
+                        </div>
+                        ';
+                    }
+                    
                 }
             } else {
                 $ouput = '  <div class="danhmuc_rong ">
@@ -429,7 +412,7 @@ class Ajax extends Controller
                 $out .= '<tr class="body-table">
                                 <td style="width: 50px;border-left: 1px solid rgba(0,0,0,.1);"><img src="http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" style="width: 50px;min-height: 10px;"></td>
                                 <td>' . $val["sp_ma"] . '</td>
-                                <td><a href="" style="color: #357ebd;">' . $val["sp_name"] . '</a> </td>
+                                <td><a href="http://localhost/web_mvc/Admin/detail_sp/'.$val['sp_ma'].'" style="color: #357ebd;">' . $val["sp_name"] . '</a> </td>
                                 <td style="text-align: center;">' . $val["sp_sl"] . '</td>
                                 <td style="color: black;font-weight: 400;text-align: end;">' . number_format($val['sp_gia']) . 'đ</td>
                                 <td style="color: black;font-weight: 400;text-align: end;">' . number_format($val['sp_giaban']) . 'đ</td>
@@ -463,7 +446,7 @@ class Ajax extends Controller
         $img_sp = $this->sanpham->get_sp_byId("sp_img",'sp_ma',$ma_sp);
         if (
             !empty($_POST['tensp']) && !empty($_POST['sl']) && !empty($_POST['gia']) && !empty($_POST['giaban'])
-            && !empty($_POST['maloai']) && !empty($_POST['mansx']) 
+            && !empty($_POST['maloai']) && !empty($_POST['mansx'] && !empty($_POST['giagiam'])) 
         ) {
             $tensp = $_POST['tensp'];
             $ma_loai = $_POST['maloai'];
@@ -473,6 +456,7 @@ class Ajax extends Controller
             
             $gia = $_POST['gia'];
             $giaban = $_POST['giaban'];
+            $giagiam =$_POST['giagiam'];
 
             $sp_url = str_replace(' ', '-', $tensp);
             $updated = date("Y-m-d H:i:s", time());
@@ -504,11 +488,12 @@ class Ajax extends Controller
             }
             
             if($method=='insert'){
-                $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
+                $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban,$giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
             }elseif($method=='update'){
                
-                $kq = $this->sanpham->update_product($ma_sp,$tensp,$sl,$gia, $giaban,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$updated);
+                $kq = $this->sanpham->update_product($ma_sp,$tensp,$sl,$gia, $giaban,$giagiam,$sp_url, $sp_img, $sp_mota,$ma_loai,$ma_nsx,$updated);
             }
+            echo $kq;
             echo $masp;
         }
     }

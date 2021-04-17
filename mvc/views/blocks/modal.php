@@ -229,244 +229,229 @@
 
 
           <?php if (isset($data['thongso']) && !empty($data['thongso'])) {
-            switch ($data['sanpham']['ma_loai']) {
-                //tv
-              case 1:
-                echo ' 
-                                <li>
-                                    <span class="detail-info-name">Loại tivi:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['loai_sp'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Kích cỡ màn hình:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['kich_co_tv'] . ' ich</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Độ phân giải:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['do_phan_giai'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Hệ điều hành:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['he_dieu_hanh'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Ứng dụng:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['ung_dung'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ hình ảnh:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['cong_nghe'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Tính năng thông minh:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['tinh_nang'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">kết nối:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['ket_noi'] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ loa:</span>
-                                    <span class="detail-info-value"> ' . $data["thongso"]['loa'] . '</span>
-                                </li>
-                                    ';
-                break;
-                //tủ lạnh
-              case 3:
-                echo '
-                                <li>
-                                    <span class="detail-info-name">Loại tủ:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]['loai_sp'] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Dung tích tủ:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["dung_tich"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Số cánh cửa:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["so_canh_cua"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công suất tiêu thụ công bố theo TCVN:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_suat"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ tiết kiệm điện:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["kieu_tu"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ làm lạnh:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_nghe"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ kháng khuẩn:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["ung_dung"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Tiện ích:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["tinh_nang"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Chất liệu tủ:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["chat_lieu"] . '</span>
-                                </li>
-                                    ';
-                break;
-                //máy lạnh
-              case 2:
-                echo '
-                                <li>
-                                    <span class="detail-info-name">Loại máy lạnh:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]['loai_sp'] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Kiểu máy lạnh:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["kieu_tu"] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công suất làm lạnh, sưởi ấm:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_suat"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Phạm vi làm lạnh hiệu quả:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["dung_tich"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Lọc bụi, kháng khuẩn, khử mùi:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["ung_dung"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Tiện ích:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["tinh_nang"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Công nghệ làm lạnh:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["cong_nghe"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Chế độ gió:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["ket_noi"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Chất liệu:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["chat_lieu"] . '</span>
-                                </li>
-                               
-                                ';
-                break;
-                //loa
-              case 4:
-                echo '
-                                <li>
-                                    <span class="detail-info-name">Loại loa:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]['loai_sp'] . ' </span>
-                                </li>
-                               
-                                <li>
-                                  <span class="detail-info-name">Tổng công suất:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["cong_suat"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Tiện ích:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["tinh_nang"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Phím điều khiển:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_nghe"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Tương thích:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["he_dieu_hanh"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Kết nối:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["ket_noi"] . '</span>
-                                </li>
-                                ';
-                break;
-                //lò nướng
-              case 5:
-                echo '
-                                <li>
-                                    <span class="detail-info-name">Loại lò nướng:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]['loai_sp'] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Dung tích:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["dung_tich"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công suất:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_suat"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Chất liệu lò:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["chat_lieu"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Chức năng chính:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_nghe"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Bảng điều khiển:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]["ket_noi"] . '</span>
-                                </li>
+            if ($data['sanpham']['ma_loai'] == 1) { ?>
+              <li>
+                <span class="detail-info-name">Loại tivi:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['loai_sp']  ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Kích cỡ màn hình:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['kich_co_tv'] ?> ich</span>
+              </li>
+              <li>
+                <span class="detail-info-name">Độ phân giải:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['do_phan_giai']?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Hệ điều hành:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['he_dieu_hanh'] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Ứng dụng:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['ung_dung'] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ hình ảnh:</span>
+                <span class="detail-info-value " style="display: inline-block;vertical-align: top;">
+                  <?php foreach($data['congnghe'] as $val): 
+                        if($val !=''){
+                  ?>
+                  <p><?= $val ?></p>
+                  <?php }
+                    endforeach;
+                  ?>
+                </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tính năng thông minh:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['tinh_nang' ]?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Kết nối:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['ket_noi']  ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ loa:</span>
+                <span class="detail-info-value">  <?= $data["thongso"]['loa'] ?></san>
+              </li>
+            <?php }
+            if ($data['sanpham']['ma_loai'] == 2) { ?>
+              <li>
+                <span class="detail-info-name">Loại máy lạnh:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Kiểu máy lạnh:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công suất làm lạnh, sưởi ấm:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"]?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Phạm vi làm lạnh hiệu quả:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Lọc bụi, kháng khuẩn, khử mùi:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?>'</span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tiện ích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ làm lạnh:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chế độ gió:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chất liệu:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></span>
+              </li>
+            <?php }
+            if ($data['sanpham']['ma_loai'] == 3) { ?>
+              <li>
+                <span class="detail-info-name">Loại tủ:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Dung tích tủ:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Số cánh cửa:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["so_canh_cua"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công suất tiêu thụ công bố theo TCVN:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ tiết kiệm điện:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ làm lạnh:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ kháng khuẩn:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tiện ích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chất liệu tủ:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></span>
+              </li>
+            <?php }
+            if ($data['sanpham']['ma_loai'] == 4) { ?>
+              <li>
+                <span class="detail-info-name">Loại loa:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+              </li>
 
-                                <li>
-                                    <span class="detail-info-name">Tiện ích:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["tinh_nang"] . '</span>
-                                </li>
-                               
-                                ';
-                break;
-              case 6:
-                echo '
-                                <li>
-                                    <span class="detail-info-name">Loại máy giặt:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]['loai_sp'] . ' </span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Lồng giặt:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]['so_canh_cua'] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Khối lượng giặt:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["dung_tich"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Kiểu động cơ:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["kieu_tu"] . '</span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Công nghệ giặt:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["cong_nghe"] . '</span>
-                                </li>
-                               
-                                <li>
-                                    <span class="detail-info-name">Tiện ích:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["tinh_nang"] . '</span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Hiệu suất sự dụng điện:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]['cong_suat'] . ' </span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Tốc độ quay vắt tối đa:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]['ung_dung'] . ' </span>
-                                </li>
-                                <li>
-                                  <span class="detail-info-name">Chất liệu máy:</span>
-                                  <span class="detail-info-value">' . $data["thongso"]['chat_lieu'] . ' </span>
-                                </li>
-                                <li>
-                                    <span class="detail-info-name">Bảng điều khiển:</span>
-                                    <span class="detail-info-value">' . $data["thongso"]["ket_noi"] . '</span>
-                                </li>
-                      
-                                ';
-                break;
-            }
-          ?>
+              <li>
+                <span class="detail-info-name">Tổng công suất:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tiện ích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"]?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Phím điều khiển:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tương thích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["he_dieu_hanh"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Kết nối:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+              </li>
+            <?php }
+            if ($data['sanpham']['ma_loai'] == 5) { ?>
+              <li>
+                <span class="detail-info-name">Loại lò nướng:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Dung tích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công suất:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chất liệu lò:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"]?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chức năng chính:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Bảng điều khiển:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+              </li>
+
+              <li>
+                <span class="detail-info-name">Tiện ích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></span>
+              </li>
+            <?php }
+            if ($data['sanpham']['ma_loai'] == 6) { ?>
+              <li>
+                <span class="detail-info-name">Loại máy giặt:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Lồng giặt:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['so_canh_cua'] ?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Khối lượng giặt:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Kiểu động cơ:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Công nghệ giặt:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"]?></span>
+              </li>
+
+              <li>
+                <span class="detail-info-name">Tiện ích:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"]?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Hiệu suất sự dụng điện:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['cong_suat']?> </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Tốc độ quay vắt tối đa:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['ung_dung'] ?>' </span>
+              </li>
+              <li>
+                <span class="detail-info-name">Chất liệu máy:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]['chat_lieu'] ?></span>
+              </li>
+              <li>
+                <span class="detail-info-name">Bảng điều khiển:</span>
+                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+              </li>
+            <?php } ?>
 
             <li>
               <span class="detail-info-name">Kích thước:</span>

@@ -146,6 +146,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="" class="form-label giagiam_lb">Giá khuyến mãi:</label>
+                            <div class="form-wrap">
+                                <div class="form_input">
+                                    <input type="text" class="form-input giagiam" onkeyup="check('.giagiam_lb')"  value="" style="text-align: right;" placeholder="0">
+                                </div>
+                                <div style="display: flex;">
+                                    <i class='bx bxs-error-circle giagiam_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
+                                    <span class="error_giagiam error"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

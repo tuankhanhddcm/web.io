@@ -517,3 +517,21 @@ button.btn-sm {
 .jconfirm-content div {
     font-size: 1.4rem;
 }
+
+button.btn-deletd {
+    outline: none;
+}
+
+
+.form-span span,
+.form-span p{
+    display: block;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+.form-span img {
+    width: 50%;
+}
