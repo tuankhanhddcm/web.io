@@ -167,15 +167,30 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                                 </div>
                                                 <div class="col-sm-3 padding-9">
                                                     <div class="oder-product__price">
-
-                                                        <span class="oder-product__price-text"><?= number_format($val["sp_giaban"]) ?>đ</span>
+                                                    <?php if ($val['sp_giagiam'] > 0) {
+                                                            $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
+                                                        ?>  
+                                                            <strong class="oder-product__price-text" style="color: var(--text-color); padding: 10px 0px"><?=number_format($val['sp_giagiam'])?>đ</strong>
+                                                            <div style="display: flex;">
+                                                                <strong class="card__oldprice " style="margin:0px 10px 0px 15px; font-size: 1.3rem;"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                                                <span class="card__precent"style="margin: 0px;font-size: 1.3rem;"><?= round($phantram,0) ?>%</span>
+                                                            </div>
+                                                            
+                                                        <?php } else { ?>
+                                                            <span class="oder-product__price-text " style="color: var(--text-color);"><?php echo number_format($val["sp_giaban"]) ?>đ</span>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                     <?php
-                                        $tong += $val['soluongdat'] * $val["sp_giaban"];
+                                        if($val['sp_giagiam'] >0){
+                                            $tong += $val['soluongdat'] * $val["sp_giagiam"];
+                                        }else{
+                                            $tong += $val['soluongdat'] * $val["sp_giaban"];
+                                        }
+                                       
                                     endforeach;
                                     ?>
                                 </div>
@@ -202,7 +217,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                 </div>
                                 <div class="oder-total__temp oder-sale">
                                     <span class="temp__price-text">Giảm giá:</span>
-                                    <span class="temp__price-text">20%</span>
+                                    <span class="temp__price-text">0%</span>
                                 </div>
                                 <div class="oder-total">
                                     <span class="oder-total__label">Tổng cộng:</span>

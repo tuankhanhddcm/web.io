@@ -885,13 +885,13 @@ function check_sp() {
     check(".sl_lb");
     check(".gia_lb");
     check(".giaban_lb");
-    check(".giagiam_lb");
+    check_giagiam();
     check("#img_temp") ;
     var kq = 'false';
     var img = $("#img_insert").attr('src');
     if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
         && check(".sl_lb") == 'true' && check(".sp_lb") == 'true'
-        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' &&  check(".giagiam_lb")=='true' ) {
+        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' &&  check_giagiam()=='true' ) {
             if(img!='#'|| check("#img_temp") == 'true'){
                 kq = 'true';
             }
@@ -914,18 +914,28 @@ function insert_sp(val,url,ma_sp) {
     var gia ='';
     var giaban ='';
     var giagiam ='';
-    if(txt_gia.search('₫') >0 && txt_giaban.search('₫')){
-        gia = txt_gia.slice(0, txt_gia.search('₫'));
-        gia = gia.replaceAll('.', '');
-        giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
-        giaban = giaban.replaceAll('.', '');
+    
+    if(txt_giagiam.search('₫') >0){
         giagiam = txt_giagiam.slice(0, txt_giagiam.search('₫'));
         giagiam = giagiam.replaceAll('.', '');
     }else{
-        gia = txt_gia;
-        giaban = txt_giaban;
+        
         giagiam = txt_giagiam;
     }
+    if(txt_gia.search('₫') >0 ){
+        gia = txt_gia.slice(0, txt_gia.search('₫'));
+        gia = gia.replaceAll('.', '');
+        
+    }else{
+        gia = txt_gia;
+    }
+    if( txt_giaban.search('₫') >0){
+        giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
+        giaban = giaban.replaceAll('.', '');
+    }else{
+        giaban = txt_giaban;
+    }
+    console.log(giagiam);
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
         if(file !==undefined){
             var type = file.type;
@@ -1289,7 +1299,7 @@ function update_sp_tskt(val){
         }
 
         if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
-            //insert_tskt(ma_sp,'update');
+            insert_tskt(ma_sp,'update');
             insert_sp(val,'update',ma_sp);
               
         }

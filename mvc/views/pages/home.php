@@ -50,7 +50,7 @@
                         <div class="owl-carousel owl-theme" id="slider">
                             <?php foreach ($data["sanpham"] as $val) { ?>
                                 <div class="item">
-                                    <a class="card-item card_height" href="./Detail/<?= $val['sp_url']; ?>">
+                                    <a class="card-item card_height" style="text-align: left;"  href="./Detail/<?= $val['sp_url']; ?>">
                                         <div class="card-item__img">
                                             <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
                                         </div>
@@ -63,7 +63,7 @@
                                             ?>
                                                 <strong class="card__price"><?= number_format($val['sp_giagiam']) ?>đ</strong>
                                                 <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                                <span class="card__precent"><?= $phantram ?>%</span>
+                                                <span class="card__precent"><?= round($phantram,0)?>%</span>
                                             <?php } else { ?>
                                                 <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
                                             <?php } ?>
@@ -117,7 +117,7 @@
                                 ?>
                                     <strong class="card__price"><?= number_format($val['sp_giagiam']) ?>đ</strong>
                                     <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                    <span class="card__precent"><?= $phantram ?>%</span>
+                                    <span class="card__precent"><?= round($phantram,0) ?>%</span>
                                 <?php } else { ?>
                                     <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
                                 <?php } ?>

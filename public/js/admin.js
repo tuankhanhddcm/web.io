@@ -31,11 +31,11 @@ $(document).ready(function () {
 
 
     // add class active
-    var path = window.location.pathname.split('/').pop();
+    var path = window.location.pathname.split('/').pop(6);
     if(path ==''){
         path='home';
     }
-    var target = $('ul a[href="./'+path+'"]');
+    var target = $('ul a[href="http://localhost/web_mvc/Admin/'+path+'"]');
     target.addClass("nav-active");
     
 
@@ -226,5 +226,34 @@ function phan_trang_loai(trang) {
     });
 }
 
+
+function check_giagiam(){
+    check('.giagiam_lb');
+    if(check('.giaban_lb')=='true' && check('.giagiam_lb')=='true'){
+        var gia = $('.giaban').val();
+        var txt_giagiam = $('.giagiam').val();
+        if(txt_giagiam.search('₫') >0){
+            giagiam = txt_giagiam.slice(0, txt_giagiam.search('₫'));
+            giagiam = giagiam.replaceAll('.', '');
+        }else{
+            giagiam = txt_giagiam;
+        }
+        if(Number(giagiam) > Number(gia)){
+            $('.giagiam').addClass('error_input');
+            $(".giagiam_icon").css("display", "block");
+            $(".error_giagiam").text("Giá khuyến mãi phải nhỏ hơn giá bán");
+            $(".error_giagiam").css("display", "block");
+            kq = "false";
+        }else{
+            $(".giagiam").removeClass('error_input');
+            $(".giagiam_icon").css("display", "none");
+            $(".error_giagiam").css("display", "none");
+
+            kq = "true";
+        }
+        return kq;
+    }
+    
+}
 
 

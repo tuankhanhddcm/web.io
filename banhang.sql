@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 06:04 PM
+-- Generation Time: Apr 18, 2021 at 09:26 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -47,44 +47,8 @@ INSERT INTO `chitiethoadon` (`id`, `ma_hd`, `sp_ma`, `soluong`, `gia`, `created`
 (53, 'HD000002', 'SP000002', 1, 39980000, '2021-04-02 15:37:10', '2021-04-02 15:37:10'),
 (54, 'HD000003', 'SP000002', 1, 39980000, '2021-04-02 15:41:41', '2021-04-02 15:41:41'),
 (55, 'HD000004', 'SP000006', 1, 7100000, '2021-04-02 15:42:21', '2021-04-02 15:42:20'),
-(56, 'HD000004', 'SP000007', 1, 5200000, '2021-04-02 15:42:21', '2021-04-02 15:42:20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chitietkhuyenmai`
---
-
-CREATE TABLE `chitietkhuyenmai` (
-  `id` int(11) NOT NULL,
-  `sp_ma` varchar(50) NOT NULL,
-  `ma_km` varchar(50) NOT NULL,
-  `noidung` text NOT NULL,
-  `created` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chitietkhuyenmai`
---
-
-INSERT INTO `chitietkhuyenmai` (`id`, `sp_ma`, `ma_km`, `noidung`, `created`, `updated`) VALUES
-(1, 'SP000001', '1', '0.22', '2021-03-18 16:52:04', '2021-04-02 15:43:52'),
-(2, 'SP000001', '3', '<li class=\\\"detail-sale-item\\\">\r\n<i class=\\\'bx bxs-right-arrow\\\'></i>     <span>Tặng Bộ 7 ứng dụng giải trí:<br>\r\nMiễn phí 12 tháng xem truyền hình gói Gia đình trên ứng dụng CLIPTV,Mua kèm ỔN ÁP ROBOT giảm giá 20%(Không áp dụng KM khác)</span>\r\n</li>', '2021-03-18 17:22:47', '2021-04-02 15:43:58'),
-(3, 'SP000001', '2', '<li class=\\\"detail-sale-item\\\">\\r\\n     <i class=\\\'bx bxs-right-arrow\\\'></i>\\r\\n     <span>Mua kèm ỔN ÁP ROBOT giảm giá 20%(Không áp dụng KM khác)</span>\\r\\n </li>\\r\\n<li class=\\\"detail-sale-item\\\">\\r\\n     <i class=\\\'bx bxs-right-arrow\\\'></i>\\r\\n     <span>Mua kèm 1 số Tủ đông Kangaroo giảm giá 2,000,000đ(Không áp dụng KM khác)</span>\\r\\n </li>\\r\\n<li class=\\\"detail-sale-item\\\">\\r\\n     <i class=\\\'bx bxs-right-arrow\\\'></i>\\r\\n     <span>Mua 1 trong 5 Loa thanh Samsung với giá ưu đãi</span>\\r\\n </li>', '2021-03-18 17:31:17', '2021-04-02 15:44:01');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chucvu`
---
-
-CREATE TABLE `chucvu` (
-  `id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
-  `created` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(56, 'HD000004', 'SP000007', 1, 5200000, '2021-04-02 15:42:21', '2021-04-02 15:42:20'),
+(57, 'HD000005', 'SP000003', 1, 7290000, '2021-04-15 15:31:23', '2021-04-15 15:31:23');
 
 -- --------------------------------------------------------
 
@@ -862,32 +826,8 @@ INSERT INTO `hoadon` (`id`, `ma_hd`, `khachhang`, `date`, `total_money`, `trangt
 (70, 'HD000001', 'khanh', '2021-04-02 15:36:21', 17780000, 0, '', '2021-04-02 15:36:21', '2021-04-02 15:36:21'),
 (71, 'HD000002', 'khanh', '2021-04-02 15:37:10', 39980000, 0, '', '2021-04-02 15:37:10', '2021-04-02 15:37:10'),
 (72, 'HD000003', 'khanh', '2021-04-02 15:41:41', 39980000, 0, '', '2021-04-02 15:41:41', '2021-04-02 15:41:41'),
-(73, 'HD000004', 'khanh', '2021-04-02 15:42:20', 12300000, 0, '', '2021-04-02 15:42:20', '2021-04-02 15:42:20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `khuyenmai`
---
-
-CREATE TABLE `khuyenmai` (
-  `id` int(11) NOT NULL,
-  `ma_km` varchar(200) NOT NULL,
-  `ten_km` varchar(50) NOT NULL,
-  `ngay_batdau` datetime NOT NULL,
-  `nay_ketthuc` datetime NOT NULL,
-  `created` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `khuyenmai`
---
-
-INSERT INTO `khuyenmai` (`id`, `ma_km`, `ten_km`, `ngay_batdau`, `nay_ketthuc`, `created`, `updated`) VALUES
-(1, '1', 'Giảm giá', '2021-03-18 17:16:29', '2021-03-31 17:16:29', '2021-03-18 17:17:21', '2021-03-18 17:16:29'),
-(2, '2', 'Ưu đãi', '2021-03-31 17:17:26', '2021-03-31 17:17:26', '2021-03-18 17:18:09', '2021-03-18 17:17:26'),
-(4, '3', 'Khuyến mãi', '2021-03-18 17:30:41', '2021-03-31 17:30:41', '2021-03-18 17:31:02', '2021-03-18 17:30:41');
+(73, 'HD000004', 'khanh', '2021-04-02 15:42:20', 12300000, 0, '', '2021-04-02 15:42:20', '2021-04-02 15:42:20'),
+(74, 'HD000005', 'khanh', '2021-04-15 15:31:23', 7290000, 0, '', '2021-04-15 15:31:23', '2021-04-15 15:31:23');
 
 -- --------------------------------------------------------
 
@@ -1071,6 +1011,7 @@ CREATE TABLE `sanpham` (
   `sp_sl` int(11) NOT NULL,
   `sp_gia` int(11) NOT NULL COMMENT 'giá gốc',
   `sp_giaban` int(11) NOT NULL COMMENT 'giá bán ',
+  `sp_giagiam` int(11) NOT NULL DEFAULT 0,
   `sp_url` varchar(200) NOT NULL,
   `sp_img` varchar(200) NOT NULL,
   `sp_mota` text DEFAULT NULL,
@@ -1084,47 +1025,49 @@ CREATE TABLE `sanpham` (
 -- Dumping data for table `sanpham`
 --
 
-INSERT INTO `sanpham` (`id`, `sp_ma`, `sp_name`, `sp_sl`, `sp_gia`, `sp_giaban`, `sp_url`, `sp_img`, `sp_mota`, `ma_loai`, `ma_nsx`, `created`, `updated`) VALUES
-(2, 'SP000001', 'Smart Tivi Samsung 32 inch UA32T4500', 20, 8000000, 8500000, 'Smart-Tivi-Samsung-32-inch-UA32T4500', 'public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg', '', '1', '1', '2021-03-12 12:32:40', '2021-04-14 14:38:08'),
-(3, 'SP000003', 'Smart Tivi Sony 40 inch KDL-40W650D', 10, 8000000, 7290000, 'Smart-Tivi-Sony-40-inch-KDL-40W650D', 'public/img/upload/sony-kdl-40w650d-191920-031953-550x340.jpg', '', '1', '2', '2021-03-12 12:32:57', '2021-04-14 14:40:35'),
-(4, 'SP000002', 'Smart Tivi QLED Samsung 4K 55 inch QA55Q80R', 20, 39080000, 39980000, 'Smart-Tivi-QLED-Samsung-4K-55-inch-QA55Q80R', 'public/img/upload/samsung-qa55q80r-20-550x340.jpg', '', '1', '1', '2021-03-12 18:29:24', '2021-04-14 14:15:41'),
-(5, 'SP000005', 'Máy lạnh Midea Inverter 1 HP MSAG-10CRDN8', 7, 9000000, 9500000, 'Máy-lạnh-Midea-Inverter-1-HP-MSAG-10CRDN8', 'public/img/upload/midea-msag-10crdn8-2-550x160.jpg', '', '2', '7', '2021-03-13 15:42:37', '2021-04-14 15:56:37'),
-(6, 'SP000004', 'Android Tivi Mobell 40 inch 40S600A', 10, 4000000, 4350000, 'Android-Tivi-Mobell-40-inch-40S600A', 'public/img/upload/mobell-40s600a-192320-042308-550x340.jpg', NULL, '1', '6', '2021-03-13 16:33:30', '2021-04-03 15:08:59'),
-(7, 'SP000006', 'Android Tivi TCL 40 inch L40S66A', 9, 6500000, 7100000, 'Android-Tivi-TCL-40-inch-L40S66A', 'public/img/upload/tcl-l40s66a-232120-022147-550x340.jpg', NULL, '1', '4', '2021-03-13 16:33:30', '2021-04-03 15:08:59'),
-(8, 'SP000007', 'Smart Tivi Casper 32 inch 32HX6200', 14, 4500000, 5200000, 'Smart-Tivi-Casper-32-inch-32HX6200', 'public/img/upload/casper-32hx6200-550x340.jpg', '', '1', '5', '2021-03-13 16:33:30', '2021-04-14 14:13:57'),
-(9, 'SP000008', 'Smart Tivi LG 4K 55 inch 55UN7290PTF', 10, 12000000, 12390000, 'Smart-Tivi-LG-4K-55-inch-55UN7290PTF', 'public/img/upload/lg-55un7290ptf-6-550x340.jpg', '', '1', '3', '2021-03-13 16:33:30', '2021-04-14 14:11:50'),
-(11, 'SP000010', 'Máy lạnh Daikin Inverter 1 HP ATKA25UAVMV', 8, 9500000, 10490000, 'Máy-lạnh-Daikin-Inverter-1-HP-ATKA25UAVMV', 'public/img/upload/daikin-atka25uavmv-11-550x160.jpg', '', '2', '9', '2021-03-13 19:30:37', '2021-04-14 15:59:29'),
-(12, 'SP000011', 'Máy lạnh Sharp Inverter 1 HP AH-X9XEW', 10, 9000000, 9560000, 'Máy-lạnh-Sharp-Inverter-1-HP-AH-X9XEW', 'public/img/upload/sharp-ah-x9xew-1-550x160.jpg', '', '2', '10', '2021-03-12 12:32:40', '2021-04-14 16:05:15'),
-(14, 'SP000009', 'Máy lạnh Aqua Inverter 1 HP AQA-KCRV10TK', 9, 9500000, 10490000, 'Máy-lạnh-Aqua-Inverter-1-HP-AQA-KCRV10TK', 'public/img/upload/aqua-aqa-kcrv10wnza-550x160.jpg', '', '2', '11', '2021-03-13 19:30:37', '2021-04-14 16:07:39'),
-(15, 'SP000012', 'Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9UKH-8', 9, 11000000, 12560000, 'Máy-lạnh-Panasonic-Inverter-1-HP-CU/CS-XU9UKH-8', 'public/img/upload/may-lanh-panasonic-cu-cs-xu12ukh-8-550x160.jpg', '', '2', '8', '2021-03-12 12:32:40', '2021-04-14 16:10:20'),
-(16, 'SP000013', 'TỦ LẠNH PANASONIC INVERTER 417 LÍT NR-BX471GPKV', 9, 19000000, 20000000, 'TỦ-LẠNH-PANASONIC-INVERTER-417-LÍT-NR-BX471GPKV', 'public/img/upload/panasonic-nr-bx471gpkv-300x300.jpg', '', '3', '8', '2021-03-12 12:32:40', '2021-04-14 16:12:55'),
-(19, 'SP000014', 'Tủ lạnh Samsung Inverter 236 lít RT22M4032BY/SV', 10, 8000000, 8500000, 'Tủ-lạnh-Samsung-Inverter-236-lít-RT22M4032BY/SV', 'public/img/upload/samsung-rt22m4032by-sv-300x300.jpg', '', '3', '1', '2021-04-04 20:31:44', '2021-04-14 17:54:17'),
-(20, 'SP000015', 'Máy giặt LG Inverter 9 kg FV1409S2V', 10, 15000000, 16000000, 'Máy-giặt-LG-Inverter-9-kg-FV1409S2V', 'public/img/upload/may-giat-lg-fv1409s2v-8-300x300.jpg', '', '6', '3', '2021-04-04 20:34:31', '2021-04-14 16:20:35'),
-(21, 'SP000016', 'Máy giặt Aqua Inverter 8.5 kg AQD-D850E W', 20, 9500000, 15000000, 'Máy-giặt-Aqua-Inverter-8.5-kg-AQD-D850E-W', 'public/img/upload/aqua-aqd-d850e-w-21-300x300.jpg', '', '6', '11', '2021-04-04 20:38:29', '2021-04-14 17:13:45'),
-(22, 'SP000017', 'Loa thanh Sony 3.1 HT- G700', 10, 12000000, 13000000, 'Loa-thanh-Sony-3.1-HT--G700', 'public/img/upload/sony-ht-g700-1-300x300.jpg', '', '4', '2', '2021-04-04 20:44:28', '2021-04-04 15:44:28'),
-(23, 'SP000018', 'Lò nướng Panasonic NB-H3800SRA 38 lít', 20, 3000000, 3540000, 'Lò-nướng-Panasonic-NB-H3800SRA-38-lít', 'public/img/upload/panasonic-nb-h3800sra-300x300.jpg', '', '5', '8', '2021-04-04 20:48:06', '2021-04-04 15:48:06'),
-(24, 'SP000019', 'Lò nướng Panasonic NB-H3801KRA 38 lít', 10, 3500000, 3750000, 'Lò-nướng-Panasonic-NB-H3801KRA-38-lít', 'public/img/upload/panasonic-nb-h3801kra-38-lit-2-300x300.jpg', '', '5', '8', '2021-04-04 20:50:12', '2021-04-14 17:16:38'),
-(25, 'SP000020', 'Lò nướng Sharp EO-B46RCSV-BK 46 lít', 10, 1800000, 2000000, 'Lò-nướng-Sharp-EO-B46RCSV-BK-46-lít', 'public/img/upload/lo-nuong-sharp-eo-b46rcsv-bk-2-300x300.jpg', '', '5', '10', '2021-04-04 20:55:43', '2021-04-14 17:19:15'),
-(26, 'SP000021', 'Lò nướng Sharp EO-A384RCSV-ST 38 lít', 15, 2100000, 2500000, 'Lò-nướng-Sharp-EO-A384RCSV-ST-38-lít', 'public/img/upload/lo-nuong-sharp-eo-a384rcsv-st-300x300.jpg', '', '5', '10', '2021-04-04 21:03:17', '2021-04-14 17:21:54'),
-(53, 'SP000022', 'Android Tivi OLED Sony 4K 65 inch XR-65A90J', 15, 75000000, 79990000, 'Android-Tivi-OLED-Sony-4K-65-inch-XR-65A90J', 'public/img/upload/1234-550x340.jpg', '', '1', '2', '2021-04-09 21:08:43', '2021-04-14 16:17:40'),
-(64, 'SP000023', 'Tủ lạnh Aqua Inverter 541 lít AQR-S541XA(BL)', 20, 15500000, 19990000, 'Tủ-lạnh-Aqua-Inverter-541-lít-AQR-S541XA(BL)', 'public/img/upload/tu-lanh-aqua-aqr-s541xa-bl-14-300x300.jpg', '', '3', '11', '2021-04-10 14:19:15', '2021-04-10 09:19:15'),
-(65, 'SP000024', 'Máy lạnh Samsung Inverter 1.5 HP AR13TYHYCWKNSV', 20, 9990000, 10590000, 'Máy-lạnh-Samsung-Inverter-1.5-HP-AR13TYHYCWKNSV', 'public/img/upload/samsung-ar13tyhycwknsv-550x160.jpg', '', '2', '1', '2021-04-10 15:22:29', '2021-04-10 10:22:29'),
-(66, 'SP000025', 'Loa Bluetooth Mozard E7', 12, 500000, 700000, 'Loa-Bluetooth-Mozard-E7', 'public/img/upload/loa-bluetooth-mozard-e7-1-600x600-1-600x600.jpg', '', '4', '14', '2021-04-10 15:37:22', '2021-04-10 10:37:22'),
-(67, 'SP000026', 'Lò nướng Sanaky VH3599S2D 35 lít', 12, 1500000, 2000000, 'Lò-nướng-Sanaky-VH3599S2D-35-lít', 'public/img/upload/lo-nuong-sanaky-vh3599s2d-35-lit-dd-300x300.jpg', '', '5', '13', '2021-04-10 15:48:30', '2021-04-10 10:48:30'),
-(68, 'SP000027', 'Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S2V(WS)', 20, 8900000, 10800000, 'Máy-giặt-Toshiba-Inverter-9.5-Kg-TW-BK105S2V(WS)', 'public/img/upload/toshiba-tw-bk105s2v-ws-300x300.jpg', '', '6', '12', '2021-04-10 15:55:00', '2021-04-14 17:29:40'),
-(69, 'SP000028', 'Cặp Loa Klipsch RB-81 II', 20, 9520000, 10500000, 'Cặp-Loa-Klipsch-RB-81-II', 'public/img/upload/cap-loa-klipsch-rb-81-ii-300x300.jpg', '', '4', '15', '2021-04-13 22:09:02', '2021-04-13 17:09:02'),
-(70, 'SP000029', 'Smart Tivi Neo QLED 4K 65 inch Samsung QA65QN85A', 15, 60000000, 62500000, 'Smart-Tivi-Neo-QLED-4K-65-inch-Samsung-QA65QN85A', 'public/img/upload/neoqn85a-1-550x340.jpg', '', '1', '1', '2021-04-14 19:44:16', '2021-04-14 15:38:05'),
-(71, 'SP000030', 'Tủ lạnh Electrolux 85 lít EUM0900SA', 20, 2000000, 2990000, 'Tủ-lạnh-Electrolux-85-lít-EUM0900SA', 'public/img/upload/tu-lanh-electrolux-eum0900sa-2-300x300.jpg', '', '3', '16', '2021-04-14 22:36:15', '2021-04-14 17:36:15');
+INSERT INTO `sanpham` (`id`, `sp_ma`, `sp_name`, `sp_sl`, `sp_gia`, `sp_giaban`, `sp_giagiam`, `sp_url`, `sp_img`, `sp_mota`, `ma_loai`, `ma_nsx`, `created`, `updated`) VALUES
+(2, 'SP000001', 'Smart Tivi Samsung 32 inch UA32T4500', 20, 8000000, 8500000, 7225000, 'Smart-Tivi-Samsung-32-inch-UA32T4500', 'public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg', 'Thiết kế chắc chắn, màn hình 32 inch nhỏ gọn.\nHình ảnh rõ nét với độ phân giải HD.\nTăng độ tương phản hình ảnh nhờ công nghệ HDR, Micro Dimming Pro.\nTái hiện dải màu rộng, rực rỡ với công nghệ PurColor.\nLọc nhiễu, hình ảnh mượt mà, rõ nét nhờ công nghệ Ultra Clean View.\nTăng chiều sâu cho từng khung hình với công nghệ Contrast Enhancer.\nÂm thanh sôi động, lan tỏa với công nghệ Dolby Digital Plus.\nGiao diện phẳng, ứng dụng đa dạng với hệ điều hành Tizen OS.\nChiếu màn hình điện thoại Android, Iphone lên tivi qua tính năng Screen Miroring và AirPlay 2.', '1', '1', '2021-03-12 12:32:40', '2021-04-17 18:38:10'),
+(3, 'SP000003', 'Smart Tivi Sony 40 inch KDL-40W650D', 9, 8000000, 7290000, 0, 'Smart-Tivi-Sony-40-inch-KDL-40W650D', 'public/img/upload/sony-kdl-40w650d-191920-031953-550x340.jpg', 'Thiết kế hiện đại, cứng cáp và sở hữu màn hình 40 inch phù hợp với nhiều dạng không gian.\nCông nghệ X-Reality PRO cho độ nét vượt trội, nâng cấp chất lượng hình ảnh có độ phân giải thấp lên gần Full HD nhất.\nCông nghệ Clear Phase cho âm thanh tự nhiên và trong trẻo hơn.\nĐộ phân giải Full HD mang đến những hình ảnh có độ nét cao cấp 2 lần HD.', '1', '2', '2021-03-12 12:32:57', '2021-04-17 17:20:26'),
+(4, 'SP000002', 'Smart Tivi QLED Samsung 4K 55 inch QA55Q80R', 20, 38080000, 39980000, 35500000, 'Smart-Tivi-QLED-Samsung-4K-55-inch-QA55Q80R', 'public/img/upload/samsung-qa55q80r-20-550x340.jpg', 'Thiết kế màn hình lớn 55 inch với viền màn hình siêu mỏng ấn tượng 0,5 cm.\nĐộ phân giải 4K sắc nét cùng công nghệ màn hình chấm lượng tử QLED hiển thị hình ảnh có độ chính xác cao.\nMàu sắc sống động như thật với công nghệ Quantum Dot.\nĐộ sáng màn hình sáng hơn với công nghệ Quantum HDR 1500 nits.\nNâng cao trải nghiệm tivi với bộ xử lý Quantum Processor 4K mạnh mẽ.\nHiệu ứng âm thanh sống động với công nghệ Dolby Digital Plus.\nHệ điều hành Tizen OS dễ sử dụng cùng với One Remote thông minh, dễ dàng truy cập nhanh chóng, điều khiển nhiều thiết bị cùng lúc.\nHỗ trợ điều khiển tivi qua điện thoại với ứng dụng SmartThings.\nChiếu màn hình điện thoại lên tivi linh hoạt với tính năng Screen Mirroring, AirPlay 2.', '1', '1', '2021-03-12 18:29:24', '2021-04-18 08:53:33'),
+(5, 'SP000005', 'Máy lạnh Midea Inverter 1 HP MSAG-10CRDN8', 7, 9000000, 9500000, 0, 'Máy-lạnh-Midea-Inverter-1-HP-MSAG-10CRDN8', 'public/img/upload/midea-msag-10crdn8-2-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 m2.\nTiết kiệm điện cho gia đình với công nghệ Inverter, GearsShift và iEco.\nHơi lạnh lan toả đều và xa với cánh gió mở rộng đến 80 độ.\nLuôn máy mẻ với tính năng Follow me.\nLàm lạnh nhanh chóng với công nghệ làm lạnh nhanh Boost.\nBảo vệ máy, tăng hiệu quả trao đổi nhiệt với dàn tản nhiệt bằng nhôm mạ vàng.\nChức năng hút ẩm giữ căn phòng luôn khô thoáng.\nSử dụng tiện lợi với chức năng hẹn giờ bật tắt.\nKhông khí trong lành, sạch khuẩn hơn với bộ lọc bụi kép và Fresh.\nThiết kế bắt mắt, hoàn thiện cao.\nMàn hình LED hiển thị nhiệt độ, remote có đèn màn hình tiện lợi vào ban đêm.', '2', '7', '2021-03-13 15:42:37', '2021-04-17 17:21:35'),
+(6, 'SP000004', 'Android Tivi Mobell 40 inch 40S600A', 10, 4000000, 4350000, 0, 'Android-Tivi-Mobell-40-inch-40S600A', 'public/img/upload/mobell-40s600a-192320-042308-550x340.jpg', 'Thiết kế hiện đại, chắc chắn.\nĐộ phân giải HD cho hình ảnh rõ ràng, sắc nét.\nCông nghệ Clear View hiển thị hình ảnh mượt mà hơn.\nHệ điều hành Android với nhiều ứng dụng giải trí hấp dẫn.', '1', '6', '2021-03-13 16:33:30', '2021-04-17 17:22:57'),
+(7, 'SP000006', 'Android Tivi TCL 40 inch L40S66A', 9, 6500000, 7100000, 0, 'Android-Tivi-TCL-40-inch-L40S66A', 'public/img/upload/tcl-l40s66a-232120-022147-550x340.jpg', 'Thiết kế màn hình 40 inch phù hợp với phòng ngủ, phòng khách nhỏ.\nĐộ phân giải Full HD rõ nét gấp 2 lần HD.\nHình ảnh có độ tương phản cao với công nghệ HDR.\nHình ảnh tối ưu từng chi tiết với công nghệ Micro Dimming.\nHiệu ứng âm thanh lan tỏa với công nghệ Dolby MS12.\nHệ điều hành Android tivi 8,0 mới nhất.\nHỗ trợ tìm kiếm giọng nói tiếng Việt 3 miền (Bắc, Trung, Nam).\nĐiều khiển tivi từ xa bằng ứng dụng MagiConnect và trình chiếu lên tivi với tính năng Screen Mirroring.', '1', '4', '2021-03-13 16:33:30', '2021-04-17 17:38:04'),
+(8, 'SP000007', 'Smart Tivi Casper 32 inch 32HX6200', 14, 4500000, 5200000, 0, 'Smart-Tivi-Casper-32-inch-32HX6200', 'public/img/upload/casper-32hx6200-550x340.jpg', 'Thiết kế hiện đại, chân đế chữ V úp ngược vững chắc.\nHình ảnh hiển thị rõ nét trên màn hình 32 inch, độ phân giải HD.\nTăng cường độ tương phản cho khung hình với công nghệ HDR.\nMàu sắc tự nhiên, trung thực hơn qua tấm nền IPS.\nÂm thanh vòm bùng nổ, sinh động cùng công nghệ Dolby Audio.\nGiao diện đơn giản, dễ dùng nhờ hỗ trợ hệ điều hành Linux.\nHỗ trợ chiếu màn hình điện thoại lên tivi đơn giản qua tính năng Screen Cast.', '1', '5', '2021-03-13 16:33:30', '2021-04-17 17:26:37'),
+(9, 'SP000008', 'Smart Tivi LG 4K 55 inch 55UN7290PTF', 10, 10500000, 12390000, 11909000, 'Smart-Tivi-LG-4K-55-inch-55UN7290PTF', 'public/img/upload/lg-55un7290ptf-6-550x340.jpg', 'Thiết kế hiện đại, chân đế chữ V úp ngược vững chắc phù hợp cho phòng khách, phòng họp.\nĐộ phân giải Ultra HD 4K với màn hình 55 inch và tấm nền IPS cho hình ảnh hiển thị sắc nét, không bị biến đổi màu sắc.\nNâng cấp hình ảnh nhờ chip xử lý Quad Core 4K.\nĐiều khiển tivi và những thiết bị thông minh khác ngay trên màn hình tivi bằng giọng nói với Magic Remote và trí tuệ nhân tạo AI ThinQ.\nTăng cường độ tương phản, thưởng thức nội dung có độ nét cao nhờ công nghệ Active HDR.\nGiả lập âm thanh vòm sống động qua công nghệ Ultra Surround.\nHỗ trợ điều khiển tivi bằng điện thoại với ứng dụng LG TV Plus.\nChiếu màn hình điện thoại Android và iPhone lên tivi dễ dàng bằng tính năng Screen Mirroring và AirPlay 2.', '1', '3', '2021-03-13 16:33:30', '2021-04-18 09:09:10'),
+(11, 'SP000010', 'Máy lạnh Daikin Inverter 1 HP ATKA25UAVMV', 8, 9500000, 10490000, 0, 'Máy-lạnh-Daikin-Inverter-1-HP-ATKA25UAVMV', 'public/img/upload/daikin-atka25uavmv-11-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích 15 mét vuông trở xuống.\nLuồng gió dễ chịu, tránh được gió thổi trực tiếp vào người với thiết kế tạo hiệu ứng Coanda.\nTiết kiệm điện năng với công nghệ Inverter và chế độ Econo.\nĐộ bền cao với cánh tản nhiệt phủ 2 lớp chống ăn mòn cùng bo mạch được bảo vệ điện áp cao - thấp.\nBảo vệ sức khỏe và đồ dùng trong gia đình với chức năng chống ẩm mốc.\nLàm lạnh nhanh chóng tức thì với chế độ làm lạnh nhanh Powerful.\nHạn chế bụi với lưới lọc bụi thô.', '2', '9', '2021-03-13 19:30:37', '2021-04-17 17:31:04'),
+(12, 'SP000011', 'Máy lạnh Sharp Inverter 1 HP AH-X9XEW', 10, 9000000, 9560000, 0, 'Máy-lạnh-Sharp-Inverter-1-HP-AH-X9XEW', 'public/img/upload/sharp-ah-x9xew-1-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 mét vuông.\nCông nghệ J-Tech Inverter hiện đại giúp tiết kiệm điện năng.\nLàm lạnh nhanh chóng với công nghệ làm lạnh nhanh Super Jet.\nLưới bụi polypropylene mang lại không khí trong lành.\nChức năng hẹn giờ bật, tắt máy lạnh tiện lợi.\nChế độ thổi gió dễ chịu tránh gió thổi trực tiếp vào người.', '2', '10', '2021-03-12 12:32:40', '2021-04-17 17:31:32'),
+(14, 'SP000009', 'Máy lạnh Aqua Inverter 1 HP AQA-KCRV10TK', 9, 9500000, 10490000, 0, 'Máy-lạnh-Aqua-Inverter-1-HP-AQA-KCRV10TK', 'public/img/upload/aqua-aqa-kcrv10wnza-550x160.jpg', 'Công nghệ tự làm sạch AQUA FRESH hạn chế vi khuẩn, nấm mốc.\nCông nghệ PID Inverter tiết kiệm điện đến 63%, vận hành êm.\nDàn trao đổi nhiệt được phủ lớp chống ăn mòn BLUEFIN.\nLàm lạnh nhanh tức thì với chế độ Turbo.\nLưới lọc bụi thô 3M thanh lọc không khí, bảo vệ sức khỏe.\nTiết kiệm thời gian với tính năng tự khởi động lại khi có điện.\nChế độ ngủ đêm mang lại giấc ngủ ngon và sâu hơn.\nCông suất 1 HP - 9200 BTU phù hợp với diện tích dưới 15 m2.\nMàn hình hiển thị nhiệt độ trên dàn lạnh tiện lợi.', '2', '11', '2021-03-13 19:30:37', '2021-04-17 17:32:11'),
+(15, 'SP000012', 'Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9UKH-8', 9, 11000000, 12560000, 0, 'Máy-lạnh-Panasonic-Inverter-1-HP-CU/CS-XU9UKH-8', 'public/img/upload/may-lanh-panasonic-cu-cs-xu12ukh-8-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 mét vuông.\nCông nghệ Inverter - tiết kiệm điện, vận hành êm, làm lạnh sâu và hơi lạnh lan tỏa đều.\nLàm lạnh nhanh tức thì với chế độ iAuto-X.\nCó thể điều khiển thông minh qua điện thoại.\nDòng Aerowings - 2 cánh đảo gió với 2 motor riêng biệt giúp điều chỉnh hướng gió tốt hơn.\nCông nghệ Nanoe-G - lọc sạch bụi bẩn, bụi mịn PM2,5.\nKháng khuẩn, khử mùi các mùi khó chịu cùng công nghệ Nanoe-X.\nSử dụng hệ thống lọc khí độc lập như một chiếc máy lọc không khí.\nBảo vệ sức khỏe và tiết kiệm điện cho cả gia đình với chế độ ngủ ban đêm.\nGas R32 an toàn, thân thiện với môi trường.', '2', '8', '2021-03-12 12:32:40', '2021-04-17 17:32:49'),
+(16, 'SP000013', 'TỦ LẠNH PANASONIC INVERTER 417 LÍT NR-BX471GPKV', 9, 19000000, 20000000, 0, 'TỦ-LẠNH-PANASONIC-INVERTER-417-LÍT-NR-BX471GPKV', 'public/img/upload/panasonic-nr-bx471gpkv-300x300.jpg', 'Dung tích lớn 417 lít phù hợp với những gia đình có từ 3 - 4 thành viên.\nBảo quản thực phẩm tươi ngon lên đến 7 ngày với ngăn cấp đông mềm -3 độ C Frime Fresh+.\nKháng khuẩn, khử mùi hiệu quả nhờ công nghệ kháng khuẩn Ag Clean với tinh thể Ag+.\nLấy nước uống tiện lợi, an toàn với khay lấy nước ngoài kháng khuẩn, khử mùi.\nThổi hơi lạnh nhanh và đều khắp tủ lạnh với công nghệ làm lạnh Panorama.\nTiết kiệm điện năng vượt trội với công nghệ Inverter và cảm biến Econavi.', '3', '8', '2021-03-12 12:32:40', '2021-04-17 17:33:17'),
+(20, 'SP000015', 'Máy giặt LG Inverter 9 kg FV1409S2V', 10, 15000000, 16000000, 0, 'Máy-giặt-LG-Inverter-9-kg-FV1409S2V', 'public/img/upload/may-giat-lg-fv1409s2v-8-300x300.jpg', 'Dành cho gia đình có 3 - 5 thành viên với khối lượng 9 kg.\nVận hành êm ái, giảm hư hại quần áo với động cơ truyền động trực tiếp Intello DD kết hợp trí thông minh nhân tạo AI.\nTiết kiệm năng lượng với công nghệ Inverter.\nDiệt vi khuẩn, loại bỏ các tác nhân gây dị ứng hiệu quả với bộ đôi công nghệ giặt hơi nước Steam và giặt nước nóng.\nTiết kiệm thời gian giặt giũ với công nghệ TurboWash.\nBảo vệ và giảm thiểu hư tổn sợi vải nhờ công nghệ 6 chuyển động.\nĐiều khiển máy giặt từ xa với Smart ThinQ.\nTiện lợi với tính năng thêm đồ trong khi giặt Add Item.', '6', '3', '2021-04-04 20:34:31', '2021-04-17 17:33:51'),
+(21, 'SP000016', 'Máy giặt Aqua Inverter 8.5 kg AQD-D850E W', 20, 9500000, 15000000, 0, 'Máy-giặt-Aqua-Inverter-8.5-kg-AQD-D850E-W', 'public/img/upload/aqua-aqd-d850e-w-21-300x300.jpg', 'Dành cho gia đình có 3 - 5 thành viên với khối lượng 9 kg.\nVận hành êm ái, giảm hư hại quần áo với động cơ truyền động trực tiếp Intello DD kết hợp trí thông minh nhân tạo AI.\nTiết kiệm năng lượng với công nghệ Inverter.\nDiệt vi khuẩn, loại bỏ các tác nhân gây dị ứng hiệu quả với bộ đôi công nghệ giặt hơi nước Steam và giặt nước nóng.\nTiết kiệm thời gian giặt giũ với công nghệ TurboWash.\nBảo vệ và giảm thiểu hư tổn sợi vải nhờ công nghệ 6 chuyển động.\nĐiều khiển máy giặt từ xa với Smart ThinQ.\nTiện lợi với tính năng thêm đồ trong khi giặt Add Item.', '6', '11', '2021-04-04 20:38:29', '2021-04-17 17:34:48'),
+(22, 'SP000017', 'Loa thanh Sony 3.1 HT- G700', 10, 12000000, 13000000, 0, 'Loa-thanh-Sony-3.1-HT--G700', 'public/img/upload/sony-ht-g700-1-300x300.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '2', '2021-04-04 20:44:28', '2021-04-17 17:35:30'),
+(23, 'SP000018', 'Lò nướng Panasonic NB-H3800SRA 38 lít', 20, 3000000, 3540000, 0, 'Lò-nướng-Panasonic-NB-H3800SRA-38-lít', 'public/img/upload/panasonic-nb-h3800sra-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '8', '2021-04-04 20:48:06', '2021-04-17 17:36:09'),
+(24, 'SP000019', 'Lò nướng Panasonic NB-H3801KRA 38 lít', 10, 3500000, 3750000, 0, 'Lò-nướng-Panasonic-NB-H3801KRA-38-lít', 'public/img/upload/panasonic-nb-h3801kra-38-lit-2-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '8', '2021-04-04 20:50:12', '2021-04-17 17:36:19'),
+(25, 'SP000020', 'Lò nướng Sharp EO-B46RCSV-BK 46 lít', 10, 1800000, 2000000, 0, 'Lò-nướng-Sharp-EO-B46RCSV-BK-46-lít', 'public/img/upload/lo-nuong-sharp-eo-b46rcsv-bk-2-300x300.jpg', 'Lò nướng bánh có dung tích lớn 46 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '10', '2021-04-04 20:55:43', '2021-04-17 17:36:33'),
+(26, 'SP000021', 'Lò nướng Sharp EO-A384RCSV-ST 38 lít', 15, 2100000, 2500000, 0, 'Lò-nướng-Sharp-EO-A384RCSV-ST-38-lít', 'public/img/upload/lo-nuong-sharp-eo-a384rcsv-st-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '10', '2021-04-04 21:03:17', '2021-04-17 17:36:42'),
+(53, 'SP000022', 'Android Tivi OLED Sony 4K 65 inch XR-65A90J', 15, 75000000, 79990000, 0, 'Android-Tivi-OLED-Sony-4K-65-inch-XR-65A90J', 'public/img/upload/1234-550x340.jpg', 'Thiết kế tràn viền kích cỡ 65 inch, độ phân giải 4K.\nHiển thị sắc đen tuyệt đối với màn hình OLED.\nNâng cấp chất lượng âm thanh và hình ảnh với bộ xử lý trí tuệ nhận thức Cognitive Processor XR.\nMở rộng hàng tỷ màu sắc qua XR Triluminos PRO.\nCảnh chuyển động cực mượt nhờ tần số quét 100/120Hz, XR Motion Clarity.\nÂm thanh phát ra từ màn hình trung thực với Acoustics Surface Audio+.\nHệ điều hành Android 10, tích hợp Google Play có hơn 5000 ứng dụng.\nRemote thông minh có đèn nền, hỗ trợ tìm kiếm giọng nói bằng tiếng Việt 3 miền.', '1', '2', '2021-04-09 21:08:43', '2021-04-17 17:38:49'),
+(64, 'SP000023', 'Tủ lạnh Aqua Inverter 541 lít AQR-S541XA(BL)', 20, 15500000, 19990000, 17500000, 'Tủ-lạnh-Aqua-Inverter-541-lít-AQR-S541XA(BL)', 'public/img/upload/tu-lanh-aqua-aqr-s541xa-bl-14-300x300.jpg', 'Tủ lạnh side by side sang trọng, mặt thép kháng khuẩn, dung tích lớn.\nTiết kiệm điện hiệu quả với công nghệ Inverter.\nHạn chế tình trạng đóng tuyết, làm lạnh thực phẩm tối ưu nhờ công nghệ làm lạnh gián tiếp.\nLoại bỏ vi khuẩn, duy trì không khí trong lành cùng công nghệ kháng khuẩn khử mùi DEO Fresh.\nBảo quản rau củ quả tươi ngon, lâu trong ngăn rau củ cân bằng độ ẩm.', '3', '11', '2021-04-10 14:19:15', '2021-04-18 09:13:57'),
+(65, 'SP000024', 'Máy lạnh Samsung Inverter 1.5 HP AR13TYHYCWKNSV', 20, 9990000, 10590000, 0, 'Máy-lạnh-Samsung-Inverter-1.5-HP-AR13TYHYCWKNSV', 'public/img/upload/samsung-ar13tyhycwknsv-550x160.jpg', 'Công suất làm lạnh 1,5 HP, dành cho phòng có diện tích từ 15 - 20 mét vuông.\nTiết kiệm điện, làm lạnh nhanh nhờ công nghệ Digital Inverter và chế độ Eco.\nVệ sinh dễ dàng với lưới lọc bụi bẩn Easy Filter.\nLoại bỏ vi khuẩn, mùi hôi bởi màng lọc kháng khuẩn Ag+.\nHơi lạnh lan toả đều và xa với tính năng tự động đảo gió 4 hướng.\nMang lại không gian thoáng đãng, thoải mái khi độ ẩm tăng cao với chế độ hút ẩm.\nĐộ bền cao, vận hành hiệu quả nhờ chức năng Auto Clean.\nTiện lợi cùng chế độ tự khởi động lại khi có điện.\nMàn hình LED hiển thị nhiệt độ tiện lợi.', '2', '1', '2021-04-10 15:22:29', '2021-04-17 17:40:00'),
+(66, 'SP000025', 'Loa Bluetooth Mozard E7', 12, 500000, 700000, 0, 'Loa-Bluetooth-Mozard-E7', 'public/img/upload/loa-bluetooth-mozard-e7-1-600x600-1-600x600.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '14', '2021-04-10 15:37:22', '2021-04-17 17:37:17'),
+(67, 'SP000026', 'Lò nướng Sanaky VH3599S2D 35 lít', 12, 1500000, 2000000, 0, 'Lò-nướng-Sanaky-VH3599S2D-35-lít', 'public/img/upload/lo-nuong-sanaky-vh3599s2d-35-lit-dd-300x300.jpg', 'Lò nướng bánh có dung tích lớn 35 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '13', '2021-04-10 15:48:30', '2021-04-17 17:36:57'),
+(68, 'SP000027', 'Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S2V(WS)', 20, 8900000, 10800000, 0, 'Máy-giặt-Toshiba-Inverter-9.5-Kg-TW-BK105S2V(WS)', 'public/img/upload/toshiba-tw-bk105s2v-ws-300x300.jpg', 'Dành cho gia đình có 5 - 7 thành viên nhờ có khối lượng giặt lên đến 9,5 kg.\nGiặt sạch vết bẩn cứng đầu, bảo vệ sợi vải, tránh phai màu nhờ công nghệ Greatwaves siêu sóng.\nVận hành êm ái nhờ động cơ nam châm vĩnh cửu truyền động dây Curoa.\nPhơi khô quần áo nhanh nhờ chức năng vắt cực khô.\nTiết kiệm điện với công nghệ Inverter.\nTiện lợi cùng chức năng tự khởi động lại khi có điện.\nAn toàn hơn với khóa trẻ em, thích hợp như những gia đình có con nhỏ.', '6', '12', '2021-04-10 15:55:00', '2021-04-17 17:44:15'),
+(69, 'SP000028', 'Cặp Loa Klipsch RB-81 II', 20, 9520000, 10500000, 0, 'Cặp-Loa-Klipsch-RB-81-II', 'public/img/upload/cap-loa-klipsch-rb-81-ii-300x300.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '15', '2021-04-13 22:09:02', '2021-04-17 17:37:26'),
+(70, 'SP000029', 'Smart Tivi Neo QLED 4K 65 inch Samsung QA65QN85A', 15, 60000000, 62500000, 0, 'Smart-Tivi-Neo-QLED-4K-65-inch-Samsung-QA65QN85A', 'public/img/upload/neoqn85a-1-550x340.jpg', 'Thiết kế độc đáo với màn hình 65 inch tràn viền 4 cạnh tinh tế.\nHình ảnh độ phân giải 4K hiển thị 100% dải màu sắc với công nghệ màn hình chấm lượng tử Quantum Dot.\nHình ảnh rõ nét cùng sắc đen sâu thẳm, sắc trắng thuần khiết với công nghệ đèn nền Micro Full Array và Quantum Matrix Technology.\nTinh chỉnh từng khung hình dựa trên điều kiện xem nhờ bộ xử lý Quantum 4K.\nĐộ tương phản ấn tượng với công nghệ Quantum HDR 24x.\nLoại bỏ các loại ánh sáng xung quanh như: Ánh đèn, ánh nắng,nhờ công nghệ Anti-Reflection.\nTự động điều chỉnh độ tương phản, độ sáng phù hợp với môi trường xung quanh nhờ tính năng Adaptive Picture.\nMàu sắc sống động từ mọi góc nhìn nhờ công nghệ Ultra Viewing Angle.\nÂm thanh chuyển động theo hình ảnh nhờ công nghệ Object Tracking Sound (OTS).\nGiao diện thân thiện người dùng, kho ứng dụng phong phú với hệ điều hành Tizen OS.\nTrình chiếu màn hình điện thoại lên tivi dễ dàng nhờ các tính năng AirPlay 2 (thiết bị Apple) và Tap View (Samsung).', '1', '1', '2021-04-14 19:44:16', '2021-04-17 17:15:12'),
+(71, 'SP000030', 'Tủ lạnh Electrolux 85 lít EUM0900SA', 20, 2000000, 2990000, 0, 'Tủ-lạnh-Electrolux-85-lít-EUM0900SA', 'public/img/upload/tu-lanh-electrolux-eum0900sa-2-300x300.jpg', 'Hệ thống làm lạnh trực tiếp vận hành êm ái.\nTiết kiệm điện với mức điện tiêu thụ chỉ khoảng 0,55 kW/ngày.\nNgăn đá có nắp đậy chống lẫn mùi.\nKhay kính chịu lực bền bỉ, an toàn.\nNgăn trữ rau củ & trái cây rộng rãi.', '3', '16', '2021-04-14 22:36:15', '2021-04-17 17:41:36');
 
 --
 -- Triggers `sanpham`
 --
 DELIMITER $$
+CREATE TRIGGER `delete_sp` BEFORE DELETE ON `sanpham` FOR EACH ROW BEGIN
+	DELETE FROM thongsokythuat WHERE ma_sp=OLD.sp_ma;
+END
+$$
+DELIMITER ;
+DELIMITER $$
 CREATE TRIGGER `update_masp` AFTER UPDATE ON `sanpham` FOR EACH ROW BEGIN
 	UPDATE chitiethoadon
-    SET sp_ma = NEW.sp_ma 
-    WHERE sp_ma = OLD.sp_ma;
-    UPDATE chitietkhuyenmai
     SET sp_ma = NEW.sp_ma 
     WHERE sp_ma = OLD.sp_ma;
     UPDATE thongsokythuat
@@ -1133,20 +1076,6 @@ CREATE TRIGGER `update_masp` AFTER UPDATE ON `sanpham` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sanpham_img`
---
-
-CREATE TABLE `sanpham_img` (
-  `id` int(11) NOT NULL,
-  `sp_ma` varchar(50) NOT NULL,
-  `img` varchar(200) NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -32872,36 +32801,35 @@ CREATE TABLE `thongsokythuat` (
 --
 
 INSERT INTO `thongsokythuat` (`id`, `ma_sp`, `kieu_tu`, `so_canh_cua`, `dung_tich`, `cong_nghe`, `chat_lieu`, `noi_san_xuat`, `nam_sx`, `loai_sp`, `kich_co_tv`, `do_phan_giai`, `kich_thuoc`, `tinh_nang`, `ung_dung`, `ket_noi`, `cong_suat`, `loa`, `he_dieu_hanh`, `khoi_luong`, `bao_hanh`, `created`, `updated`) VALUES
-(1, 'SP000003', '', '', '', 'X-Reality PRO, Dynamic Contrast Enhancer, Advanced Contrast Enhancer', '', 'Malaysia', '2016', 'Smart tivi cơ bản', ' 40  ', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', 'Có thể kết nối (sử dụng tốt nhất trong trình duyệt web)', 'Netflix, YouTube, Galaxy Play (Fim+), Nhaccuatui, Zing TV, FPT Play, Clip TV, Zing MP3, trình duyệt web', 'Chiếu màn hình Screen Mirroring', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby Digital', 'Linux', '7.7 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 14:40:35'),
-(2, 'SP000002', '', '', '', 'Quantum HDR 1500 nits AI Upscale 4K HDR 10+ Ambient Mode HLG Ultra Viewing Angle Ultimate UHD Dimming Game mode Công nghệ màn hình chấm lượng tử Quantum Dot Direct Full Array Quantum 4K Processor Digital Clean View Nâng cấp độ tương phản - Contrast Enhancer', '', 'Việt Nam', '2019', 'Smart Tivi QLED', ' 55  ', 'Ultra HD 4K', 'Ngang 123.06 cm - Cao 79.21 cm - Dày 23.75 cm', 'Tìm kiếm giọng nói (Chỉ hỗ trợ tiếng Việt trong Youtube)', 'Clip TV Spotify FPT Play Apple TV MyTV Galaxy Play (Fim+) ZingTV Nhaccuatui', 'Chiếu màn hình Screen Mirroring, Chiếu màn hình qua AirPlay 2, Có thể kết nối (sử dụng tốt nhất trong trình duyệt web)', '40W (2 loa + 2 loa subwoofer)', 'Dolby Digital Plus', 'Tizen OS', '20.5 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 14:15:40'),
-(3, 'SP000001', '', '', '', 'Film mode Natural mode support Micro Dimming Pro Mega Contrast Ultra Clean View lọc nhiễu giảm nhòe Hyper Real Engine Digital Clean View PurColor HDR Nâng cấp độ tương phản - Contrast Enhancer', '', 'Việt Nam', '2020', 'Smart Tivi', ' 32', 'HD', 'Ngang 73.74 cm - Cao 46.54 cm - Dày 15.05 cm', 'Remote Access, Remote cài sẵn phím Netflix và PrimeVideo, bấm và mở ứng dụng dễ dàng', 'FPT Play, Clip TV, Nhaccuatui, Zing TV, Zing Mp3, Galaxy Play (Fim+), MyTV, Spotify, VTV Go...', 'Chiếu màn hình qua AirPlay 2, Chiếu màn hình Screen Mirroring', '20 W', 'Dolby Digital Plus', 'Tizen OS', '4.1 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 14:38:08'),
-(4, 'SP000004', NULL, NULL, NULL, 'X-Reality PRO\r\nDynamic Contrast Enhancer\r\nAdvanced Contrast Enhancer\r\n50 Hz\r\nMotionflow™ XR 200 Hz', NULL, 'Malaysia', '2016', 'Smart tivi cơ bản', '40', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', NULL, NULL, 'Cổng LAN, Wifi\r\nAV Composite\r\n2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby Digital\r\nJack loa 3.5 mm\r\nCổng Optical (Digital Audio Out)\r\nHDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '0000-00-00 00:00:00'),
-(5, 'SP000006', NULL, NULL, NULL, 'X-Reality PRO\r\nDynamic Contrast Enhancer\r\nAdvanced Contrast Enhancer\r\n50 Hz\r\nMotionflow™ XR 200 Hz', NULL, 'Malaysia', '2016', 'Smart tivi cơ bản', '40', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', NULL, NULL, 'Cổng LAN, Wifi\r\nAV Composite\r\n2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby Digital\r\nJack loa 3.5 mm\r\nCổng Optical (Digital Audio Out)\r\nHDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '0000-00-00 00:00:00'),
-(6, 'SP000007', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-03-16 17:32:05', '2021-04-14 14:13:57'),
-(7, 'SP000008', NULL, NULL, NULL, 'X-Reality PRO\r\nDynamic Contrast Enhancer\r\nAdvanced Contrast Enhancer\r\n50 Hz\r\nMotionflow™ XR 200 Hz', NULL, 'Malaysia', '2016', 'Smart tivi cơ bản', '55', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', NULL, NULL, 'Cổng LAN, Wifi\r\nAV Composite\r\n2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby Digital\r\nJack loa 3.5 mm\r\nCổng Optical (Digital Audio Out)\r\nHDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '0000-00-00 00:00:00'),
-(9, 'SP000022', '', '', '', 'Dolby Vision, HLG, HDR10, Công nghệ tương phản XR OLED Contrast Pro đỉnh cao, Công nghệ chuyển động XR Motion Clarity, Công nghệ tạo màu XR Triluminos PRO, Công nghệ XR 4K Upscaling tự động nâng cấp hình ảnh lên 4K,Chip Cognitive Processor XR xử lý trí tuệ nhận thức thông minh', '', 'Malaysia', '2021', 'Android Tivi OLED', '65 ', 'Ultra HD 4K', 'Ngang 150.2 cm - Cao 83.4 cm - Dày 31.7 cm', 'Remote thế hệ mới RMF-TX621P, có đèn nền - Remote tích hợp micro tìm kiếm bằng giọng nói', 'YouTube, Netflix, Trình duyệt web, kho ứng dụng', 'Apple Airplay, Chiếu màn hình Chromecast', 'ARC, Digital Audio Out (Cổng Optical)', 'S-Master Digital Amplifier,  Dolby Atmos,  DTS,  DTS Digital Surround,  S-Force Front Surround,  Công nghệ nâng cấp âm thành vòm 3D,  Acoustics Surface Audio+,  Dolby Audio, Cho phép tùy chọn âm thanh theo nội dung', 'Android 10', '24.6 Kg', '24 tháng', '2021-04-09 21:08:44', '2021-04-14 16:17:40'),
-(17, 'SP000023', 'Twin Inverter, Chế độ kỳ nghỉ tiết kiệm điện, Chế độ thông minh tự điều chỉnh nhiệt độ các ngăn', '2 cánh  cửa', ' 541 lít', 'Làm lạnh đa chiều', 'Mặt thép kháng khuẩn, kính chịu lực, ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Trung Quốc', '2020', 'Tủ lớn', '', '', 'Cao 177,5 cm - Rộng 90,8 cm - Sâu 64,7 cm', 'Thiết kế hộc tủ có thể kéo ra hoàn toàn khi mở cửa ở 90 độ, Bảng điều khiển bên ngoài, 2 ngăn rau củ quả', 'Kháng khuẩn khử mùi DEO Fresh', '', '~ 1.6 kW/ngày', '', '', '85 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-10 15:12:03'),
-(18, 'SP000024', 'Máy lạnh Inverter', '', 'Từ 15 - 20 m2 (từ 40 đến 60 m3)', 'Eco, Digital Inverter Boost', 'Ống dẫn gas bằng Nhôm - Lá tản nhiệt bằng Nhôm', 'Thái Lan', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 82.0 cm - Cao 29.9 cm - Dày 21.5 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh, Chức năng hút ẩm, Chế độ ngủ đêm tránh buốt, Hẹn giờ bật tắt máy, Làm lạnh nhanh tức thì, Tự khởi động lại khi có điện, Chức năng tự làm sạch', 'Màng lọc kháng khuẩn Ag+, Lưới lọc bụi bẩn Easy Filter', 'Điều khiển lên xuống, trái phải tự động', '1.5 HP - 12.000 BTU, Không có sưởi ấm', '', '', ' Nặng 9.2 kg', '24 tháng', '2021-04-10 15:22:29', '2021-04-10 15:26:35'),
-(19, 'SP000025', '', '', '', 'Nút nguồn, Tăng/giảm âm lượng, Phát/dừng chơi nhạc', '', 'Trung Quốc', '2019', 'Loa bluetooth', '', '', 'Cao 12.8 cm , Đường kính 8.5 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', 'Nặng 500 g', '24 tháng', '2021-04-10 15:37:23', '2021-04-10 10:37:23'),
-(20, 'SP000026', '', '', '35 lít', 'Làm giòn bánh, Nướng thực phẩm, Nướng bánh, Nướng gà nguyên con 2 kg trở xuống', 'Vỏ lò thép phủ sơn tĩnh điện', 'Trung Quốc', '2019', 'Lò nướng thùng', '', '', 'Ngang 52 cm - Cao 31.8 cm - Sâu 39.5 cm', 'Đèn trong khoang lò, Quạt tỏa đều nhiệt trong lò, Nướng xiên quay', '', 'Nút xoay', '1600 W', '', '', '9.5 kg', '24 tháng', '2021-04-10 15:48:30', '2021-04-10 10:48:30'),
-(21, 'SP000027', 'Nam châm vĩnh cửu truyền động dây Curoa', 'Lồng ngang', '9.5 Kg', 'Greatwaves sức mạnh siêu sóng', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Trung Quốc', '2020', 'Cửa trước', '', '', 'Cao 85.0 cm - Ngang 60.5 cm - Sâu 59.5 cm', 'Khóa trẻ em,  Hẹn giờ giặt,  Tự khởi động lại khi có điện', '1200 vòng/phút', 'Song ngữ Anh - Việt có nút xoay, cảm ứng và màn hình hiển thị', '9.8 Wh/kg', '', '', '68 kg', '24 tháng', '2021-04-10 15:55:00', '2021-04-14 17:29:40'),
-(26, 'SP000028', '', '', '', 'Nút nguồn Tăng/giảm âm lượng Phát/dừng chơi nhạc', '', 'Trung Quốc', '2020', 'Dàn âm thanh', '', '', 'Dài 23.5 cm - Rộng 31.2 cm - Cao 48.4 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', '12.5 kg', '24 tháng', '2021-04-13 22:09:03', '2021-04-13 17:09:03'),
-(27, 'SP000029', '', '', '', 'Ultra Viewing Angle,  Ultimate UHD Dimming,  Quantum Matrix Technology,  Bộ xử lý Quantum 4K với Trí Tuệ Nhân Tạo AI,  Micro Full Array,  Motion Xcelerator Turbo+,  Công nghệ Anti-Reflection chống phản chiếu ánh sáng,  Adaptive Picture,  HDR', '', 'Việt Nam', '2021', 'Smart Tivi Neo QLED', ' 65', 'Ultra HD 4K', 'Ngang 144.6 cm - Cao 89.1 cm - Dày 29 cm', 'Tap view,  Multi View,  Super Ultra Wide Game View,  Auto Low Latency Mode,  Ambient Mode+', 'PoP Kids, Spotify, FPT Play, Galaxy Play, VTVCab ON, ClipTV, MyTV, PoP Kids', 'Chiếu màn hình qua AirPlay 2, Trình chiếu đa màn hình MultiView', '60 W', 'OTS,  Q-Symphony,  Active Voice Amplifier (AVA)', 'Tizen OS', '28.1 Kg', '24 tháng', '2021-04-14 19:44:17', '2021-04-14 15:38:04'),
-(29, 'SP000005', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Boost', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm mạ Vàng', 'Trung Quốc', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 83.5 cm - Cao 29.5 cm - Dày 20.8 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh,  Follow me - Cảm biến nhiệt độ trên remote,  Chức năng hút ẩm,  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Màn hình hiển thị nhiệt độ trên dàn lạnh,  Chức năng tự làm sạch', 'Bộ lọc bụi 2 lớp HD, Có chức năng Fresh-tạo ion âm diệt khuẩn làm sạch không khí, có lợi cho sức khỏe', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 10.000 BTU, Không có sưởi ấm', '', '', '21.7 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-14 15:56:37'),
-(30, 'SP000009', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Eco', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Thái Lan', '2021', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 81 cm - Cao 28 cm - Dày 20 cm ', 'Dàn lạnh BLUEFIN chống ăn mòn,  Hoạt động siêu êm,  Chức năng tự chẩn đoán lỗi,  Có tự điều chỉnh nhiệt độ (chế độ ngủ đêm),  Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện,  Chức năng tự làm sạch', 'Công nghệ tự làm sạch thông minh AQUA FRESH, Tấm lọc bảo vệ đa năng công nghệ 3M', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 9200 BTU, Không có sưởi ấm', '', '', '9,5 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 16:07:39'),
-(31, 'SP000010', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Powerful', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Việt Nam', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 77 cm - Cao 28.5 cm - Dày 23.5 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh,  Chức năng hút ẩm,  Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện', 'Chỉ có lưới lọc bụi thô', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 8.500 BTU, Không có sưởi ấm', '', '', '8 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 15:59:28'),
-(32, 'SP000011', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Super Jet', 'Ống dẫn bằng đồng - Lá tản nhiệt bằng nhôm được phủ lớp Golden Fin', 'Thái Lan', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 87.7 cm - Cao 29.2 cm - Dày 22.2 cm', 'Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện', 'Lưới bụi polypropylene', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 9.000 BTU, Không có sưởi ấm', '', '', '8 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 16:05:15'),
-(33, 'SP000012', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'iAuto-X', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Malaysia', '2018', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 91.9 cm - Cao 29.5 cm - Dày 19.9 cm', 'Phát ion lọc không khí,  Chức năng tự chẩn đoán lỗi,  Hoạt động siêu êm,  Chức năng hút ẩm,  Có tự điều chỉnh nhiệt độ (chế độ ngủ đêm),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì', 'NanoeX, Nanoe-G', 'Điều khiển lên xuống, trái phải tự động', '1 HP - 8.700 BTU, Không có sưởi ấm', '', '', '9 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 16:10:20'),
-(34, 'SP000013', 'Cảm biến thông minh Econavi', '2 cánh', '417 lít', 'Làm lạnh vòng cung Panorama, Ngăn cấp đông mềm thế hệ mới Prime Fresh+', 'Thép không gỉ, Kính chịu lực', 'Việt Nam', '2021', 'Ngăn đá dưới', '', '', 'Cao 178 cm - Rộng 68.6 cm - Sâu 69.5 cm', 'Lấy nước bên ngoài', 'Lấy nước ngoài kháng khuẩn, khử mùi, Công nghệ kháng khuẩn Ag Clean với tinh thể bạc Ag+', '', '~ 1.1 kW/ngày', '', '', '75 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-14 16:12:55'),
-(35, 'SP000014', 'Digital Inverter', '2 cánh', '236 lít', 'Làm lạnh đa chiều', 'Kim loại phủ sơn bóng giả gương, Kính chịu lực', 'Việt Nam', '2020', 'Ngăn đá trên', '', '', 'Cao 154.5 cm - Rộng 55.5 cm - Sâu 63.7 cm', ' Ngăn rau củ lớn giữ ẩm Big Box', 'Bộ lọc than hoạt tính Deodorizer', '', '~0.97 kW/ ngày', '', '', '46.5 kg', '24 tháng', '2021-04-09 21:08:44', '2021-04-14 17:54:17'),
-(36, 'SP000015', 'Truyền động trực tiếp - sử dụng trí tuệ nhân tạo', 'Lồng ngang', '9 Kg', 'Giặt 6 chuyển động,  Công nghệ giặt hơi nước Steam (cửa trước),  Công nghệ giặt tiết kiệm TurboWash', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Việt Nam', '2020', 'Cửa trước', '', '', 'Cao 85 cm - Ngang 60 cm - Sâu 63 cm', 'Khóa trẻ em,  Thêm đồ trong khi giặt,  Hẹn giờ giặt,  Cho phép điều khiển máy giặt từ xa qua ứng dụng SmartThinQ', '1400 vòng/phút', 'Song ngữ Anh - Việt, có nút xoay, màn hình hiển thị', '20.4 Wh/kg', '', '', '62 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-14 16:20:34'),
-(37, 'SP000016', 'Truyền động trực tiếp bền & êm', 'Lồng ngang', '8.5 Kg', 'Vòng đệm cửa kháng khuẩn ABT, Lồng giặt Pillow', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Việt Nam', '2019', 'Cửa trước', '', '', 'Cao 85 cm - Ngang 59.5 cm - Sâu 56 cm', 'Khóa trẻ em,  Hẹn giờ giặt,  Tự làm sạch mặt trong cửa (Smart Dual Spray)', '1400 vòng/phút', 'Tiếng Việt nút xoay có màn hình hiển thị', '15.3 Wh/kg', '', '', '72.5 kg', '24 tháng', '2021-04-10 15:22:29', '2021-04-14 17:13:45'),
-(38, 'SP000017', '', '', '', 'Nút nguồn, Tăng/giảm âm lượng, Phát/dừng chơi nhạc', '', 'Trung Quốc', '2019', 'Loa bluetooth', '', '', 'Cao 12.8 cm , Đường kính 8.5 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', 'Nặng 500 g', '24 tháng', '2021-04-10 15:37:23', '2021-04-10 10:37:23'),
-(39, 'SP000018', '', '', '35 lít', 'Làm giòn bánh, Nướng thực phẩm, Nướng bánh, Nướng gà nguyên con 2 kg trở xuống', 'Vỏ lò thép phủ sơn tĩnh điện', 'Trung Quốc', '2019', 'Lò nướng thùng', '', '', 'Ngang 52 cm - Cao 31.8 cm - Sâu 39.5 cm', 'Đèn trong khoang lò, Quạt tỏa đều nhiệt trong lò, Nướng xiên quay', '', 'Nút xoay', '1600 W', '', '', '9.5 kg', '24 tháng', '2021-04-10 15:48:30', '2021-04-10 10:48:30'),
-(40, 'SP000019', '', '', '38 lít', 'Nướng thực phẩm, Nướng bánh', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Dài 53.3 cm - Rộng 34 cm - Cao 36.4 cm', 'Lên men để làm bánh quy, gato, pizza, bánh mì,  2 ống dẫn nhiệt trên dưới giúp thực phẩm chín đều,  Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Khóa bảng điều khiển', '', 'Nút xoay', '750 - 1500 W', '', '', '10,1 kg', '24 tháng', '2021-04-10 15:55:00', '2021-04-14 17:16:38'),
-(41, 'SP000020', '', '', '46 lít', 'Làm giòn bánh,  Nướng thực phẩm,  Nướng bánh', 'Khoang lò bằng thép mạ kẽm', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Ngang 55 cm - Cao 35.8 cm - Sâu 43.2 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Hẹn giờ nấu lên đến 120 phút', '', 'Nút xoay', '2000 W', '', '', '9.8 kg', '24 tháng', '2021-04-13 22:09:03', '2021-04-14 17:19:15'),
-(42, 'SP000021', '', '', '38 lít', 'Nướng thực phẩm, Nướng gà nguyên con 1.5 kg trở xuống', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2021', 'Lò nướng thùng', '', '', 'Ngang 53.5 cm - Sâu 39 cm - Cao 35.5 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay', '', 'Nút xoay', '1800 W', '', '', '9.6 kg', '24 tháng', '2021-04-14 19:44:17', '2021-04-14 17:21:53'),
-(43, 'SP000030', 'Không có', '1 cánh', '92 lít', 'Trực tiếp (có đóng tuyết)', 'Kính chịu lực, Thép không gỉ', 'Trung Quốc', '2017', 'Mini', '', '', 'Cao 83.1 cm - Rộng 47.4 cm - Sâu 44.7 cm', 'Không có', 'Không có', '', '~ 0.55 kW/ngày', '', '', '22 kg', '24 tháng', '2021-04-14 22:36:15', '2021-04-14 17:36:15');
+(1, 'SP000003', '', '', '', 'X-Reality PRO, Dynamic Contrast Enhancer, Advanced Contrast Enhancer', '', 'Malaysia', '2016', 'Smart tivi cơ bản', ' 40  ', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', 'Có thể kết nối (sử dụng tốt nhất trong trình duyệt web)', 'Netflix, YouTube, Galaxy Play (Fim+), Nhaccuatui, Zing TV, FPT Play, Clip TV, Zing MP3, trình duyệt web', 'Chiếu màn hình Screen Mirroring', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby Digital', 'Linux', '7.7 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:20:25'),
+(2, 'SP000002', '', '', '', 'Quantum HDR 1500 nits AI Upscale 4K HDR 10+ Ambient Mode HLG Ultra Viewing Angle Ultimate UHD Dimming Game mode Công nghệ màn hình chấm lượng tử Quantum Dot Direct Full Array Quantum 4K Processor Digital Clean View Nâng cấp độ tương phản - Contrast Enhancer', '', 'Việt Nam', '2019', 'Smart Tivi QLED', ' 55  ', 'Ultra HD 4K', 'Ngang 123.06 cm - Cao 79.21 cm - Dày 23.75 cm', 'Tìm kiếm giọng nói (Chỉ hỗ trợ tiếng Việt trong Youtube)', 'Clip TV Spotify FPT Play Apple TV MyTV Galaxy Play (Fim+) ZingTV Nhaccuatui', 'Chiếu màn hình Screen Mirroring, Chiếu màn hình qua AirPlay 2, Có thể kết nối (sử dụng tốt nhất trong trình duyệt web)', '40W (2 loa + 2 loa subwoofer)', 'Dolby Digital Plus', 'Tizen OS', '20.5 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:21:01'),
+(3, 'SP000001', '', '', '', 'Film mode, Natural mode support, Micro Dimming Pro, Mega Contrast, Ultra Clean View lọc nhiễu giảm nhòe, Hyper Real Engine, Digital Clean View, PurColor, HDR, Nâng cấp độ tương phản - Contrast Enhancer', '', 'Việt Nam', '2020', 'Smart Tivi', ' 32', 'HD', 'Ngang 73.74 cm - Cao 46.54 cm - Dày 15.05 cm', 'Remote Access, Remote cài sẵn phím Netflix và PrimeVideo, bấm và mở ứng dụng dễ dàng', 'FPT Play, Clip TV, Nhaccuatui, Zing TV, Zing Mp3, Galaxy Play (Fim+), MyTV, Spotify, VTV Go...', 'Chiếu màn hình qua AirPlay 2, Chiếu màn hình Screen Mirroring', '20 W', 'Dolby Digital Plus', 'Tizen OS', '4.1 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 18:28:46'),
+(4, 'SP000004', '', '', '', 'X-Reality PRODynamic Contrast EnhancerAdvanced Contrast Enhancer50 HzMotionflow™ XR 200 Hz', '', 'Malaysia', '2016', 'Smart tivi cơ bản', '40', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', 'Không dùng được', 'FPT play, YouTube, VTV go, Zing Mp3, Kho ứng dụng, Trình duyệt web', 'Cổng LAN, WifiAV Composite2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby DigitalJack loa 3.5 mmCổng Optical (Digital Audio Out)HDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:22:57'),
+(5, 'SP000006', '', '', '', 'X-Reality PRODynamic Contrast EnhancerAdvanced Contrast Enhancer50 HzMotionflow™ XR 200 Hz', '', 'Malaysia', '2016', 'Smart tivi cơ bản', '40', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', 'Tìm kiếm bằng giọng nói (có hỗ trợ tiếng Việt)', 'YouTube, Netflix, Trình duyệt web, kho ứng dụng', 'Cổng LAN, WifiAV Composite2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby DigitalJack loa 3.5 mmCổng Optical (Digital Audio Out)HDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:38:04'),
+(6, 'SP000007', '', '', '', 'HDR', '', 'Thái Lan', '2020', 'Smart Tivi', '32', 'HD', 'Ngang 72 cm - Cao 47.7 cm - Dày 22.3 cm', 'Remote cài sẵn phím Netflix và PrimeVideo, bấm và mở ứng dụng dễ dàng', 'Media, Netflix, Youtube,Prime video,Facebook,Youtubekid,Screencast, Browswer', 'Có (bàn phím, chuột, tay game)', '12 W (2 loa mỗi loa 6 W)', 'Dolby Audio', 'Linux', '3.86 Kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:26:37'),
+(7, 'SP000008', '', '', '', 'X-Reality PRODynamic Contrast EnhancerAdvanced Contrast Enhancer50 HzMotionflow™ XR 200 Hz', '', 'Malaysia', '2016', 'Smart tivi cơ bản', '55', 'Full HD', 'Ngang 92 cm - Cao 58.5 cm - Dày 21.2 cm', '360 VR Play Trợ lý ảo Google Assistant LG ThinQ Intelligent Voice Recognition (Nhận dạng giọng nói thông minh) LG Voice Search (Tìm kiếm bằng giọng nói của LG)', 'FPT play, YouTube, VTV go, Zing Mp3, Kho ứng dụng, Trình duyệt web', 'Cổng LAN, WifiAV Composite2 cổng', '10 W (2 loa mỗi loa 5 W)', 'Clear Phase, Dolby DigitalJack loa 3.5 mmCổng Optical (Digital Audio Out)HDMI ARC', 'Linux', '8.1 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:28:11'),
+(9, 'SP000022', '', '', '', 'Dolby Vision, HLG, HDR10, Công nghệ tương phản XR OLED Contrast Pro đỉnh cao, Công nghệ chuyển động XR Motion Clarity, Công nghệ tạo màu XR Triluminos PRO, Công nghệ XR 4K Upscaling tự động nâng cấp hình ảnh lên 4K,Chip Cognitive Processor XR xử lý trí tuệ nhận thức thông minh', '', 'Malaysia', '2021', 'Android Tivi OLED', '65 ', 'Ultra HD 4K', 'Ngang 150.2 cm - Cao 83.4 cm - Dày 31.7 cm', 'Remote thế hệ mới RMF-TX621P, có đèn nền - Remote tích hợp micro tìm kiếm bằng giọng nói', 'YouTube, Netflix, Trình duyệt web, kho ứng dụng', 'Apple Airplay, Chiếu màn hình Chromecast', 'ARC, Digital Audio Out (Cổng Optical)', 'S-Master Digital Amplifier,  Dolby Atmos,  DTS,  DTS Digital Surround,  S-Force Front Surround,  Công nghệ nâng cấp âm thành vòm 3D,  Acoustics Surface Audio+,  Dolby Audio, Cho phép tùy chọn âm thanh theo nội dung', 'Android 10', '24.6 Kg', '24 tháng', '2021-04-09 21:08:44', '2021-04-17 17:38:49'),
+(17, 'SP000023', 'Twin Inverter, Chế độ kỳ nghỉ tiết kiệm điện, Chế độ thông minh tự điều chỉnh nhiệt độ các ngăn', '2 cánh  cửa', ' 541 lít', 'Làm lạnh đa chiều', 'Mặt thép kháng khuẩn, kính chịu lực, ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Trung Quốc', '2020', 'Tủ lớn', '', '', 'Cao 177,5 cm - Rộng 90,8 cm - Sâu 64,7 cm', 'Thiết kế hộc tủ có thể kéo ra hoàn toàn khi mở cửa ở 90 độ, Bảng điều khiển bên ngoài, 2 ngăn rau củ quả', 'Kháng khuẩn khử mùi DEO Fresh', '', '~ 1.6 kW/ngày', '', '', '85 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-17 17:40:53'),
+(18, 'SP000024', 'Máy lạnh Inverter', '', 'Từ 15 - 20 m2 (từ 40 đến 60 m3)', 'Eco, Digital Inverter Boost', 'Ống dẫn gas bằng Nhôm - Lá tản nhiệt bằng Nhôm', 'Thái Lan', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 82.0 cm - Cao 29.9 cm - Dày 21.5 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh, Chức năng hút ẩm, Chế độ ngủ đêm tránh buốt, Hẹn giờ bật tắt máy, Làm lạnh nhanh tức thì, Tự khởi động lại khi có điện, Chức năng tự làm sạch', 'Màng lọc kháng khuẩn Ag+, Lưới lọc bụi bẩn Easy Filter', 'Điều khiển lên xuống, trái phải tự động', '1.5 HP - 12.000 BTU, Không có sưởi ấm', '', '', ' Nặng 9.2 kg', '24 tháng', '2021-04-10 15:22:29', '2021-04-17 17:39:59'),
+(19, 'SP000025', '', '', '', 'Nút nguồn, Tăng/giảm âm lượng, Phát/dừng chơi nhạc', '', 'Trung Quốc', '2019', 'Loa bluetooth', '', '', 'Cao 12.8 cm , Đường kính 8.5 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', 'Nặng 500 g', '24 tháng', '2021-04-10 15:37:23', '2021-04-17 17:37:17'),
+(20, 'SP000026', '', '', '35 lít', 'Làm giòn bánh, Nướng thực phẩm, Nướng bánh, Nướng gà nguyên con 2 kg trở xuống', 'Vỏ lò thép phủ sơn tĩnh điện', 'Trung Quốc', '2019', 'Lò nướng thùng', '', '', 'Ngang 52 cm - Cao 31.8 cm - Sâu 39.5 cm', 'Đèn trong khoang lò, Quạt tỏa đều nhiệt trong lò, Nướng xiên quay', '', 'Nút xoay', '1600 W', '', '', '9.5 kg', '24 tháng', '2021-04-10 15:48:30', '2021-04-17 17:36:56'),
+(21, 'SP000027', 'Nam châm vĩnh cửu truyền động dây Curoa', 'Lồng ngang', '9.5 Kg', 'Greatwaves sức mạnh siêu sóng', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Trung Quốc', '2020', 'Cửa trước', '', '', 'Cao 85.0 cm - Ngang 60.5 cm - Sâu 59.5 cm', 'Khóa trẻ em,  Hẹn giờ giặt,  Tự khởi động lại khi có điện', '1200 vòng/phút', 'Song ngữ Anh - Việt có nút xoay, cảm ứng và màn hình hiển thị', '9.8 Wh/kg', '', '', '68 kg', '24 tháng', '2021-04-10 15:55:00', '2021-04-17 17:44:14'),
+(26, 'SP000028', '', '', '', 'Nút nguồn Tăng/giảm âm lượng Phát/dừng chơi nhạc', '', 'Trung Quốc', '2020', 'Dàn âm thanh', '', '', 'Dài 23.5 cm - Rộng 31.2 cm - Cao 48.4 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', '12.5 kg', '24 tháng', '2021-04-13 22:09:03', '2021-04-17 17:37:25'),
+(27, 'SP000029', '', '', '', 'Ultra Viewing Angle,  Ultimate UHD Dimming,  Quantum Matrix Technology,  Bộ xử lý Quantum 4K với Trí Tuệ Nhân Tạo AI,  Micro Full Array,  Motion Xcelerator Turbo+,  Công nghệ Anti-Reflection chống phản chiếu ánh sáng,  Adaptive Picture,  HDR', '', 'Việt Nam', '2021', 'Smart Tivi Neo QLED', ' 65', 'Ultra HD 4K', 'Ngang 144.6 cm - Cao 89.1 cm - Dày 29 cm', 'Tap view,  Multi View,  Super Ultra Wide Game View,  Auto Low Latency Mode,  Ambient Mode+', 'PoP Kids, Spotify, FPT Play, Galaxy Play, VTVCab ON, ClipTV, MyTV, PoP Kids', 'Chiếu màn hình qua AirPlay 2, Trình chiếu đa màn hình MultiView', '60 W', 'OTS,  Q-Symphony,  Active Voice Amplifier (AVA)', 'Tizen OS', '28.1 Kg', '24 tháng', '2021-04-14 19:44:17', '2021-04-17 17:15:12'),
+(29, 'SP000005', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Boost', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm mạ Vàng', 'Trung Quốc', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 83.5 cm - Cao 29.5 cm - Dày 20.8 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh,  Follow me - Cảm biến nhiệt độ trên remote,  Chức năng hút ẩm,  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Màn hình hiển thị nhiệt độ trên dàn lạnh,  Chức năng tự làm sạch', 'Bộ lọc bụi 2 lớp HD, Có chức năng Fresh-tạo ion âm diệt khuẩn làm sạch không khí, có lợi cho sức khỏe', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 10.000 BTU, Không có sưởi ấm', '', '', '21.7 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-17 17:21:35'),
+(30, 'SP000009', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Eco', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Thái Lan', '2021', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 81 cm - Cao 28 cm - Dày 20 cm ', 'Dàn lạnh BLUEFIN chống ăn mòn,  Hoạt động siêu êm,  Chức năng tự chẩn đoán lỗi,  Có tự điều chỉnh nhiệt độ (chế độ ngủ đêm),  Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện,  Chức năng tự làm sạch', 'Công nghệ tự làm sạch thông minh AQUA FRESH, Tấm lọc bảo vệ đa năng công nghệ 3M', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 9200 BTU, Không có sưởi ấm', '', '', '9,5 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:32:10'),
+(31, 'SP000010', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Powerful', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Việt Nam', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 77 cm - Cao 28.5 cm - Dày 23.5 cm', 'Chế độ chỉ sử dụng quạt - không làm lạnh,  Chức năng hút ẩm,  Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện', 'Chỉ có lưới lọc bụi thô', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 8.500 BTU, Không có sưởi ấm', '', '', '8 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:31:04'),
+(32, 'SP000011', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'Super Jet', 'Ống dẫn bằng đồng - Lá tản nhiệt bằng nhôm được phủ lớp Golden Fin', 'Thái Lan', '2020', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 87.7 cm - Cao 29.2 cm - Dày 22.2 cm', 'Thổi gió dễ chịu (cho trẻ em, người già),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì,  Tự khởi động lại khi có điện', 'Lưới bụi polypropylene', 'Điều khiển lên xuống tự động, trái phải tùy chỉnh tay', '1 HP - 9.000 BTU, Không có sưởi ấm', '', '', '8 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:31:32'),
+(33, 'SP000012', 'Máy lạnh Inverter', '', 'Dưới 15 m2 (từ 30 đến 45 m3)', 'iAuto-X', 'Ống dẫn gas bằng Đồng - Lá tản nhiệt bằng Nhôm', 'Malaysia', '2018', 'Máy lạnh 1 chiều (chỉ làm lạnh)', '', '', 'Dài 91.9 cm - Cao 29.5 cm - Dày 19.9 cm', 'Phát ion lọc không khí,  Chức năng tự chẩn đoán lỗi,  Hoạt động siêu êm,  Chức năng hút ẩm,  Có tự điều chỉnh nhiệt độ (chế độ ngủ đêm),  Hẹn giờ bật tắt máy,  Làm lạnh nhanh tức thì', 'NanoeX, Nanoe-G', 'Điều khiển lên xuống, trái phải tự động', '1 HP - 8.700 BTU, Không có sưởi ấm', '', '', '9 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:32:49'),
+(34, 'SP000013', 'Cảm biến thông minh Econavi', '2 cánh', '417 lít', 'Làm lạnh vòng cung Panorama, Ngăn cấp đông mềm thế hệ mới Prime Fresh+', 'Thép không gỉ, Kính chịu lực', 'Việt Nam', '2021', 'Ngăn đá dưới', '', '', 'Cao 178 cm - Rộng 68.6 cm - Sâu 69.5 cm', 'Lấy nước bên ngoài', 'Lấy nước ngoài kháng khuẩn, khử mùi, Công nghệ kháng khuẩn Ag Clean với tinh thể bạc Ag+', '', '~ 1.1 kW/ngày', '', '', '75 kg', '24 tháng', '2021-03-16 17:32:05', '2021-04-17 17:33:16'),
+(36, 'SP000015', 'Truyền động trực tiếp - sử dụng trí tuệ nhân tạo', 'Lồng ngang', '9 Kg', 'Giặt 6 chuyển động,  Công nghệ giặt hơi nước Steam (cửa trước),  Công nghệ giặt tiết kiệm TurboWash', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Việt Nam', '2020', 'Cửa trước', '', '', 'Cao 85 cm - Ngang 60 cm - Sâu 63 cm', 'Khóa trẻ em,  Thêm đồ trong khi giặt,  Hẹn giờ giặt,  Cho phép điều khiển máy giặt từ xa qua ứng dụng SmartThinQ', '1400 vòng/phút', 'Song ngữ Anh - Việt, có nút xoay, màn hình hiển thị', '20.4 Wh/kg', '', '', '62 kg', '24 tháng', '2021-04-10 14:19:15', '2021-04-17 17:33:51'),
+(37, 'SP000016', 'Truyền động trực tiếp bền & êm', 'Lồng ngang', '8.5 Kg', 'Vòng đệm cửa kháng khuẩn ABT, Lồng giặt Pillow', 'Thép không gỉ, Kim loại sơn tĩnh điện, Kính chịu lực', 'Việt Nam', '2019', 'Cửa trước', '', '', 'Cao 85 cm - Ngang 59.5 cm - Sâu 56 cm', 'Khóa trẻ em,  Hẹn giờ giặt,  Tự làm sạch mặt trong cửa (Smart Dual Spray)', '1400 vòng/phút', 'Tiếng Việt nút xoay có màn hình hiển thị', '15.3 Wh/kg', '', '', '72.5 kg', '24 tháng', '2021-04-10 15:22:29', '2021-04-17 17:34:48'),
+(38, 'SP000017', '', '', '', 'Nút nguồn, Tăng/giảm âm lượng, Phát/dừng chơi nhạc', '', 'Trung Quốc', '2019', 'Loa bluetooth', '', '', 'Cao 12.8 cm , Đường kính 8.5 cm ', 'Có micro đàm thoại', '', 'Bluetooth, Đầu AUX IN, Thẻ nhớ Micro SD', '5 W', '', 'Android, Windows, iOS (iPhone)', 'Nặng 500 g', '24 tháng', '2021-04-10 15:37:23', '2021-04-17 17:35:29'),
+(39, 'SP000018', '', '', '35 lít', 'Làm giòn bánh, Nướng thực phẩm, Nướng bánh, Nướng gà nguyên con 2 kg trở xuống', 'Vỏ lò thép phủ sơn tĩnh điện', 'Trung Quốc', '2019', 'Lò nướng thùng', '', '', 'Ngang 52 cm - Cao 31.8 cm - Sâu 39.5 cm', 'Đèn trong khoang lò, Quạt tỏa đều nhiệt trong lò, Nướng xiên quay', '', 'Nút xoay', '1600 W', '', '', '9.5 kg', '24 tháng', '2021-04-10 15:48:30', '2021-04-17 17:36:09'),
+(40, 'SP000019', '', '', '38 lít', 'Nướng thực phẩm, Nướng bánh', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Dài 53.3 cm - Rộng 34 cm - Cao 36.4 cm', 'Lên men để làm bánh quy, gato, pizza, bánh mì,  2 ống dẫn nhiệt trên dưới giúp thực phẩm chín đều,  Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Khóa bảng điều khiển', '', 'Nút xoay', '750 - 1500 W', '', '', '10,1 kg', '24 tháng', '2021-04-10 15:55:00', '2021-04-17 17:36:19'),
+(41, 'SP000020', '', '', '46 lít', 'Làm giòn bánh,  Nướng thực phẩm,  Nướng bánh', 'Khoang lò bằng thép mạ kẽm', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Ngang 55 cm - Cao 35.8 cm - Sâu 43.2 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Hẹn giờ nấu lên đến 120 phút', '', 'Nút xoay', '2000 W', '', '', '9.8 kg', '24 tháng', '2021-04-13 22:09:03', '2021-04-17 17:36:33'),
+(42, 'SP000021', '', '', '38 lít', 'Nướng thực phẩm, Nướng gà nguyên con 1.5 kg trở xuống', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2021', 'Lò nướng thùng', '', '', 'Ngang 53.5 cm - Sâu 39 cm - Cao 35.5 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay', '', 'Nút xoay', '1800 W', '', '', '9.6 kg', '24 tháng', '2021-04-14 19:44:17', '2021-04-17 17:36:42'),
+(43, 'SP000030', 'Không có', '1 cánh', '92 lít', 'Trực tiếp (có đóng tuyết)', 'Kính chịu lực, Thép không gỉ', 'Trung Quốc', '2017', 'Mini', '', '', 'Cao 83.1 cm - Rộng 47.4 cm - Sâu 44.7 cm', 'Không có', 'Không có', '', '~ 0.55 kW/ngày', '', '', '22 kg', '24 tháng', '2021-04-14 22:36:15', '2021-04-17 17:41:36');
 
 -- --------------------------------------------------------
 
@@ -32928,7 +32856,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `ho_ten`, `sdt`, `email`, `diachi`, `avatar`, `user_group_id`, `created`, `updated`) VALUES
-(27, 'khanh', '$2y$10$LNcwOYH6QeA4YTQStO9GfuAE68.GLcHZxcR7zj8D8kk3x.CrU1b/.', 'khanh', '0949174766', 'khanh@gmail.com', 'Đà Nẵng', '', ' 1', '2021-03-24 20:20:26', '2021-04-02 15:42:20'),
+(27, 'khanh', '$2y$10$LNcwOYH6QeA4YTQStO9GfuAE68.GLcHZxcR7zj8D8kk3x.CrU1b/.', 'khanh', '0949174766', 'khanh@gmail.com', 'Đường 10, Phường Bình Hưng Hòa, Quận Bình Tân, Hồ Chí Minh', '', ' 1', '2021-03-24 20:20:26', '2021-04-15 15:31:23'),
 (28, 'khanh1', '$2y$10$tyvuXVoIDodoFYdmu7bzDuu6X1S2NYmp3tMy5z.SEgeGzNNDbMSO.', 'khanh', '0949174767', 'kha@gmail.com', '', '', ' 1', '2021-03-24 20:25:35', NULL),
 (29, 'khanh12', '$2y$10$wIiZMi6TOYMvw5mUASvQfeMqZGlEmdIhFJP9LzbcNVxJjkvCsyWhS', 'khanh', '0949174711', 'kh@gmail.com', '', '', ' 1', '2021-03-24 20:26:43', NULL);
 
@@ -44267,18 +44195,6 @@ ALTER TABLE `chitiethoadon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `chitietkhuyenmai`
---
-ALTER TABLE `chitietkhuyenmai`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `chucvu`
---
-ALTER TABLE `chucvu`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `code_giamgia`
 --
 ALTER TABLE `code_giamgia`
@@ -44296,12 +44212,6 @@ ALTER TABLE `district`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `khuyenmai`
---
-ALTER TABLE `khuyenmai`
-  ADD PRIMARY KEY (`id`,`ma_km`) USING BTREE;
 
 --
 -- Indexes for table `loaisanpham`
@@ -44326,12 +44236,6 @@ ALTER TABLE `province`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id`,`sp_ma`);
-
---
--- Indexes for table `sanpham_img`
---
-ALTER TABLE `sanpham_img`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `street`
@@ -44373,19 +44277,7 @@ ALTER TABLE `ward`
 -- AUTO_INCREMENT for table `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
---
--- AUTO_INCREMENT for table `chitietkhuyenmai`
---
-ALTER TABLE `chitietkhuyenmai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `chucvu`
---
-ALTER TABLE `chucvu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `code_giamgia`
@@ -44403,13 +44295,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT for table `khuyenmai`
---
-ALTER TABLE `khuyenmai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `loaisanpham`
@@ -44433,13 +44319,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
-
---
--- AUTO_INCREMENT for table `sanpham_img`
---
-ALTER TABLE `sanpham_img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `street`
@@ -44451,7 +44331,7 @@ ALTER TABLE `street`
 -- AUTO_INCREMENT for table `thongsokythuat`
 --
 ALTER TABLE `thongsokythuat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user`

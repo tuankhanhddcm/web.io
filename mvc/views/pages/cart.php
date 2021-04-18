@@ -100,17 +100,17 @@
                                                     <div class="cart-oder__price" style="display: block; padding-top: 30px;">
                                                         <?php if ($val['sp_giagiam'] > 0) {
                                                             $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
-                                                        ?>  
+                                                        ?>
                                                             <strong class="cart-oder__price-text" style="color: var(--text-color);"><?= number_format($val['sp_giagiam']) ?>đ</strong>
                                                             <div style="display: flex;">
                                                                 <strong class="card__oldprice" style="margin: 10px 10px 10px 20px;"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                                                <span class="card__precent"style="margin: 10px 0px;"><?= $phantram ?>%</span>
+                                                                <span class="card__precent" style="margin: 10px 0px;"><?= round($phantram, 0) ?>%</span>
                                                             </div>
-                                                            
+
                                                         <?php } else { ?>
                                                             <span class="cart-oder__price-text " style="color: var(--text-color);"><?php echo number_format($val["sp_giaban"]) ?>đ</span>
                                                         <?php } ?>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-2 ">
@@ -127,7 +127,7 @@
                                                 </div>
                                                 <div class="col-sm-2 ">
                                                     <div class="cart-oder__price " id="tt_<?= $key ?>">
-                                                        <span span class="cart-oder__price-text"><?php echo $val['sp_giagiam'] >0 ?number_format($val["sp_giagiam"] * $val['soluongdat']) : number_format($val["sp_giaban"] * $val['soluongdat']) ?>đ</span>
+                                                        <span span class="cart-oder__price-text"><?php echo $val['sp_giagiam'] > 0 ? number_format($val["sp_giagiam"] * $val['soluongdat']) : number_format($val["sp_giaban"] * $val['soluongdat']) ?>đ</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,7 +137,11 @@
 
                             <?php
 
-                                $tong += $val['soluongdat'] * $val["sp_giaban"];
+                                if ($val['sp_giagiam'] > 0) {
+                                    $tong += $val['soluongdat'] * $val["sp_giagiam"];
+                                } else {
+                                    $tong += $val['soluongdat'] * $val["sp_giaban"];
+                                }
                             endforeach; ?>
                         </div>
                     </div>

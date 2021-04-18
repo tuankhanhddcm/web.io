@@ -5,7 +5,7 @@
 
             <div class="form-btn">
                 <input type="hidden" id="ma_sp" value="<?= $_SESSION['tskt']['sp_ma']?>">
-                <button class="btn_cus btn-save" onclick="update_sp_tskt(1)"><i class='bx bx-save'></i> Lưu</button>
+                <button class="btn_cus btn-save" onclick="update_sp_tskt(0)"><i class='bx bx-save'></i> Lưu</button>
                 <button class="btn_cus btn-back" onclick="location.href='http://localhost/web_mvc/Admin/list_sp';"><i class='bx bx-left-arrow-alt'></i> Trở về</button>
             </div>
 
@@ -158,7 +158,7 @@
                             <label for="" class="form-label giagiam_lb">Giá khuyến mãi:</label>
                             <div class="form-wrap">
                                 <div class="form_input">
-                                    <input type="text" class="form-input giagiam" onkeyup="check('.giagiam_lb')"  value="<?= $data['sp']['sp_giagiam']?>" style="text-align: right;" placeholder="0">
+                                    <input type="text" class="form-input giagiam" onkeyup="check_giagiam()"  value="<?= $data['sp']['sp_giagiam']?>" style="text-align: right;" placeholder="0">
                                 </div>
                                 <div style="display: flex;">
                                     <i class='bx bxs-error-circle giagiam_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>

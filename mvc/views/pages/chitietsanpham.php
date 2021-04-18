@@ -39,7 +39,7 @@
                                 ?>
                                 <strong class="detail__price"><?= number_format($data['sanpham']['sp_giagiam']) ?>đ</strong>
                                 <strong class="detail__oldprice"><?= number_format($data['sanpham']["sp_giaban"]) ?>đ</strong>
-                                <span class="detail__precent"><?= $phantram ?>%</span>
+                                <span class="detail__precent"><?= round($phantram,0) ?>%</span>
                                 <?php } else{ ?>
                                     <strong class="detail__price"><?= number_format($data['sanpham']["sp_giaban"]) ?>đ</strong>
                                 <?php } ?>

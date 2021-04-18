@@ -18,5 +18,12 @@ class Login extends Controller
         }
         echo $kq;
     }
+
+    public function user(){
+        $this->view('index',[
+            "page" => "account"
+        ]);
+    }
+    
     
 }

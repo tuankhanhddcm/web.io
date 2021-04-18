@@ -100,7 +100,7 @@ class Ajax extends Controller
                                 <div class="card__body">
                                     <strong class="card__price">' . $giasale . 'đ</strong>
                                     <strong class="card__oldprice">' . $gia . 'đ</strong>
-                                    <span class="card__precent">'.$phantram.'%</span>
+                                    <span class="card__precent">'.round($phantram,0).'%</span>
                                 </div>
                             </a>
                         </div>
@@ -208,7 +208,8 @@ class Ajax extends Controller
         $kq = "";
             foreach ($sp as $val) :
                 if(count($sp)<=6){
-                    $kq .= '  <li class="header__cart-item">
+                    if($val['sp_giagiam'] >0){
+                        $kq .= '  <li class="header__cart-item">
                                 <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
                                     <div class="header_img">
                                         <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
@@ -217,7 +218,7 @@ class Ajax extends Controller
                                         <div class="header__cart-item-head">
                                             <h5 class="header__cart-item-name">' . $val["sp_name"] . '</h5>
                                             <div class="header__cart-item-price-wrap">
-                                                <span class="header__cart-item-price">' . number_format($val["sp_giaban"]) . 'đ</span>
+                                                <span class="header__cart-item-price">' . number_format($val["sp_giagiam"]) . 'đ</span>
                                                 <span class="header__cart-item-nhan">x</span>
                                                 <span class="header__cart-item-soluong">' . $val["soluongdat"] . '</span>
                                             </div>
@@ -226,6 +227,26 @@ class Ajax extends Controller
                                     </div>
                                 </a>
                             </li>';
+                    }else{
+                        $kq .= '  <li class="header__cart-item">
+                                    <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
+                                        <div class="header_img">
+                                            <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
+                                        </div>
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">' . $val["sp_name"] . '</h5>
+                                                <div class="header__cart-item-price-wrap">
+                                                    <span class="header__cart-item-price">' . number_format($val["sp_giaban"]) . 'đ</span>
+                                                    <span class="header__cart-item-nhan">x</span>
+                                                    <span class="header__cart-item-soluong">' . $val["soluongdat"] . '</span>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </a>
+                                </li>';
+                    }
                 }
             endforeach;
         echo $kq;
@@ -817,9 +838,12 @@ class Ajax extends Controller
             foreach ($sp as $row) {
                 $giasale = number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
                 $gia = number_format($row['sp_giaban']);
-                $ouput .= '
+                if($row['sp_giagiam'] > 0){
+                    $giasale = number_format($row['sp_giagiam']);
+                    $phantram = ($row['sp_giagiam'] / $row['sp_giaban'] -1)*100;
+                    $ouput .= '
                     <div class="col-sm-2 ">
-                        <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
+                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
                             <div class="card-item__img">
                                 <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
                             </div>
@@ -829,11 +853,28 @@ class Ajax extends Controller
                             <div class="card__body">
                                 <strong class="card__price">' . $giasale . 'đ</strong>
                                 <strong class="card__oldprice">' . $gia . 'đ</strong>
-                                <span class="card__precent">-20%</span>
+                                <span class="card__precent">'.round($phantram,0).'%</span>
                             </div>
                         </a>
                     </div>
                     ';
+                }else{
+                    $ouput .= '
+                    <div class="col-sm-2 ">
+                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                            <div class="card-item__img">
+                                <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
+                            </div>
+                            <div class="card__name">
+                                <span class="card__name-sp">' . $row['sp_name'] . '</span>
+                            </div>
+                            <div class="card__body">
+                                <strong class="card__price">' . $gia . 'đ</strong>
+                            </div>
+                        </a>
+                    </div>
+                    ';
+                }
             }
         }
         $mang =[$dem,$ouput];
