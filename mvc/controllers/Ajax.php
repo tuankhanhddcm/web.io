@@ -272,11 +272,21 @@ class Ajax extends Controller
                 $qty = $_POST['qty'];
                 foreach ($qty as $key => $val) {
                     $_SESSION['cart'][$key]['soluongdat'] = $val;
-                    $tt += $_SESSION['cart'][$key]['soluongdat'] * $_SESSION['cart'][$key]['sp_giaban'];
+                    if($_SESSION['cart'][$key]['sp_giagiam'] >0 ){
+                        $tt += $_SESSION['cart'][$key]['soluongdat'] * $_SESSION['cart'][$key]['sp_giagiam'];
+                    }else{
+                        $tt += $_SESSION['cart'][$key]['soluongdat'] * $_SESSION['cart'][$key]['sp_giaban'];
+                    }
+                   
                 }
             }
             foreach ($_SESSION['cart'] as $val) {
-                $tong += $val['soluongdat'] * $val["sp_giaban"];
+                if($_SESSION['cart'][$key]['sp_giagiam'] >0 ){
+                    $tong += $val['soluongdat'] * $val["sp_giagiam"];
+                }else{
+                    $tong += $val['soluongdat'] * $val["sp_giaban"];
+                }
+                
             }
             $val1 = number_format($tt) . 'đ';
             $val2 = number_format($tong) . 'đ';
@@ -708,22 +718,22 @@ class Ajax extends Controller
         if (isset($_POST['loaisp']) && !empty($_POST['loaisp'])) {
             switch ((int)$_POST['loaisp']) {
                 case 1:
-                    echo require_once "./mvc/views/layout_tskt/tskt_tv.php";
+                    echo require_once "./mvc/views/layout/tskt_tv.php";
                     break;
                 case 2:
-                    echo require_once "./mvc/views/layout_tskt/tskt_maylanh.php";
+                    echo require_once "./mvc/views/layout/tskt_maylanh.php";
                     break;
                 case 3:
-                    echo require_once "./mvc/views/layout_tskt/tskt_tulanh.php";
+                    echo require_once "./mvc/views/layout/tskt_tulanh.php";
                     break;
                 case 4:
-                    echo require_once "./mvc/views/layout_tskt/tskt_loa.php";
+                    echo require_once "./mvc/views/layout/tskt_loa.php";
                     break;
                 case 5:
-                    echo require_once "./mvc/views/layout_tskt/tskt_lonuong.php";
+                    echo require_once "./mvc/views/layout/tskt_lonuong.php";
                     break;
                 case 6:
-                    echo require_once "./mvc/views/layout_tskt/tskt_maygiat.php";
+                    echo require_once "./mvc/views/layout/tskt_maygiat.php";
                     break;
             }
         }

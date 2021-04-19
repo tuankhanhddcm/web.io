@@ -25,7 +25,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                 </div>
             </div>
         </section>
-        <div class="container-fluid " style="background-color: white; margin-top: 50px">
+        <div class="container-fluid " style="background-color: white; margin-top: 50px; padding-bottom: 20px;">
             <div class="grid pay-wrap">
                 <div class="grid__row">
                     <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>

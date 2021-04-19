@@ -90,7 +90,7 @@
                             <label for="" class="form-label">Chọn ảnh đại diện:</label>
                             <div class="form-wrap">
                                 <div style="display: flex;">
-                                    <label class="btn_upload"><input type="file" onchange="readURL(this,'#img_temp','#img_insert')" id="img_temp" hidden>Chọn ảnh</label>
+                                    <label class="btn_upload"><input type="file" onchange="readURL(this,'#img_temp','#img_insert')" id="img_temp" hidden accept=".gif, .png, .jpg, .jfif, .jpeg">Chọn ảnh</label>
                                     <div class="display-img " id="img_pro">
                                         <label class="label-img_temp" style="cursor:pointer"><i class='bx bx-plus-circle'></i></label>
                                         <img src="#" alt="" id="img_insert">

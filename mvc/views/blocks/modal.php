@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-md-8">
                       <div style="display: flex;">
-                        <label class="btn_upload"><input type="file" id="img_dm" onchange="readURL(this,'#img_dm','#img_loai')" hidden>Chọn ảnh</label>
+                        <label class="btn_upload"><input type="file" id="img_dm" onchange="readURL(this,'#img_dm','#img_loai')" hidden accept=".gif, .png, .jpg, .jfif, .jpeg">Chọn ảnh</label>
                         <div class="display-img " id="img_group" style=" width: 100px;height: auto;">
                           <label class="label-img_dm" style="cursor: pointer"><i class='bx bx-plus-circle' style="padding-left: 35px; padding-top: 10px;"></i></label>
                           <img src="#" alt="" id="img_loai">
@@ -177,7 +177,7 @@
                     </div>
                     <div class="col-md-8">
                       <div style="display: flex;">
-                        <label class="btn_upload"><input type="file" id="img_nsx" onchange="readURL(this,'#img_nsx','#img_nsx_temp')" hidden>Chọn ảnh</label>
+                        <label class="btn_upload"><input type="file" id="img_nsx" onchange="readURL(this,'#img_nsx','#img_nsx_temp')" hidden accept=".gif, .png, .jpg, .jfif, .jpeg">Chọn ảnh</label>
                         <div class="display-img " id="thuong_hieu" style=" width: 100px;height: auto;">
                           <label class="label-img_nsx" style="cursor: pointer"><i class='bx bx-plus-circle' style="padding-left: 35px; padding-top: 10px;"></i></label>
                           <img src="#" alt="" id="img_nsx_temp">
