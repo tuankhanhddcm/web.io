@@ -59,6 +59,26 @@ class Usermodel extends DB {
         }
         return $kq;
     }
+
+    public function update_name($user,$name){
+        $sql = "UPDATE user set ho_ten='$name' where username ='$user'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else{
+            $kq = 'false';
+        }
+        return $kq;
+    }
+
+    public function update_pass($user,$pass){
+        $sql = "UPDATE user set password='$pass' where username ='$user'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else{
+            $kq = 'false';
+        }
+        return $kq;
+    }
 }
 
 ?>

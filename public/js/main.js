@@ -56,9 +56,33 @@ $(document).ready(function () {
         }
     });
 
+    var path = window.location.pathname.split('/').pop(6);
+    if(path =='' ||path=='Account'){
+        path='edit';
+    }
+    var target = $('a[href="http://localhost/web_mvc/Account/'+path+'"]');
+    target.addClass("user_active");
     
 
-   
+    $(".btn_hoten").click(function(){
+        check('.ho_ten_lb');
+        if(check('.ho_ten_lb') =='true'){
+            if(set_name()=='true'){
+                showupdate('addsp','họ tên');
+            }else{
+                showupdate_error("addsp",'họ tên');
+            }
+        }
+    });
+
+    $(".btn_pass").click(function(){
+        set_pass();
+    });
+    show_hd(1);
+    $(document).on('click', '.page-link', function () {
+        var page = $(this).data('page_number');
+        show_hd(page);
+    });
 });
 
 
@@ -193,3 +217,132 @@ function txtmoney(val) {
 
 
 
+
+
+function set_name(){
+    var hoten = $('.ho_ten').val();
+    var kq = 'false';
+    $.ajax({
+        url: "http://localhost/web_mvc/Account/set_name",
+        method: "post",
+        data: {hoten:hoten},
+        async: false,
+        success:function(data){
+            kq=data;
+        }
+    });
+    return kq;
+}
+
+function set_pass(){
+    check('.old_pass_lb');
+    check_pass();
+    check_pass_again();
+    if(check('.old_pass_lb')=='true' && check_pass()=='true' && check_pass_again()=='true'){
+        var old_pass = $(".old_pass").val();
+        var new_pass = $('.new_pass').val();
+        var new_pass_again = $(".new_pass_again").val();
+        $.ajax({
+            url: "http://localhost/web_mvc/Account/set_pass",
+            method: "post",
+            data: {
+                old_pass:old_pass,
+                new_pass:new_pass,
+                new_pass_again:new_pass_again
+            },
+            success:function(data){
+               if(data=='true'){
+                   showupdate('addsp','mật khẩu');
+                   $('.old_pass').removeClass('error_input');
+                   $(".old_passs_icon").css("display", "none");
+                   $(".error_old_pass").css("display", "none");
+                   setTimeout(function(){
+                        location.reload();
+                   },3000)
+               }else{
+                   showupdate_error('addsp','mật khẩu');
+                   $('.old_pass').addClass('error_input');
+                   $(".old_pass_icon").css("display", "block");
+                   $(".error_old_pass").text("Mật khẩu cũ không đúng");
+                   $(".error_old_pass").css("display", "block");
+               }
+            }
+        });
+    }
+    
+}
+
+function check_pass(){
+    check('.new_pass_lb');
+    new_pass();
+    if(check('.new_pass_lb')=='true' && new_pass()=='true'){
+        kq ='true';
+    }else{
+        kq='true';
+    }
+    return kq;
+}
+
+function check_pass_again(){
+    check_new_pass();
+    check('.new_pass_again_lb');
+    if(check_new_pass()=='true' && check('.new_pass_again_lb')=='true'){
+        kq ='true';
+
+    }else{
+        kq ='true';
+    }
+    return kq;
+}
+
+function new_pass() {
+    if (check('.new_pass_lb')=='true') {
+        var pass = $(".new_pass").val();
+        if (pass.length < 8) {
+            $('.new_pass').addClass('error_input');
+            $(".new_pass_icon").css("display", "block");
+            $(".error_new_pass").text("Mật khẩu bao gồm ít nhất 8 ký tự !!!");
+            $(".error_new_pass").css("display", "block");
+            kq = "false";
+        } else {
+            $('.new_pass').removeClass('error_input');
+            $(".new_pass_icon").css("display", "none");
+            $(".error_new_pass").css("display", "none");
+            kq = "true";
+        }
+        return kq;
+    }
+}
+
+function check_new_pass() {
+    if (check('.new_pass_again_lb') == "true") {
+        var pass = $(".new_pass").val();
+        var pass_again = $(".new_pass_again").val();
+        if (pass_again !== pass) {
+            $('.new_pass_again').addClass('error_input');
+            $(".new_pass_again_icon").css("display", "block");
+            $(".error_new_pass_again").text("Mật khẩu không khớp!!!");
+            $(".error_new_pass_again").css("display", "block");
+            kq = "false";
+        } else {
+            $('.new_pass_again').removeClass('error_input');
+            $(".new_pass_again_icon").css("display", "none");
+            $(".error_new_pass_again").css("display", "none");
+            kq = "true";
+        }
+        return kq;
+    }
+
+
+}
+
+function show_hd(trang){
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/show_hd/5",
+        method: "post",
+        data:{trang:trang},
+        success: function(data){
+            $('#hoa_don').html(data);
+        }
+    });
+}

@@ -12,15 +12,15 @@
                 <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
                     <li class="header__navbar-item header__navbar-user">
                         <a href="" class="header__navbar-user-link">
-                            <img src="https://yt3.ggpht.com/yti/ANoDKi4u6XzxVZups14lSw3SRRGG-7S4XqREzn0-rVCo=s88-c-k-c0x00ffffff-no-rj-mo" alt="" class="header__navbar-user-img">
+                            <img src="http://localhost/web_mvc/public/img/user.png" alt="" class="header__navbar-user-img">
                             <span class="header__navbar-user-name"><?= $_SESSION['user']['username'] ?></span>
                         </a>
                         <ul class="header__navbar-user-menu">
                             <li class="header__navbar-user-item">
-                                <a href="">Tài khoản của tôi</a>
+                                <a href="http://localhost/web_mvc/Account">Tài khoản của tôi</a>
                             </li>
                             <li class="header__navbar-user-item">
-                                <a href="">Đơn mua</a>
+                                <a href="http://localhost/web_mvc/Account/history">Đơn mua</a>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate  ">
                                 <button class="logout" onclick="logout();">Đăng xuất</button>

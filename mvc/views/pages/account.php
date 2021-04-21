@@ -28,12 +28,12 @@
                             </div>
                             <div class="user_text">
                                 <h4 class="user_text-account">Tài khoản của</h4>
-                                <h4 class="user_text-name">Khanh Nguyen</h4>
+                                <h4 class="user_text-name"><?php echo !empty($_SESSION['user']) ?$_SESSION['user']['username']:""  ?></h4>
                             </div>
                         </div>
                         <ul class="user-wrap">
                             <li class="">
-                                <a href="http://localhost/web_mvc/Account/edit" class="account-link user_active">
+                                <a href="http://localhost/web_mvc/Account/edit" class="account-link">
                                     <i class='bx bxs-user'></i>
                                     <span class="account_text">Thông tin tài khoảng</span>
                                 </a>
@@ -51,12 +51,12 @@
 
                                 </a>
                             </li>
-                            <li>
-                                <a href="" class="account-link">
+                            <!-- <li>
+                                <a href="http://localhost/web_mvc/Account/diachi" class="account-link">
                                     <i class='bx bxs-map'></i>
-                                    <span class="account_text">Sổ địa chỉ</span>
+                                    <span class="account_text">Địa chỉ</span>
                                 </a>
-                            </li>
+                            </li> -->
 
                         </ul>
 

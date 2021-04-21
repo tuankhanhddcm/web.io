@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // add class active
     var path = window.location.pathname.split('/').pop(6);
-    if(path ==''){
+    if(path !=='home' || path=='Admin'){
         path='home';
     }
     var target = $('ul a[href="http://localhost/web_mvc/Admin/'+path+'"]');
@@ -117,6 +117,8 @@ $(document).ready(function () {
         
     });
     
+
+  
 
 });
 

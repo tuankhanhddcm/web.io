@@ -75,12 +75,12 @@ class sanpham extends DB {
                 if($temp[$i] <= "43"){
                         $s .=" ". "kich_co_tv <= $temp[$i]";
                 }
-                if($temp[$i] > 43 && $temp[$i] <= 75 ){ 
+                if($temp[$i] > 43 && $temp[$i] <= 73 ){ 
 
-                    $s .=" or kich_co_tv between 44 and ".($temp[$i]+10); 
+                    $s .=" or kich_co_tv between $temp[$i] and ".($temp[$i]+10); 
                 }
 
-                if($temp[$i] > 75){
+                if($temp[$i] > 73){
                     $s .=" or kich_co_tv > $temp[$i]";
                 }            
             }

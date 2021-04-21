@@ -87,8 +87,12 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                             <div class="error__wrap select-search " style="margin-bottom: 20px;">
                                                 <span class="label-select">Tỉnh thành:</span>
                                                 <select class="select select-tinh form-control" id="tinh" data-dropup-auto="false" title="Chọn tỉnh thành" data-size='5' data-live-search="true">
-                                                    <?php foreach ($data['diachi'] as $val) : ?>
-                                                        <option id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_name'] ?></option>
+                                                    <?php foreach ($data['tinh'] as $val) : ?>
+                                                        <?php if(trim($data['dc'][3])==$val['_name']){ ?>
+                                                            <option selected id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_name'] ?></option>
+                                                        <?php }else { ?>
+                                                            <option  id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_name'] ?></option>
+                                                        <?php } ?>
                                                     <?php endforeach; ?>
                                                 </select>
                                                 <div style="display: flex;">
@@ -98,20 +102,32 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                             </div>
                                             <div class="error__wrap select-search " style="margin-bottom: 20px;">
                                                 <span class="label-select">Quận huyện:</span>
-                                                <select class=" select  form-control" id="district" disabled data-dropup-auto="false" title="Chọn quận huyện" data-size='5' data-live-search="true">
-                                                    
+                                                <select class=" select  form-control" id="district" disabled  data-dropup-auto="false" title="Chọn quận huyện" data-size='5' data-live-search="true">
+                                                <?php foreach ($data['dist'] as $val) : ?>
+                                                        <?php if(trim($data['dc'][2])==($val['_prefix'].' '.$val['_name'])){ ?>
+                                                            <option selected id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_prefix'].' '.$val['_name'] ?></option>
+                                                        <?php } ?>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="error__wrap select-search " style="margin-bottom: 20px;">
                                                 <span class="label-select">Phường xã:</span>
                                                 <select class=" select select-ward form-control" id="ward" disabled data-dropup-auto="false" title="Chọn phường xã" data-size='5' data-live-search="true">
-                                                    
+                                                <?php foreach ($data['ward'] as $val) : ?>
+                                                        <?php if(trim($data['dc'][1])==($val['_prefix'].' '.$val['_name'])){ ?>
+                                                            <option selected id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_prefix'].' '.$val['_name']?></option>
+                                                        <?php } ?>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="error__wrap select-search " style="margin-bottom: 20px;">
                                                 <span class="label-select">Đường:</span>
                                                 <select class=" select select-street form-control" id="street" disabled data-dropup-auto="false" title="Chọn đường" data-size='5' data-live-search="true">
-                                                    
+                                                <?php foreach ($data['street'] as $val) : ?>
+                                                        <?php if(trim($data['dc'][0])==($val['_prefix'].' '.$val['_name'])){ ?>
+                                                            <option selected id="<?= $val['id'] ?>" value="<?= $val['id'] ?>"><?= $val['_prefix'].' '.$val['_name'] ?></option>
+                                                        <?php } ?>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>

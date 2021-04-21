@@ -729,8 +729,10 @@ button.btn-detail-info {
 
 .user_main-wrap {
     background-color: #fff;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     border-radius: 4px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .form-user {
@@ -795,4 +797,172 @@ button.btn_account {
 
 .btn_account:hover {
     background-color: #d12c1f;
+}
+
+/* history */
+
+.user_main-wrap table {
+    border-collapse: collapse;
+    width: 100%;
+    word-break: break-word;
+    background-color: #fff;
+}
+
+.user_main-wrap tr {
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+.user_main-wrap tr:hover{
+    background-color: rgb(246, 252, 255);
+}
+
+.user_main-wrap td,
+.user_main-wrap th{
+    min-width: 100px;
+    padding: 20px 15px;
+    color: rgb(120, 120, 120);
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.user_main-wrap td {
+    font-size: 13px;
+    line-height: 20px;
+    color: rgb(51, 51, 51);
+}
+
+button.btn_huy {
+    min-width: 50px;
+    max-height: 30px;
+    outline: none;
+    background-color: #FF0000;
+    color: #ffff;
+    font-weight: 300;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition:background-color .2s linear ;
+}
+
+.btn_huy:hover {
+    background-color: #d12c1f;
+}
+
+.span_huy {
+    font-size: 1.3rem;
+    color: #FF0000;
+}
+
+.user_diachi {
+    margin: 0px 20px 20px 0px;
+
+}
+
+.title {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.content {
+    background-color: #ffff;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 111px;
+}
+.content p {
+    margin: 5px 0px 0px;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.address,
+.phone{
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #333;
+    line-height: 20px;
+}
+
+#detail_oders td {
+    padding: 20px 10px;
+}
+.product-item{
+    width: 100%;
+}
+
+.product-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.product-link img {
+    width: 100px;
+}
+
+.product-info p{
+    margin: 0;
+    color: #333;
+    padding-left: 10px;
+}
+
+.user_main-wrap .foot_tr,
+.user_main-wrap .tr_oder{
+    border: none;
+}
+.user_main-wrap .foot_tr:hover,
+.user_main-wrap .tr_oder:hover{
+    background-color: #fff;
+}
+
+.foot_tr td {
+    text-align: right;
+    padding: 20px 20px 10px 0;
+}
+
+.btn_link {
+    margin-bottom: 20px;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #ff3302;
+}
+
+.btn_link:hover {
+    background-color: #d12c1f;
+    color: #fff;
+}
+
+.diachi_user{
+    padding: 15px 10px 0px;
+}
+.diachi_user span {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 300;
+}
+
+.diachi_name {
+    padding: 5px 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.diachi_name span {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 300;
+}
+
+button.btn_address{
+    outline: none;
+    color: #f30;
+}
+.btn_address:hover {
+    color: #d12c1f;
 }

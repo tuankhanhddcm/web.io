@@ -1,8 +1,8 @@
 <?php 
  class Diachi extends DB {
 
-    public function select_tinh(){
-        $sql ="SELECT * from province";
+    public function select_tinh($table){
+        $sql ="SELECT * from $table";
         return $this->_query($sql);
     }
 

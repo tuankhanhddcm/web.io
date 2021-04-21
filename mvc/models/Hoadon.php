@@ -2,9 +2,10 @@
 
 class Hoadon extends DB {
     
+    public $table ="hoadon";
 
-    public function select_all(){
-        $sql = "SELECT * from $this->table ";
+    public function select_all($limit=18){
+        $sql = "SELECT * from $this->table limit $limit ";
         return $this->_query($sql);
     }
 
@@ -44,7 +45,25 @@ class Hoadon extends DB {
         return $this->_query($sql);
     }
     
+    public function select_hd_user($user,$start=0, $limit=10,$ma_hd=''){
+        if(!empty($ma_hd)){
+            $sql =  $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' and ma_hd ='$ma_hd'";
+        }else{
+            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' limit $start,$limit";
+        }
+        if(mysqli_num_rows(mysqli_query($this->conn,$sql)) == 1){
+            $kq = $this->fristquery($sql);
+        }else{
+            $kq = $this->_query($sql);
+        }
+        return $kq;
+    }
 
+    public function select_oders_detail($user,$mahd){
+        $sql = "SELECT * FROM hoadon JOIN chitiethoadon on hoadon.ma_hd =chitiethoadon.ma_hd join sanpham on sanpham.sp_ma=chitiethoadon.sp_ma
+        where hoadon.khachhang='$user' and hoadon.ma_hd='$mahd'";
+        return $this->_query($sql);
+    }
 
 }
 

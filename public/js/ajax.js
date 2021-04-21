@@ -96,7 +96,6 @@ $(document).ready(function () {
             thanhtoan();
         }
     });
-
     // check địa chỉ
     $(".select").selectpicker();
     $('.select-tinh').click(function () {
@@ -107,6 +106,11 @@ $(document).ready(function () {
             street();
         }
 
+    });
+
+    $('#district').click(function(){
+        $("#ward").val('');
+        $("#ward").selectpicker("refresh");
     });
 
     $('.select-loaisp').click(function () {
@@ -524,7 +528,7 @@ function email(email) {
 
 
 function pass() {
-    if (check('#pass')) {
+    if (check('#pass')=='true') {
         var pass = $("#pass").val();
         if (pass.length < 8) {
             $('#pass').addClass('error_input');
@@ -710,10 +714,18 @@ function showupdate(text, mess) {
         load: text
     });
 }
-
+function showupdate_error(text, mess) {
+    toast({
+        title: 'Thất bại !',
+        message: "Cập nhật " + mess + " thất bại",
+        type: "error",
+        duration: 2000,
+        load: text
+    });
+}
 function showerror(text) {
     toast({
-        title: 'Thất bại',
+        title: 'Thất bại !',
         message: "Vui lòng nhập " + text,
         type: "error",
         duration: 3000
@@ -776,6 +788,7 @@ function logout() {
 
 
 function district(val) {
+    
     var kq = '';
     if (val !== 'undefined' && val !== ' ') {
         var provi = val;
@@ -791,7 +804,7 @@ function district(val) {
                     $('#district').html(data);
                     $('#district').prop('disabled', false);
                     $('.select').selectpicker('refresh');
-                } else {
+                }else {
                     $('#district').prop('disabled', true);
                     $('.select').selectpicker('refresh');
                 }
@@ -819,7 +832,7 @@ function ward() {
                         $('#ward').html(data);
                         $('#ward').prop('disabled', false);
                         $('.select').selectpicker('refresh');
-                    } else {
+                    }else {
                         $('#ward').prop('disabled', true);
                         $('#street').prop('disabled', true);
                         $('.select').selectpicker('refresh');
@@ -849,8 +862,8 @@ function street() {
                         $('#street').html(data);
                         $('#street').prop('disabled', false);
                         $('.select').selectpicker('refresh');
-                    } else {
-                        $('#street').prop('disabled', true);
+                    }else {
+                        // $('#street').prop('disabled', true);
                         $('.select').selectpicker('refresh');
                     }
 

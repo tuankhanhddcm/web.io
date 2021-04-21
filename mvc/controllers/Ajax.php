@@ -7,6 +7,7 @@ class Ajax extends Controller
     public $Danhmuc;
     public $Nhasanxuat;
     public $Thongsokythuat;
+    public $Hoadon;
 
     public function __construct()
     {
@@ -15,6 +16,7 @@ class Ajax extends Controller
         $this->Danhmuc = $this->model("Danhmucmodel");
         $this->Nhasanxuat = $this->model("Nhasanxuat");
         $this->Thongsokythuat = $this->model("Thongsokythuat");
+        $this->Hoadon = $this->model("Hoadon");
     }
 
 
@@ -90,7 +92,7 @@ class Ajax extends Controller
                         $phantram = ($row['sp_giagiam'] / $row['sp_giaban'] -1)*100;
                         $ouput .= '
                         <div class="col-2-4 ">
-                            <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                            <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
                                 <div class="card-item__img">
                                     <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
                                 </div>
@@ -108,7 +110,7 @@ class Ajax extends Controller
                     }else{
                         $ouput .= '
                         <div class="col-2-4 ">
-                            <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                            <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
                                 <div class="card-item__img">
                                     <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
                                 </div>
@@ -619,7 +621,7 @@ class Ajax extends Controller
     public function _trang($row, $page, $limit, $colspan = 2)
     {
         $ouput = '
-        <tr>
+        <tr class="tr_oder">
                 <td colspan="' . $colspan . '" style="border: none;">
             <div align="center">
             <ul class="pagination justify-content-end" style="margin-right: 30px">
@@ -853,7 +855,7 @@ class Ajax extends Controller
                     $phantram = ($row['sp_giagiam'] / $row['sp_giaban'] -1)*100;
                     $ouput .= '
                     <div class="col-sm-2 ">
-                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                        <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
                             <div class="card-item__img">
                                 <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
                             </div>
@@ -871,7 +873,7 @@ class Ajax extends Controller
                 }else{
                     $ouput .= '
                     <div class="col-sm-2 ">
-                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
+                        <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
                             <div class="card-item__img">
                                 <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
                             </div>
@@ -895,4 +897,51 @@ class Ajax extends Controller
         $kq = $this->sanpham->delete($id);
         echo $kq;
     }
+
+    public function show_hd($limit){
+        if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+            if (isset($_POST['trang']) && !empty($_POST['trang'])) {
+                $page = 1;
+                $limit = $limit;
+                if ($_POST['trang'] > 1) {
+                    $start = (($_POST['trang'] - 1) * $limit);
+                    $page = $_POST['trang'];
+                } else {
+                    $start = 0;
+                }
+                $ouput = '';
+                $row = count($this->Hoadon->select_hd_user($_SESSION['user']['username']));
+                $hd = $this->Hoadon->select_hd_user($_SESSION['user']['username'],$start,$limit);
+                if($hd){
+                    foreach($hd as $val){
+                        switch($val['trangthai']){
+                            case 0:
+                                $text= "Đã tiếp nhận đơn hàng";
+                            break;
+                            
+                        }
+                        $diachi =$val["khachhang"] == $_SESSION["user"]["username"]? $_SESSION["user"]["diachi"]:"";
+                        $ouput .='
+                        <tr>
+                            <td>
+                                <a href="http://localhost/web_mvc/Account/oders/'.$val['ma_hd'].'">'.$val["ma_hd"].'</a>
+                            </td>
+                            <td>'.$val["date"].'</td>
+                            <td>'.$diachi.'</td>
+                            <td style="width: 120px;">'.number_format($val['total_money']).' đ</td>
+                            <td >'.$text.'</td>
+                            <td style="width: 120px;">
+                                <button class="btn_cus btn_huy">Hủy đơn</button>
+                                <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
+                            </td>
+                        </tr>
+                        ';
+                    }
+                }
+                $ouput .= $this->_trang($row, $page, $limit,6);
+                echo $ouput;
+            }
+        }
+    }
+        
 }

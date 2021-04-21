@@ -7,18 +7,32 @@
         public $Diachi;
         
         public function __construct()
-        {
-            $this->Usermoder = $this->model("Usermodel");
-            $this->Hoadon = $this->model("Hoadon");
-            $this->Sanpham = $this->model("sanpham");
-            $this->Diachi = $this->model('Diachi');
+        {   
+            if(!isset($_SESSION['user']) && empty($_SESSION['user'])){
+                header('location: http://localhost/web_mvc');
+            }else{
+                $this->Usermoder = $this->model("Usermodel");
+                $this->Hoadon = $this->model("Hoadon");
+                $this->Sanpham = $this->model("sanpham");
+                $this->Diachi = $this->model('Diachi');
+            }
         }
 
         public function trangchu(){
-            $diachi = $this->Diachi->select_tinh();
+            $tinh = $this->Diachi->select_tinh('province');
+            $dist = $this->Diachi->select_tinh('district');
+            $ward = $this->Diachi->select_tinh('ward');
+            $street = $this->Diachi->select_tinh('street');
+    
+            $dc = explode(",",$_SESSION['user']['diachi']);
+
             $this->view('index',[
                 "page" => "thanhtoan",
-                'diachi' =>$diachi
+                'tinh' =>$tinh,
+                'dist' => $dist,
+                'ward' => $ward,
+                "street" =>$street,
+                "dc" => $dc,
             ]);
         }
         
@@ -149,4 +163,3 @@
             }
         }
     }
-?>
