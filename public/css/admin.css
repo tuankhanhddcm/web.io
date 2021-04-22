@@ -535,3 +535,14 @@ button.btn-deletd {
 .form-span img {
     width: 50%;
 }
+
+.home_title {
+    margin-top: 40px;
+    margin-left: 15px;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+

@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // add class active
     var path = window.location.pathname.split('/').pop(6);
-    if(path !=='home' || path=='Admin'){
+    if(path =='' || path=='Admin'){
         path='home';
     }
     var target = $('ul a[href="http://localhost/web_mvc/Admin/'+path+'"]');
@@ -71,12 +71,13 @@ $(document).ready(function () {
 
 
 
-
+    show_hd_admin(1);
     $(document).on('click', '.page-link', function () {
         var page = $(this).data('page_number');
         phan_trang_nsx(page);
         phan_trang_loai(page);
         fliter_admin(page);
+        show_hd_admin(page);
     });
 
     $(document).on("click",".btn-deletd",function(){
@@ -259,3 +260,13 @@ function check_giagiam(){
 }
 
 
+function show_hd_admin(trang){
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/show_hd_admin/5",
+        method: "post",
+        data:{trang:trang},
+        success: function(data){
+            $('#list_oder').html(data);
+        }
+    });
+}

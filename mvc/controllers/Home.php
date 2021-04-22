@@ -9,13 +9,15 @@
 
         public function trangchu(){
             $sp = $this->sanpham->getSP();
+            $sp_sale = $this->sanpham->getSP(['*'],[],1000);
             $row = $this->sanpham->num_rows();
             $row = $row-count($sp);
             $this->view("index",[
                 "page" =>"home",
                 "sanpham" => $sp,
                 "loaisp" =>$this->danhmuc->getloaisp(),
-                "conlai" => $row
+                "conlai" => $row,
+                "sp_sale" =>$sp_sale
             ]);
             
         }

@@ -48,7 +48,9 @@
                     <span class="product__sale-title--a">Giá sốc cuối tuần</span>
                     <div class="product__sale-sile">
                         <div class="owl-carousel owl-theme" id="slider">
-                            <?php foreach ($data["sanpham"] as $val) { ?>
+                            <?php foreach ($data["sp_sale"] as $val) { 
+                                if($val['sp_giagiam'] > 0){
+                            ?>
                                 <div class="item">
                                     <a class="card-item card_height" style="text-align: left;"  href="./Detail/<?= $val['sp_url']; ?>">
                                         <div class="card-item__img">
@@ -70,7 +72,9 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php } ?>
+                            <?php }
+                                } 
+                            ?>
                         </div>
                     </div>
                 </div>

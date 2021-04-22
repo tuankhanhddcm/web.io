@@ -17,7 +17,7 @@
                     phẩm</a>
             </li>
             <li class="nav-item">
-                <a href="#tab2Id" class="nav-link disabled " id="thongso_sp" data-toggle="tab">Thông số kỹ thuật</a>
+                <a href="#tab2" class="nav-link " id="thongso_sp" data-toggle="tab">Thông số kỹ thuật</a>
             </li>
         </ul>
 
@@ -80,27 +80,27 @@
 
                 </div>
             </div>
-            <div class="tab-pane fade" id="tab2Id" role="tabpanel">
+            <div class="tab-pane fade" id="tab2" role="tabpanel">
                 <div class="row" >
                     <?php
                     switch ($data['sp']['ma_loai']) {
                         case 1:
-                            require_once "./mvc/views/layout_tskt/tskt_tv.php";
+                            require_once "./mvc/views/layout/tskt_tv.php";
                             break;
                         case 2:
-                            require_once "./mvc/views/layout_tskt/tskt_maylanh.php";
+                            require_once "./mvc/views/layout/tskt_maylanh.php";
                             break;
                         case 3:
-                            require_once "./mvc/views/layout_tskt/tskt_tulanh.php";
+                            require_once "./mvc/views/layout/tskt_tulanh.php";
                             break;
                         case 4:
-                            require_once "./mvc/views/layout_tskt/tskt_loa.php";
+                            require_once "./mvc/views/layout/tskt_loa.php";
                             break;
                         case 5:
-                            require_once "./mvc/views/layout_tskt/tskt_lonuong.php";
+                            require_once "./mvc/views/layout/tskt_lonuong.php";
                             break;
                         case 6:
-                            require_once "./mvc/views/layout_tskt/tskt_maygiat.php";
+                            require_once "./mvc/views/layout/tskt_maygiat.php";
                             break;
                     }
                     ?>

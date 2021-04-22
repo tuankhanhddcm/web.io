@@ -47,9 +47,9 @@ class Hoadon extends DB {
     
     public function select_hd_user($user,$start=0, $limit=10,$ma_hd=''){
         if(!empty($ma_hd)){
-            $sql =  $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' and ma_hd ='$ma_hd'";
+            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' and ma_hd ='$ma_hd'";
         }else{
-            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' limit $start,$limit";
+            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user'  limit $start,$limit";
         }
         if(mysqli_num_rows(mysqli_query($this->conn,$sql)) == 1){
             $kq = $this->fristquery($sql);
@@ -63,6 +63,18 @@ class Hoadon extends DB {
         $sql = "SELECT * FROM hoadon JOIN chitiethoadon on hoadon.ma_hd =chitiethoadon.ma_hd join sanpham on sanpham.sp_ma=chitiethoadon.sp_ma
         where hoadon.khachhang='$user' and hoadon.ma_hd='$mahd'";
         return $this->_query($sql);
+    }
+
+    public function hd_theo_ngay($date,$newdate,$start=0,$limit =0,$detail =''){
+        if($limit >0){
+            $sql ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username  WHERE date >= '$date' and date <'$newdate' limit $start,$limit";
+        }elseif($detail !=''){
+            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username join chitiethoadon on chitiethoadon.ma_hd=hoadon.ma_hd WHERE date >= '$date' and date <'$newdate'";
+        }else{
+            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username WHERE date >= '$date' and date <'$newdate'";
+        }
+        $kq = $this->_query($sql);
+        return $kq;
     }
 
 }
