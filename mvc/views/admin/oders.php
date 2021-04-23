@@ -12,10 +12,10 @@
                     <div class="select_wrap">
                         <div class="calendar_input">
                             <i class='bx bx-calendar'></i>
-                            <input type="text" class="select_date" id="result" placeholder="Chọn ngày" disabled="">
+                            <input type="text" class="select_date" id="result" data-val="0" placeholder="Chọn ngày" disabled value="">
                         </div>
                         <form action="#" class="row">
-                            <div class="col-md-12 calendar" >
+                            <div class="col-md-6 calendar">
                                 <div id="inline_cal"></div>
                             </div>
                         </form>
@@ -38,7 +38,7 @@
                             <th style="width: 100px;border-right: none;">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="">
+                    <tbody id="list_hd">
 
                     </tbody>
                 </table>
@@ -47,3 +47,5 @@
 
     </div>
 </div>
+
+

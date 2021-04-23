@@ -3,8 +3,12 @@ $(document).ready(function () {
 
     // lọc trang admin
     fliter_admin(1);
+    filter_hd(1);
     $("#search").keyup(function () {
         fliter_admin(1);
+        $(".calendar").css("display","none");
+        var date = $("#result").val();
+        filter_hd(1,date);
     });
 
     $(".select-loaisp").click(function () {
@@ -78,8 +82,13 @@ $(document).ready(function () {
         phan_trang_loai(page);
         fliter_admin(page);
         show_hd_admin(page);
+        $(".calendar").css("display","none");
+        var date = $("#result").val();
+        filter_hd(page,date);
     });
 
+
+    // xóa sản phẩm
     $(document).on("click",".btn-deletd",function(){
         var id = $(this).data("mydata");
         $.confirm({
@@ -120,13 +129,29 @@ $(document).ready(function () {
     
     // calendar
     $(".calendar_input").click(function(){
-        $(".calendar").css("display","block");
+        data=$("#result").data('val');
+        if(data ==0){
+            $(".calendar").css("display","block");
+            $("#result").data('val','1');
+        }else if(data ==1){
+            $(".calendar").css("display","none");
+            $("#result").data('val','0');
+        }
+        $("#result").val('');
     });
+
     $(document).on('click','.rd-day-selected',function(){
         $(".calendar").css("display","none");
+        $("#result").data('val','0');
+        var date = $("#result").val();
+        filter_hd(1,date);
     })
-  
 
+    // show detail oder
+    $(document).on("click",".btn-oders",function(){
+        var id = $(this).data('id');
+        show_detail(id);
+    });
 });
 
 function fliter_admin(trang) {
@@ -277,3 +302,31 @@ function show_hd_admin(trang){
     });
 }
 
+
+function filter_hd(trang,date){
+    var search = $('#search').val();
+    // var date = $("#result").val();
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/filter_hd_ad/8",
+        method: "post",
+        data: {
+            trang:trang,
+            search:search,
+            date:date
+        },
+        success:function(data){
+            $("#list_hd").html(data);
+        }
+    });
+}
+
+function show_detail(id){
+    $.ajax({
+        url:"http://localhost/web_mvc/Ajax/show_detail_ad",
+        method: "post",
+        data: {id:id},
+        success:function(data){
+            $('#detail_oder_ad').html(data);
+        }
+    })
+}

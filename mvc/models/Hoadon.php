@@ -77,17 +77,24 @@ class Hoadon extends DB {
         return $kq;
     }
     
-    public function filter_hd($txt_search,$date,$start=0,$limit=8){
-        $sql ="SELECT * FROM hondon where 1";
+    public function filter_hd($txt_search='',$date='',$start=0,$limit=0){
+        $sql ="SELECT * FROM hoadon join user on hoadon.khachhang=user.username where 1";
         if($txt_search !=''){
-            $sql .=" and (ma_hd like '%$txt_search%' or khachhang like '%$txt_search%' ";
+            $sql .=" and (ma_hd like '%$txt_search%' or khachhang like '%$txt_search%')";
         }
         if($date !=''){
             $newdate = date('Y-m-d', strtotime('+1 day', strtotime($date)));
-            $sql .=" and date >='$date' and date < $newdate ";
+            $sql .=" and date >='$date' and date < '$newdate' ";
         }
-        $sql .= " limit $start,$limit";
-        return $this->_query($sql);
+        if($limit >0){
+            $sql .= " limit $start,$limit";
+        }
+        $kq = null;
+        if(mysqli_num_rows(mysqli_query($this->conn,$sql)) > 0){
+            $kq = $this->_query($sql);
+        }
+        
+        return $kq;
     }
 }
 

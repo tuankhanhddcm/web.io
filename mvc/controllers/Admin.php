@@ -97,12 +97,10 @@
         }
 
         public function oders(){
-            
             $this->view('admin',[
                 "page"=>"oders",
-
             ]);
+           
         }
 
     }
-?>

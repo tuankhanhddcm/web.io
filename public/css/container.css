@@ -966,3 +966,19 @@ button.btn_address{
 .btn_address:hover {
     color: #d12c1f;
 }
+
+button.btn-oders {
+    min-width: 80px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: #1ba8ff;
+    font-size: 1.4rem;
+}
+.btn-oders:hover{
+    color: #357ebd;
+}
+
+#list_hd td {
+    padding-top: 20px;
+}

@@ -574,3 +574,17 @@ button.btn-deletd {
     font-weight: 300;
     cursor: pointer;
 }
+
+.modal_admin {
+    top: 122px;
+    left: 0px;
+}
+
+.modal.show .modal-dialog {
+    width: 1000px;
+}
+@media (min-width: 576px){
+    .modal_ad{
+        max-width: 1000px;
+    }
+}

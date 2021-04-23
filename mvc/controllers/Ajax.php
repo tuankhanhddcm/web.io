@@ -914,7 +914,7 @@ class Ajax extends Controller
                 $ouput = '';
                 $row = count($this->Hoadon->select_hd_user($_SESSION['user']['username']));
                 $hd = $this->Hoadon->select_hd_user($_SESSION['user']['username'], $start, $limit);
-                
+
                 if ($hd) {
                     foreach ($hd as $val) {
                         switch ($val['trangthai']) {
@@ -971,7 +971,7 @@ class Ajax extends Controller
                     $ouput .= '
                         <tr>
                             <td>
-                                ' .$val["ma_hd"]. '
+                                <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
                             </td>
                             <td>' . $val["khachhang"] . '</td>
                             <td>' . $val['email'] . '</td>
@@ -979,7 +979,7 @@ class Ajax extends Controller
                             <td>' . $val['sdt'] . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
                             <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td style="width: 170px;">' . $text. '</td>
+                            <td style="width: 170px;">' . $text . '</td>
                             <td style="width: 100px;">
                                 <button class="btn_cus btn_huy">Hủy đơn</button>
                                 <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
@@ -994,6 +994,111 @@ class Ajax extends Controller
                             <td colspan="9">Không có đơn hàng nào hôm nay !!!</td>
                         </tr>
                     ';
+            }
+            echo $ouput;
+        }
+    }
+
+    public function filter_hd_ad($limit)
+    {
+        $search = '';
+        $date = '';
+        if (!empty($_POST['search'])) {
+            $search = $_POST['search'];
+        }
+        if (!empty($_POST['date'])) {
+            $date = $_POST['date'];
+        }
+        if (!empty($_POST['trang'])) {
+            $page = 1;
+            $limit = $limit;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+
+            $ouput = '';
+            $rows = $this->Hoadon->filter_hd($search, $date);
+            if (!empty($rows)) {
+                $row = count($rows);
+            } else {
+                $row = 0;
+            }
+            $hd = $this->Hoadon->filter_hd($search, $date, $start, $limit);
+            if (!empty($hd)) {
+                foreach ($hd as $val) {
+                    switch ($val["trangthai"]) {
+                        case 0:
+                            $text = "Đã tiếp nhận đơn hàng";
+                            break;
+                    }
+                    $ouput .= '
+                        <tr>
+                            <td style="padding-top:12px">
+                                <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
+                            </td>
+                            <td>' . $val["khachhang"] . '</td>
+                            <td>' . $val['email'] . '</td>
+                            <td>' . $val['diachi'] . '</td>
+                            <td>' . $val['sdt'] . '</td>
+                            <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
+                            <td style="width: 160px;">' . $val['date'] . '</td>
+                            <td style="width: 170px;">' . $text . '</td>
+                            <td style="width: 100px;">
+                                <button class="btn_cus btn_huy">Hủy đơn</button>
+                                <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
+                            </td>
+                        </tr>
+                        ';
+                }
+                $ouput .= $this->_trang($row, $page, $limit, 9);
+            } else {
+                $ouput .= '
+                        <tr  class="no_product">
+                            <td colspan="9">Không có đơn hàng nào hôm nay !!!</td>
+                        </tr>
+                    ';
+            }
+            echo $ouput;
+        }
+    }
+
+    public function show_detail_ad()
+    {
+        if (isset($_POST['id']) && !empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $hd_detail = $this->Hoadon->select_hd_detail($id);
+            $ouput = '';
+            if (!empty($hd_detail)) {
+                foreach ($hd_detail as $val) {
+                    if($val['sp_giagiam'] > 0 ){
+                        $giagiam = number_format($val['sp_giaban'] - $val['sp_giagiam']);
+                        $tong = number_format($val['sp_giagiam'] * $val['soluong']);
+                    }else{
+                        $giagiam =0;
+                        $tong = number_format($val['sp_giaban'] * $val['soluong']);
+                    }
+                    $ouput .= '
+                    <tr>
+                    <td style="width: 350px">
+                        <div class="product-item">
+                            <a href="" class="product-link">
+                                <img src="http://localhost/web_mvc/' . $val['sp_img'] . '" alt="">
+                                <div class="product-info">
+                                    <p>' . $val['sp_name'] . '</p>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                    <td>' .number_format($val['sp_giaban']).' đ</td>
+                    <td style="text-align: center;">' . $val['soluong'] . '</td>
+                    <td>'.$giagiam.' đ</td>
+                    <td>'.$tong.' đ</td>
+                </tr>
+                    ';
+                }
             }
             echo $ouput;
         }

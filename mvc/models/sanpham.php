@@ -266,7 +266,6 @@ class sanpham extends DB {
         }else {
             $kq = " false";
         }
-        echo $sql;
         return $kq;
     }
     public function delete($id){
