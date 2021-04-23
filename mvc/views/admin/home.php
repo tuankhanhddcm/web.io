@@ -50,7 +50,6 @@
                 </div>
             </div>
             <div class="col-sm-12 ">
-               
                 <h3 class="home_title">Danh sách đơn hàng hôm nay</h3>
                 <table class="table table_sp ">
                     <thead class="heading-table">

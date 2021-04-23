@@ -118,7 +118,13 @@ $(document).ready(function () {
         
     });
     
-
+    // calendar
+    $(".calendar_input").click(function(){
+        $(".calendar").css("display","block");
+    });
+    $(document).on('click','.rd-day-selected',function(){
+        $(".calendar").css("display","none");
+    })
   
 
 });
@@ -270,3 +276,4 @@ function show_hd_admin(trang){
         }
     });
 }
+

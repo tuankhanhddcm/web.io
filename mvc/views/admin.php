@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="http://localhost/web_mvc/public/css/admin.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/rome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/style_calendar.css">
   <title>KStore</title>
 </head>
 
@@ -34,7 +36,7 @@
       </div>
     </div>
   </div>
-  <?php require_once "./mvc/views/blocks/modal.php"?>
+  <?php require_once "./mvc/views/blocks/modal.php" ?>
   <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class='bx bxs-chevron-up'></i></a>
   <div id="toast"></div>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/jquery-3.6.0.min.js"></script>
@@ -44,6 +46,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/ajax.js"></script>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/admin.js"></script>
+  <script type="text/javascript" src="http://localhost/web_mvc/public/js/rome.js"></script>
+  <script  type="text/javascript" src="http://localhost/web_mvc/public/js/calendar.js"></script>
 </body>
 
 </html>
