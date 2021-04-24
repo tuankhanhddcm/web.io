@@ -146,11 +146,23 @@ $(document).ready(function () {
         var date = $("#result").val();
         filter_hd(1,date);
     })
+    $(document).on('click','.calendar_input',function(){
+        var date = $("#result").val();
+        filter_hd(1,date);
+    });
 
     // show detail oder
     $(document).on("click",".btn-oders",function(){
-        var id = $(this).data('id');
+        var id = $(this).data('id');    
         show_detail(id);
+    });
+
+
+
+    $(document).on('change','.select-oders',function(){
+        id = $(this).data('id');
+        val = $(this).val();
+        change_status_hd(val,id);
     });
 });
 
@@ -330,3 +342,5 @@ function show_detail(id){
         }
     })
 }
+
+

@@ -44,9 +44,7 @@
                                 <div class="form_input">
                                     <div class="select_wrap form_input--items" style="width: 100%;">
                                         <select class=" select select-loaisp form-control" id="loaisp" data-dropup-auto="false" data-size='5' data-live-search="true">
-                                           
                                             <option value="">--Chọn nhóm hàng hóa--</option>
-                                            
                                             <?php if (!empty($data['loai'])) {
                                                 foreach ($data['loai'] as $val) {
                                                     if($data["sp"]['ma_loai'] == $val['ma_loai']){

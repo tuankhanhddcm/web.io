@@ -899,6 +899,8 @@ class Ajax extends Controller
         echo $kq;
     }
 
+
+    // show hóa đơn user
     public function show_hd($limit)
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
@@ -917,24 +919,45 @@ class Ajax extends Controller
 
                 if ($hd) {
                     foreach ($hd as $val) {
-                        switch ($val['trangthai']) {
+                        switch ($val["trangthai"]) {
                             case 0:
-                                $text = "Đã tiếp nhận đơn hàng";
+                                $text = "Chờ xác nhận";
+                                $html = '<button class="btn_cus btn_huy" data-id="' . $val['ma_hd'] . '">Hủy đơn</button>';
+                                $class = 'txt_wait';
+                                break;
+                            case 1:
+                                $text = "Đã xác nhận";
+                                $html = '<button class="btn_cus btn_huy" data-id="' . $val['ma_hd'] . '">Hủy đơn</button>';
+                                $class = 'txt_check';
+                                break;
+                            case 2:
+                                $text = "Đã giao hàng";
+                                $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                                $class = 'txt_success';
+                                break;
+                            case 3:
+                                $text = "Chờ xử lý";
+                                $html = '<span class="span_huy">Đã gửi yêu cầu</span>';
+                                $class = 'txt_wait';
+                                break;
+                            case 4:
+                                $text = "Đơn hàng đã hủy";
+                                $html = '<span class="span_huy">Đã xử lý yêu cầu</span>';
+                                $class = 'txt_delete';
                                 break;
                         }
                         $diachi = $val["khachhang"] == $_SESSION["user"]["username"] ? $_SESSION["user"]["diachi"] : "";
                         $ouput .= '
                         <tr>
-                            <td>
+                            <td >
                                 <a href="http://localhost/web_mvc/Account/oders/' . $val['ma_hd'] . '">' . $val["ma_hd"] . '</a>
                             </td>
                             <td>' . $val["date"] . '</td>
                             <td>' . $diachi . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
-                            <td >' . $text . '</td>
-                            <td style="width: 120px;">
-                                <button class="btn_cus btn_huy">Hủy đơn</button>
-                                <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
+                            <td style="width: 120px;"><span class="'.$class.' txt_'.$val['ma_hd'].' ">' . $text . '</span></td>
+                            <td style="width: 140px;" id="'.$val['ma_hd'].'">
+                                ' . $html . '
                             </td>
                         </tr>
                         ';
@@ -965,7 +988,42 @@ class Ajax extends Controller
                 foreach ($hd as $val) {
                     switch ($val["trangthai"]) {
                         case 0:
-                            $text = "Đã tiếp nhận đơn hàng";
+                            $option = '
+                            <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                            <option    selected value="0">Chờ xác nhận</option>
+                            <option     value="1">Đã xác nhận</option>
+                            <option    value="2">Đã giao hàng</option>
+                            </select>
+                            ';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 1:
+                            $option = '
+                                <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                                <option    value="0">Chờ xác nhận</option>
+                                <option    selected value="1">Đã xác nhận</option>
+                                <option    value="2">Đã giao hàng</option>
+                                </select>';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 2:
+                            $option = '
+                                <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                                <option     value="0">Chờ xác nhận</option>
+                                <option     value="1">Đã xác nhận</option>
+                                <option     selected value="2">Đã giao hàng</option>
+                                </select>';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 3:
+                            $option = 'Yêu cầu hủy đơn';
+                            $style = "color:red";
+                            $html = '<button class="btn_cus btn_huy" data-id="' . $val['ma_hd'] . '" >Hủy đơn</button>';
+                            break;
+                        case 4:
+                            $option = 'Đơn hàng đã hủy';
+                            $style = "color:red";
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
                             break;
                     }
                     $ouput .= '
@@ -979,10 +1037,9 @@ class Ajax extends Controller
                             <td>' . $val['sdt'] . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
                             <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td style="width: 170px;">' . $text . '</td>
+                            <td style="width: 170px;font-weight:bold;'.$style.'">' . $option . '</td>
                             <td style="width: 100px;">
-                                <button class="btn_cus btn_huy">Hủy đơn</button>
-                                <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
+                                '.$html.'
                             </td>
                         </tr>
                         ';
@@ -1027,11 +1084,48 @@ class Ajax extends Controller
                 $row = 0;
             }
             $hd = $this->Hoadon->filter_hd($search, $date, $start, $limit);
+
             if (!empty($hd)) {
                 foreach ($hd as $val) {
+                    $style = "";
                     switch ($val["trangthai"]) {
                         case 0:
-                            $text = "Đã tiếp nhận đơn hàng";
+                            $option = '
+                            <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                            <option    selected value="0">Chờ xác nhận</option>
+                            <option     value="1">Đã xác nhận</option>
+                            <option    value="2">Đã giao hàng</option>
+                            </select>
+                            ';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 1:
+                            $option = '
+                                <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                                <option    value="0">Chờ xác nhận</option>
+                                <option    selected value="1">Đã xác nhận</option>
+                                <option    value="2">Đã giao hàng</option>
+                                </select>';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 2:
+                            $option = '
+                                <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                                <option     value="0">Chờ xác nhận</option>
+                                <option     value="1">Đã xác nhận</option>
+                                <option     selected value="2">Đã giao hàng</option>
+                                </select>';
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            break;
+                        case 3:
+                            $option = 'Yêu cầu hủy đơn';
+                            $style = "color:red";
+                            $html = '<button class="btn_cus btn_huy" data-id="' . $val['ma_hd'] . '" >Hủy đơn</button>';
+                            break;
+                        case 4:
+                            $option = 'Đơn hàng đã hủy';
+                            $style = "color:red";
+                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
                             break;
                     }
                     $ouput .= '
@@ -1045,10 +1139,9 @@ class Ajax extends Controller
                             <td>' . $val['sdt'] . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
                             <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td style="width: 170px;">' . $text . '</td>
-                            <td style="width: 100px;">
-                                <button class="btn_cus btn_huy">Hủy đơn</button>
-                                <!-- <span class="span_huy">Đã gửi yêu cầu</span> -->
+                            <td style="width: 170px; font-weight: bold;font-size: 1.45rem;' . $style . '">' . $option . '</td>
+                            <td style="width: 120px;">
+                                '.$html.'
                             </td>
                         </tr>
                         ';
@@ -1073,11 +1166,11 @@ class Ajax extends Controller
             $ouput = '';
             if (!empty($hd_detail)) {
                 foreach ($hd_detail as $val) {
-                    if($val['sp_giagiam'] > 0 ){
+                    if ($val['sp_giagiam'] > 0) {
                         $giagiam = number_format($val['sp_giaban'] - $val['sp_giagiam']);
                         $tong = number_format($val['sp_giagiam'] * $val['soluong']);
-                    }else{
-                        $giagiam =0;
+                    } else {
+                        $giagiam = 0;
                         $tong = number_format($val['sp_giaban'] * $val['soluong']);
                     }
                     $ouput .= '
@@ -1092,15 +1185,25 @@ class Ajax extends Controller
                             </a>
                         </div>
                     </td>
-                    <td>' .number_format($val['sp_giaban']).' đ</td>
+                    <td>' . number_format($val['sp_giaban']) . ' đ</td>
                     <td style="text-align: center;">' . $val['soluong'] . '</td>
-                    <td>'.$giagiam.' đ</td>
-                    <td>'.$tong.' đ</td>
+                    <td>' . $giagiam . ' đ</td>
+                    <td>' . $tong . ' đ</td>
                 </tr>
                     ';
                 }
             }
             echo $ouput;
+        }
+    }
+
+    public function set_status()
+    {
+        if (isset($_POST['val'])  && isset($_POST['id'])) {
+            $kq = $this->Hoadon->set_status_hd($_POST['val'], $_POST['id']);
+            if ($kq == 'true') {
+                echo '<span class="span_huy">Đã gửi yêu cầu</span>';
+            }
         }
     }
 }

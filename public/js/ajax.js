@@ -1336,3 +1336,22 @@ function more_sp(limit){
         }
     });
 }
+
+
+// thay đổi trạng thái
+function change_status_hd(val,id){
+    id_td = '#'+id;
+    txt =".txt_"+id;
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/set_status",
+        method: "post",
+        data:{
+            val:val,
+            id:id
+        },
+        success: function(data){
+            $(id_td).html(data);
+            $(txt).text('Chờ xử lý');
+        }
+    });
+}

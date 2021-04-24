@@ -45,18 +45,15 @@ class Hoadon extends DB {
         return $this->_query($sql);
     }
     
-    public function select_hd_user($user,$start=0, $limit=10,$ma_hd=''){
-        if(!empty($ma_hd)){
-            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user' and ma_hd ='$ma_hd'";
-        }else{
+    public function select_hd_user($user,$start=0, $limit=0){
+        if($limit >0){
             $sql ="SELECT * FROM hoadon WHERE khachhang ='$user'  limit $start,$limit";
-        }
-        if(mysqli_num_rows(mysqli_query($this->conn,$sql)) == 1){
-            $kq = $this->fristquery($sql);
+            
         }else{
-            $kq = $this->_query($sql);
+            $sql ="SELECT * FROM hoadon WHERE khachhang ='$user'";
         }
-        return $kq;
+        
+        return $this->_query($sql);;
     }
 
     public function select_oders_detail($user,$mahd){
@@ -94,6 +91,17 @@ class Hoadon extends DB {
             $kq = $this->_query($sql);
         }
         
+        return $kq;
+    }
+
+    public function set_status_hd($status, $ma_hd){
+
+        $sql ="UPDATE hoadon set trangthai='$status' where ma_hd = '$ma_hd'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else {
+            $kq = " false";
+        }
         return $kq;
     }
 }

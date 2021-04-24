@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;900&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/base.css">
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/main.css">
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/cart.css">
@@ -47,7 +49,7 @@
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/ajax.js"></script>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/admin.js"></script>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/rome.js"></script>
-  <script  type="text/javascript" src="http://localhost/web_mvc/public/js/calendar.js"></script>
+  <script type="text/javascript" src="http://localhost/web_mvc/public/js/calendar.js"></script>
 </body>
 
 </html>

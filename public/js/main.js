@@ -83,6 +83,14 @@ $(document).ready(function () {
         var page = $(this).data('page_number');
         show_hd(page);
     });
+
+
+    // hủy hóa đơn user
+    $(document).on("click",".btn_huy",function(){
+        var id = $(this).data('id'); 
+        change_status_hd(3,id);
+
+    });
 });
 
 

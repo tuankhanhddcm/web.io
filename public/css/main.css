@@ -872,3 +872,37 @@ button.logout{
   min-height: 34px;
  
 }
+
+
+
+.txt_check {
+  background-color: green;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.txt_wait {
+  background-color: gray;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.txt_delete {
+  background-color: red;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.txt_success {
+  background-color: #0B87C9;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: 600;
+}
