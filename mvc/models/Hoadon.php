@@ -95,8 +95,8 @@ class Hoadon extends DB {
     }
 
     public function set_status_hd($status, $ma_hd){
-
-        $sql ="UPDATE hoadon set trangthai='$status' where ma_hd = '$ma_hd'";
+        $date = date("Y-m-d H:i:s", time());
+        $sql ="UPDATE hoadon set trangthai='$status',updated='$date' where ma_hd = '$ma_hd'";
         if(mysqli_query($this->conn,$sql)){
             $kq = 'true';
         }else {
@@ -104,6 +104,29 @@ class Hoadon extends DB {
         }
         return $kq;
     }
+
+    public function delete_hd($ma_hd){
+        $sql ="DELETE from hoadon where ma_hd = '$ma_hd' and deleted='1'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else {
+            $kq = " false";
+        }
+        echo $sql;
+        return $kq;
+    }
+
+    public function set_delete_hd($ma_hd){
+        $date = date("Y-m-d H:i:s", time());
+        $sql ="UPDATE hoadon set deleted='1',updated='$date' where ma_hd ='$ma_hd'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = 'true';
+        }else {
+            $kq = " false";
+        }
+        return $kq;
+    }
+
 }
 
 ?>

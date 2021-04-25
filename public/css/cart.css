@@ -11,12 +11,13 @@
     align-items: center;
     margin-bottom: 10px;
     padding-top: 10px;
+    font-weight: 500;
 
 }
 
 .cart_name {
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--text-color);
     text-transform: uppercase;
     margin: 0;
@@ -29,7 +30,7 @@
 
 .cart-title__text {
     font-size: 1.6rem;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--text-color);
 }
 
@@ -74,6 +75,7 @@
 button.cart-oder__action {
     outline: none;
     font-size: 1.4rem;
+    font-weight: 500;
     color: #ee4d2d;
     border: none;
     background-color: transparent;
@@ -101,7 +103,7 @@ button.cart-oder__action {
 .cart-oder__price-text {
     color: red;
     font-size: 1.75rem;
-    font-weight: 400;
+    font-weight: 500;
     margin: 30px 0 30px 20px;
     
 }
@@ -123,7 +125,7 @@ button.cart-oder__action {
     padding: 20px 10px;
     font-size: 2.3rem;
     color: var(--text-color);
-    font-weight: 400;
+    font-weight: 500;
 }
 
 
@@ -149,6 +151,7 @@ button.btn-cart__pay {
     text-decoration: none;
     padding: 10px 0;
     width: 100%;
+    font-weight: bold;
 }
 
 .btn-cart__pay:hover {
@@ -192,8 +195,8 @@ button.btn-cart__oder  {
 
 .pay-text {
     padding: 5px;
-    font-size: 2.5rem;
-    font-weight: 400;
+    font-size: 2.1rem;
+    font-weight: 500;
     margin-bottom: 20px;
 }
 
@@ -209,6 +212,7 @@ button.btn-cart__oder  {
     width: 100%;
     height: 100%;
     font-size: 1.4rem;
+    font-weight: 500;
     border: 1px solid #dadce0;
     border-radius: 4px;
     outline: none;
@@ -359,7 +363,7 @@ button.btn-cart__oder  {
 .oder-product__name,
 .oder-product__sl{
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 500;
     padding-left: 10px;
 }
 
@@ -374,7 +378,7 @@ button.btn-cart__oder  {
     display: block;
     font-size: 1.5rem;
     padding: 10px 0px 10px 33px;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--text-color);
 }
 
@@ -428,7 +432,7 @@ button.btn-cart__oder  {
 
 .temp__price-text {
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 500;
     color: var(--text-color);
     padding: 10px 10px;
 }
@@ -454,7 +458,7 @@ button.btn-cart__oder  {
 .oder-price__total {
     font-size: 2rem;
     color: #6fc6e8;
-    font-weight: 400;
+    font-weight: 500;
     padding: 10px 20px;
 }
 
@@ -537,6 +541,7 @@ button.btn-pay {
 }
 .cart-table__td{
     font-size: 1.8rem;
+    font-weight: 500;
     color: var(--text-color);
 }
 
@@ -625,6 +630,7 @@ button.btn-pay {
 .filter-option-inner-inner{
     color: var(--text-color);
     font-size: 1.4rem;
+    font-weight: 500;
 }
 
 

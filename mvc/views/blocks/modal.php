@@ -252,7 +252,7 @@
               </li>
               <li>
                 <span class="detail-info-name">Công nghệ hình ảnh:</span>
-                <span class="detail-info-value " style="display: inline-block;vertical-align: top;">
+                <span class="detail-info-value " style="display: inline-block;vertical-align: top;position: relative; left: 150px;top: -15px;">
                   <?php foreach($data['congnghe'] as $val): 
                         if($val !=''){
                   ?>

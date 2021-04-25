@@ -188,8 +188,8 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                                         ?>  
                                                             <strong class="oder-product__price-text" style="color: var(--text-color); padding: 10px 0px"><?=number_format($val['sp_giagiam'])?>đ</strong>
                                                             <div style="display: flex;">
-                                                                <strong class="card__oldprice " style="margin:0px 10px 0px 15px; font-size: 1.3rem;"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                                                <span class="card__precent"style="margin: 0px;font-size: 1.3rem;"><?= round($phantram,0) ?>%</span>
+                                                                <strong class="card__oldprice " style="margin:0px 10px 0px 15px; font-size: 1.3rem;font-weight: 500;"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                                                <span class="card__precent"style="margin: 0px;font-size: 1.3rem;font-weight: 500;"><?= round($phantram,0) ?>%</span>
                                                             </div>
                                                             
                                                         <?php } else { ?>

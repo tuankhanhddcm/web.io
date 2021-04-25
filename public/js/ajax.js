@@ -694,6 +694,15 @@ function showproduct() {
     }, 3500);
 }
 
+function showdelete(text,mess){
+    toast({
+        title: 'Thành công !',
+        message: "Bạn xóa " + mess + " thành công",
+        type: "success",
+        duration: 2000,
+        load: text
+    });
+}
 
 
 function showinsert(text, mess) {
@@ -1339,19 +1348,28 @@ function more_sp(limit){
 
 
 // thay đổi trạng thái
-function change_status_hd(val,id){
+function change_status_hd(val,id,dk=0){
     id_td = '#'+id;
     txt =".txt_"+id;
+    span =".span_"+id;
+    btn_td = "#td_ad_"+id;
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/set_status",
         method: "post",
         data:{
             val:val,
-            id:id
+            id:id,
+            dk:dk
         },
+        dataType: "json",
         success: function(data){
-            $(id_td).html(data);
+            $(id_td).html(data[0]);
+            if(data[1]=='true'){
+                $(span).text('Đơn hàng đã hủy');
+                $(btn_td).html("<button class='btn_cus btn_delete' data-id='"+id+"' >Xóa đơn</button>");
+            }
             $(txt).text('Chờ xử lý');
+            $(txt).css('background-color','gray');
         }
     });
 }

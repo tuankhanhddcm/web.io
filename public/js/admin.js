@@ -126,7 +126,47 @@ $(document).ready(function () {
         });
         
     });
-    
+    // xóa hóa đơn
+    $(document).on("click",".btn_delete",function(){
+        var id = $(this).data("id");
+        $.confirm({
+            title: 'Thông báo!!!',
+            content: 'Bạn có chắc muốn xóa hóa đơn',
+            draggable: true,
+            dragWindowBorder: false,
+            boxWidth: "30%",
+            useBootstrap: false,
+            type: 'red',
+            icon: 'fa fa-warning',
+            typeAnimated: true,
+            dragWindowGap: 50,
+            alignMiddle: true,
+            offsetTop: 0,
+            offsetBottom: 500,
+            buttons: {
+                Xóa:{
+                    btnClass: "btn-red",
+                    action: function(Xóa){
+                        $.ajax({
+                            url: "http://localhost/web_mvc/Ajax/delete_hoadon",
+                            data:{id:id},
+                            method: "post",
+                            success: function(data){
+                                filter_hd(1);
+                                showdelete('delete','hóa đơn');
+                            }
+                        });
+                    }
+                },
+                Hủy: {
+
+                }
+                
+            }
+        });
+        
+    });
+
     // calendar
     $(".calendar_input").click(function(){
         data=$("#result").data('val');
@@ -164,6 +204,13 @@ $(document).ready(function () {
         val = $(this).val();
         change_status_hd(val,id);
     });
+
+    $(document).on('click','.btn_huy',function(){
+        id = $(this).data('id');
+        change_status_hd(4,id,1);
+    });
+
+
 });
 
 function fliter_admin(trang) {
@@ -342,5 +389,7 @@ function show_detail(id){
         }
     })
 }
+
+
 
 
