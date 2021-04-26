@@ -66,9 +66,9 @@ class Ajax extends Controller
             if ($_POST['sl'] > 0) {
                 $sl = $_POST['sl'];
             }
-            $limit = 12;
+
             if ($_POST['limit'] > 0) {
-                $limit += $_POST['limit'];
+                $limit = $_POST['limit'];
             }
 
 
@@ -136,7 +136,7 @@ class Ajax extends Controller
         }
     }
 
-
+    // lọc sản phẩm tìm kiếm
     public function filter_search()
     {
         $sort = '';
@@ -148,41 +148,74 @@ class Ajax extends Controller
         if (isset($_POST['sort']) && !empty($_POST['sort'])) {
             $sort = $_POST['sort'];
         }
-        if (isset($_POST['banchay']) && !empty($_POST['banchay'])) {
-            $banchay = $_POST['banchay'];
+        // if (isset($_POST['banchay']) && !empty($_POST['banchay'])) {
+        //     $banchay = $_POST['banchay'];
+        // }
+        if ($_POST['limit'] > 0) {
+            $limit = $_POST['limit'];
         }
-        $sp = $this->sanpham->search_home($text, 20, $sort, $banchay);
+
+        $temp = $this->sanpham->search_home($text, 0, $sort, $banchay);
+        $sp = $this->sanpham->search_home($text, $limit, $sort, $banchay);
+        $count = 0;
+        if (!empty($temp)) {
+            $row = count($temp);
+            if ($row > count($sp)) {
+                $count = $row - count($sp);
+            }
+        }
         $ouput = "";
         if (!empty($sp) && isset($sp) && $sp !== null) {
             foreach ($sp as $row) {
-                $giasale = number_format($row['sp_giaban'] - $row['sp_giaban'] * 0.2);
                 $gia = number_format($row['sp_giaban']);
-                $ouput .= '
-                    <div class="col-2-5 ">
-                        <a class="card-item " href="../Detail/' . $row['sp_url'] . '">
-                            <div class="card-item__img">
-                                <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
-                            </div>
-                            <div class="card__name">
-                                <span class="card__name-sp">' . $row['sp_name'] . '</span>
-                            </div>
-                            <div class="card__body">
-                                <strong class="card__price">' . $giasale . 'đ</strong>
-                                <strong class="card__oldprice">' . $gia . 'đ</strong>
-                                <span class="card__precent">-20%</span>
-                            </div>
-                        </a>
-                    </div>
-                    ';
+                if ($row['sp_giagiam'] > 0) {
+                    $giasale = number_format($row['sp_giagiam']);
+                    $phantram = ($row['sp_giagiam'] / $row['sp_giaban'] - 1) * 100;
+                    $ouput .= '
+                        <div class="col-2-5 ">
+                            <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
+                                <div class="card-item__img">
+                                    <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
+                                </div>
+                                <div class="card__name">
+                                    <span class="card__name-sp">' . $row['sp_name'] . '</span>
+                                </div>
+                                <div class="card__body">
+                                    <strong class="card__price">' . $giasale . 'đ</strong>
+                                    <strong class="card__oldprice">' . $gia . 'đ</strong>
+                                    <span class="card__precent">' . round($phantram, 0) . '%</span>
+                                </div>
+                            </a>
+                        </div>
+                        ';
+                } else {
+                    $ouput .= '
+                        <div class="col-2-5 ">
+                            <a class="card-item " href="http://localhost/web_mvc/Detail/' . $row['sp_url'] . '">
+                                <div class="card-item__img">
+                                    <img src="http://localhost/web_mvc/' . $row['sp_img'] . ' " class="card__img">
+                                </div>
+                                <div class="card__name">
+                                    <span class="card__name-sp">' . $row['sp_name'] . '</span>
+                                </div>
+                                <div class="card__body">
+                                    <strong class="card__price">' . $gia . 'đ</strong>
+                                </div>
+                            </a>
+                        </div>
+                        ';
+                }
             }
         } else {
             $ouput .= '
-            <div class="danhmuc_rong ">
-                <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
-            </div>
-            ';
+                <div class="danhmuc_rong ">
+                    <h2 class="danhmuc-rong__text">Không có sản phẩm nào!!!</h2>
+                </div>
+                ';
         }
-        echo $ouput;
+
+        $mang = [$count, $ouput];
+        echo json_encode($mang);
     }
 
 
@@ -373,16 +406,18 @@ class Ajax extends Controller
         }
     }
 
-
+    //  trên ajax
     public function search_product()
     {
         if (isset($_POST['text']) && !empty($_POST['text'])) {
             $text = $_POST['text'];
             $kq = $this->sanpham->search($text);
             $out = "";
-            if ($kq) {
+            if ($kq != null) {
                 foreach ($kq as $val) {
-                    $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
+                    if ($val['sp_giagiam'] > 0) {
+                        $phantram = ($val['sp_giagiam'] / $val['sp_giaban'] - 1) * 100;
+                        $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
                                     <a href="http://localhost/web_mvc/Detail/' . $val['sp_url'] . '" class="header__cart-item">
                                         <div class="header__search--img">
                                             <img src="http://localhost/web_mvc/' . $val['sp_img'] . '" alt="" class="header__cart-img">
@@ -391,17 +426,41 @@ class Ajax extends Controller
                                             <div class="header__search--info">
                                                 <h5 class="header__search-item-name">' . $val['sp_name'] . '</h5>
                                                 <div class="header__search--price">
-                                                    <span class="header__search-item-price">' . number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) . 'đ</span>
+                                                    <span class="header__search-item-price">' . number_format($val["sp_giagiam"]) . 'đ</span>
                                                     <span class="header__search--price_sale ">' . number_format($val["sp_giaban"]) . 'đ</span>
-                                                    <span class="header__search--percent_sale ">-20%</span>
+                                                    <span class="header__search--percent_sale ">-' . round($phantram, 0) . '%</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </li>';
+                    }else{
+                        $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
+                                    <a href="http://localhost/web_mvc/Detail/' . $val['sp_url'] . '" class="header__cart-item">
+                                        <div class="header__search--img">
+                                            <img src="http://localhost/web_mvc/' . $val['sp_img'] . '" alt="" class="header__cart-img">
+                                        </div>
+                                        <div class="header__search-item-info">
+                                            <div class="header__search--info">
+                                                <h5 class="header__search-item-name">' . $val['sp_name'] . '</h5>
+                                                <div class="header__search--price">
+                                                    <span class="header__search-item-price">' . number_format($val["sp_giaban"]) . 'đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>';
+                    }
+                    
                 }
-                echo $out;
+            } else {
+                $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
+                            <div class="danhmuc_rong ">
+                                <h2 class="danhmuc-rong__text" style="margin:10px; font-size: 2.5rem;">Không tìm thấy sản phẩm nào!!!</h2>
+                            </div>
+                        </li>';
             }
+            echo $out;
         }
     }
 
@@ -841,7 +900,7 @@ class Ajax extends Controller
         if (isset($_POST['limit']) && $_POST['limit'] != "") {
             $limit = $_POST['limit'];
         }
-        $limit += 18;
+
         $sp = $this->sanpham->getSP(['*'], [], $limit);
         $row = $this->sanpham->num_rows();
         $dem = (int)$row - count($sp);
@@ -955,8 +1014,8 @@ class Ajax extends Controller
                             <td>' . $val["date"] . '</td>
                             <td>' . $diachi . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
-                            <td style="width: 140px;"><span class="'.$class.' txt_'.$val['ma_hd'].' ">' . $text . '</span></td>
-                            <td style="width: 125px;" id="'.$val['ma_hd'].'">
+                            <td style="width: 140px;"><span class="' . $class . ' txt_' . $val['ma_hd'] . ' ">' . $text . '</span></td>
+                            <td style="width: 125px;" id="' . $val['ma_hd'] . '">
                                 ' . $html . '
                             </td>
                         </tr>
@@ -986,9 +1045,9 @@ class Ajax extends Controller
             $hd = $this->Hoadon->hd_theo_ngay($date, $newdate, $start, $limit);
             if (!empty($hd)) {
                 foreach ($hd as $val) {
-                    $style='';
+                    $style = '';
                     switch ($val["trangthai"]) {
-                       
+
                         case 0:
                             $option = '
                             <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
@@ -1039,9 +1098,9 @@ class Ajax extends Controller
                             <td>' . $val['sdt'] . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
                             <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td class="span_'.$val['ma_hd'].'" style="width: 170px;font-weight:bold;'.$style.'">' . $option . '</td>
-                            <td id="td_ad_'.$val['ma_hd'].'" style="width: 120px;">
-                                '.$html.'
+                            <td class="span_' . $val['ma_hd'] . '" style="width: 170px;font-weight:bold;' . $style . '">' . $option . '</td>
+                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;">
+                                ' . $html . '
                             </td>
                         </tr>
                         ';
@@ -1141,9 +1200,9 @@ class Ajax extends Controller
                             <td>' . $val['sdt'] . '</td>
                             <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
                             <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td class="span_'.$val['ma_hd'].'" style="width: 170px; font-weight: bold;font-size: 1.45rem;' . $style . '">' . $option . '</td>
-                            <td id="td_ad_'.$val['ma_hd'].'" style="width: 120px;">
-                                '.$html.'
+                            <td class="span_' . $val['ma_hd'] . '" style="width: 170px; font-weight: bold;font-size: 1.45rem;' . $style . '">' . $option . '</td>
+                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;">
+                                ' . $html . '
                             </td>
                         </tr>
                         ';
@@ -1203,14 +1262,14 @@ class Ajax extends Controller
     {
         if (isset($_POST['val'])  && isset($_POST['id'])) {
             $kq = $this->Hoadon->set_status_hd($_POST['val'], $_POST['id']);
-            if(isset($_POST['dk']) && $_POST['dk'] !=0){
+            if (isset($_POST['dk']) && $_POST['dk'] != 0) {
                 $kq = $this->Hoadon->set_delete_hd($_POST['id']);
             }
 
             if ($kq == 'true') {
-                $ouput='<span class="span_huy">Đã gửi yêu cầu</span>';
+                $ouput = '<span class="span_huy">Đã gửi yêu cầu</span>';
             }
-            $mang =[$ouput,$kq];
+            $mang = [$ouput, $kq];
             echo json_encode($mang);
         }
     }

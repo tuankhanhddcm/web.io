@@ -3,7 +3,7 @@ class sanpham extends DB {
     
     public $table ="sanpham";
     // lấy sản phẩm với tham số cột , sắp xếp, limit
-    public function getSP($column =["*"],$orderbys = [],$limit=18){
+    public function getSP($column =["*"],$orderbys = [],$limit=2){
         
         $data = $this->selectall($this->table,$column,$orderbys,$limit);
         return $data;
@@ -211,8 +211,11 @@ class sanpham extends DB {
         return $this->_query($sql);
     }
 
-    public function search_home($text,$count=5,$sort,$banchay){
-        $sql = "SELECT * from sanpham where sp_name like '%$text%'  ";
+    public function search_home($text,$count=0,$sort,$banchay){
+        $sql = "SELECT * from sanpham where 1";
+        if(!empty($text)){
+            $sql .=" and sp_name like '%$text%' ";
+        }
         if(!empty($banchay)){
             $sql .=' and sp_sl >'.$banchay;
         }
@@ -221,7 +224,11 @@ class sanpham extends DB {
             $sql .=' order by sp_giaban '.$sort;
         }
         
-        $sql .=' limit '. $count;
+        if($count !=0){
+            $sql .=" limit $count";
+        }
+        
+        
         return $this->_query($sql);
     }
 

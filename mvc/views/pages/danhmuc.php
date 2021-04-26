@@ -424,8 +424,8 @@
                  </div>
                  <div class="grid__row " id="danhmuc_loai">
                  </div>
-                <div class="col-sm-12" id="div_view">
-                    <button class="btn_cus viewmore btn_view_dm" >Xem thêm <span></span> sản phẩm</button>
+                <div class="col-sm-12" id="div_view_dm">
+                    <button class="btn_cus viewmore " id="btn_view_dm" data-count="4" >Xem thêm <span id="view_dm"></span> sản phẩm</button>
                 </div>
              </div>
          </div>

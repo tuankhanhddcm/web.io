@@ -2,50 +2,57 @@ $(document).ready(function () {
 
     //click button sapxep
     $("#giacao").click(function () {
-        filter_data($('#giacao').val());
+        filter_data($('#giacao').val(),0,8);
+        filter_gia_search($('#giacao').val(),15);
         $(this).attr('data-order','1');
         $("#banchay").val('');
         $("#giathap").attr('data-order','0');
     });
 
     $("#giathap").click(function () {
-        filter_data($('#giathap').val());
+        filter_data($('#giathap').val(),0,8);
+        filter_gia_search($('#giathap').val(),15);
         $(this).attr('data-order','1');
         $("#banchay").val('');
         $("#giacao").attr('data-order','0');
     });
-    filter_data('');
+    filter_data('',0,8);
     // click button bán chạy
     $("#banchay").click(function () {
         $(this).val(6);
-        filter_data('',6);
+        filter_data('',6,8);
         $("#giathap").attr('data-order','0');
         $("#giacao").attr('data-order','0');
     });
 
     $(".form-check-input").click(function () {
-        filter_data('');
+        filter_data('',0,8);
     });
 
-    $(".btn_view_dm").click(function(){
+    filter_gia_search('',15);
+
+    $("#btn_view_dm").click(function(){
         var banchay=$("#banchay").val();
         var giacao= $("#giacao").attr('data-order');
         var giathap=$("#giathap").attr('data-order');
         if(banchay==6){
-            filter_data('',banchay,12);
+            filter_data('',banchay,$(this).data('count'));
         }else if(giacao == '1'){
             
-            filter_data($('#giacao').val(),0,12);
+            filter_gia_search($('#giacao').val(),$(this).data('search'))
+            filter_data($('#giacao').val(),0,$(this).data('count'));
 
         }else if(giathap=="1"){
-            filter_data($('#giathap').val(),0,12); 
+            filter_gia_search($('#giathap').val(),$(this).data('search'))
+            filter_data($('#giathap').val(),0,$(this).data('count')); 
         }else{
-            filter_data('',0,12);
+            filter_data('',0,$(this).data('count'));
+            filter_gia_search('',$(this).data('search'))
         }
 
     });
 
-   
+    // search sản phẩm
 
     //sản phẩm cart khi hover
     sp_cart();
@@ -63,6 +70,9 @@ $(document).ready(function () {
         addcart();
         checkuser_status();
     });
+
+    // more sản phẩm
+    more_sp(18);
 
     //đăng ký user
     $("#dangky").click(function () {
@@ -181,11 +191,13 @@ function filter_data(order,sl=0,limit=0) {
         dataType: "json",
         success: function (data) {
             if(data[0]==0){
-                $("#div_view").css("display","none");
+                $("#div_view_dm").css("display","none");
             }else{
-                $("#div_view").css("display","block");
-                $('.viewmore span').text(data[0]);
+                $("#div_view_dm").css("display","block");
+                $('#view_dm').text(data[0]);
+                $('#btn_view_dm').data('count',limit+8);
             }
+            console.log(data[0]);
             $('#danhmuc_loai').html(data[1]);
         }
     });
@@ -200,16 +212,26 @@ function get_filter(class_name) {
 }
 
 
-function filter_gia_search(gia) {
+function filter_gia_search(gia,limit) {
     var sort = gia;
     $.ajax({
         url: "../Ajax/filter_search",
         method: "POST",
         data: {
-            sort: sort
+            sort: sort,
+            limit:limit
         },
+        dataType: "json",
         success: function (data) {
-            $('#danhmuc').html(data);
+            if(data[0]==0){
+                $("#div_view_search").css("display","none");
+            }else{
+                $("#div_view_search").css("display","block");
+                $('#view_search').text(data[0]);
+                $('#btn_view_dm').data('search',limit+15);
+            }
+            
+            $('#danhmuc_search').html(data[1]);
         }
     });
 }
@@ -344,7 +366,7 @@ function dangky() {
             pass_again: pass_again
         },
         success: function (data) {
-            console.log(data);
+            // console.log(data);
         }
     });
 
@@ -1339,7 +1361,9 @@ function more_sp(limit){
                 $("#div_view").css("display","none");
             }else{
                 $("#div_view").css("display","block");
-                $('.viewmore span').text(data[0]);
+                $('#view_home').text(data[0]);
+                $('.viewmore').data('sl',limit+18);
+                
             }
             $("#home_sp").html(data[1]);
         }

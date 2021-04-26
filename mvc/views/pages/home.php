@@ -106,33 +106,11 @@
         </div>
         <div class="product-list__home">
             <div class="grid__row" id="home_sp">
-                <?php foreach ($data["sanpham"] as $val) { ?>
-                    <div class="col-sm-2 ">
-                        <a class="card-item card_height" href="http://localhost/web_mvc/Detail/<?= $val['sp_url']; ?>">
-                            <div class="card-item__img">
-                                <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
-                            </div>
-                            <div class="card__name">
-                                <span class="card__name-sp"><?= $val["sp_name"] ?></span>
-                            </div>
-                            <div class="card__body">
-                                <?php if ($val['sp_giagiam'] > 0) {
-                                    $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
-                                ?>
-                                    <strong class="card__price"><?= number_format($val['sp_giagiam']) ?>đ</strong>
-                                    <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                    <span class="card__precent"><?= round($phantram,0) ?>%</span>
-                                <?php } else { ?>
-                                    <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                <?php } ?>
-                            </div>
-                        </a>
-                    </div>
-                <?php } ?>
+                
 
             </div>
             <div class="col-sm-12" id="div_view">
-                <button class="btn_cus viewmore" onclick="more_sp(18)">Xem thêm <span><?= $data['conlai'] ?></span> sản phẩm</button>
+                <button class="btn_cus viewmore" data-sl="4" onclick="more_sp($(this).data('sl'))">Xem thêm <span id="view_home"><?= $data['conlai'] ?></span> sản phẩm</button>
             </div>
         </div>
     </div>

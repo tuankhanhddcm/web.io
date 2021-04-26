@@ -20,39 +20,17 @@
         <div class="grid__row">
             <div class="col-sm-12">
                 <div class="home-sort">
-                    <span class="home-sort__lable" style="font-size: 1.6rem;" >Tìm thấy <span style="color: black; font-size:1.6rem; font-weight: 600;"><?=$data['ketqua'] ?></span> sản phẩm:</span>
+                    <span class="home-sort__lable" style="font-size: 1.6rem;">Tìm thấy <span style="color: black; font-size:1.6rem; font-weight: 600;"><?= $data['ketqua'] ?></span> sản phẩm:</span>
                     <span class="home-sort__lable">Sắp xếp theo</span>
                     <button class="btn_cus btn-sort  sapxep" onclick="filter_banchay();">Bán chạy</button>
-                    <button class="btn_cus btn-sort sapxep" value="desc" onclick="filter_gia_search($(this).val());">Giá cao đến thấp</button>
-                    <button class="btn_cus btn-sort sapxep" value="asc" onclick="filter_gia_search($(this).val());" >Giá thấp đến cao</button>
+                    <button class="btn_cus btn-sort sapxep" value="desc" data-order="0" id="giacao" >Giá cao đến thấp</button>
+                    <button class="btn_cus btn-sort sapxep" value="asc" data-order="0" id="giathap" >Giá thấp đến cao</button>
                 </div>
-                <div class="grid__row " id="danhmuc">
-                    <?php
-                    if (!empty($data["sanpham"])) {
-                        foreach ($data["sanpham"] as $val) : ?>
-
-                            <div class="col-2-5 ">
-                                <a class="card-item " href="../Detail/<?= $val["sp_url"] ?>">
-                                    <div class="card-item__img">
-                                        <img src="http://localhost/web_mvc/<?= $val["sp_img"] ?>" alt="" class="card__img">
-                                    </div>
-                                    <div class="card__name">
-                                        <span class="card__name-sp"><?= $val["sp_name"] ?></span>
-                                    </div>
-                                    <div class="card__body">
-                                        <strong class="card__price"><?= number_format($val["sp_giaban"] - $val["sp_giaban"] * 0.2) ?>đ</strong>
-                                        <strong class="card__oldprice"><?= number_format($val["sp_giaban"]) ?>đ</strong>
-                                        <span class="card__precent">-20%</span>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach;
-                    } else {
-                        ?>
-                        <div class="danhmuc_rong ">
-                            <h2 class="danhmuc-rong__text">Không tìm thấy sản phẩm nào!!!</h2>
-                        </div>
-                    <?php  } ?>
+                <div class="grid__row " id="danhmuc_search">
+                    
+                </div>
+                <div class="col-sm-12" id="div_view_search">
+                    <button class="btn_cus viewmore" id="btn_view_dm" data-search="15" >Xem thêm <span id="view_search"><?= $data['sl'] ?></span> sản phẩm</button>
                 </div>
             </div>
         </div>

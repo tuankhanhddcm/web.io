@@ -29,13 +29,22 @@
                 $text =$_POST['input-search'];
                 $_SESSION['search'] =$text;
             }
-            $sp = $this->sanpham->search_home($text,20,$sort,$banchay);
+            $row = $this->sanpham->search_home($text,1000,$sort,$banchay);
+            $sp = $this->sanpham->search_home($text,1000,$sort,$banchay);
             $sl = count($sp);
+            $count = 0;
+            if (!empty($row)) {
+                $rows = count($row);
+                if ($rows > count($sp)) {
+                    $count = $rows - count($sp);
+                }
+            }
             $this->view('index',[
                     'page' =>'search',
                     'sanpham' =>$sp,
                     'ketqua' =>$sl,
-                    "loaisp" =>$this->danhmuc->getloaisp()
+                    "loaisp" =>$this->danhmuc->getloaisp(),
+                    "sl" =>$count
                 ]);
             
             
