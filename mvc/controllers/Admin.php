@@ -5,6 +5,7 @@
         public $Danhmuc;
         public $Nhasanxuat;
         public $Hoadon;
+        public $User;
 
         public function __construct()
         {
@@ -12,13 +13,14 @@
             $this->Danhmuc = $this->model("Danhmucmodel");
             $this->Nhasanxuat = $this->model("Nhasanxuat");
             $this->Hoadon = $this->model('Hoadon');
+            $this->User = $this->model('Usermodel');
         }
 
         public function trangchu(){
             $date = date('Y-m-d', time());
             $newdate = date('Y-m-d', strtotime('+1 day', strtotime($date)));
             $olddate = date('Y-m-d', strtotime('-1 day', strtotime($date)));
-            $count_hd = count($this->Hoadon->hd_theo_ngay($date,$newdate));
+            $count_hd = count($this->Hoadon->hd_theo_ngay($date,$olddate));
             $tongsp=0;
             foreach($this->Hoadon->hd_theo_ngay($date,$newdate,0,0,'chitiethoadon') as $val){
                 $tongsp += $val['soluong'];
@@ -28,6 +30,7 @@
             foreach($this->Hoadon->hd_theo_ngay($date,$newdate) as $val){
                 $total +=$val['total_money'];
             }
+
             $old_total = 0;
             foreach($this->Hoadon->hd_theo_ngay($olddate,$date) as $val){
                 $old_total +=$val['total_money'];
@@ -35,9 +38,12 @@
 
             if($total > $old_total){
                 $sum ='+'.round((float)(($total - $old_total)/$total*100),0);
-            }else{
+            }else if($old_total >$total){
                 $sum ='-'.round((float)(($old_total - $total)/$old_total*100),0);
+            }else{
+                $sum =0;
             }
+            
             $this->view('admin',[
                 "page" =>'home',
                 "so_hd" =>$count_hd,
@@ -101,6 +107,17 @@
                 "page"=>"oders",
             ]);
            
+        }
+
+        public function list_user(){
+            $text ='';
+            $user_count = $this->User->sum_user_hd($text,"dem");
+            $user = $this->User->sum_user_hd($text,'');
+            $this->view('admin',[
+                "page"=>"list_user",
+                "user" =>$user,
+                "user_count" =>$user_count
+            ]);
         }
 
     }

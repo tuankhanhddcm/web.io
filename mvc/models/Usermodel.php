@@ -79,6 +79,27 @@ class Usermodel extends DB {
         }
         return $kq;
     }
+
+    public function sum_user_hd($text,$select){
+        if($select=='dem'){
+            $sql ="SELECT khachhang,count(ma_hd)as so_hd, sum(total_money)as total FROM `hoadon`JOIN user on user.username= hoadon.khachhang WHERE 1 ";
+        }else{
+            $sql ="SELECT * FROM `hoadon`JOIN user on user.username= hoadon.khachhang WHERE 1 ";
+        }
+        
+        if(!empty($text)){
+            $sql .=" and khachhang LIKE '%$text%'";
+        }
+        if($select =='dem'){
+            $sql .="GROUP by khachhang";
+        }
+        
+        return $this->_query($sql);
+    }
+
+
+
+
 }
 
 ?>

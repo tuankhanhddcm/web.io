@@ -1283,4 +1283,7 @@ class Ajax extends Controller
             echo $kq;
         }
     }
+
+
+    
 }

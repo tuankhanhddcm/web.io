@@ -39,7 +39,6 @@ class Cart extends Controller{
         } else{
             $messenger = "false";
         }
-        var_dump($_SESSION['cart']);
         echo $messenger;
         
     }

@@ -195,8 +195,7 @@ button.btn {
     text-align: center;
 }
 .table_sp tr th {
-    line-height: 15px;
-    padding-bottom: 15px;
+    line-height: 20px;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 

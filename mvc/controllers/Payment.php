@@ -8,14 +8,12 @@
         
         public function __construct()
         {   
-            if(!isset($_SESSION['user']) && empty($_SESSION['user'])){
-                header('location: http://localhost/web_mvc');
-            }else{
-                $this->Usermoder = $this->model("Usermodel");
-                $this->Hoadon = $this->model("Hoadon");
-                $this->Sanpham = $this->model("sanpham");
-                $this->Diachi = $this->model('Diachi');
-            }
+            
+            $this->Usermoder = $this->model("Usermodel");
+            $this->Hoadon = $this->model("Hoadon");
+            $this->Sanpham = $this->model("sanpham");
+            $this->Diachi = $this->model('Diachi');
+            
         }
 
         public function trangchu(){
