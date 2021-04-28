@@ -1,4 +1,4 @@
-<div class="col-sm-10" style="padding-left: 10px;">
+<div class="col-sm-10" style="min-height: 665px;padding-left: 10px;">
     <div class="main_ward">
         <div class="main-name">
             <h3 class="main-text">Danh sách đơn hàng</h3>

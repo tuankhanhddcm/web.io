@@ -409,7 +409,7 @@ class Ajax extends Controller
     //  trên ajax
     public function search_product()
     {
-        if (isset($_POST['text']) && !empty($_POST['text'])) {
+        if (isset($_POST['text']) && !empty($_POST['text']) && $_POST['text'] != '') {
             $text = $_POST['text'];
             $kq = $this->sanpham->search($text);
             $out = "";
@@ -1021,14 +1021,14 @@ class Ajax extends Controller
                         ';
                     }
                     $ouput .= $this->_trang($row, $page, $limit, 6);
-                }else{
+                } else {
                     $ouput .= '
                     <tr  class="no_product" >
                         <td colspan="9" style="text-align: center;">Không có đơn hàng nào !!!</td>
                     </tr>
                 ';
                 }
-                
+
                 echo $ouput;
             }
         }
@@ -1292,85 +1292,156 @@ class Ajax extends Controller
 
 
     public function search_user($limit)
-    {        
-            $text ='';
-            if (isset($_POST['text']) && !empty($_POST['text'])) {
+    {
+        $text = '';
+        if (isset($_POST['text']) && !empty($_POST['text'])) {
             $text = $_POST['text'];
+        }
+        if (isset($_POST['trang'])) {
+            $page = 1;
+            $limit = $limit;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
             }
-            if (isset($_POST['trang'])) {
-                $page = 1;
-                $limit = $limit;
-                if ($_POST['trang'] > 1) {
-                    $start = (($_POST['trang'] - 1) * $limit);
-                    $page = $_POST['trang'];
+            $ouput = '';
+            $temp = $this->usermodel->user_hd($text, "user");
+            $user_hd = $this->usermodel->user_hd($text, "user", $start, $limit);
+            $user = $this->usermodel->user_hd($text, "hoadon");
+            if (!empty($temp)) {
+                $row = count($temp);
+            } else {
+                $row = 0;
+            }
+            if (!empty($user) && !empty($temp) && !empty($user_hd)) {
+                if ($page > 1) {
+                    $count = $limit+1;
                 } else {
-                    $start = 0;
+                    $count = 1;
                 }
-                $ouput = '';
-                $temp = $this->usermodel->user_hd($text);
-                $user = $this->usermodel->user_hd($text, $start, $limit);
-                $u = $this->usermodel->select_all_user();
-                if (!empty($temp)) {
-                    $row = count($temp);
-                } else {
-                    $row = 0;
-                }
-                if (!empty($user)) {
-                    if($page >1){
-                        $count =$limit+1;
-                    }else{
-                        $count =1;
+                $mang = array();
+                foreach ($user_hd as $v) {
+                    $mang[$v['username']] = $v;
+                    $mang[$v['username']]['total'] = 0;
+                    $mang[$v['username']]['so_hd'] = 0;
+                    foreach ($user as $val) {
+                        if ($v['username'] == $val['khachhang']) {
+
+                            $mang[$v['username']]['total'] = $val['total'];
+                            $mang[$v['username']]['so_hd'] = $val['so_hd'];
+                            break;
+                        }
                     }
-                    
-                    foreach($u as $v){
-                        foreach ($user as $val) {
-                            if($v['username'] == $val['khachhang']){
-                                $ouput .= '
+                }
+                foreach ($mang as $val) {
+                    $ouput .= '
                                 <tr>   
-                                    <td>'.$count.'</td>
-                                    <td>'.$val["ho_ten"].'</td>
-                                    <td>'.$val["sdt"].'</td>
-                                    <td>'.$val["email"].'</td>
-                                    <td >'.$val["diachi"].'</td>
-                                    <td >'.$val["so_hd"].'</td>
-                                    <td >'.number_format($val["total"]).' đ</td>
+                                    <td >' . $count . '</td>
+                                    <td ><a class="btn-user" data-user="'.$val['username'].'" href="http://localhost/web_mvc/Admin/detail_user/' . $val['username'] . '" >' . $val["ho_ten"] . '</a> </td>
+                                    <td >' . $val["sdt"] . '</td>
+                                    <td >' . $val["email"] . '</td>
+                                    <td  >' . $val["diachi"] . '</td>
+                                    <td >' . $val["so_hd"] . '</td>
+                                    <td >' . number_format($val["total"]) . ' đ</td>
                                 
                                 </tr>
         
                             ';
-                            }
-                            
-                            $count +=1;
-                        }
-                        // if($v['username'] != $user["khachhang"]){
-                        //     $ouput .= '
-                        //         <tr>   
-                        //             <td>'.$count.'</td>
-                        //             <td>'.$v["ho_ten"].'</td>
-                        //             <td>'.$v["sdt"].'</td>
-                        //             <td>'.$v["email"].'</td>
-                        //             <td >'.$v["diachi"].'</td>
-                        //             <td >0</td>
-                        //             <td >0 đ</td>
-                                
-                        //         </tr>
-        
-                        //     ';
-                        // }
-                        
-                    }
-                    
-                    $ouput .=$this->_trang($row,$page,$limit,7);
-            
-                }else{
-                    $ouput .='
+                    $count += 1;
+                }
+                $ouput .= $this->_trang($row, $page, $limit, 7);
+            } else {
+                $ouput .= '
                     <tr  class="no_product">
                         <td colspan="9">Không có khách hàng nào !!!</td>
                     </tr>
                     ';
-                }
-                echo $ouput;
             }
+
+            echo $ouput;
+        }
+    }
+
+    public function detail_khachhang($limit)
+    {
+        if (isset($_POST['trang'])) {
+            $page = 1;
+            $limit = $limit;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+        }
+        if (!empty($_POST['user_kh'])) {
+            $user = $_POST['user_kh'];
+
+            $temp = $this->Hoadon->select_hd_user($user);
+            $kq = $this->Hoadon->select_hd_user($user, $start, $limit);
+            if (!empty($temp)) {
+                $row = count($temp);
+            } else {
+                $row = 0;
+            }
+            $ouput = '';
+            if ($kq != null) {
+                if ($page > 1) {
+                    $count = $limit+1;
+                } else {
+                    $count = 1;
+                }
+                foreach ($kq as $val) {
+                    switch ($val["trangthai"]) {
+                        case 0:
+                            $text = "Chờ xác nhận";
+                            
+                            $class = 'txt_wait';
+                            break;
+                        case 1:
+                            $text = "Đã xác nhận";
+                            
+                            $class = 'txt_check';
+                            break;
+                        case 2:
+                            $text = "Đã giao hàng";
+                            
+                            $class = 'txt_success';
+                            break;
+                        case 3:
+                            $text = "Chờ xử lý";
+                            
+                            $class = 'txt_wait';
+                            break;
+                        case 4:
+                            $text = "Đơn hàng đã hủy";
+                            
+                            $class = 'txt_delete';
+                            break;
+                    }
+                    $ouput .= '
+                        <tr> 
+                            <td style ="text-align:center;">' . $count . '</td>
+                            <td style ="text-align:center;">' . $val["ma_hd"] . '</td>
+                            <td style ="text-align:center;">' . $val["date"] . '</td>
+                            <td style ="text-align:center;" >' . number_format($val["total_money"]) .' đ</td>
+                            <td style ="text-align:center;" ><span class="' . $class . ' " >' . $text . '</span></td>
+                        </tr>
         
+                    ';
+                    $count += 1;
+                }
+                $ouput .= $this->_trang($row, $page, $limit,5);
+            } else {
+                $ouput .= '
+                    <tr  class="no_product">
+                        <td colspan="9">Không có đơn hàng nào !!!</td>
+                    </tr>
+                    ';
+            }
+            echo $ouput;
+        }
     }
 }

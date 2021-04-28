@@ -611,3 +611,14 @@ button.btn-deletd {
 }
 
 
+/* detail khách hàng */
+
+.detail_user {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+}
+
+.detail_user label{
+    font-weight: bold;
+}

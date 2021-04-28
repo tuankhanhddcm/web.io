@@ -982,7 +982,8 @@ button.btn_address{
     color: #d12c1f;
 }
 
-button.btn-oders {
+button.btn-oders,
+.btn-user {
     min-width: 80px;
     outline: none;
     background-color: transparent;
@@ -990,7 +991,8 @@ button.btn-oders {
     color: #1ba8ff;
     font-size: 1.4rem;
 }
-.btn-oders:hover{
+.btn-oders:hover,
+.btn-user:hover{
     color: #357ebd;
 }
 

@@ -81,13 +81,21 @@ class Usermodel extends DB {
         return $kq;
     }
 
-    public function user_hd($text,$start=0,$limit=0){
-        $sql ="SELECT user.*,hoadon.khachhang,SUM(hoadon.total_money) as total,count(hoadon.ma_hd) as so_hd from user JOIN hoadon on hoadon.khachhang=user.username ";
-        if(!empty($text)){
-            $sql .=" and khachhang LIKE '%$text%' or sdt like '%$text%'";
+    public function user_hd($text,$dk='',$start=0,$limit=0){
+        if($dk =="user"){
+            $sql ="SELECT * from user where 1";
+        }else{
+            $sql ="SELECT user.*,hoadon.khachhang,SUM(hoadon.total_money) as total,count(hoadon.ma_hd) as so_hd from user JOIN hoadon on hoadon.khachhang=user.username where 1";
         }
-
-        $sql .="GROUP by hoadon.khachhang";
+        // $sql ="SELECT user.*,hoadon.khachhang,SUM(hoadon.total_money) as total,count(hoadon.ma_hd) as so_hd from user JOIN hoadon on hoadon.khachhang=user.username where 1";
+        
+        if(!empty($text)){
+            $sql .=" and ho_ten LIKE '%$text%' or sdt like '%$text%'";
+        }
+        if($dk !='user'){
+            $sql .=" GROUP by hoadon.khachhang";
+        }
+        
         if($limit >0){
             $sql .=" Limit $start,$limit";
         }
@@ -95,7 +103,10 @@ class Usermodel extends DB {
     }
 
 
-
+    public function user_byID($user){
+        $sql ="SELECT * from user where username='$user'";
+        return $this->fristquery($sql);
+    }
 
 }
 

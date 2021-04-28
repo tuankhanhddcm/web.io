@@ -43,6 +43,9 @@
   <?php require_once "./mvc/views/blocks/modal.php" ?>
   <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class='bx bxs-chevron-up'></i></a>
   <div id="toast"></div>
+  <div class="footer-title" style="position: relative;z-index: 69;text-align: center;width: 100%;bottom: 0;">
+      <p class="footer-text" >© 2021 - Bản quyền thuộc về KStore</p>
+  </div>
   <script type="text/javascript" src="http://localhost/web_mvc/public/js/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

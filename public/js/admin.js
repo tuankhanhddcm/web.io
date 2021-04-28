@@ -1,22 +1,38 @@
 $(document).ready(function () {
 
-
     // lọc trang admin
+
+    $("#list_product").html("<div class='loader'></div>");
+    $("#list_hd").html("<div class='loader'></div>");
     fliter_admin(1);
     filter_hd(1);
     $("#search").keyup(function () {
-        fliter_admin(1);
-        $(".calendar").css("display","none");
+        $("#list_product").html("<div class='loader'></div>");
+        $("#list_hd").html("<div class='loader'></div>");
+        $(".calendar").css("display", "none");
         var date = $("#result").val();
-        filter_hd(1,date);
+        setTimeout(function () {
+            fliter_admin(1);
+            filter_hd(1, date);
+        }, 1000);
+
+
+
     });
 
     $(".select-loaisp").click(function () {
-        fliter_admin(1);
+        $("#list_product").html("<div class='loader'></div>");
+        setTimeout(function () {
+            fliter_admin(1);
+        }, 1000);
+
     });
 
     $('.select-nsx').click(function () {
-        fliter_admin(1);
+        $("#list_product").html("<div class='loader'></div>");
+        setTimeout(function () {
+            fliter_admin(1);
+        }, 1000);
     });
     //end lọc
 
@@ -36,12 +52,12 @@ $(document).ready(function () {
 
     // add class active
     var path = window.location.pathname.split('/').pop(6);
-    if(path =='' || path=='Admin'){
-        path='home';
+    if (path == '' || path == 'Admin') {
+        path = 'home';
     }
-    var target = $('ul a[href="http://localhost/web_mvc/Admin/'+path+'"]');
+    var target = $('ul a[href="http://localhost/web_mvc/Admin/' + path + '"]');
     target.addClass("nav-active");
-    
+
 
     $('.sl').inputFilter(function (value) {
         return /^\d*$/.test(value);
@@ -82,15 +98,16 @@ $(document).ready(function () {
         phan_trang_loai(page);
         fliter_admin(page);
         show_hd_admin(page);
-        $(".calendar").css("display","none");
+        $(".calendar").css("display", "none");
         var date = $("#result").val();
-        filter_hd(page,date);
-        search_user($("#search").val(),page);
+        filter_hd(page, date);
+        search_user($("#search").val(), page);
+        detail_user(page);
     });
 
 
     // xóa sản phẩm
-    $(document).on("click",".btn-deletd",function(){
+    $(document).on("click", ".btn-deletd", function () {
         var id = $(this).data("mydata");
         $.confirm({
             title: 'Thông báo!!!',
@@ -107,13 +124,13 @@ $(document).ready(function () {
             offsetTop: 0,
             offsetBottom: 500,
             buttons: {
-                Xóa:{
+                Xóa: {
                     btnClass: "btn-red",
-                    action: function(Xóa){
+                    action: function (Xóa) {
                         $.ajax({
-                            url: "http://localhost/web_mvc/Ajax/delete_sp/"+id,
+                            url: "http://localhost/web_mvc/Ajax/delete_sp/" + id,
                             method: "post",
-                            success: function(data){
+                            success: function (data) {
                                 fliter_admin(1);
                             }
                         });
@@ -122,13 +139,13 @@ $(document).ready(function () {
                 Hủy: {
 
                 }
-                
+
             }
         });
-        
+
     });
     // xóa hóa đơn
-    $(document).on("click",".btn_delete",function(){
+    $(document).on("click", ".btn_delete", function () {
         var id = $(this).data("id");
         $.confirm({
             title: 'Thông báo!!!',
@@ -145,16 +162,16 @@ $(document).ready(function () {
             offsetTop: 0,
             offsetBottom: 500,
             buttons: {
-                Xóa:{
+                Xóa: {
                     btnClass: "btn-red",
-                    action: function(Xóa){
+                    action: function (Xóa) {
                         $.ajax({
                             url: "http://localhost/web_mvc/Ajax/delete_hoadon",
-                            data:{id:id},
+                            data: { id: id },
                             method: "post",
-                            success: function(data){
+                            success: function (data) {
                                 filter_hd(1);
-                                showdelete('delete','hóa đơn');
+                                showdelete('delete', 'hóa đơn');
                             }
                         });
                     }
@@ -162,62 +179,65 @@ $(document).ready(function () {
                 Hủy: {
 
                 }
-                
+
             }
         });
-        
+
     });
 
     // calendar
-    $(".calendar_input").click(function(){
-        data=$("#result").data('val');
-        if(data ==0){
-            $(".calendar").css("display","block");
-            $("#result").data('val','1');
-        }else if(data ==1){
-            $(".calendar").css("display","none");
-            $("#result").data('val','0');
+    $(document).on('click', '.rd-day-selected', function () {
+        $(".calendar").css("display", "none");
+        $("#result").data('val', '0');
+        var date = $("#result").val();
+        filter_hd(1, date);
+
+    })
+    $(document).on('click', '.calendar_input', function () {
+
+        var date = $("#result").val();
+        filter_hd(1, date);
+        data = $("#result").data('val');
+        if (data == 0) {
+            $(".calendar").css("display", "block");
+            $("#result").data('val', '1');
+        } else if (data == 1) {
+            $(".calendar").css("display", "none");
+            $("#result").data('val', '0');
         }
         $("#result").val('');
-    });
-
-    $(document).on('click','.rd-day-selected',function(){
-        $(".calendar").css("display","none");
-        $("#result").data('val','0');
-        var date = $("#result").val();
-        filter_hd(1,date);
-    })
-    $(document).on('click','.calendar_input',function(){
-        var date = $("#result").val();
-        filter_hd(1,date);
+        
+        
     });
 
     // show detail oder
-    $(document).on("click",".btn-oders",function(){
-        var id = $(this).data('id');    
+    $(document).on("click", ".btn-oders", function () {
+        var id = $(this).data('id');
         show_detail(id);
     });
 
 
 
-    $(document).on('change','.select-oders',function(){
+    $(document).on('change', '.select-oders', function () {
         id = $(this).data('id');
         val = $(this).val();
-        change_status_hd(val,id);
+        change_status_hd(val, id);
     });
 
-    $(document).on('click','.btn_huy',function(){
+    $(document).on('click', '.btn_huy', function () {
         id = $(this).data('id');
-        change_status_hd(4,id,1);
+        change_status_hd(4, id, 1);
     });
 
-// tìm kiếm khách hàng
-    search_user('',1);
-    $("#search").keyup(function(){
-        search_user($(this).val(),1);
+    // tìm kiếm khách hàng
+    search_user('', 1);
+    $("#search").keyup(function () {
+        search_user($(this).val(), 1);
     });
 
-
+    // detail khách hàng
+    $("#list_detail_user").html("<div class='loader'></div>");
+    detail_user(1);
 });
 
 function fliter_admin(trang) {
@@ -244,10 +264,10 @@ function readURL(input, id_img, img) {
     var file = input.files;
     var id = id_img.slice(1);
     var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
-    if (file.length > 0 && file != ""  ) {
+    if (file.length > 0 && file != "") {
         var files = $(id_img).prop('files')[0];
-        var type =files.type;
-        if(type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]){
+        var type = files.type;
+        if (type == match[0] || type == match[1] || type == match[2] || type == match[3] || type == match[4]) {
             kq = 'true';
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -257,10 +277,10 @@ function readURL(input, id_img, img) {
             reader.readAsDataURL(input.files[0]);
             $('.' + id + '_icon').css("display", 'none');
             $(".error_" + id).text('');
-        }else{
+        } else {
             $(".error_" + id).text('File không đúng định dạng');
         }
-        
+
     } else {
         $(".error_" + id).text('Vui lòng chọn hình ảnh');
         $(".error_" + id).css("display", 'block');
@@ -327,24 +347,24 @@ function phan_trang_loai(trang) {
 }
 
 
-function check_giagiam(){
+function check_giagiam() {
     check('.giagiam_lb');
-    if(check('.giaban_lb')=='true' && check('.giagiam_lb')=='true'){
+    if (check('.giaban_lb') == 'true' && check('.giagiam_lb') == 'true') {
         var gia = $('.giaban').val();
         var txt_giagiam = $('.giagiam').val();
-        if(txt_giagiam.search('₫') >0){
+        if (txt_giagiam.search('₫') > 0) {
             giagiam = txt_giagiam.slice(0, txt_giagiam.search('₫'));
             giagiam = giagiam.replaceAll('.', '');
-        }else{
+        } else {
             giagiam = txt_giagiam;
         }
-        if(Number(giagiam) > Number(gia)){
+        if (Number(giagiam) > Number(gia)) {
             $('.giagiam').addClass('error_input');
             $(".giagiam_icon").css("display", "block");
             $(".error_giagiam").text("Giá khuyến mãi phải nhỏ hơn giá bán");
             $(".error_giagiam").css("display", "block");
             kq = "false";
-        }else{
+        } else {
             $(".giagiam").removeClass('error_input');
             $(".giagiam_icon").css("display", "none");
             $(".error_giagiam").css("display", "none");
@@ -353,63 +373,86 @@ function check_giagiam(){
         }
         return kq;
     }
-    
+
 }
 
 
-function show_hd_admin(trang){
-    $.ajax({
-        url: "http://localhost/web_mvc/Ajax/show_hd_admin/5",
-        method: "post",
-        data:{trang:trang},
-        success: function(data){
-            $('#list_oder').html(data);
-        }
-    });
+function show_hd_admin(trang) {
+    $("#list_oder").html("<div class='loader'></div>");
+    setTimeout(function () {
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/show_hd_admin/5",
+            method: "post",
+            data: { trang: trang },
+            success: function (data) {
+                $('#list_oder').html(data);
+            }
+        });
+    }, 1000);
 }
 
 
-function filter_hd(trang,date){
+function filter_hd(trang, date) {
+
     var search = $('#search').val();
-    // var date = $("#result").val();
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/filter_hd_ad/8",
         method: "post",
         data: {
-            trang:trang,
-            search:search,
-            date:date
+            trang: trang,
+            search: search,
+            date: date
         },
-        success:function(data){
+        success: function (data) {
             $("#list_hd").html(data);
         }
     });
+
 }
 
-function show_detail(id){
+function show_detail(id) {
+    $("#detail_oder_ad").html("<div class='loader'></div>");
     $.ajax({
-        url:"http://localhost/web_mvc/Ajax/show_detail_ad",
+        url: "http://localhost/web_mvc/Ajax/show_detail_ad",
         method: "post",
-        data: {id:id},
-        success:function(data){
+        data: { id: id },
+        success: function (data) {
             $('#detail_oder_ad').html(data);
         }
     })
 }
 
-function search_user(text,trang){
-    $.ajax({
-        url:"http://localhost/web_mvc/Ajax/search_user/10",
-        method:"post",
-        data:{
-            trang:trang,
-            text:text
-        },
-        success:function(data){
-            $("#list_user").html(data);
-        }
-    });
+function search_user(text, trang) {
+    $("#list_user").html("<div class='loader'></div>");
+    setTimeout(function () {
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/search_user/10",
+            method: "post",
+            data: {
+                trang: trang,
+                text: text
+            },
+            success: function (data) {
+
+                $("#list_user").html(data);
+            }
+        });
+    }, 500);
+
 }
 
 
-
+function detail_user(trang){
+    var user_kh = $("#ma_kh").val();
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/detail_khachhang/10",
+        method: "post",
+        data:{
+            trang:trang,
+            user_kh: user_kh
+        },
+        success: function(data){
+            $("#list_detail_user").html(data);
+        }
+    });
+}

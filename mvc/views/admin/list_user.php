@@ -1,5 +1,5 @@
-<div class="col-sm-10" style="min-height: 784px; background-color: white;">
-    <div class="main_ward">
+<div class="col-sm-10" style="min-height: 645px; background-color: white;">
+    <div class="main_ward" >
         <div class="main-name">
             <h3 class="main-text">Danh sách Khách hàng</h3>
         </div>
@@ -16,16 +16,17 @@
                     <thead class="heading-table">
                         <tr style="text-align: center;">
                             <th style="border-left: 1px solid rgba(0,0,0,.1);"></th>
-                            <th >Tên khách hàng</th>
-                            <th >Số điện thoại</th>
-                            <th >Email</th>
+                            <th>Tên khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
                             <th>Địa chỉ</th>
                             <th>Số đơn hàng</th>
                             <th>Tổng tiền</th>
                         </tr>
                     </thead>
                     <tbody id="list_user">
-                    
+                        
+                        
                     </tbody>
                 </table>
             </div>

@@ -120,4 +120,14 @@
             ]);
         }
 
+        public function detail_user($user){
+            if($user !=''){
+                $kq = $this->User->user_byID($user);
+            }
+            $this->view('admin',[
+                "page" =>"detail_user",
+                "user" => $kq
+            ]);
+        }
+
     }

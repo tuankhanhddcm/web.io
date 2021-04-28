@@ -1,4 +1,4 @@
-<div class="col-sm-10" style="min-height: 784px; background-color: white;">
+<div class="col-sm-10" style="min-height: 665px; background-color: white;">
     <div class="main_ward">
         <div class="main-name">
             <h3 class="main-text">Danh sách sản phẩm</h3>

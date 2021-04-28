@@ -2,52 +2,72 @@ $(document).ready(function () {
 
     //click button sapxep
     $("#giacao").click(function () {
-        filter_data($('#giacao').val(),0,8);
-        filter_gia_search($('#giacao').val(),15);
-        $(this).attr('data-order','1');
+        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
+        $("#div_view_dm").css("display", "none");
+        setTimeout(function () {
+
+            filter_data($('#giacao').val(), 0, 8);
+        }, 1000);
+
+        filter_gia_search($('#giacao').val(), 15);
+        $(this).attr('data-order', '1');
         $("#banchay").val('');
-        $("#giathap").attr('data-order','0');
+        $("#giathap").attr('data-order', '0');
     });
 
     $("#giathap").click(function () {
-        filter_data($('#giathap').val(),0,8);
-        filter_gia_search($('#giathap').val(),15);
-        $(this).attr('data-order','1');
+        // loading
+        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
+        $("#div_view_dm").css("display", "none");
+        setTimeout(function () {
+            filter_data($('#giathap').val(), 0, 8);
+        }, 1000);
+
+        filter_gia_search($('#giathap').val(), 15);
+        $(this).attr('data-order', '1');
         $("#banchay").val('');
-        $("#giacao").attr('data-order','0');
+        $("#giacao").attr('data-order', '0');
     });
-    filter_data('',0,8);
+    filter_data('', 0, 8);
+
     // click button bán chạy
     $("#banchay").click(function () {
         $(this).val(6);
-        filter_data('',6,8);
-        $("#giathap").attr('data-order','0');
-        $("#giacao").attr('data-order','0');
+        filter_data('', 6, 8);
+        $("#giathap").attr('data-order', '0');
+        $("#giacao").attr('data-order', '0');
     });
 
     $(".form-check-input").click(function () {
-        filter_data('',0,8);
+        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
+        $("#div_view_dm").css("display", "none");
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        setTimeout(function (){
+            filter_data('', 0, 8);
+        }, 1000);
+
     });
 
-    filter_gia_search('',15);
+    filter_gia_search('', 15);
 
-    $("#btn_view_dm").click(function(){
-        var banchay=$("#banchay").val();
-        var giacao= $("#giacao").attr('data-order');
-        var giathap=$("#giathap").attr('data-order');
-        if(banchay==6){
-            filter_data('',banchay,$(this).data('count'));
-        }else if(giacao == '1'){
-            
-            filter_gia_search($('#giacao').val(),$(this).data('search'))
-            filter_data($('#giacao').val(),0,$(this).data('count'));
+    $("#btn_view_dm").click(function () {
+        var banchay = $("#banchay").val();
+        var giacao = $("#giacao").attr('data-order');
+        var giathap = $("#giathap").attr('data-order');
+        if (banchay == 6) {
+            filter_data('', banchay, $(this).data('count'));
+        } else if (giacao == '1') {
+            filter_gia_search($('#giacao').val(), $(this).data('search'))
+            filter_data($('#giacao').val(), 0, $(this).data('count'));
 
-        }else if(giathap=="1"){
-            filter_gia_search($('#giathap').val(),$(this).data('search'))
-            filter_data($('#giathap').val(),0,$(this).data('count')); 
-        }else{
-            filter_data('',0,$(this).data('count'));
-            filter_gia_search('',$(this).data('search'))
+        } else if (giathap == "1"){
+            filter_gia_search($('#giathap').val(), $(this).data('search'))
+            filter_data($('#giathap').val(), 0, $(this).data('count'));
+        } else {
+            filter_data('', 0, $(this).data('count'));
+            filter_gia_search('', $(this).data('search'))
         }
 
     });
@@ -118,7 +138,7 @@ $(document).ready(function () {
 
     });
 
-    $('#district').click(function(){
+    $('#district').click(function () {
         $("#ward").val('');
         $("#ward").selectpicker("refresh");
     });
@@ -127,7 +147,7 @@ $(document).ready(function () {
         change_label($(".select-loaisp option:selected").val());
         if (check("#loaisp") == "false") {
             $("#thongso_sp").addClass("disabled");
-            
+
         }
     });
 
@@ -139,7 +159,7 @@ $(document).ready(function () {
     $("#thongso_sp").click(function () {
         if (check("#loaisp") == 'true') {
             $(this).removeClass('disabled');
-           
+
         }
     });
 
@@ -158,14 +178,14 @@ $(document).ready(function () {
         }, 400);
         return false;
     });
-    
+
 
 });
 
 
 
 
-function filter_data(order,sl=0,limit=0) {
+function filter_data(order, sl = 0, limit = 0) {
     var action = 'fetch_data';
     var gia = get_filter("gia")
     var nsx = get_filter("hang");
@@ -173,6 +193,7 @@ function filter_data(order,sl=0,limit=0) {
     var loai_sp = get_filter('loai_sp');
     var kieu_tu = get_filter("k_tu");
     var ma_loai = $('#ma_loai').val();
+
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/filter_data",
         method: "POST",
@@ -182,25 +203,28 @@ function filter_data(order,sl=0,limit=0) {
             gia: gia,
             ma_loai: ma_loai,
             kich_co: kich_co,
-            loai_sp:loai_sp,
-            kieu_tu:kieu_tu,
+            loai_sp: loai_sp,
+            kieu_tu: kieu_tu,
             order: order,
-            limit:limit,
-            sl:sl
+            limit: limit,
+            sl: sl
         },
         dataType: "json",
         success: function (data) {
-            if(data[0]==0){
-                $("#div_view_dm").css("display","none");
-            }else{
-                $("#div_view_dm").css("display","block");
+            if (data[0] == 0) {
+                $("#div_view_dm").css("display", "none");
+            } else {
+                $("#div_view_dm").css("display", "block");
                 $('#view_dm').text(data[0]);
-                $('#btn_view_dm').data('count',limit+8);
+                $('#btn_view_dm').data('count', limit + 8);
             }
-            console.log(data[0]);
             $('#danhmuc_loai').html(data[1]);
+
+
         }
     });
+
+
 }
 
 function get_filter(class_name) {
@@ -212,25 +236,25 @@ function get_filter(class_name) {
 }
 
 
-function filter_gia_search(gia,limit) {
+function filter_gia_search(gia, limit) {
     var sort = gia;
     $.ajax({
         url: "../Ajax/filter_search",
         method: "POST",
         data: {
             sort: sort,
-            limit:limit
+            limit: limit
         },
         dataType: "json",
         success: function (data) {
-            if(data[0]==0){
-                $("#div_view_search").css("display","none");
-            }else{
-                $("#div_view_search").css("display","block");
+            if (data[0] == 0) {
+                $("#div_view_search").css("display", "none");
+            } else {
+                $("#div_view_search").css("display", "block");
                 $('#view_search').text(data[0]);
-                $('#btn_view_dm').data('search',limit+15);
+                $('#btn_view_dm').data('search', limit + 15);
             }
-            
+
             $('#danhmuc_search').html(data[1]);
         }
     });
@@ -550,7 +574,7 @@ function email(email) {
 
 
 function pass() {
-    if (check('#pass')=='true') {
+    if (check('#pass') == 'true') {
         var pass = $("#pass").val();
         if (pass.length < 8) {
             $('#pass').addClass('error_input');
@@ -660,7 +684,7 @@ function toast({
                 clearTimeout(autoremove);
 
             }
-            if (load == 'insert'|| load=='update') {
+            if (load == 'insert' || load == 'update') {
                 location.href = "http://localhost/web_mvc/Admin/list_sp";
             }
             if (load == 'insert_loai') {
@@ -716,7 +740,7 @@ function showproduct() {
     }, 3500);
 }
 
-function showdelete(text,mess){
+function showdelete(text, mess) {
     toast({
         title: 'Thành công !',
         message: "Bạn xóa " + mess + " thành công",
@@ -819,7 +843,7 @@ function logout() {
 
 
 function district(val) {
-    
+
     var kq = '';
     if (val !== 'undefined' && val !== ' ') {
         var provi = val;
@@ -835,7 +859,7 @@ function district(val) {
                     $('#district').html(data);
                     $('#district').prop('disabled', false);
                     $('.select').selectpicker('refresh');
-                }else {
+                } else {
                     $('#district').prop('disabled', true);
                     $('.select').selectpicker('refresh');
                 }
@@ -863,7 +887,7 @@ function ward() {
                         $('#ward').html(data);
                         $('#ward').prop('disabled', false);
                         $('.select').selectpicker('refresh');
-                    }else {
+                    } else {
                         $('#ward').prop('disabled', true);
                         $('#street').prop('disabled', true);
                         $('.select').selectpicker('refresh');
@@ -893,7 +917,7 @@ function street() {
                         $('#street').html(data);
                         $('#street').prop('disabled', false);
                         $('.select').selectpicker('refresh');
-                    }else {
+                    } else {
                         // $('#street').prop('disabled', true);
                         $('.select').selectpicker('refresh');
                     }
@@ -908,18 +932,27 @@ function street() {
 
 function search_header() {
     var text = $("#input-search").val();
-    if (text !== ' ') {
-        $.ajax({
-            url: "http://localhost/web_mvc/Ajax/search_product",
-            method: "post",
-            data: {
-                text: text
-            },
-            success: function (data) {
-                $('#list-search').html(data);
-            }
-        });
+    if (text !='') {
+        $("#list-search").html("<div class='loadsearch'></div>");
+        $('#list-search').css("display","block");
+        setTimeout(function () {
+            $.ajax({
+                url: "http://localhost/web_mvc/Ajax/search_product",
+                method: "post",
+                data: {
+                    text: text
+                },
+                success: function (data) {
+                   
+                    $('#list-search').html(data);
+                }
+            });
+        }, 1000);
+    }else{
+        $('#list-search').css("display","none");
     }
+
+
 }
 
 function check_sp() {
@@ -930,21 +963,21 @@ function check_sp() {
     check(".gia_lb");
     check(".giaban_lb");
     check_giagiam();
-    check("#img_temp") ;
+    check("#img_temp");
     var kq = 'false';
     var img = $("#img_insert").attr('src');
     if (check("#loaisp") == 'true' && check("#loainsx") == 'true'
         && check(".sl_lb") == 'true' && check(".sp_lb") == 'true'
-        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' &&  check_giagiam()=='true' ) {
-            if(img!='#'|| check("#img_temp") == 'true'){
-                kq = 'true';
-            }
-        
+        && check(".gia_lb") == 'true' && check(".giaban_lb") == 'true' && check_giagiam() == 'true') {
+        if (img != '#' || check("#img_temp") == 'true') {
+            kq = 'true';
+        }
+
     }
     return kq;
 }
 
-function insert_sp(val,url,ma_sp) {
+function insert_sp(val, url, ma_sp) {
     var tensp = $('.sp').val();
     var sl = $('.sl').val();
     var txt_gia = $('.gia').val();
@@ -955,33 +988,33 @@ function insert_sp(val,url,ma_sp) {
     var file = $('#img_temp').prop('files')[0];
     var sp_mota = $("#mota").val();
     var match = ["image/gif", "image/png", "image/jpg", "image/jfif", "image/jpeg"];
-    var gia ='';
-    var giaban ='';
-    var giagiam ='';
-    
-    if(txt_giagiam.search('₫') >0){
+    var gia = '';
+    var giaban = '';
+    var giagiam = '';
+
+    if (txt_giagiam.search('₫') > 0) {
         giagiam = txt_giagiam.slice(0, txt_giagiam.search('₫'));
         giagiam = giagiam.replaceAll('.', '');
-    }else{
-        
+    } else {
+
         giagiam = txt_giagiam;
     }
-    if(txt_gia.search('₫') >0 ){
+    if (txt_gia.search('₫') > 0) {
         gia = txt_gia.slice(0, txt_gia.search('₫'));
         gia = gia.replaceAll('.', '');
-        
-    }else{
+
+    } else {
         gia = txt_gia;
     }
-    if( txt_giaban.search('₫') >0){
+    if (txt_giaban.search('₫') > 0) {
         giaban = txt_giaban.slice(0, txt_giaban.search('₫'));
         giaban = giaban.replaceAll('.', '');
-    }else{
+    } else {
         giaban = txt_giaban;
     }
     console.log(giagiam);
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
-        if(file !==undefined){
+        if (file !== undefined) {
             var type = file.type;
             var name = file.name;
             var form_data = new FormData();
@@ -994,15 +1027,15 @@ function insert_sp(val,url,ma_sp) {
                     contentType: false,
                     mimeType: "multipart/form-data",
                     data: form_data,
-    
+
                 });
             }
-            
+
         }
-       
-        var masp ='';
+
+        var masp = '';
         $.ajax({
-            url: 'http://localhost/web_mvc/Ajax/sp/'+url,
+            url: 'http://localhost/web_mvc/Ajax/sp/' + url,
             method: 'post',
             data: {
                 tensp: tensp,
@@ -1013,39 +1046,39 @@ function insert_sp(val,url,ma_sp) {
                 mansx: mansx,
                 img: name,
                 sp_mota: sp_mota,
-                ma_sp:ma_sp,
-                giagiam:giagiam
+                ma_sp: ma_sp,
+                giagiam: giagiam
             },
             async: false,
-            success: function(data){
+            success: function (data) {
                 masp = data;
             }
         });
 
         if (val == 0) {
-            if(url =='insert'){
+            if (url == 'insert') {
                 showinsert(url, 'sản phẩm');
-            }else{
-                showupdate(url,'sản phẩm');
+            } else {
+                showupdate(url, 'sản phẩm');
             }
-            
+
             setTimeout(function () {
                 location.href = 'http://localhost/web_mvc/Admin/list_sp';
             }, 2000)
         }
         if (val == 1) {
-            if(url =='insert'){
+            if (url == 'insert') {
                 showinsert('', 'sản phẩm');
-            }else{
-                showupdate('','sản phẩm');
+            } else {
+                showupdate('', 'sản phẩm');
             }
             $('textarea').val('');
-            $("#img_insert").attr('src','');
+            $("#img_insert").attr('src', '');
             $(".label-img_temp").css('display', 'block');
             $(".select").val('');
             $(".select").selectpicker("refresh");
         }
-        
+
         return masp;
 
     }
@@ -1183,7 +1216,7 @@ function insert_nsx(val) {
 
 function change_label(val) {
     if (val != '') {
-        loaisp=val;
+        loaisp = val;
         $.ajax({
             url: "http://localhost/web_mvc/Ajax/thongsokythuat",
             method: "post",
@@ -1193,7 +1226,7 @@ function change_label(val) {
             }
         });
     }
-   
+
 }
 
 function check_thongso_loai() {
@@ -1231,7 +1264,7 @@ function check_thongso_loai() {
         kq = 'true';
     }
 
-    if ( check('.hdh_lb') == 'true' && check('.ket_noi_lb') == 'true') {
+    if (check('.hdh_lb') == 'true' && check('.ket_noi_lb') == 'true') {
         kq = 'true';
     }
 
@@ -1260,9 +1293,9 @@ function check_thongso() {
 }
 
 
-function insert_tskt(masp,url){
+function insert_tskt(masp, url) {
     var loai_sp = $('.loai_sp').val() || '';
-    var kich_thuoc= $('.kich_thuoc').val() || '';
+    var kich_thuoc = $('.kich_thuoc').val() || '';
     var kl = $('.kl').val() || '';
     var noi_sx = $('.noi_sx').val() || '';
     var bh = $('.bh').val() || '';
@@ -1270,43 +1303,43 @@ function insert_tskt(masp,url){
     var nam = $('.nam').val() || '';
     var tien_ich = $('.tien_ich').val() || '';
     var cong_suat = $('.cong_suat').val() || '';
-    var tv_ich =$('.tv_ich').val() || '';
+    var tv_ich = $('.tv_ich').val() || '';
     var phan_giai = $('.phan_giai').val() || '';
     var hdh = $('.hdh').val() || '';
     var ket_noi = $('.ket_noi').val() || '';
-    var tv_loa =$('.tv_loa').val() || '';
+    var tv_loa = $('.tv_loa').val() || '';
     var kieu_tu = $('.kieu_tu').val() || '';
     var so_canh = $('.so_canh').val() || '';
     var dung_tich = $('.dung-tich').val() || '';
     var chat_lieu = $('.chat_lieu').val() || '';
-    var cn_kk =$('.cn_kk').val() || '';
+    var cn_kk = $('.cn_kk').val() || '';
     var kieu_tu = $('.kieu_tu').val() || '';
     $.ajax({
-        url: "http://localhost/web_mvc/Ajax/tskt/"+url,
+        url: "http://localhost/web_mvc/Ajax/tskt/" + url,
         method: 'post',
         data: {
             masp: masp,
-            loai_sp:loai_sp,
-            kich_thuoc:kich_thuoc,
-            kl:kl,
-            noi_sx:noi_sx,
-            bh:bh,
-            cong_nghe:cong_nghe,
-            nam:nam,
-            tien_ich:tien_ich,
-            cong_suat:cong_suat,
-            tv_ich:tv_ich,
-            phan_giai:phan_giai,
-            hdh:hdh,
-            ket_noi:ket_noi,
-            tv_loa:tv_loa,
-            kieu_tu:kieu_tu,
-            so_canh:so_canh,
-            dung_tich:dung_tich,
-            cn_kk:cn_kk,
-            chat_lieu:chat_lieu
+            loai_sp: loai_sp,
+            kich_thuoc: kich_thuoc,
+            kl: kl,
+            noi_sx: noi_sx,
+            bh: bh,
+            cong_nghe: cong_nghe,
+            nam: nam,
+            tien_ich: tien_ich,
+            cong_suat: cong_suat,
+            tv_ich: tv_ich,
+            phan_giai: phan_giai,
+            hdh: hdh,
+            ket_noi: ket_noi,
+            tv_loa: tv_loa,
+            kieu_tu: kieu_tu,
+            so_canh: so_canh,
+            dung_tich: dung_tich,
+            cn_kk: cn_kk,
+            chat_lieu: chat_lieu
         },
-        success:function(data){
+        success: function (data) {
             // console.log(data);
             $('input').val('');
         }
@@ -1314,86 +1347,88 @@ function insert_tskt(masp,url){
 
 }
 
-function insert_sp_tskt(val){
-    check_thongso_loai();
- 
-        if (check_sp() == 'true' && check_thongso() == 'false') {
-            showerror('thông số kỹ thuật');
-        }
-        if(check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai()=='true') {
-            showerror('thông tin sản phẩm');
-        }
-
-        if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
-            if(masp = insert_sp(val,'insert')){
-                insert_tskt(masp,'insert');
-            }
-            
-        }
-}
-function update_sp_tskt(val){
-    ma_sp= $("#ma_sp").val();
+function insert_sp_tskt(val) {
     check_thongso_loai();
 
-        if (check_sp() == 'true' && check_thongso() == 'false') {
-            showerror('thông số kỹ thuật');
-        }
-        if(check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai()=='true') {
-            showerror('thông tin sản phẩm');
+    if (check_sp() == 'true' && check_thongso() == 'false') {
+        showerror('thông số kỹ thuật');
+    }
+    if (check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai() == 'true') {
+        showerror('thông tin sản phẩm');
+    }
+
+    if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() == 'true') {
+        if (masp = insert_sp(val, 'insert')) {
+            insert_tskt(masp, 'insert');
         }
 
-        if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() =='true') {
-            insert_tskt(ma_sp,'update');
-            insert_sp(val,'update',ma_sp);
-              
-        }
+    }
+}
+function update_sp_tskt(val) {
+    ma_sp = $("#ma_sp").val();
+    check_thongso_loai();
+
+    if (check_sp() == 'true' && check_thongso() == 'false') {
+        showerror('thông số kỹ thuật');
+    }
+    if (check_sp() == 'false' && check_thongso() == 'true' && check_thongso_loai() == 'true') {
+        showerror('thông tin sản phẩm');
+    }
+
+    if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() == 'true') {
+        insert_tskt(ma_sp, 'update');
+        insert_sp(val, 'update', ma_sp);
+
+    }
 }
 
 
-function more_sp(limit){
+function more_sp(limit) {
+
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/more_sp",
         method: "post",
-        data: {limit:limit},
+        data: { limit: limit },
         dataType: 'json',
-        success: function(data){
-            if(data[0]==0){
-                $("#div_view").css("display","none");
-            }else{
-                $("#div_view").css("display","block");
+        success: function (data) {
+            if (data[0] == 0) {
+                $("#div_view").css("display", "none");
+            } else {
+                $("#div_view").css("display", "block");
                 $('#view_home').text(data[0]);
-                $('.viewmore').data('sl',limit+18);
-                
+                $('.viewmore').data('sl', limit + 18);
+
             }
             $("#home_sp").html(data[1]);
         }
     });
+
 }
 
 
 // thay đổi trạng thái
-function change_status_hd(val,id,dk=0){
-    id_td = '#'+id;
-    txt =".txt_"+id;
-    span =".span_"+id;
-    btn_td = "#td_ad_"+id;
+function change_status_hd(val, id, dk = 0) {
+    id_td = '#' + id;
+    txt = ".txt_" + id;
+    span = ".span_" + id;
+    btn_td = "#td_ad_" + id;
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/set_status",
         method: "post",
-        data:{
-            val:val,
-            id:id,
-            dk:dk
+        data: {
+            val: val,
+            id: id,
+            dk: dk
         },
         dataType: "json",
-        success: function(data){
+        success: function (data) {
             $(id_td).html(data[0]);
-            if(data[1]=='true'){
+            if (data[1] == 'true') {
                 $(span).text('Đơn hàng đã hủy');
-                $(btn_td).html("<button class='btn_cus btn_delete' data-id='"+id+"' >Xóa đơn</button>");
+                $(btn_td).html("<button class='btn_cus btn_delete' data-id='" + id + "' >Xóa đơn</button>");
             }
             $(txt).text('Chờ xử lý');
-            $(txt).css('background-color','gray');
+            $(txt).css('background-color', 'gray');
         }
     });
 }
