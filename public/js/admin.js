@@ -85,6 +85,7 @@ $(document).ready(function () {
         $(".calendar").css("display","none");
         var date = $("#result").val();
         filter_hd(page,date);
+        search_user($("#search").val(),page);
     });
 
 
@@ -208,6 +209,12 @@ $(document).ready(function () {
     $(document).on('click','.btn_huy',function(){
         id = $(this).data('id');
         change_status_hd(4,id,1);
+    });
+
+// tìm kiếm khách hàng
+    search_user('',1);
+    $("#search").keyup(function(){
+        search_user($(this).val(),1);
     });
 
 
@@ -390,6 +397,19 @@ function show_detail(id){
     })
 }
 
+function search_user(text,trang){
+    $.ajax({
+        url:"http://localhost/web_mvc/Ajax/search_user/10",
+        method:"post",
+        data:{
+            trang:trang,
+            text:text
+        },
+        success:function(data){
+            $("#list_user").html(data);
+        }
+    });
+}
 
 
 

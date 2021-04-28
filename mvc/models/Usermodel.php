@@ -5,21 +5,22 @@ class Usermodel extends DB {
     public $tableuser_group = 'user_group';
 
 
-    public function select_all_user($column =["*"],$orderbys = [],$limit=18){
+    public function select_all_user($column =["*"],$orderbys = [],$limit=1000){
 
         $data = $this->selectall($this->tableUser,$column,$orderbys,$limit);
         return $data;
     }
 
     public function inseruser($username,$pass,$hoten,$sdt,$email,$diachi,$fb_id,$gg_id, $avatar, $user_group_id,$updated){
-        $sql ="INSERT INTO user (id, username, password, ho_ten, sdt, email, diachi, fb_id,gg_id,avatar,user_group_id,created,updated) 
-        VALUES ('', '$username', '$pass','$hoten', '$sdt', '$email','$diachi', '$fb_id', '$gg_id', '$avatar', ' $user_group_id', current_timestamp(), '$updated')";
+        $sql ="INSERT INTO user (id, username, password, ho_ten, sdt, email, diachi,avatar,user_group_id,created,updated) 
+        VALUES ('', '$username', '$pass','$hoten', '$sdt', '$email','$diachi','$avatar', ' $user_group_id', current_timestamp(), '$updated')";
         $query = mysqli_query($this->conn,$sql);
         if($query){
             $kq = "true";
         }else{
             $kq = "false";
         }
+        echo $sql;
         return $kq;
     }
     
@@ -80,20 +81,16 @@ class Usermodel extends DB {
         return $kq;
     }
 
-    public function sum_user_hd($text,$select){
-        if($select=='dem'){
-            $sql ="SELECT khachhang,count(ma_hd)as so_hd, sum(total_money)as total FROM `hoadon`JOIN user on user.username= hoadon.khachhang WHERE 1 ";
-        }else{
-            $sql ="SELECT * FROM `hoadon`JOIN user on user.username= hoadon.khachhang WHERE 1 ";
-        }
-        
+    public function user_hd($text,$start=0,$limit=0){
+        $sql ="SELECT user.*,hoadon.khachhang,SUM(hoadon.total_money) as total,count(hoadon.ma_hd) as so_hd from user JOIN hoadon on hoadon.khachhang=user.username ";
         if(!empty($text)){
-            $sql .=" and khachhang LIKE '%$text%'";
+            $sql .=" and khachhang LIKE '%$text%' or sdt like '%$text%'";
         }
-        if($select =='dem'){
-            $sql .="GROUP by khachhang";
+
+        $sql .="GROUP by hoadon.khachhang";
+        if($limit >0){
+            $sql .=" Limit $start,$limit";
         }
-        
         return $this->_query($sql);
     }
 

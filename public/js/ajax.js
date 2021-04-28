@@ -366,7 +366,7 @@ function dangky() {
             pass_again: pass_again
         },
         success: function (data) {
-            // console.log(data);
+            console.log(data);
         }
     });
 

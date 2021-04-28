@@ -244,7 +244,7 @@ function set_name(){
 
 function set_pass(){
     check('.old_pass_lb');
-    check_pass();
+    check_set_pass();
     check_pass_again();
     if(check('.old_pass_lb')=='true' && check_pass()=='true' && check_pass_again()=='true'){
         var old_pass = $(".old_pass").val();
@@ -280,7 +280,7 @@ function set_pass(){
     
 }
 
-function check_pass(){
+function check_set_pass(){
     check('.new_pass_lb');
     new_pass();
     if(check('.new_pass_lb')=='true' && new_pass()=='true'){

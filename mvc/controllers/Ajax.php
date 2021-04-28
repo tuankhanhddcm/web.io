@@ -434,7 +434,7 @@ class Ajax extends Controller
                                         </div>
                                     </a>
                                 </li>';
-                    }else{
+                    } else {
                         $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
                                     <a href="http://localhost/web_mvc/Detail/' . $val['sp_url'] . '" class="header__cart-item">
                                         <div class="header__search--img">
@@ -451,7 +451,6 @@ class Ajax extends Controller
                                     </a>
                                 </li>';
                     }
-                    
                 }
             } else {
                 $out .= ' <li class="header__cart-item" style="padding-top: 15px;">
@@ -1021,8 +1020,15 @@ class Ajax extends Controller
                         </tr>
                         ';
                     }
+                    $ouput .= $this->_trang($row, $page, $limit, 6);
+                }else{
+                    $ouput .= '
+                    <tr  class="no_product" >
+                        <td colspan="9" style="text-align: center;">Không có đơn hàng nào !!!</td>
+                    </tr>
+                ';
                 }
-                $ouput .= $this->_trang($row, $page, $limit, 6);
+                
                 echo $ouput;
             }
         }
@@ -1285,5 +1291,86 @@ class Ajax extends Controller
     }
 
 
-    
+    public function search_user($limit)
+    {        
+            $text ='';
+            if (isset($_POST['text']) && !empty($_POST['text'])) {
+            $text = $_POST['text'];
+            }
+            if (isset($_POST['trang'])) {
+                $page = 1;
+                $limit = $limit;
+                if ($_POST['trang'] > 1) {
+                    $start = (($_POST['trang'] - 1) * $limit);
+                    $page = $_POST['trang'];
+                } else {
+                    $start = 0;
+                }
+                $ouput = '';
+                $temp = $this->usermodel->user_hd($text);
+                $user = $this->usermodel->user_hd($text, $start, $limit);
+                $u = $this->usermodel->select_all_user();
+                if (!empty($temp)) {
+                    $row = count($temp);
+                } else {
+                    $row = 0;
+                }
+                if (!empty($user)) {
+                    if($page >1){
+                        $count =$limit+1;
+                    }else{
+                        $count =1;
+                    }
+                    
+                    foreach($u as $v){
+                        foreach ($user as $val) {
+                            if($v['username'] == $val['khachhang']){
+                                $ouput .= '
+                                <tr>   
+                                    <td>'.$count.'</td>
+                                    <td>'.$val["ho_ten"].'</td>
+                                    <td>'.$val["sdt"].'</td>
+                                    <td>'.$val["email"].'</td>
+                                    <td >'.$val["diachi"].'</td>
+                                    <td >'.$val["so_hd"].'</td>
+                                    <td >'.number_format($val["total"]).' đ</td>
+                                
+                                </tr>
+        
+                            ';
+                            }
+                            
+                            $count +=1;
+                        }
+                        // if($v['username'] != $user["khachhang"]){
+                        //     $ouput .= '
+                        //         <tr>   
+                        //             <td>'.$count.'</td>
+                        //             <td>'.$v["ho_ten"].'</td>
+                        //             <td>'.$v["sdt"].'</td>
+                        //             <td>'.$v["email"].'</td>
+                        //             <td >'.$v["diachi"].'</td>
+                        //             <td >0</td>
+                        //             <td >0 đ</td>
+                                
+                        //         </tr>
+        
+                        //     ';
+                        // }
+                        
+                    }
+                    
+                    $ouput .=$this->_trang($row,$page,$limit,7);
+            
+                }else{
+                    $ouput .='
+                    <tr  class="no_product">
+                        <td colspan="9">Không có khách hàng nào !!!</td>
+                    </tr>
+                    ';
+                }
+                echo $ouput;
+            }
+        
+    }
 }

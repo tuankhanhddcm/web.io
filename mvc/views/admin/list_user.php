@@ -25,26 +25,7 @@
                         </tr>
                     </thead>
                     <tbody id="list_user">
-                    <?php if(!empty($data["user"]) && !empty($data["user_count"])){
-                        $count = 1;
-                        foreach($data["user"] as $val):
-                    ?>
-                    <tr>
-                            
-                            <td><?= $count?></td>
-                            <td><?= $val["ho_ten"]?></td>
-                            <td><?= $val["sdt"]?></td>
-                            <td><?= $val["email"]?></td>
-                            <td style="width: 120px;"><?= $val["diachi"]?></td>
-                            <td style="width: 160px;"></td>
-                            <td ></td>
-                            
-                        </tr>
-
-                    <?php $count +=1;
-                        endforeach;
-
-                        }?> 
+                    
                     </tbody>
                 </table>
             </div>
