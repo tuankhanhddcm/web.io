@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 04:58 PM
+-- Generation Time: Apr 29, 2021 at 01:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -42,31 +42,7 @@ CREATE TABLE `chitiethoadon` (
 --
 
 INSERT INTO `chitiethoadon` (`id`, `ma_hd`, `sp_ma`, `soluong`, `gia`, `created`, `updated`) VALUES
-(51, 'HD000001', 'SP000010', 1, 10490000, '2021-04-02 15:36:21', '2021-04-02 15:36:21'),
-(52, 'HD000001', 'SP000003', 1, 7290000, '2021-04-02 15:36:21', '2021-04-02 15:36:21'),
-(53, 'HD000002', 'SP000002', 1, 39980000, '2021-04-02 15:37:10', '2021-04-02 15:37:10'),
-(54, 'HD000003', 'SP000002', 1, 39980000, '2021-04-02 15:41:41', '2021-04-02 15:41:41'),
-(55, 'HD000004', 'SP000006', 1, 7100000, '2021-04-02 15:42:21', '2021-04-02 15:42:20'),
-(56, 'HD000004', 'SP000007', 1, 5200000, '2021-04-02 15:42:21', '2021-04-02 15:42:20'),
-(57, 'HD000005', 'SP000003', 1, 7290000, '2021-04-15 15:31:23', '2021-04-15 15:31:23'),
-(58, 'HD000006', 'SP000005', 1, 9500000, '2021-04-19 20:31:05', '2021-04-19 20:31:04'),
-(59, 'HD000007', 'SP000005', 1, 9500000, '2021-04-19 20:31:53', '2021-04-19 20:31:52'),
-(60, 'HD000008', 'SP000005', 2, 9500000, '2021-04-20 22:16:37', '2021-04-20 22:16:37'),
-(61, 'HD000009', 'SP000002', 3, 39980000, '2021-04-21 20:07:54', '2021-04-21 20:07:54'),
-(62, 'HD000009', 'SP000003', 1, 7290000, '2021-04-21 20:07:54', '2021-04-21 20:07:54'),
-(63, 'HD000010', 'SP000002', 1, 39980000, '2021-04-21 20:32:22', '2021-04-21 20:32:21'),
-(64, 'HD000011', 'SP000004', 1, 4350000, '2021-04-21 20:36:35', '2021-04-21 20:36:35'),
-(65, 'HD000012', 'SP000007', 1, 5200000, '2021-04-21 20:37:04', '2021-04-21 20:37:04'),
-(66, 'HD000013', 'SP000008', 1, 12390000, '2021-04-22 17:11:24', '2021-04-22 17:11:24'),
-(67, 'HD000014', 'SP000022', 1, 79990000, '2021-04-22 20:42:10', '2021-04-22 20:42:10'),
-(68, 'HD000014', 'SP000016', 1, 15000000, '2021-04-22 20:42:11', '2021-04-22 20:42:10'),
-(69, 'HD000015', 'SP000029', 1, 62500000, '2021-04-22 20:54:28', '2021-04-22 20:54:27'),
-(70, 'HD000016', 'SP000015', 1, 16000000, '2021-04-23 16:12:39', '2021-04-23 16:12:39'),
-(71, 'HD000017', 'SP000004', 1, 4350000, '2021-04-24 21:27:03', '2021-04-24 21:27:02'),
-(72, 'HD000017', 'SP000004', 1, 4350000, '2021-04-25 20:53:47', '2021-04-25 20:53:47'),
-(73, 'HD000018', 'SP000023', 1, 19990000, '2021-04-25 20:59:40', '2021-04-25 20:59:40'),
-(74, 'HD000019', 'SP000023', 1, 19990000, '2021-04-25 21:01:16', '2021-04-25 21:01:16'),
-(75, 'HD000020', 'SP000017', 1, 13000000, '2021-04-28 09:51:05', '2021-04-28 09:51:05');
+(79, 'HD000003', 'SP000017', 1, 13000000, '2021-04-29 15:27:25', '2021-04-29 15:27:25');
 
 -- --------------------------------------------------------
 
@@ -842,24 +818,17 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`id`, `ma_hd`, `khachhang`, `date`, `total_money`, `trangthai`, `deleted`, `ghichu`, `created`, `updated`) VALUES
-(70, 'HD000001', 'khanh', '2021-04-02 15:36:21', 17780000, 3, 0, '', '2021-04-02 15:36:21', '2021-04-25 16:15:09'),
-(71, 'HD000002', 'khanh', '2021-04-02 15:37:10', 39980000, 1, 0, '', '2021-04-02 15:37:10', '2021-04-28 15:22:33'),
-(74, 'HD000005', 'khanh', '2021-04-15 15:31:23', 7290000, 4, 1, '', '2021-04-15 15:31:23', '2021-04-25 14:55:03'),
-(75, 'HD000006', 'khanh1', '2021-04-19 20:31:04', 9500000, 1, 0, '', '2021-04-19 20:31:05', '2021-04-19 20:31:04'),
-(76, 'HD000007', 'khanh', '2021-04-19 20:31:52', 9500000, 4, 1, '', '2021-04-19 20:31:53', '2021-04-25 15:03:03'),
-(77, 'HD000008', 'khanh', '2021-04-20 22:16:37', 19000000, 4, 1, '', '2021-04-20 22:16:37', '2021-04-25 15:03:36'),
-(78, 'HD000009', 'khanh', '2021-04-21 20:07:54', 113790000, 4, 1, '', '2021-04-21 20:07:54', '2021-04-25 15:04:00'),
-(79, 'HD000010', 'khanh', '2021-04-21 20:32:21', 35500000, 4, 1, '', '2021-04-21 20:32:21', '2021-04-25 15:04:30'),
-(80, 'HD000011', 'khanh', '2021-04-21 20:36:35', 4350000, 4, 1, '', '2021-04-21 20:36:35', '2021-04-25 15:06:29'),
-(81, 'HD000012', 'khanh', '2021-04-21 20:37:04', 5200000, 3, 0, '', '2021-04-21 20:37:04', '2021-04-21 20:37:04'),
-(82, 'HD000013', 'khanh', '2021-04-22 17:11:24', 11909000, 4, 1, '', '2021-04-22 17:11:24', '2021-04-25 15:06:23'),
-(83, 'HD000014', 'khanh', '2021-04-22 20:42:10', 94990000, 2, 0, '', '2021-04-22 20:42:10', '2021-04-22 20:42:10'),
-(84, 'HD000015', 'khanh', '2021-04-22 20:54:27', 62500000, 2, 0, '', '2021-04-22 20:54:28', '2021-04-22 20:54:27'),
-(85, 'HD000016', 'khanh', '2021-04-23 16:12:39', 16000000, 0, 0, '', '2021-04-23 16:12:39', '2021-04-23 16:12:39'),
-(87, 'HD000017', 'khanh', '2021-04-25 20:53:47', 4152000, 4, 1, '', '2021-04-25 20:53:47', '2021-04-25 16:11:59'),
-(88, 'HD000018', 'khanh', '2021-04-25 20:59:40', 17500000, 4, 1, '', '2021-04-25 20:59:40', '2021-04-25 16:11:09'),
-(89, 'HD000019', 'khanh', '2021-04-25 21:01:16', 17500000, 4, 1, '', '2021-04-25 21:01:16', '2021-04-25 16:09:47'),
-(90, 'HD000020', 'teoabc', '2021-04-28 09:51:05', 13000000, 0, 0, '', '2021-04-28 09:51:05', '2021-04-28 09:51:05');
+(93, 'HD000003', 'teoabc', '2021-04-29 15:27:25', 13000000, 2, 0, '', '2021-04-29 15:27:25', '2021-04-29 11:10:58');
+
+--
+-- Triggers `hoadon`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_hd` AFTER DELETE ON `hoadon` FOR EACH ROW BEGIN
+	delete FROM chitiethoadon WHERE ma_hd = OLD.ma_hd;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1059,34 +1028,36 @@ CREATE TABLE `sanpham` (
 
 INSERT INTO `sanpham` (`id`, `sp_ma`, `sp_name`, `sp_sl`, `sp_gia`, `sp_giaban`, `sp_giagiam`, `sp_url`, `sp_img`, `sp_mota`, `ma_loai`, `ma_nsx`, `created`, `updated`) VALUES
 (2, 'SP000001', 'Smart Tivi Samsung 32 inch UA32T4500', 20, 8000000, 8500000, 7225000, 'Smart-Tivi-Samsung-32-inch-UA32T4500', 'public/img/upload/samsung-ua32t4500-245820-105838-550x340.jpg', 'Thiết kế chắc chắn, màn hình 32 inch nhỏ gọn.\nHình ảnh rõ nét với độ phân giải HD.\nTăng độ tương phản hình ảnh nhờ công nghệ HDR, Micro Dimming Pro.\nTái hiện dải màu rộng, rực rỡ với công nghệ PurColor.\nLọc nhiễu, hình ảnh mượt mà, rõ nét nhờ công nghệ Ultra Clean View.\nTăng chiều sâu cho từng khung hình với công nghệ Contrast Enhancer.\nÂm thanh sôi động, lan tỏa với công nghệ Dolby Digital Plus.\nGiao diện phẳng, ứng dụng đa dạng với hệ điều hành Tizen OS.\nChiếu màn hình điện thoại Android, Iphone lên tivi qua tính năng Screen Miroring và AirPlay 2.', '1', '1', '2021-03-12 12:32:40', '2021-04-17 18:38:10'),
-(3, 'SP000003', 'Smart Tivi Sony 40 inch KDL-40W650D', 8, 8000000, 7290000, 0, 'Smart-Tivi-Sony-40-inch-KDL-40W650D', 'public/img/upload/sony-kdl-40w650d-191920-031953-550x340.jpg', 'Thiết kế hiện đại, cứng cáp và sở hữu màn hình 40 inch phù hợp với nhiều dạng không gian.\nCông nghệ X-Reality PRO cho độ nét vượt trội, nâng cấp chất lượng hình ảnh có độ phân giải thấp lên gần Full HD nhất.\nCông nghệ Clear Phase cho âm thanh tự nhiên và trong trẻo hơn.\nĐộ phân giải Full HD mang đến những hình ảnh có độ nét cao cấp 2 lần HD.', '1', '2', '2021-03-12 12:32:57', '2021-04-21 20:07:54'),
+(3, 'SP000003', 'Smart Tivi Sony 40 inch KDL-40W650D', 7, 8000000, 7290000, 0, 'Smart-Tivi-Sony-40-inch-KDL-40W650D', 'public/img/upload/sony-kdl-40w650d-191920-031953-550x340.jpg', 'Thiết kế hiện đại, cứng cáp và sở hữu màn hình 40 inch phù hợp với nhiều dạng không gian.\nCông nghệ X-Reality PRO cho độ nét vượt trội, nâng cấp chất lượng hình ảnh có độ phân giải thấp lên gần Full HD nhất.\nCông nghệ Clear Phase cho âm thanh tự nhiên và trong trẻo hơn.\nĐộ phân giải Full HD mang đến những hình ảnh có độ nét cao cấp 2 lần HD.', '1', '2', '2021-03-12 12:32:57', '2021-04-29 14:42:02'),
 (4, 'SP000002', 'Smart Tivi QLED Samsung 4K 55 inch QA55Q80R', 16, 38080000, 39980000, 35500000, 'Smart-Tivi-QLED-Samsung-4K-55-inch-QA55Q80R', 'public/img/upload/samsung-qa55q80r-20-550x340.jpg', 'Thiết kế màn hình lớn 55 inch với viền màn hình siêu mỏng ấn tượng 0,5 cm.\nĐộ phân giải 4K sắc nét cùng công nghệ màn hình chấm lượng tử QLED hiển thị hình ảnh có độ chính xác cao.\nMàu sắc sống động như thật với công nghệ Quantum Dot.\nĐộ sáng màn hình sáng hơn với công nghệ Quantum HDR 1500 nits.\nNâng cao trải nghiệm tivi với bộ xử lý Quantum Processor 4K mạnh mẽ.\nHiệu ứng âm thanh sống động với công nghệ Dolby Digital Plus.\nHệ điều hành Tizen OS dễ sử dụng cùng với One Remote thông minh, dễ dàng truy cập nhanh chóng, điều khiển nhiều thiết bị cùng lúc.\nHỗ trợ điều khiển tivi qua điện thoại với ứng dụng SmartThings.\nChiếu màn hình điện thoại lên tivi linh hoạt với tính năng Screen Mirroring, AirPlay 2.', '1', '1', '2021-03-12 18:29:24', '2021-04-26 16:54:40'),
 (5, 'SP000005', 'Máy lạnh Midea Inverter 1 HP MSAG-10CRDN8', 3, 9000000, 9500000, 0, 'Máy-lạnh-Midea-Inverter-1-HP-MSAG-10CRDN8', 'public/img/upload/midea-msag-10crdn8-2-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 m2.\nTiết kiệm điện cho gia đình với công nghệ Inverter, GearsShift và iEco.\nHơi lạnh lan toả đều và xa với cánh gió mở rộng đến 80 độ.\nLuôn máy mẻ với tính năng Follow me.\nLàm lạnh nhanh chóng với công nghệ làm lạnh nhanh Boost.\nBảo vệ máy, tăng hiệu quả trao đổi nhiệt với dàn tản nhiệt bằng nhôm mạ vàng.\nChức năng hút ẩm giữ căn phòng luôn khô thoáng.\nSử dụng tiện lợi với chức năng hẹn giờ bật tắt.\nKhông khí trong lành, sạch khuẩn hơn với bộ lọc bụi kép và Fresh.\nThiết kế bắt mắt, hoàn thiện cao.\nMàn hình LED hiển thị nhiệt độ, remote có đèn màn hình tiện lợi vào ban đêm.', '2', '7', '2021-03-13 15:42:37', '2021-04-20 22:16:37'),
-(6, 'SP000004', 'Android Tivi Mobell 40 inch 40S600A', 7, 4000000, 4350000, 4152000, 'Android-Tivi-Mobell-40-inch-40S600A', 'public/img/upload/mobell-40s600a-192320-042308-550x340.jpg', 'Thiết kế hiện đại, chắc chắn.\nĐộ phân giải HD cho hình ảnh rõ ràng, sắc nét.\nCông nghệ Clear View hiển thị hình ảnh mượt mà hơn.\nHệ điều hành Android với nhiều ứng dụng giải trí hấp dẫn.', '1', '6', '2021-03-13 16:33:30', '2021-04-25 20:53:47'),
+(6, 'SP000004', 'Android Tivi Mobell 40 inch 40S600A', 6, 4000000, 4350000, 4152000, 'Android-Tivi-Mobell-40-inch-40S600A', 'public/img/upload/mobell-40s600a-192320-042308-550x340.jpg', 'Thiết kế hiện đại, chắc chắn.\nĐộ phân giải HD cho hình ảnh rõ ràng, sắc nét.\nCông nghệ Clear View hiển thị hình ảnh mượt mà hơn.\nHệ điều hành Android với nhiều ứng dụng giải trí hấp dẫn.', '1', '6', '2021-03-13 16:33:30', '2021-04-29 16:14:32'),
 (7, 'SP000006', 'Android Tivi TCL 40 inch L40S66A', 9, 6500000, 7100000, 0, 'Android-Tivi-TCL-40-inch-L40S66A', 'public/img/upload/tcl-l40s66a-232120-022147-550x340.jpg', 'Thiết kế màn hình 40 inch phù hợp với phòng ngủ, phòng khách nhỏ.\nĐộ phân giải Full HD rõ nét gấp 2 lần HD.\nHình ảnh có độ tương phản cao với công nghệ HDR.\nHình ảnh tối ưu từng chi tiết với công nghệ Micro Dimming.\nHiệu ứng âm thanh lan tỏa với công nghệ Dolby MS12.\nHệ điều hành Android tivi 8,0 mới nhất.\nHỗ trợ tìm kiếm giọng nói tiếng Việt 3 miền (Bắc, Trung, Nam).\nĐiều khiển tivi từ xa bằng ứng dụng MagiConnect và trình chiếu lên tivi với tính năng Screen Mirroring.', '1', '4', '2021-03-13 16:33:30', '2021-04-17 17:38:04'),
 (8, 'SP000007', 'Smart Tivi Casper 32 inch 32HX6200', 13, 4500000, 5200000, 0, 'Smart-Tivi-Casper-32-inch-32HX6200', 'public/img/upload/casper-32hx6200-550x340.jpg', 'Thiết kế hiện đại, chân đế chữ V úp ngược vững chắc.\nHình ảnh hiển thị rõ nét trên màn hình 32 inch, độ phân giải HD.\nTăng cường độ tương phản cho khung hình với công nghệ HDR.\nMàu sắc tự nhiên, trung thực hơn qua tấm nền IPS.\nÂm thanh vòm bùng nổ, sinh động cùng công nghệ Dolby Audio.\nGiao diện đơn giản, dễ dùng nhờ hỗ trợ hệ điều hành Linux.\nHỗ trợ chiếu màn hình điện thoại lên tivi đơn giản qua tính năng Screen Cast.', '1', '5', '2021-03-13 16:33:30', '2021-04-21 20:37:04'),
 (9, 'SP000008', 'Smart Tivi LG 4K 55 inch 55UN7290PTF', 9, 10500000, 12390000, 11909000, 'Smart-Tivi-LG-4K-55-inch-55UN7290PTF', 'public/img/upload/lg-55un7290ptf-6-550x340.jpg', 'Thiết kế hiện đại, chân đế chữ V úp ngược vững chắc phù hợp cho phòng khách, phòng họp.\nĐộ phân giải Ultra HD 4K với màn hình 55 inch và tấm nền IPS cho hình ảnh hiển thị sắc nét, không bị biến đổi màu sắc.\nNâng cấp hình ảnh nhờ chip xử lý Quad Core 4K.\nĐiều khiển tivi và những thiết bị thông minh khác ngay trên màn hình tivi bằng giọng nói với Magic Remote và trí tuệ nhân tạo AI ThinQ.\nTăng cường độ tương phản, thưởng thức nội dung có độ nét cao nhờ công nghệ Active HDR.\nGiả lập âm thanh vòm sống động qua công nghệ Ultra Surround.\nHỗ trợ điều khiển tivi bằng điện thoại với ứng dụng LG TV Plus.\nChiếu màn hình điện thoại Android và iPhone lên tivi dễ dàng bằng tính năng Screen Mirroring và AirPlay 2.', '1', '3', '2021-03-13 16:33:30', '2021-04-22 17:11:24'),
 (11, 'SP000010', 'Máy lạnh Daikin Inverter 1 HP ATKA25UAVMV', 8, 9500000, 10490000, 0, 'Máy-lạnh-Daikin-Inverter-1-HP-ATKA25UAVMV', 'public/img/upload/daikin-atka25uavmv-11-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích 15 mét vuông trở xuống.\nLuồng gió dễ chịu, tránh được gió thổi trực tiếp vào người với thiết kế tạo hiệu ứng Coanda.\nTiết kiệm điện năng với công nghệ Inverter và chế độ Econo.\nĐộ bền cao với cánh tản nhiệt phủ 2 lớp chống ăn mòn cùng bo mạch được bảo vệ điện áp cao - thấp.\nBảo vệ sức khỏe và đồ dùng trong gia đình với chức năng chống ẩm mốc.\nLàm lạnh nhanh chóng tức thì với chế độ làm lạnh nhanh Powerful.\nHạn chế bụi với lưới lọc bụi thô.', '2', '9', '2021-03-13 19:30:37', '2021-04-17 17:31:04'),
-(12, 'SP000011', 'Máy lạnh Sharp Inverter 1 HP AH-X9XEW', 10, 9000000, 9560000, 0, 'Máy-lạnh-Sharp-Inverter-1-HP-AH-X9XEW', 'public/img/upload/sharp-ah-x9xew-1-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 mét vuông.\nCông nghệ J-Tech Inverter hiện đại giúp tiết kiệm điện năng.\nLàm lạnh nhanh chóng với công nghệ làm lạnh nhanh Super Jet.\nLưới bụi polypropylene mang lại không khí trong lành.\nChức năng hẹn giờ bật, tắt máy lạnh tiện lợi.\nChế độ thổi gió dễ chịu tránh gió thổi trực tiếp vào người.', '2', '10', '2021-03-12 12:32:40', '2021-04-17 17:31:32'),
+(12, 'SP000011', 'Máy lạnh Sharp Inverter 1 HP AH-X9XEW', 9, 9000000, 9560000, 0, 'Máy-lạnh-Sharp-Inverter-1-HP-AH-X9XEW', 'public/img/upload/sharp-ah-x9xew-1-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 mét vuông.\nCông nghệ J-Tech Inverter hiện đại giúp tiết kiệm điện năng.\nLàm lạnh nhanh chóng với công nghệ làm lạnh nhanh Super Jet.\nLưới bụi polypropylene mang lại không khí trong lành.\nChức năng hẹn giờ bật, tắt máy lạnh tiện lợi.\nChế độ thổi gió dễ chịu tránh gió thổi trực tiếp vào người.', '2', '10', '2021-03-12 12:32:40', '2021-04-29 14:42:02'),
 (14, 'SP000009', 'Máy lạnh Aqua Inverter 1 HP AQA-KCRV10TK', 9, 9500000, 10490000, 0, 'Máy-lạnh-Aqua-Inverter-1-HP-AQA-KCRV10TK', 'public/img/upload/aqua-aqa-kcrv10wnza-550x160.jpg', 'Công nghệ tự làm sạch AQUA FRESH hạn chế vi khuẩn, nấm mốc.\nCông nghệ PID Inverter tiết kiệm điện đến 63%, vận hành êm.\nDàn trao đổi nhiệt được phủ lớp chống ăn mòn BLUEFIN.\nLàm lạnh nhanh tức thì với chế độ Turbo.\nLưới lọc bụi thô 3M thanh lọc không khí, bảo vệ sức khỏe.\nTiết kiệm thời gian với tính năng tự khởi động lại khi có điện.\nChế độ ngủ đêm mang lại giấc ngủ ngon và sâu hơn.\nCông suất 1 HP - 9200 BTU phù hợp với diện tích dưới 15 m2.\nMàn hình hiển thị nhiệt độ trên dàn lạnh tiện lợi.', '2', '11', '2021-03-13 19:30:37', '2021-04-17 17:32:11'),
 (15, 'SP000012', 'Máy lạnh Panasonic Inverter 1 HP CU/CS-XU9UKH-8', 9, 11000000, 12560000, 0, 'Máy-lạnh-Panasonic-Inverter-1-HP-CU/CS-XU9UKH-8', 'public/img/upload/may-lanh-panasonic-cu-cs-xu12ukh-8-550x160.jpg', 'Công suất làm lạnh 1 HP, dành cho phòng có diện tích dưới 15 mét vuông.\nCông nghệ Inverter - tiết kiệm điện, vận hành êm, làm lạnh sâu và hơi lạnh lan tỏa đều.\nLàm lạnh nhanh tức thì với chế độ iAuto-X.\nCó thể điều khiển thông minh qua điện thoại.\nDòng Aerowings - 2 cánh đảo gió với 2 motor riêng biệt giúp điều chỉnh hướng gió tốt hơn.\nCông nghệ Nanoe-G - lọc sạch bụi bẩn, bụi mịn PM2,5.\nKháng khuẩn, khử mùi các mùi khó chịu cùng công nghệ Nanoe-X.\nSử dụng hệ thống lọc khí độc lập như một chiếc máy lọc không khí.\nBảo vệ sức khỏe và tiết kiệm điện cho cả gia đình với chế độ ngủ ban đêm.\nGas R32 an toàn, thân thiện với môi trường.', '2', '8', '2021-03-12 12:32:40', '2021-04-17 17:32:49'),
 (16, 'SP000013', 'TỦ LẠNH PANASONIC INVERTER 417 LÍT NR-BX471GPKV', 9, 19000000, 20000000, 0, 'TỦ-LẠNH-PANASONIC-INVERTER-417-LÍT-NR-BX471GPKV', 'public/img/upload/panasonic-nr-bx471gpkv-300x300.jpg', 'Dung tích lớn 417 lít phù hợp với những gia đình có từ 3 - 4 thành viên.\nBảo quản thực phẩm tươi ngon lên đến 7 ngày với ngăn cấp đông mềm -3 độ C Frime Fresh+.\nKháng khuẩn, khử mùi hiệu quả nhờ công nghệ kháng khuẩn Ag Clean với tinh thể Ag+.\nLấy nước uống tiện lợi, an toàn với khay lấy nước ngoài kháng khuẩn, khử mùi.\nThổi hơi lạnh nhanh và đều khắp tủ lạnh với công nghệ làm lạnh Panorama.\nTiết kiệm điện năng vượt trội với công nghệ Inverter và cảm biến Econavi.', '3', '8', '2021-03-12 12:32:40', '2021-04-17 17:33:17'),
 (20, 'SP000015', 'Máy giặt LG Inverter 9 kg FV1409S2V', 9, 15000000, 16000000, 0, 'Máy-giặt-LG-Inverter-9-kg-FV1409S2V', 'public/img/upload/may-giat-lg-fv1409s2v-8-300x300.jpg', 'Dành cho gia đình có 3 - 5 thành viên với khối lượng 9 kg.\nVận hành êm ái, giảm hư hại quần áo với động cơ truyền động trực tiếp Intello DD kết hợp trí thông minh nhân tạo AI.\nTiết kiệm năng lượng với công nghệ Inverter.\nDiệt vi khuẩn, loại bỏ các tác nhân gây dị ứng hiệu quả với bộ đôi công nghệ giặt hơi nước Steam và giặt nước nóng.\nTiết kiệm thời gian giặt giũ với công nghệ TurboWash.\nBảo vệ và giảm thiểu hư tổn sợi vải nhờ công nghệ 6 chuyển động.\nĐiều khiển máy giặt từ xa với Smart ThinQ.\nTiện lợi với tính năng thêm đồ trong khi giặt Add Item.', '6', '3', '2021-04-04 20:34:31', '2021-04-23 16:12:39'),
 (21, 'SP000016', 'Máy giặt Aqua Inverter 8.5 kg AQD-D850E W', 19, 9500000, 15000000, 0, 'Máy-giặt-Aqua-Inverter-8.5-kg-AQD-D850E-W', 'public/img/upload/aqua-aqd-d850e-w-21-300x300.jpg', 'Dành cho gia đình có 3 - 5 thành viên với khối lượng 9 kg.\nVận hành êm ái, giảm hư hại quần áo với động cơ truyền động trực tiếp Intello DD kết hợp trí thông minh nhân tạo AI.\nTiết kiệm năng lượng với công nghệ Inverter.\nDiệt vi khuẩn, loại bỏ các tác nhân gây dị ứng hiệu quả với bộ đôi công nghệ giặt hơi nước Steam và giặt nước nóng.\nTiết kiệm thời gian giặt giũ với công nghệ TurboWash.\nBảo vệ và giảm thiểu hư tổn sợi vải nhờ công nghệ 6 chuyển động.\nĐiều khiển máy giặt từ xa với Smart ThinQ.\nTiện lợi với tính năng thêm đồ trong khi giặt Add Item.', '6', '11', '2021-04-04 20:38:29', '2021-04-22 20:42:11'),
-(22, 'SP000017', 'Loa thanh Sony 3.1 HT- G700', 9, 12000000, 13000000, 0, 'Loa-thanh-Sony-3.1-HT--G700', 'public/img/upload/sony-ht-g700-1-300x300.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '2', '2021-04-04 20:44:28', '2021-04-28 09:51:05'),
+(22, 'SP000017', 'Loa thanh Sony 3.1 HT- G700', 8, 12000000, 13000000, 0, 'Loa-thanh-Sony-3.1-HT--G700', 'public/img/upload/sony-ht-g700-1-300x300.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '2', '2021-04-04 20:44:28', '2021-04-29 15:27:25'),
 (23, 'SP000018', 'Lò nướng Panasonic NB-H3800SRA 38 lít', 20, 3000000, 3540000, 0, 'Lò-nướng-Panasonic-NB-H3800SRA-38-lít', 'public/img/upload/panasonic-nb-h3800sra-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '8', '2021-04-04 20:48:06', '2021-04-17 17:36:09'),
 (24, 'SP000019', 'Lò nướng Panasonic NB-H3801KRA 38 lít', 10, 3500000, 3750000, 0, 'Lò-nướng-Panasonic-NB-H3801KRA-38-lít', 'public/img/upload/panasonic-nb-h3801kra-38-lit-2-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '8', '2021-04-04 20:50:12', '2021-04-17 17:36:19'),
 (25, 'SP000020', 'Lò nướng Sharp EO-B46RCSV-BK 46 lít', 10, 1800000, 2000000, 0, 'Lò-nướng-Sharp-EO-B46RCSV-BK-46-lít', 'public/img/upload/lo-nuong-sharp-eo-b46rcsv-bk-2-300x300.jpg', 'Lò nướng bánh có dung tích lớn 46 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '10', '2021-04-04 20:55:43', '2021-04-17 17:36:33'),
 (26, 'SP000021', 'Lò nướng Sharp EO-A384RCSV-ST 38 lít', 15, 2100000, 2500000, 0, 'Lò-nướng-Sharp-EO-A384RCSV-ST-38-lít', 'public/img/upload/lo-nuong-sharp-eo-a384rcsv-st-300x300.jpg', 'Lò nướng bánh có dung tích lớn 38 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '10', '2021-04-04 21:03:17', '2021-04-17 17:36:42'),
 (53, 'SP000022', 'Android Tivi OLED Sony 4K 65 inch XR-65A90J', 14, 75000000, 79990000, 0, 'Android-Tivi-OLED-Sony-4K-65-inch-XR-65A90J', 'public/img/upload/1234-550x340.jpg', 'Thiết kế tràn viền kích cỡ 65 inch, độ phân giải 4K.\nHiển thị sắc đen tuyệt đối với màn hình OLED.\nNâng cấp chất lượng âm thanh và hình ảnh với bộ xử lý trí tuệ nhận thức Cognitive Processor XR.\nMở rộng hàng tỷ màu sắc qua XR Triluminos PRO.\nCảnh chuyển động cực mượt nhờ tần số quét 100/120Hz, XR Motion Clarity.\nÂm thanh phát ra từ màn hình trung thực với Acoustics Surface Audio+.\nHệ điều hành Android 10, tích hợp Google Play có hơn 5000 ứng dụng.\nRemote thông minh có đèn nền, hỗ trợ tìm kiếm giọng nói bằng tiếng Việt 3 miền.', '1', '2', '2021-04-09 21:08:43', '2021-04-22 20:42:10'),
-(64, 'SP000023', 'Tủ lạnh Aqua Inverter 541 lít AQR-S541XA(BL)', 18, 15500000, 19990000, 17500000, 'Tủ-lạnh-Aqua-Inverter-541-lít-AQR-S541XA(BL)', 'public/img/upload/tu-lanh-aqua-aqr-s541xa-bl-14-300x300.jpg', 'Tủ lạnh side by side sang trọng, mặt thép kháng khuẩn, dung tích lớn.\nTiết kiệm điện hiệu quả với công nghệ Inverter.\nHạn chế tình trạng đóng tuyết, làm lạnh thực phẩm tối ưu nhờ công nghệ làm lạnh gián tiếp.\nLoại bỏ vi khuẩn, duy trì không khí trong lành cùng công nghệ kháng khuẩn khử mùi DEO Fresh.\nBảo quản rau củ quả tươi ngon, lâu trong ngăn rau củ cân bằng độ ẩm.', '3', '11', '2021-04-10 14:19:15', '2021-04-25 21:01:16'),
+(64, 'SP000023', 'Tủ lạnh Aqua Inverter 541 lít AQR-S541XA(BL)', 17, 15500000, 19990000, 17500000, 'Tủ-lạnh-Aqua-Inverter-541-lít-AQR-S541XA(BL)', 'public/img/upload/tu-lanh-aqua-aqr-s541xa-bl-14-300x300.jpg', 'Tủ lạnh side by side sang trọng, mặt thép kháng khuẩn, dung tích lớn.\nTiết kiệm điện hiệu quả với công nghệ Inverter.\nHạn chế tình trạng đóng tuyết, làm lạnh thực phẩm tối ưu nhờ công nghệ làm lạnh gián tiếp.\nLoại bỏ vi khuẩn, duy trì không khí trong lành cùng công nghệ kháng khuẩn khử mùi DEO Fresh.\nBảo quản rau củ quả tươi ngon, lâu trong ngăn rau củ cân bằng độ ẩm.', '3', '11', '2021-04-10 14:19:15', '2021-04-29 16:13:21'),
 (65, 'SP000024', 'Máy lạnh Samsung Inverter 1.5 HP AR13TYHYCWKNSV', 20, 9990000, 10590000, 0, 'Máy-lạnh-Samsung-Inverter-1.5-HP-AR13TYHYCWKNSV', 'public/img/upload/samsung-ar13tyhycwknsv-550x160.jpg', 'Công suất làm lạnh 1,5 HP, dành cho phòng có diện tích từ 15 - 20 mét vuông.\nTiết kiệm điện, làm lạnh nhanh nhờ công nghệ Digital Inverter và chế độ Eco.\nVệ sinh dễ dàng với lưới lọc bụi bẩn Easy Filter.\nLoại bỏ vi khuẩn, mùi hôi bởi màng lọc kháng khuẩn Ag+.\nHơi lạnh lan toả đều và xa với tính năng tự động đảo gió 4 hướng.\nMang lại không gian thoáng đãng, thoải mái khi độ ẩm tăng cao với chế độ hút ẩm.\nĐộ bền cao, vận hành hiệu quả nhờ chức năng Auto Clean.\nTiện lợi cùng chế độ tự khởi động lại khi có điện.\nMàn hình LED hiển thị nhiệt độ tiện lợi.', '2', '1', '2021-04-10 15:22:29', '2021-04-17 17:40:00'),
 (66, 'SP000025', 'Loa Bluetooth Mozard E7', 12, 500000, 700000, 0, 'Loa-Bluetooth-Mozard-E7', 'public/img/upload/loa-bluetooth-mozard-e7-1-600x600-1-600x600.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '14', '2021-04-10 15:37:22', '2021-04-17 17:37:17'),
 (67, 'SP000026', 'Lò nướng Sanaky VH3599S2D 35 lít', 12, 1500000, 2000000, 0, 'Lò-nướng-Sanaky-VH3599S2D-35-lít', 'public/img/upload/lo-nuong-sanaky-vh3599s2d-35-lit-dd-300x300.jpg', 'Lò nướng bánh có dung tích lớn 35 lít nướng được nhiều thực phẩm.\nBảng điều khiển bằng núm vặn cơ đơn giản, kèm tiếng Việt.\nChỉnh nhiệt độ nướng trên dưới độc lập.\nCửa kính 2 lớp giúp giữ nhiệt tốt và an toàn cho người dùng.\nCó quạt đối lưu, hẹn giờ nấu lên đến 120 phút.', '5', '13', '2021-04-10 15:48:30', '2021-04-17 17:36:57'),
 (68, 'SP000027', 'Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S2V(WS)', 20, 8900000, 10800000, 9525000, 'Máy-giặt-Toshiba-Inverter-9.5-Kg-TW-BK105S2V(WS)', 'public/img/upload/toshiba-tw-bk105s2v-ws-300x300.jpg', 'Dành cho gia đình có 5 - 7 thành viên nhờ có khối lượng giặt lên đến 9,5 kg.\nGiặt sạch vết bẩn cứng đầu, bảo vệ sợi vải, tránh phai màu nhờ công nghệ Greatwaves siêu sóng.\nVận hành êm ái nhờ động cơ nam châm vĩnh cửu truyền động dây Curoa.\nPhơi khô quần áo nhanh nhờ chức năng vắt cực khô.\nTiết kiệm điện với công nghệ Inverter.\nTiện lợi cùng chức năng tự khởi động lại khi có điện.\nAn toàn hơn với khóa trẻ em, thích hợp như những gia đình có con nhỏ.', '6', '12', '2021-04-10 15:55:00', '2021-04-22 16:28:10'),
 (69, 'SP000028', 'Cặp Loa Klipsch RB-81 II', 20, 9520000, 10500000, 0, 'Cặp-Loa-Klipsch-RB-81-II', 'public/img/upload/cap-loa-klipsch-rb-81-ii-300x300.jpg', 'Âm thanh vòm sống động nhờ: DTS Virtual:X, Dolby Atmos và S-Force PRO Front Surround.\nCông suất mạnh mẽ, bùng nổ với hệ thống loa 3,1 kênh.\nTái tạo âm trầm sâu lắng với loa subwoofer không dây.\nKết nối không dây từ loa thanh đến tivi, điện thoại, máy tính bảng, một cách nhanh chóng, dễ dàng thông qua Bluetooth.', '4', '15', '2021-04-13 22:09:02', '2021-04-17 17:37:26'),
 (70, 'SP000029', 'Smart Tivi Neo QLED 4K 65 inch Samsung QA65QN85A', 14, 60000000, 62500000, 60250000, 'Smart-Tivi-Neo-QLED-4K-65-inch-Samsung-QA65QN85A', 'public/img/upload/neoqn85a-1-550x340.jpg', 'Thiết kế độc đáo với màn hình 65 inch tràn viền 4 cạnh tinh tế.\nHình ảnh độ phân giải 4K hiển thị 100% dải màu sắc với công nghệ màn hình chấm lượng tử Quantum Dot.\nHình ảnh rõ nét cùng sắc đen sâu thẳm, sắc trắng thuần khiết với công nghệ đèn nền Micro Full Array và Quantum Matrix Technology.\nTinh chỉnh từng khung hình dựa trên điều kiện xem nhờ bộ xử lý Quantum 4K.\nĐộ tương phản ấn tượng với công nghệ Quantum HDR 24x.\nLoại bỏ các loại ánh sáng xung quanh như: Ánh đèn, ánh nắng,nhờ công nghệ Anti-Reflection.\nTự động điều chỉnh độ tương phản, độ sáng phù hợp với môi trường xung quanh nhờ tính năng Adaptive Picture.\nMàu sắc sống động từ mọi góc nhìn nhờ công nghệ Ultra Viewing Angle.\nÂm thanh chuyển động theo hình ảnh nhờ công nghệ Object Tracking Sound (OTS).\nGiao diện thân thiện người dùng, kho ứng dụng phong phú với hệ điều hành Tizen OS.\nTrình chiếu màn hình điện thoại lên tivi dễ dàng nhờ các tính năng AirPlay 2 (thiết bị Apple) và Tap View (Samsung).', '1', '1', '2021-04-14 19:44:16', '2021-04-22 16:16:34'),
-(71, 'SP000030', 'Tủ lạnh Electrolux 85 lít EUM0900SA', 20, 2000000, 2990000, 0, 'Tủ-lạnh-Electrolux-85-lít-EUM0900SA', 'public/img/upload/tu-lanh-electrolux-eum0900sa-2-300x300.jpg', 'Hệ thống làm lạnh trực tiếp vận hành êm ái.\nTiết kiệm điện với mức điện tiêu thụ chỉ khoảng 0,55 kW/ngày.\nNgăn đá có nắp đậy chống lẫn mùi.\nKhay kính chịu lực bền bỉ, an toàn.\nNgăn trữ rau củ & trái cây rộng rãi.', '3', '16', '2021-04-14 22:36:15', '2021-04-17 17:41:36');
+(71, 'SP000030', 'Tủ lạnh Electrolux 85 lít EUM0900SA', 20, 2000000, 2990000, 0, 'Tủ-lạnh-Electrolux-85-lít-EUM0900SA', 'public/img/upload/tu-lanh-electrolux-eum0900sa-2-300x300.jpg', 'Hệ thống làm lạnh trực tiếp vận hành êm ái.\nTiết kiệm điện với mức điện tiêu thụ chỉ khoảng 0,55 kW/ngày.\nNgăn đá có nắp đậy chống lẫn mùi.\nKhay kính chịu lực bền bỉ, an toàn.\nNgăn trữ rau củ & trái cây rộng rãi.', '3', '16', '2021-04-14 22:36:15', '2021-04-17 17:41:36'),
+(75, 'SP000031', 'Tủ lạnh Aqua Inverter 456 lít AQR-IGW525EM GB', 15, 19900000, 25090000, 20990000, 'Tủ-lạnh-Aqua-Inverter-456-lít-AQR-IGW525EM-GB', 'public/img/upload/aqua-aqr-igw525em-gb-12-300x300.jpg', 'Tủ lạnh Inverter tiết kiệm điện, vận hành êm, bền bỉ.\nTiện lợi lưu trữ đa dạng với 2 ngăn chứa thực phẩm khô và ẩm riêng biệt.\nKháng khuẩn và khử mùi cùng công nghệ thông minh T,ABT.\nHệ thống lấy nước bên ngoài tiện lợi.\nLuồng khí lạnh đa chiều làm lạnh nhanh và đồng đều.\nNgăn ngừa nấm mốc, tiết kiệm điện năng khi bạn vắng nhà với chức năng Holiday.', '3', '11', '2021-04-29 14:52:47', '2021-04-29 09:52:47'),
+(76, 'SP000032', 'Tủ lạnh LG Inverter 315 lít GN-M315BL', 14, 8504000, 10550000, 7470000, 'Tủ-lạnh-LG-Inverter-315-lít-GN-M315BL', 'public/img/upload/lg-gn-m315bl-1-300x300.jpg', 'Vận hành êm, tiết kiệm điện hiệu quả với công nghệ Inverter.\nGiúp thực phẩm tươi ngon đồng đều nhờ hệ thống làm lạnh đa chiều.\nKhử mùi, diệt khuẩn với công nghệ Nano Carbon.\nLàm lạnh hiệu quả thực phẩm ở cửa tủ và khay cửa thông qua công nghệ DoorCooling+.\nRau quả tươi lâu với ngăn cân bằng độ ẩm hiện đại.\nTheo dõi tình trạng lỗi tủ lạnh thông qua tính năng Smart Diagnosis.\nDễ dàng lấy thực phẩm bên trong nhờ khay kéo trợ lực PULL-OUT TRAY.', '3', '3', '2021-04-29 15:01:36', '2021-04-29 15:21:16');
 
 --
 -- Triggers `sanpham`
@@ -32861,7 +32832,9 @@ INSERT INTO `thongsokythuat` (`id`, `ma_sp`, `kieu_tu`, `so_canh_cua`, `dung_tic
 (40, 'SP000019', '', '', '38 lít', 'Nướng thực phẩm, Nướng bánh', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Dài 53.3 cm - Rộng 34 cm - Cao 36.4 cm', 'Lên men để làm bánh quy, gato, pizza, bánh mì,  2 ống dẫn nhiệt trên dưới giúp thực phẩm chín đều,  Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Khóa bảng điều khiển', '', 'Nút xoay', '750 - 1500 W', '', '', '10,1 kg', '24 tháng', '2021-04-10 15:55:00', '2021-04-17 17:36:19'),
 (41, 'SP000020', '', '', '46 lít', 'Làm giòn bánh,  Nướng thực phẩm,  Nướng bánh', 'Khoang lò bằng thép mạ kẽm', 'Trung Quốc', '2020', 'Lò nướng thùng', '', '', 'Ngang 55 cm - Cao 35.8 cm - Sâu 43.2 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay,  Hẹn giờ nấu lên đến 120 phút', '', 'Nút xoay', '2000 W', '', '', '9.8 kg', '24 tháng', '2021-04-13 22:09:03', '2021-04-17 17:36:33'),
 (42, 'SP000021', '', '', '38 lít', 'Nướng thực phẩm, Nướng gà nguyên con 1.5 kg trở xuống', 'Khoang lò thép không gỉ, vỏ thép phủ sơn tĩnh điện', 'Trung Quốc', '2021', 'Lò nướng thùng', '', '', 'Ngang 53.5 cm - Sâu 39 cm - Cao 35.5 cm', 'Đèn trong khoang lò,  Quạt đối lưu,  Nướng xiên quay', '', 'Nút xoay', '1800 W', '', '', '9.6 kg', '24 tháng', '2021-04-14 19:44:17', '2021-04-17 17:36:42'),
-(43, 'SP000030', 'Không có', '1 cánh', '92 lít', 'Trực tiếp (có đóng tuyết)', 'Kính chịu lực, Thép không gỉ', 'Trung Quốc', '2017', 'Mini', '', '', 'Cao 83.1 cm - Rộng 47.4 cm - Sâu 44.7 cm', 'Không có', 'Không có', '', '~ 0.55 kW/ngày', '', '', '22 kg', '24 tháng', '2021-04-14 22:36:15', '2021-04-17 17:41:36');
+(43, 'SP000030', 'Không có', '1 cánh', '92 lít', 'Trực tiếp (có đóng tuyết)', 'Kính chịu lực, Thép không gỉ', 'Trung Quốc', '2017', 'Mini', '', '', 'Cao 83.1 cm - Rộng 47.4 cm - Sâu 44.7 cm', 'Không có', 'Không có', '', '~ 0.55 kW/ngày', '', '', '22 kg', '24 tháng', '2021-04-14 22:36:15', '2021-04-17 17:41:36'),
+(48, 'SP000031', 'Chế độ kỳ nghỉ tiết kiệm điện, Chế độ thông minh tự điều chỉnh nhiệt độ các ngăn, Twin Inverter', '4 cánh', '516 lít', 'Ngăn chứa thực phẩm khô và ẩm riêng biệt, Ngăn rau củ và thực phẩm khô riêng biệt Humidity Zone - Dry Zone, Làm lạnh đa chiều', 'Mặt gương mờ, Kính chịu lực', 'Trung Quốc', '2019', 'Tủ nhiều cửa', '', '', 'Cao 180.4 cm - Rộng 83.3 cm - Sâu 66.6 cm', 'Lấy nước bên ngoài, Chuông báo khi quên đóng cửa, Bảng điều khiển bên ngoài', 'Công nghệ T.ABT kháng khuẩn khử mùi thông minh', '', '~ 1.16 kW/ngày', '', '', '105 kg', '12 tháng', '2021-04-29 14:52:47', '2021-04-29 14:54:01'),
+(49, 'SP000032', 'Chế độ kỳ nghỉ tiết kiệm điện, Chế độ thông minh tự điều chỉnh nhiệt độ các ngăn, Twin Inverter', '2 cánh', '333 lít', 'DoorCooling+ làm lạnh từ cánh cửa tủ, Làm lạnh đa chiều, Ngăn rau củ cân bằng ẩm 2 chế độ Fresh Zone, Làm lạnh từ cửa tủ DoorCooling+', 'Thép không gỉ', 'Indonesia', '2019', 'Ngăn đá trên', '', '', 'Cao 169 cm - Rộng 60 cm - Sâu 66.5 cm', 'Kính chịu lực', 'Khử mùi Nano Carbon', '', '~ 1.13 kW/ngày', '', '', '53 kg', '24 tháng', '2021-04-29 15:01:37', '2021-04-29 10:01:37');
 
 -- --------------------------------------------------------
 
@@ -32888,10 +32861,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `ho_ten`, `sdt`, `email`, `diachi`, `avatar`, `user_group_id`, `created`, `updated`) VALUES
-(27, 'khanh', '$2y$10$jALNu1FOajRqEjSBZGPqOuw5wWzzCOdr/Sc7woM3dE.4266AGdfvK', 'Nguyễn Tuấn Khanh', '0949174766', 'khanh@gmail.com', 'Phố Bà Huyện Thanh Quan, Phường Đội Cấn, Quận Ba Đình, Hà Nội', '', ' 1', '2021-03-24 20:20:26', '2021-04-25 21:01:16'),
-(28, 'khanh1', '$2y$10$tyvuXVoIDodoFYdmu7bzDuu6X1S2NYmp3tMy5z.SEgeGzNNDbMSO.', 'khanh', '0949174767', 'kha@gmail.com', '', '', ' 1', '2021-03-24 20:25:35', NULL),
+(27, 'khanh', '$2y$10$jALNu1FOajRqEjSBZGPqOuw5wWzzCOdr/Sc7woM3dE.4266AGdfvK', 'Nguyễn Tuấn Khanh', '0949174766', 'khanh@gmail.com', 'Đường 3/2, Phường Xuân Khánh, Quận Ninh Kiều, Cần Thơ', '', ' 1', '2021-03-24 20:20:26', '2021-04-29 16:14:32'),
+(28, 'khanh1', '$2y$10$tyvuXVoIDodoFYdmu7bzDuu6X1S2NYmp3tMy5z.SEgeGzNNDbMSO.', 'khanh', '0949174767', 'kha@gmail.com', '', '', '1', '2021-03-24 20:25:35', NULL),
 (29, 'khanh12', '$2y$10$wIiZMi6TOYMvw5mUASvQfeMqZGlEmdIhFJP9LzbcNVxJjkvCsyWhS', 'khanh', '0949174711', 'kh@gmail.com', '', '', ' 1', '2021-03-24 20:26:43', NULL),
-(32, 'teoabc', '$2y$10$7TgJhl5KINuVkRb/6S25eOx.LAavbGuEGfjPMsUmD2yGZzy/jGvgu', 'Nguyễn Văn Tèo', '0949218283', 'teo123@gmai.com', 'Đường 3/2, Phường  Hòa Thuận Đông, Quận Hải Châu, Đà Nẵng', '', ' 1', '2021-04-28 09:49:59', '2021-04-28 09:51:05');
+(32, 'teoabc', '$2y$10$7TgJhl5KINuVkRb/6S25eOx.LAavbGuEGfjPMsUmD2yGZzy/jGvgu', 'Nguyễn Văn Tèo', '0949218283', 'teo123@gmai.com', 'Đường 3/2, Phường  Hòa Thuận Đông, Quận Hải Châu, Đà Nẵng', '', ' 1', '2021-04-28 09:49:59', '2021-04-29 15:27:25'),
+(33, 'admin', '$2y$10$uuX7yLGxFhxZhNDyqvvWpeEoE8pH4LnXVmIVDbOQjhkRJME0A98Mm', 'Tuấn Khanh', '0949174777', 'admin@gmail.com', 'Đường 3/2, Phường Xuân Khánh, Quận Ninh Kiều, Cần Thơ', '', ' 2', '2021-04-29 13:36:55', '2021-04-29 08:36:55');
 
 -- --------------------------------------------------------
 
@@ -44310,7 +44284,7 @@ ALTER TABLE `ward`
 -- AUTO_INCREMENT for table `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `code_giamgia`
@@ -44328,7 +44302,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `loaisanpham`
@@ -44352,7 +44326,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `street`
@@ -44364,13 +44338,13 @@ ALTER TABLE `street`
 -- AUTO_INCREMENT for table `thongsokythuat`
 --
 ALTER TABLE `thongsokythuat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `user_group`
