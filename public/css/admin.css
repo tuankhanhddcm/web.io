@@ -622,3 +622,14 @@ button.btn-deletd {
 .detail_user label{
     font-weight: bold;
 }
+
+/* particles-js */
+
+#particles-js{
+    width: 100%;
+    height: 100%;
+    background-color: #0b87c9;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }

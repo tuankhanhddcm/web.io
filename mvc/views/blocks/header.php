@@ -11,7 +11,7 @@
             <ul class="header__navbar-list">
                 <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
                     <li class="header__navbar-item header__navbar-user">
-                        <a href="" class="header__navbar-user-link">
+                        <a href="http://localhost/web_mvc/Account" class="header__navbar-user-link">
                             <img src="http://localhost/web_mvc/public/img/user.png" alt="" class="header__navbar-user-img">
                             <span class="header__navbar-user-name"><?= $_SESSION['user']['username'] ?></span>
                         </a>
@@ -60,7 +60,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="header__search-btn"  type="submit">
+                    <button class="header__search-btn" type="submit">
                         <i class=' header__search-btn-icon bx bx-search'></i>
                     </button>
                 </form>
@@ -74,25 +74,26 @@
                             <span class="header__cart-notice"></span>
                         </div>
                     </a>
-                    <?php if (isset($_SESSION["cart"]) && !empty($_SESSION['cart'])) {
+                    <div id="sp_cart">
+                        
+                    </div>
+                    <!-- <div class="header__cart-list cart" >
+                        <div class="header__cart-list--has-cart">
+                            <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                            <ul class="header__cart-list-item " id="sp_cart">
 
-                    ?>
-                        <div class="header__cart-list ">
-                            <div class="header__cart-list--has-cart">
-                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                                <ul class="header__cart-list-item " id="sp_cart">
-
-                                </ul>
-                                <a href="http://localhost/web_mvc/cart" class="btn-cart btn-cart-them">Xem Giỏ Hàng</a>
-                            </div>
-
+                            </ul>
+                            <a href="http://localhost/web_mvc/cart" class="btn-cart btn-cart-them">Xem Giỏ Hàng</a>
                         </div>
-                    <?php } else { ?>
-                        <div class="header__cart-list header__cart-list--no-cart ">
+                    </div> -->
+                    <div class="no-cart">
+                        <!-- <div class="header__cart-list header__cart-list--no-cart ">
                             <img src="http://localhost/web_mvc/public/img/cartempty.png" alt="" class="header__cart-no-cart-img">
                             <span class="header__cart-list-no-cart-msg ">Chưa có sản phẩm</span>
-                        </div>
-                    <?php } ?>
+                        </div> -->
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -124,7 +125,7 @@
                             <div class="sign-form">
                                 <div class="error__wrap" style="margin-bottom: 20px;">
                                     <div class="pay-input ">
-                                        <input type="text" class="form__input user " name="username" placeholder=" " value="">
+                                        <input type="text" class="form__input user " onkeyup="check('.user')" name="username" placeholder=" " value="">
                                         <label for="" class="form__label  ">Tên đăng nhập</label>
                                     </div>
                                     <div style="display: flex;">
@@ -134,7 +135,7 @@
                                 </div>
                                 <div class="error__wrap" style="margin-bottom: 20px;">
                                     <div class="pay-input ">
-                                        <input type="password" class="form__input passs" name="pass" placeholder=" " value="">
+                                        <input type="password" class="form__input passs" onkeyup="check('.passs')" name="pass" placeholder=" " value="">
                                         <label for="" class="form__label  ">Mật khẩu</label>
                                     </div>
                                     <div style="display: flex;">
@@ -150,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-sign__controller">
-                                    <button type="submit" class="btn-sign__dangky " onclick="login()" id="login" name="login">Đăng nhập</button>
+                                    <button type="submit" class="btn-sign__dangky " onclick="login('1')" id="login" name="login">Đăng nhập</button>
                                 </div>
                             </div>
                         </div>

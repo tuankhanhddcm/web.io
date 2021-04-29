@@ -11,9 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;900&display=swap" rel="stylesheet"> -->
+  
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/base.css">
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/main.css">
   <link rel="stylesheet" type="text/css" href="http://localhost/web_mvc/public/css/cart.css">

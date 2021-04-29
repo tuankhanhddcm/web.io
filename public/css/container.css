@@ -825,13 +825,15 @@ button.btn_account {
     min-width: 100px;
     padding: 20px 15px;
     color: rgb(120, 120, 120);
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.6rem;
+    font-weight: 400;
     text-align: left;
+}
+#hoa_don td{
+    font-size: 1.3rem;
 }
 
 .user_main-wrap td {
-    font-size: 13px;
     line-height: 20px;
     color: rgb(51, 51, 51);
 }
@@ -923,6 +925,8 @@ button.btn_delete {
 }
 
 .product-info p{
+    font-size: 1.6rem;
+    font-weight: 400;
     margin: 0;
     color: #333;
     padding-left: 10px;

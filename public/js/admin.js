@@ -106,7 +106,7 @@ $(document).ready(function () {
     });
 
 
-    // xóa sản phẩm
+    // xóa sản phẩm admin
     $(document).on("click", ".btn-deletd", function () {
         var id = $(this).data("mydata");
         $.confirm({
@@ -131,7 +131,11 @@ $(document).ready(function () {
                             url: "http://localhost/web_mvc/Ajax/delete_sp/" + id,
                             method: "post",
                             success: function (data) {
-                                fliter_admin(1);
+                                $(document).ready(function(){
+                                    fliter_admin(1);
+                                    showdelete('delete', 'sản phẩm');
+                                });
+                                
                             }
                         });
                     }
@@ -170,8 +174,11 @@ $(document).ready(function () {
                             data: { id: id },
                             method: "post",
                             success: function (data) {
-                                filter_hd(1);
-                                showdelete('delete', 'hóa đơn');
+                                $(document).ready(function(){
+                                    filter_hd(1);
+                                    showdelete('delete', 'hóa đơn');
+                                });
+                                
                             }
                         });
                     }
@@ -226,7 +233,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.btn_huy', function () {
         id = $(this).data('id');
-        change_status_hd(4, id, 1);
+        change_status_hd(4, id, 1,'btn');
     });
 
     // tìm kiếm khách hàng
@@ -433,7 +440,6 @@ function search_user(text, trang) {
                 text: text
             },
             success: function (data) {
-
                 $("#list_user").html(data);
             }
         });

@@ -45,8 +45,8 @@ class Usermodel extends DB {
         return $result;
     }
 
-    public function check_login($user){
-        $sql = "SELECT * from user where username ='$user'";
+    public function check_login($user,$id){
+        $sql = "SELECT * from user where username ='$user' and user_group_id=$id";
         return $this->fristquery($sql);
     }
 
@@ -83,7 +83,7 @@ class Usermodel extends DB {
 
     public function user_hd($text,$dk='',$start=0,$limit=0){
         if($dk =="user"){
-            $sql ="SELECT * from user where 1";
+            $sql ="SELECT * from user where  user_group_id= 1";
         }else{
             $sql ="SELECT user.*,hoadon.khachhang,SUM(hoadon.total_money) as total,count(hoadon.ma_hd) as so_hd from user JOIN hoadon on hoadon.khachhang=user.username where 1";
         }

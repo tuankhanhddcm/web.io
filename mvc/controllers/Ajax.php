@@ -221,7 +221,9 @@ class Ajax extends Controller
 
     public function sp_cart()
     {
-        if (isset($_SESSION["cart"])  && !empty($_SESSION['cart'])) {
+        $ouput ='';
+        $kq = "";
+        if (!empty($_SESSION['cart'])) {
             $mang = [];
             foreach ($_SESSION["cart"] as  $val) {
                 array_push($mang, $val);
@@ -237,12 +239,16 @@ class Ajax extends Controller
                     $sp[$n] = $mang[$n];
                 }
             }
-        }
-        $kq = "";
-        foreach ($sp as $val) :
-            if (count($sp) <= 6) {
-                if ($val['sp_giagiam'] > 0) {
-                    $kq .= '  <li class="header__cart-item">
+            $kq .= '
+            <div class="header__cart-list cart" >
+            <div class="header__cart-list--has-cart">
+                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                <ul class="header__cart-list-item " id="sp_cart">
+            ';
+            foreach ($sp as $val) :
+                if (count($sp) <= 6) {
+                    if ($val['sp_giagiam'] > 0) {
+                        $kq .= '  <li class="header__cart-item">
                                 <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
                                     <div class="header_img">
                                         <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
@@ -260,8 +266,8 @@ class Ajax extends Controller
                                     </div>
                                 </a>
                             </li>';
-                } else {
-                    $kq .= '  <li class="header__cart-item">
+                    } else {
+                        $kq .= '  <li class="header__cart-item">
                                     <a href="http://localhost/web_mvc/Detail/' . $val["sp_url"] . '" class="header__cart-item">
                                         <div class="header_img">
                                             <img src=" http://localhost/web_mvc/' . $val["sp_img"] . '" alt="" class="header__cart-img">
@@ -279,10 +285,24 @@ class Ajax extends Controller
                                         </div>
                                     </a>
                                 </li>';
+                    }
                 }
-            }
-        endforeach;
-        echo $kq;
+            endforeach;
+            $kq .= '
+                        </ul>
+                    <a href="http://localhost/web_mvc/cart" class="btn-cart btn-cart-them">Xem Giỏ Hàng</a>
+                </div>
+            </div>
+            ';
+        }else {
+            $ouput = '
+                <div class="header__cart-list header__cart-list--no-cart ">
+                    <img src="http://localhost/web_mvc/public/img/cartempty.png" alt="" class="header__cart-no-cart-img">
+                    <span class="header__cart-list-no-cart-msg ">Chưa có sản phẩm</span>
+                </div>
+            ';
+        }
+        echo json_encode([$ouput, $kq]);
     }
 
     public function sl_cart()
@@ -328,6 +348,7 @@ class Ajax extends Controller
 
 
 
+
     //dang ky user
     public function dangky()
     {
@@ -352,7 +373,7 @@ class Ajax extends Controller
                 $gg_id = null;
                 $diachi = "";
                 $avatar = "";
-                $user_group_id = 1;
+                $user_group_id = 0;
                 $updated = date("Y-m-d H:i:s", time());
                 $kq = $this->usermodel->inseruser($username, $pass, $hoten, $sdt, $email, $diachi, $fb_id, $gg_id, $avatar, $user_group_id, $updated);
                 echo $kq;
@@ -385,16 +406,20 @@ class Ajax extends Controller
         }
     }
 
-    public function login()
+    public function login($id)
     {
         if (isset($_POST['user']) && isset($_POST['pass']) && !empty($_POST['user']) && !empty($_POST['pass'])) {
-            $kq = $this->usermodel->check_login($_POST['user']);
+            $kq = $this->usermodel->check_login($_POST['user'], $id);
             $rs = '';
             $out = '';
             if ($kq != null) {
                 $out = 'true';
                 if (password_verify($_POST['pass'], $kq['password'])) {
-                    $_SESSION['user'] = $kq;
+                    if ($id == 1) {
+                        $_SESSION['user'] = $kq;
+                    } elseif ($id == 2) {
+                        $_SESSION['admin'] = $kq;
+                    }
                     $rs = 'true';
                 } else {
                     $rs = 'false';
@@ -580,7 +605,6 @@ class Ajax extends Controller
 
                 $kq = $this->sanpham->update_product($ma_sp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
             }
-            echo $kq;
             echo $masp;
         }
     }
@@ -1217,7 +1241,7 @@ class Ajax extends Controller
             } else {
                 $ouput .= '
                         <tr  class="no_product">
-                            <td colspan="9">Không có đơn hàng nào hôm nay !!!</td>
+                            <td colspan="9">Không có đơn hàng nào !!!</td>
                         </tr>
                     ';
             }
@@ -1315,23 +1339,28 @@ class Ajax extends Controller
             } else {
                 $row = 0;
             }
-            if (!empty($user) && !empty($temp) && !empty($user_hd)) {
+            if (!empty($temp) && !empty($user_hd)) {
+
                 if ($page > 1) {
-                    $count = $limit+1;
+                    $count = $limit + 1;
                 } else {
                     $count = 1;
                 }
                 $mang = array();
+
                 foreach ($user_hd as $v) {
                     $mang[$v['username']] = $v;
                     $mang[$v['username']]['total'] = 0;
                     $mang[$v['username']]['so_hd'] = 0;
-                    foreach ($user as $val) {
-                        if ($v['username'] == $val['khachhang']) {
+                    if (!empty($user)) {
+                        foreach ($user as $val) {
 
-                            $mang[$v['username']]['total'] = $val['total'];
-                            $mang[$v['username']]['so_hd'] = $val['so_hd'];
-                            break;
+                            if ($v['username'] == $val['khachhang']) {
+
+                                $mang[$v['username']]['total'] = $val['total'];
+                                $mang[$v['username']]['so_hd'] = $val['so_hd'];
+                                break;
+                            }
                         }
                     }
                 }
@@ -1339,7 +1368,7 @@ class Ajax extends Controller
                     $ouput .= '
                                 <tr>   
                                     <td >' . $count . '</td>
-                                    <td ><a class="btn-user" data-user="'.$val['username'].'" href="http://localhost/web_mvc/Admin/detail_user/' . $val['username'] . '" >' . $val["ho_ten"] . '</a> </td>
+                                    <td ><a class="btn-user" data-user="' . $val['username'] . '" href="http://localhost/web_mvc/Admin/detail_user/' . $val['username'] . '" >' . $val["ho_ten"] . '</a> </td>
                                     <td >' . $val["sdt"] . '</td>
                                     <td >' . $val["email"] . '</td>
                                     <td  >' . $val["diachi"] . '</td>
@@ -1389,7 +1418,7 @@ class Ajax extends Controller
             $ouput = '';
             if ($kq != null) {
                 if ($page > 1) {
-                    $count = $limit+1;
+                    $count = $limit + 1;
                 } else {
                     $count = 1;
                 }
@@ -1397,27 +1426,27 @@ class Ajax extends Controller
                     switch ($val["trangthai"]) {
                         case 0:
                             $text = "Chờ xác nhận";
-                            
+
                             $class = 'txt_wait';
                             break;
                         case 1:
                             $text = "Đã xác nhận";
-                            
+
                             $class = 'txt_check';
                             break;
                         case 2:
                             $text = "Đã giao hàng";
-                            
+
                             $class = 'txt_success';
                             break;
                         case 3:
                             $text = "Chờ xử lý";
-                            
+
                             $class = 'txt_wait';
                             break;
                         case 4:
                             $text = "Đơn hàng đã hủy";
-                            
+
                             $class = 'txt_delete';
                             break;
                     }
@@ -1426,14 +1455,14 @@ class Ajax extends Controller
                             <td style ="text-align:center;">' . $count . '</td>
                             <td style ="text-align:center;">' . $val["ma_hd"] . '</td>
                             <td style ="text-align:center;">' . $val["date"] . '</td>
-                            <td style ="text-align:center;" >' . number_format($val["total_money"]) .' đ</td>
+                            <td style ="text-align:center;" >' . number_format($val["total_money"]) . ' đ</td>
                             <td style ="text-align:center;" ><span class="' . $class . ' " >' . $text . '</span></td>
                         </tr>
         
                     ';
                     $count += 1;
                 }
-                $ouput .= $this->_trang($row, $page, $limit,5);
+                $ouput .= $this->_trang($row, $page, $limit, 5);
             } else {
                 $ouput .= '
                     <tr  class="no_product">

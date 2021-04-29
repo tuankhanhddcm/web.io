@@ -72,7 +72,6 @@ $(document).ready(function () {
 
     });
 
-    // search sản phẩm
 
     //sản phẩm cart khi hover
     sp_cart();
@@ -239,7 +238,7 @@ function get_filter(class_name) {
 function filter_gia_search(gia, limit) {
     var sort = gia;
     $.ajax({
-        url: "../Ajax/filter_search",
+        url: "http://localhost/web_mvc/Ajax/filter_search",
         method: "POST",
         data: {
             sort: sort,
@@ -288,8 +287,14 @@ function sp_cart() {
         data: {
             sp1: sp1,
         },
+        dataType: 'json',
         success: function (data) {
-            $("#sp_cart").html(data);
+            if(data[1] !='' && data[0]==''){
+                $("#sp_cart").html(data[1]);
+                $(".no-cart").html('');
+            }else {
+                $(".no-cart").html(data[0]);
+            }    
         }
     });
 
@@ -363,9 +368,18 @@ function addcart() {
             soluong: soluong
         },
         success: function (data) {
+            $(document).ready(function(){
+                sl_cart();
+                sp_cart();
+                showproduct();
+            });
         }
     });
 }
+
+
+
+
 
 
 function dangky() {
@@ -616,14 +630,16 @@ function check_pass() {
 
 //đăng nhập
 
-function login() {
+function login(id) {
     var user = $('.user').val();
     var pass = $('.passs').val();
     check('.user');
     check('.passs');
+    
     if (check('.user') == 'true' && check('.passs') == 'true') {
+        
         $.ajax({
-            url: "http://localhost/web_mvc/Ajax/login",
+            url: "http://localhost/web_mvc/Ajax/login/"+id,
             method: 'post',
             data: {
                 user: user,
@@ -631,7 +647,6 @@ function login() {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data);
                 if (data[0] == "false") {
                     $('.user').addClass('error_input');
                     $(".user_icon").css("display", "block");
@@ -653,7 +668,13 @@ function login() {
                     $(".error_passs").css("display", "none");
                 }
                 if (data[0] == 'true' && data[1] == 'true') {
-                    location.reload();
+                    if(id == 1){
+                        location.reload();
+                    }else if(id==2){
+                        location.href="http://localhost/web_mvc/Admin";
+                    }
+
+                    
                 }
 
             }
@@ -733,11 +754,7 @@ function showproduct() {
         message: "Bạn thêm sản phẩm thành công",
         type: "success",
         duration: 3000,
-        load: 'addsp'
     });
-    setTimeout(function () {
-        location.reload();
-    }, 3500);
 }
 
 function showdelete(text, mess) {
@@ -836,9 +853,26 @@ function logout() {
         data: {
         },
         success: function (data) {
-            location.href = 'http://localhost/web_mvc/home';
+            if(data =="true"){
+                location.href = 'http://localhost/web_mvc/home';
+            }
+            
         }
     });
+
+    $.ajax({
+        url: "http://localhost/web_mvc/Login/logout_admin",
+        method: "POST",
+        data: {
+        },
+        success: function (data) {
+            if(data =="true"){
+                location.href = 'http://localhost/web_mvc/login';
+            }
+            
+        }
+    });
+    
 }
 
 
@@ -1340,7 +1374,6 @@ function insert_tskt(masp, url) {
             chat_lieu: chat_lieu
         },
         success: function (data) {
-            // console.log(data);
             $('input').val('');
         }
     });
@@ -1407,7 +1440,7 @@ function more_sp(limit) {
 
 
 // thay đổi trạng thái
-function change_status_hd(val, id, dk = 0) {
+function change_status_hd(val, id, dk = 0,text='') {
     id_td = '#' + id;
     txt = ".txt_" + id;
     span = ".span_" + id;
@@ -1423,7 +1456,7 @@ function change_status_hd(val, id, dk = 0) {
         dataType: "json",
         success: function (data) {
             $(id_td).html(data[0]);
-            if (data[1] == 'true') {
+            if (data[1] == 'true' && text=='btn') {
                 $(span).text('Đơn hàng đã hủy');
                 $(btn_td).html("<button class='btn_cus btn_delete' data-id='" + id + "' >Xóa đơn</button>");
             }

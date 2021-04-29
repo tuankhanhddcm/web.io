@@ -82,14 +82,14 @@
                                 <div class="btn-sl__pay">
                                     <?php if ($data["sanpham"]["sp_sl"] > 0) { ?>
                                         <input type="hidden" name="productID" id="productID" value="<?= $data["sanpham"]['sp_ma'] ?>">
-                                        <button class="btn_cus btn-sl-cart" type="button" onclick="addcart();showproduct()" id="addcart">
+                                        <button class="btn_cus btn-sl-cart" type="button" onclick="addcart();" id="addcart">
                                             <i class='btn-pay-icon bx bxs-cart-add'></i>
                                             Thêm vào giỏ hàng
                                         </button>
                                         <button class="btn_cus btn--primary btn-sl-sell" type="button" id="paycart">Mua ngay</button>
                                     <?php } else { ?>
                                         <input type="hidden" name="productID" id="productID" value="<?= $data["sanpham"]['sp_ma'] ?>">
-                                        <button disabled style="opacity: .6;cursor: default;" class="btn_cus btn-sl-cart" type="button" onclick="addcart();showproduct()" id="addcart">
+                                        <button disabled style="opacity: .6;cursor: default;" class="btn_cus btn-sl-cart" type="button" onclick="addcart();" id="addcart">
                                             <i class='btn-pay-icon bx bxs-cart-add'></i>
                                             Thêm vào giỏ hàng
                                         </button>

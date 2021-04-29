@@ -506,7 +506,7 @@
                                 <tr>
                                     <th>Sản phẩm</th>
                                     <th>Giá</th>
-                                    <th>Số lượng</th>
+                                    <th style="text-align: center;">Số lượng</th>
                                     <th>Giảm giá</th>
                                     <th>Thành tiền</th>
                                 </tr>
