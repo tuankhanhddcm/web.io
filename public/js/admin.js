@@ -132,7 +132,8 @@ $(document).ready(function () {
                             method: "post",
                             success: function (data) {
                                 $(document).ready(function(){
-                                    fliter_admin(1);
+                                    page = $(".active a").data("page_number");
+                                    fliter_admin(page);
                                     showdelete('delete', 'sản phẩm');
                                 });
                                 
@@ -175,7 +176,8 @@ $(document).ready(function () {
                             method: "post",
                             success: function (data) {
                                 $(document).ready(function(){
-                                    filter_hd(1);
+                                    page = $(".active a").data("page_number");
+                                    filter_hd(page);
                                     showdelete('delete', 'hóa đơn');
                                 });
                                 

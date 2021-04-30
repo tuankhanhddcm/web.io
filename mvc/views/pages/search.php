@@ -22,7 +22,7 @@
                 <div class="home-sort">
                     <span class="home-sort__lable" style="font-size: 1.6rem;">Tìm thấy <span style="color: black; font-size:1.6rem; font-weight: 600;"><?= $data['ketqua'] ?></span> sản phẩm:</span>
                     <span class="home-sort__lable">Sắp xếp theo</span>
-                    <button class="btn_cus btn-sort  sapxep" onclick="filter_banchay();">Bán chạy</button>
+                    <!-- <button class="btn_cus btn-sort  sapxep" onclick="filter_banchay();">Bán chạy</button> -->
                     <button class="btn_cus btn-sort sapxep" value="desc" data-order="0" id="giacao" >Giá cao đến thấp</button>
                     <button class="btn_cus btn-sort sapxep" value="asc" data-order="0" id="giathap" >Giá thấp đến cao</button>
                 </div>

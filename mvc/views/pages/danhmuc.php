@@ -186,7 +186,7 @@
                             case 6:
                                 echo '
                                 <div class="home-sceen">
-                                    <h4 class="home__text">Kiểu tủ lạnh</h4>
+                                    <h4 class="home__text">Kiểu máy giặt</h4>
                                     <div class="home__select" style="margin-left:10px">
                                         <div class="grid__row align-items-center">
                                             <div class="col-sm-6" style="align-items:center;" >
@@ -216,7 +216,7 @@
                             case 5:
                                 echo '
                                 <div class="home-sceen">
-                                    <h4 class="home__text">Loại máy lạnh:</h4>
+                                    <h4 class="home__text">Loại lò nướng:</h4>
                                     <div class="home__select" style="margin-right: 5px;">
                                         <div class="grid__row">
                                             <div class="col-sm-6" style="padding-bottom: 10px">
@@ -259,7 +259,7 @@
                             case 4:
                                 echo '
                                 <div class="home-sceen">
-                                    <h4 class="home__text">Loại máy lạnh:</h4>
+                                    <h4 class="home__text">Loại loa:</h4>
                                     <div class="home__select" style="margin-right: 5px;">
                                         <div class="grid__row">
                                             <div class="col-sm-6" style="padding-bottom: 10px">
@@ -418,7 +418,7 @@
              <div class="col-sm-9">
                  <div class="home-sort">
                      <span class="home-sort__lable">Sắp xếp theo</span>
-                     <button class="btn_cus btn-sort  sapxep" id="banchay" value="">Bán chạy</button>
+                     <!-- <button class="btn_cus btn-sort  sapxep" id="banchay" value="">Bán chạy</button> -->
                      <button id="giacao" class="btn_cus btn-sort sapxep" data-order="0" value="desc">Giá cao đến thấp</button>
                      <button class="btn_cus btn-sort sapxep" value="asc" data-order="0" id="giathap">Giá thấp đến cao</button>
                  </div>

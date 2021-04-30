@@ -54,7 +54,7 @@ class sanpham extends DB {
 
 
     public function sptheogia($gia_start,$gia_end,$ma_loai,$ma_sp){
-        $qr ="SELECT * from sanpham where ma_loai=$ma_loai and sp_ma != '$ma_sp' and sp_giaban  between $gia_start and $gia_end";
+        $qr ="SELECT * from sanpham where ma_loai=$ma_loai and sp_ma != '$ma_sp'  and sp_giaban  between $gia_start and $gia_end";
         $kq = $this->_query($qr);
         return $kq;
     }
