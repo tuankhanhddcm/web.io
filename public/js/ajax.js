@@ -1046,7 +1046,6 @@ function insert_sp(val, url, ma_sp) {
     } else {
         giaban = txt_giaban;
     }
-    console.log(giagiam);
     if (tensp != '' && sl != '' && gia != '' && giaban != '' && maloai != '' && mansx != '') {
         if (file !== undefined) {
             var type = file.type;
@@ -1066,8 +1065,6 @@ function insert_sp(val, url, ma_sp) {
             }
 
         }
-
-        var masp = '';
         $.ajax({
             url: 'http://localhost/web_mvc/Ajax/sp/' + url,
             method: 'post',
@@ -1086,6 +1083,7 @@ function insert_sp(val, url, ma_sp) {
             async: false,
             success: function (data) {
                 masp = data;
+               
             }
         });
 
@@ -1410,7 +1408,7 @@ function update_sp_tskt(val) {
 
     if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() == 'true') {
         insert_tskt(ma_sp, 'update');
-        insert_sp(val, 'update', ma_sp);
+        insert_sp(val,'update', ma_sp);
 
     }
 }

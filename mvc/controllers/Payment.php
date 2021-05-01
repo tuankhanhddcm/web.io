@@ -9,19 +9,19 @@ class Payment extends Controller
 
     public function __construct()
     {
-        if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
-            header("location: http://localhost/web_mvc/");
-        } else {
+      
             $this->Usermoder = $this->model("Usermodel");
             $this->Hoadon = $this->model("Hoadon");
             $this->Sanpham = $this->model("sanpham");
             $this->Diachi = $this->model('Diachi');
-        }
+        
     }
 
     public function trangchu()
     {
-
+        if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+            header("location: http://localhost/web_mvc/");
+        } else {
         $tinh = $this->Diachi->select_tinh('province');
         $dist = $this->Diachi->select_tinh('district');
         $ward = $this->Diachi->select_tinh('ward');
@@ -37,6 +37,7 @@ class Payment extends Controller
             "street" => $street,
             "dc" => $dc,
         ]);
+        }
     }
 
     public function checkuser_status()

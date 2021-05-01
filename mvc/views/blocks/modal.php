@@ -231,251 +231,685 @@
           <?php if (isset($data['thongso']) && !empty($data['thongso'])) {
             if ($data['sanpham']['ma_loai'] == 1) { ?>
               <li>
-                <span class="detail-info-name">Loại tivi:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['loai_sp']  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Loại tivi:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?></span>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Kích cỡ màn hình:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['kich_co_tv'] ?> ich</span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Kích cỡ màn hình:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['kich_co_tv'] ?> ich</p>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Độ phân giải:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['do_phan_giai']?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Độ phân giải:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <span class="detail-info-value"> <?= $data["thongso"]['do_phan_giai'] ?></span>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Hệ điều hành:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['he_dieu_hanh'] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Hệ điều hành:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"><?= $data["thongso"]['he_dieu_hanh'] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Ứng dụng:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['ung_dung'] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Ứng dụng:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"><?= $data["thongso"]['ung_dung'] ?></p>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ hình ảnh:</span>
-                <span class="detail-info-value " style="display: inline-block;vertical-align: top; left: 150px;top: -15px;">
-                  <?php foreach($data['congnghe'] as $val): 
-                        if($val !=''){
-                  ?>
-                  <p><?= $val ?></p>
-                  <?php }
-                    endforeach;
-                  ?>
-                </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Công nghệ hình ảnh:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <span class="detail-info-value " style="display: inline-block;vertical-align: top; left: 150px;top: -15px;">
+                      <?php foreach ($data['congnghe'] as $val) :
+                        if ($val != '') {
+                      ?>
+                          <p><?= $val ?></p>
+                      <?php }
+                      endforeach;
+                      ?>
+                    </span>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Tính năng thông minh:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['tinh_nang' ]?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Tính năng thông minh:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['tinh_nang'] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Kết nối:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['ket_noi']  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Kết nối:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['ket_noi']  ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ loa:</span>
-                <span class="detail-info-value">  <?= $data["thongso"]['loa'] ?></san>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Công nghệ loa:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loa'] ?></san>
+                  </div>
+                </div>
+
+
               </li>
             <?php }
             if ($data['sanpham']['ma_loai'] == 2) { ?>
               <li>
-                <span class="detail-info-name">Loại máy lạnh:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Loại máy lạnh:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </p>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Kiểu máy lạnh:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Kiểu máy lạnh:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?> </p>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Công suất làm lạnh, sưởi ấm:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"]?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Công suất làm lạnh, sưởi ấm:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Phạm vi làm lạnh hiệu quả:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Phạm vi làm lạnh hiệu quả:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Lọc bụi, kháng khuẩn, khử mùi:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?>'</span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Lọc bụi, kháng khuẩn, khử mùi:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?>'</p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Tiện ích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Tiện ích:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ làm lạnh:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Công nghệ làm lạnh:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chế độ gió:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Chế độ gió:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chất liệu:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <span class="detail-info-name">Chất liệu:</span>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
             <?php }
             if ($data['sanpham']['ma_loai'] == 3) { ?>
               <li>
-                <span class="detail-info-name">Loại tủ:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Loại tủ:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Dung tích tủ:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Dung tích tủ:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Số cánh cửa:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["so_canh_cua"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Số cánh cửa:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["so_canh_cua"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công suất tiêu thụ công bố theo TCVN:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công suất tiêu thụ công bố theo TCVN:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ tiết kiệm điện:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công nghệ tiết kiệm điện:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ làm lạnh:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công nghệ làm lạnh:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ kháng khuẩn:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công nghệ kháng khuẩn:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ung_dung"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Tiện ích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tiện ích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chất liệu tủ:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Chất liệu tủ:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
             <?php }
             if ($data['sanpham']['ma_loai'] == 4) { ?>
               <li>
-                <span class="detail-info-name">Loại loa:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Loại loa:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </p>
+                  </div>
+                </div>
+
+
               </li>
 
               <li>
-                <span class="detail-info-name">Tổng công suất:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tổng công suất:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Tiện ích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"]?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tiện ích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></p>
+                  </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Phím điều khiển:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Phím điều khiển:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Tương thích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["he_dieu_hanh"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tương thích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["he_dieu_hanh"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Kết nối:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Kết nối:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
             <?php }
             if ($data['sanpham']['ma_loai'] == 5) { ?>
               <li>
-                <span class="detail-info-name">Loại lò nướng:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Loại lò nướng:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Dung tích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Dung tích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công suất:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công suất:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_suat"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chất liệu lò:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["chat_lieu"]?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Chất liệu lò:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["chat_lieu"] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chức năng chính:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Chức năng chính:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Bảng điều khiển:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Bảng điều khiển:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
 
               <li>
-                <span class="detail-info-name">Tiện ích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tiện ích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
             <?php }
             if ($data['sanpham']['ma_loai'] == 6) { ?>
               <li>
-                <span class="detail-info-name">Loại máy giặt:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Loại máy giặt:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['loai_sp']  ?> </p>
+                  </div>
+                </div>
               </li>
               <li>
-                <span class="detail-info-name">Lồng giặt:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['so_canh_cua'] ?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Lồng giặt:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['so_canh_cua'] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Khối lượng giặt:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Khối lượng giặt:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["dung_tich"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Kiểu động cơ:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Kiểu động cơ:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["kieu_tu"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Công nghệ giặt:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["cong_nghe"]?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Công nghệ giặt:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["cong_nghe"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
 
               <li>
-                <span class="detail-info-name">Tiện ích:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["tinh_nang"]?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tiện ích:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["tinh_nang"] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Hiệu suất sự dụng điện:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['cong_suat']?> </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Hiệu suất sự dụng điện:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['cong_suat'] ?> </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Tốc độ quay vắt tối đa:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['ung_dung'] ?>' </span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Tốc độ quay vắt tối đa:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['ung_dung'] ?>' </p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Chất liệu máy:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]['chat_lieu'] ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Chất liệu máy:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]['chat_lieu'] ?></p>
+                  </div>
+                </div>
+
+
               </li>
               <li>
-                <span class="detail-info-name">Bảng điều khiển:</span>
-                <span class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></span>
+                <div class="grid__row">
+                  <div class="col-sm-3" style="padding: 0;">
+                    <p class="detail-info-name">Bảng điều khiển:</p>
+                  </div>
+                  <div class="col-sm-9" style="padding: 0;">
+                    <p class="detail-info-value"> <?= $data["thongso"]["ket_noi"]  ?></p>
+                  </div>
+                </div>
+
+
               </li>
             <?php } ?>
 
             <li>
-              <span class="detail-info-name">Kích thước:</span>
-              <span class="detail-info-value"><?= $data["thongso"]["kich_thuoc"] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Kích thước:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["thongso"]["kich_thuoc"] ?></p>
+                </div>
+              </div>
             </li>
             <li>
-              <span class="detail-info-name">Khối lượng:</span>
-              <span class="detail-info-value"><?= $data["thongso"]["khoi_luong"] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Khối lượng:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["thongso"]["khoi_luong"] ?></p>
+                </div>
+              </div>
+
+
+
             </li>
             <li>
-              <span class="detail-info-name">Bảo hành:</span>
-              <span class="detail-info-value"><?= $data["thongso"]["bao_hanh"] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Bảo hành:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["thongso"]["bao_hanh"] ?></p>
+                </div>
+              </div>
+
+
             </li>
             <li>
-              <span class="detail-info-name">Năm ra mắt:</span>
-              <span class="detail-info-value"><?= $data["thongso"]['nam_sx'] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Năm ra mắt:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["thongso"]['nam_sx'] ?></p>
+                </div>
+              </div>
+
+
             </li>
             <li>
-              <span class="detail-info-name">Nơi sản xuất:</span>
-              <span class="detail-info-value"><?= $data["thongso"]['noi_san_xuat'] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Nơi sản xuất:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["thongso"]['noi_san_xuat'] ?></p>
+                </div>
+              </div>
+
+
             </li>
             <li>
-              <span class="detail-info-name">Hãng:</span>
-              <span class="detail-info-value"><?= $data["nsx"] ?></span>
+              <div class="grid__row">
+                <div class="col-sm-3" style="padding: 0;">
+                  <p class="detail-info-name">Hãng:</p>
+                </div>
+                <div class="col-sm-9" style="padding: 0;">
+                  <p class="detail-info-value"><?= $data["nsx"] ?></p>
+                </div>
+              </div>
+
+
             </li>
           <?php } else { ?>
             <li>
@@ -490,36 +924,36 @@
 
 <!-- Modal detail hóa đơn admin-->
 <div class="modal fade modal_admin" id="detail_oder" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal_ad" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Chi tiết hóa đơn</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="user_main-wrap">
-                        <table style="margin: 0;">
-                            <thead>
-                                <tr>
-                                    <th>Sản phẩm</th>
-                                    <th>Giá</th>
-                                    <th style="text-align: center;">Số lượng</th>
-                                    <th>Giảm giá</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody id="detail_oder_ad">
-                                
-                            </tbody>
-                        </table>
+  <div class="modal-dialog modal_ad" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết hóa đơn</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <p aria-hidden="true">&times;</p>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="user_main-wrap">
+            <table style="margin: 0;">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Giá</th>
+                  <th style="text-align: center;">Số lượng</th>
+                  <th>Giảm giá</th>
+                  <th>Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody id="detail_oder_ad">
 
-                    </div>
-                </div>
-            </div>
+              </tbody>
+            </table>
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- end modal -->

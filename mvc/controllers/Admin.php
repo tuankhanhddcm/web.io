@@ -147,4 +147,11 @@ class Admin extends Controller
             "page" =>"account"
         ]);
     }
+
+    public function doanhso(){
+        
+        $this->view("admin",[
+            "page" =>"doanhso"
+        ]);
+    }
 }

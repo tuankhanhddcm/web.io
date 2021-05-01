@@ -131,12 +131,12 @@ $(document).ready(function () {
                             url: "http://localhost/web_mvc/Ajax/delete_sp/" + id,
                             method: "post",
                             success: function (data) {
-                                $(document).ready(function(){
+                                $(document).ready(function () {
                                     page = $(".active a").data("page_number");
                                     fliter_admin(page);
                                     showdelete('delete', 'sản phẩm');
                                 });
-                                
+
                             }
                         });
                     }
@@ -175,12 +175,12 @@ $(document).ready(function () {
                             data: { id: id },
                             method: "post",
                             success: function (data) {
-                                $(document).ready(function(){
+                                $(document).ready(function () {
                                     page = $(".active a").data("page_number");
                                     filter_hd(page);
                                     showdelete('delete', 'hóa đơn');
                                 });
-                                
+
                             }
                         });
                     }
@@ -197,27 +197,168 @@ $(document).ready(function () {
     // calendar
     $(document).on('click', '.rd-day-selected', function () {
         $(".calendar").css("display", "none");
+        $(".calendar2").css("display", "none");
         $("#result").data('val', '0');
+        $("#results").data('val', '0')
         var date = $("#result").val();
         filter_hd(1, date);
 
     })
-    $(document).on('click', '.calendar_input', function () {
 
+    $(document).on('click', '.calendar_input', function () {
         var date = $("#result").val();
         filter_hd(1, date);
         data = $("#result").data('val');
         if (data == 0) {
             $(".calendar").css("display", "block");
             $("#result").data('val', '1');
+
         } else if (data == 1) {
             $(".calendar").css("display", "none");
             $("#result").data('val', '0');
         }
+
+
         $("#result").val('');
-        
-        
     });
+    $(document).on('click', '.calendar_input2', function () {
+        var date2 = $("#results").val();
+        data2 = $("#results").data('val');
+        if (data2 == 0) {
+            $(".calendar2").css("display", "block");
+            $("#results").data('val', '1');
+        } else if (data2 == 1) {
+            $(".calendar2").css("display", "none");
+            $("#results").data('val', '0');
+        }
+        $("#results").val('');
+    });
+
+    // Tuần
+    $(".btn_week").click(function () {
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear();
+        var date = year + '-0' + month + '-0' + day;
+        var week = year + '-0' + month + '-0' + (day + 6);
+        $("#result").val(date);
+        $("#results").val(week);
+    });
+    // tháng
+    $(".btn_month").click(function () {
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear();
+        var date = year + '-0' + month + '-0' + day;
+        switch (month) {
+            case 1:
+                day = day + 30;
+                break;
+            case 2:
+                day = day + 28;
+                break;
+            case 3:
+                day = day + 30;
+                break;
+            case 4:
+                day = day + 29;
+                break;
+            case 5:
+                day = day + 30;
+                break;
+            case 6:
+                day = day + 29;
+                break;
+            case 7:
+                day = day + 30;
+                break;
+            case 8:
+                day = day + 30;
+                break;
+            case 9:
+                day = day + 29;
+                break;
+            case 10:
+                day = day + 30;
+                break;
+            case 11:
+                day = day + 29;
+                break;
+            case 12:
+                day = day + 30;
+                break;
+        }
+        var thang = year + '-0' + month + '-' + (day);
+        $("#result").val(date);
+        $("#results").val(thang);
+
+    });
+    // quý
+    $(".btn_quy").click(function () {
+        var today = new Date();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear();
+        
+        if (month < 4) {
+            month = 3;
+            date = year + '-01'+'-01';
+        } else if (month < 7) {
+            month = 6;
+            date = year + '-04'+'-01';
+        } else if (month < 10) {
+            month = 9;
+            date = year + '-07'+'-01';
+        }else{
+            month = 12;
+            date = year + '-10'+'-01';
+        }
+        
+        switch (month) {
+            case 1:
+                day = 31;
+                break;
+            case 2:
+                day = 28;
+                break;
+            case 3:
+                day = 31;
+                break;
+            case 4:
+                day = 30;
+                break;
+            case 5:
+                day = 31;
+                break;
+            case 6:
+                day = 30;
+                break;
+            case 7:
+                day = 31;
+                break;
+            case 8:
+                day = 31;
+                break;
+            case 9:
+                day = 30;
+                break;
+            case 10:
+                day = 31;
+                break;
+            case 11:
+                day = 30;
+                break;
+            case 12:
+                day = 31;
+                break;
+        }
+        var quy = year + '-0' + month + '-' + (day);
+        $("#result").val(date);
+        $("#results").val(quy);
+
+    });
+
 
     // show detail oder
     $(document).on("click", ".btn-oders", function () {
@@ -235,7 +376,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.btn_huy', function () {
         id = $(this).data('id');
-        change_status_hd(4, id, 1,'btn');
+        change_status_hd(4, id, 1, 'btn');
     });
 
     // tìm kiếm khách hàng
@@ -450,17 +591,31 @@ function search_user(text, trang) {
 }
 
 
-function detail_user(trang){
+function detail_user(trang) {
     var user_kh = $("#ma_kh").val();
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/detail_khachhang/10",
         method: "post",
-        data:{
-            trang:trang,
+        data: {
+            trang: trang,
             user_kh: user_kh
         },
-        success: function(data){
+        success: function (data) {
             $("#list_detail_user").html(data);
+        }
+    });
+}
+
+function doanhso(from, to){
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/doanhso",
+        method: "post",
+        data: {
+            from: from,
+            to:to
+        },
+        success: function(data){
+            $("#list_doanhso").html(data);
         }
     });
 }

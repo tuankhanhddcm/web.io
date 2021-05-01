@@ -517,6 +517,7 @@ button.btn-sl-sell {
     font-size: 1.6rem;
     font-weight: 600;
     color: #333;
+    line-height: 20px;
 }
 
 .detail-info-value {

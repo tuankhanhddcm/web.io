@@ -546,12 +546,14 @@ button.btn-deletd {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.calendar {
+.calendar,
+.calendar2 {
     display: none;
     position: absolute;
     z-index: 99;
 }
-.calendar_input {
+.calendar_input,
+.calendar_input2 {
     display: flex ;
     align-items: center;
     width: 150px;
@@ -560,7 +562,8 @@ button.btn-deletd {
     cursor: pointer;
     
 }
-.calendar_input i{
+.calendar_input i,
+.calendar_input2 i{
     font-size: 2.5rem;
     cursor: pointer;
 }
@@ -633,3 +636,31 @@ button.btn-deletd {
     background-position: 50% 50%;
     background-repeat: no-repeat;
   }
+
+button.btn_date{
+    background-color: #cccc;
+    margin-left: 10px;
+    color: #333;
+    outline: none;
+}
+.btn_date:hover{
+    background-color: rgb(241, 241, 238);
+}
+
+.report-box {
+    color: #fff;
+    padding: 10px 0 10px 20px;
+    overflow: hidden;
+    min-height: 75px;
+    border-radius: 3px;
+    display: flex;
+}
+.infobox-icon {
+    float: left;
+    min-height: 100%;
+}
+
+.infobox-data {
+    width: 75%;
+    float: right;
+}

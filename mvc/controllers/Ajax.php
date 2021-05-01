@@ -221,7 +221,7 @@ class Ajax extends Controller
 
     public function sp_cart()
     {
-        $ouput ='';
+        $ouput = '';
         $kq = "";
         if (!empty($_SESSION['cart'])) {
             $mang = [];
@@ -294,7 +294,7 @@ class Ajax extends Controller
                 </div>
             </div>
             ';
-        }else {
+        } else {
             $ouput = '
                 <div class="header__cart-list header__cart-list--no-cart ">
                     <img src="http://localhost/web_mvc/public/img/cartempty.png" alt="" class="header__cart-no-cart-img">
@@ -373,7 +373,7 @@ class Ajax extends Controller
                 $gg_id = null;
                 $diachi = "";
                 $avatar = "";
-                $user_group_id = 0;
+                $user_group_id = 1;
                 $updated = date("Y-m-d H:i:s", time());
                 $kq = $this->usermodel->inseruser($username, $pass, $hoten, $sdt, $email, $diachi, $fb_id, $gg_id, $avatar, $user_group_id, $updated);
                 echo $kq;
@@ -547,18 +547,10 @@ class Ajax extends Controller
 
     public function sp($method)
     {
-        $ma_sp = '';
-        $img = '';
-        if (!empty($_POST['ma_sp'])) {
-            $ma_sp = $_POST['ma_sp'];
-        }
-        if (!empty($_POST['img'])) {
-            $img = $_POST['img'];
-        }
-        $img_sp = $this->sanpham->get_sp_byId("sp_img", 'sp_ma', $ma_sp);
+        
         if (
             !empty($_POST['tensp']) && !empty($_POST['sl']) && !empty($_POST['gia']) && !empty($_POST['giaban'])
-            && !empty($_POST['maloai']) && !empty($_POST['mansx'] && !empty($_POST['giagiam']))
+            && !empty($_POST['maloai']) && !empty($_POST['mansx'])
         ) {
             $tensp = $_POST['tensp'];
             $ma_loai = $_POST['maloai'];
@@ -568,7 +560,12 @@ class Ajax extends Controller
 
             $gia = $_POST['gia'];
             $giaban = $_POST['giaban'];
-            $giagiam = $_POST['giagiam'];
+            if(!empty($_POST['giagiam'])){
+                $giagiam = $_POST['giagiam'];
+            }else{
+                $giagiam = 0;
+            }
+            
 
             $sp_url = str_replace(' ', '-', $tensp);
             $updated = date("Y-m-d H:i:s", time());
@@ -579,8 +576,9 @@ class Ajax extends Controller
             } else {
                 $id = $row + 1;
             }
-
-            if ($id < 10) {
+            if (!empty($_POST['ma_sp'])) {
+                $masp = $_POST['ma_sp'];
+            } elseif ($id < 10) {
                 $masp = 'SP00000' . ($id);
             } else if ($id < 100) {
                 $masp = 'SP0000' . ($id);
@@ -593,17 +591,18 @@ class Ajax extends Controller
             } else if ($id < 1000000) {
                 $masp = 'SP' . ($id);
             }
-            if ($img == '') {
-                $sp_img = $img_sp['sp_img'];
-            } else {
+            $img_sp = $this->sanpham->get_sp_byId("sp_img", 'sp_ma', $masp);
+            if (!empty($_POST['img'])) {
+                $img = $_POST['img'];
                 $sp_img = "public/img/upload/" . $img;
+            }elseif($img_sp!=''){
+                $sp_img = $img_sp['sp_img'];
             }
-
+            
             if ($method == 'insert') {
                 $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
-            } elseif ($method == 'update') {
-
-                $kq = $this->sanpham->update_product($ma_sp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
+            } elseif($method =='update') {
+                $kq = $this->sanpham->update_product($masp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
             }
             echo $masp;
         }
@@ -724,7 +723,7 @@ class Ajax extends Controller
                     if ($page > $end_limit) {
                         $page_array[] = 1;
                         $page_array[] = '...';
-                        for ($count = $end_limit+1; $count <= $total_links; $count++) {
+                        for ($count = $end_limit + 1; $count <= $total_links; $count++) {
                             $page_array[] = $count;
                         }
                     } else {
@@ -1471,6 +1470,15 @@ class Ajax extends Controller
                     ';
             }
             echo $ouput;
+        }
+    }
+
+    public function doanhso()
+    {
+        if (!empty($_POST['from']) && !empty($_POST['to'])) {
+            $from = $_POST['from'];
+            $to = $_POST['to'];
+            // $hd = $this->Hoadon->select_hd_detail($mahd,$from,$to);
         }
     }
 }

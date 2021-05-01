@@ -41,7 +41,7 @@ class Hoadon extends DB {
 
     public function select_hd_detail($mahd){
         $sql ="SELECT * FROM hoadon JOIN chitiethoadon on hoadon.ma_hd =chitiethoadon.ma_hd join sanpham on sanpham.sp_ma=chitiethoadon.sp_ma 
-        WHERE hoadon.ma_hd ='$mahd'";
+        WHERE  hoadon.ma_hd ='$mahd'";
         return $this->_query($sql);
     }
     
@@ -127,6 +127,16 @@ class Hoadon extends DB {
         return $kq;
     }
 
+    public function doanh_so($from,$to){
+        
+
+        if($from !='' && $to !=''){
+            $sql ="SELECT * from hoadon join hoa";
+        }else{
+            $sql ="SELECT * from hoadon";
+        }
+
+    }
 }
 
 ?>
