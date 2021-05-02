@@ -41,6 +41,17 @@
                 </div>
 
             </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group detail_user">
+                            <label for="" class="col-sm-4">Tài khoản:</label>
+                            <div class="col-sm-8"><?= !empty($data['user'])?$data['user']['username']:'' ?></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="col-sm-12 ">
                 <div style="font-size: 2.8rem;color:#333;">Lịch sử mua hàng</div>
                 <table class="table table_sp ">

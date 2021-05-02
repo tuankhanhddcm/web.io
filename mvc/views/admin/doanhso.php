@@ -42,7 +42,7 @@
                             <i class='bx bxs-purchase-tag' style="font-size: 4.8rem;color:#0B87C9" ></i>
                         </div>
                         <div class="infobox-data">
-                            <h3 class="infobox-title" style="font-size: 2.5rem;color:#0B87C9">0</h3>
+                            <h3 class="infobox-title" id="so_don" style="font-size: 2.5rem;color:#0B87C9">0</h3>
                             <span class="infobox-data-number text-center" style="font-size: 1.6rem; color: #333;">Số đơn hàng</span>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <i class='bx bx-refresh' style="font-size: 5.5rem;color:orange" ></i>
                         </div>
                         <div class="infobox-data">
-                            <h3 class="infobox-title" style="font-size: 2.5rem; color: orange;">75,190,000đ</h3>
+                            <h3 class="infobox-title" id="doanh_so" style="font-size: 2.5rem; color: orange;">0đ</h3>
                             <span class="infobox-data-number text-center" style="font-size: 1.6rem; color: #333;">Doanh số</span>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         <i class='bx bx-money' style="font-size: 5.5rem;color:#D53F40"></i>
                         </div>
                         <div class="infobox-data">
-                            <h3 class="infobox-title " style="font-size: 2.5rem; color: #D53F40;">63,600,000đ</h3>
+                            <h3 class="infobox-title " id="tien_von" style="font-size: 2.5rem; color: #D53F40;">0đ</h3>
                             <span class="infobox-data-number text-center" style="font-size: 1.6rem; color: #333;">Tiền vốn</span>
                         </div>
                     </div>
@@ -75,20 +75,21 @@
                         <i class='bx bxs-dollar-circle' style="font-size: 5.5rem;color: forestgreen" ></i>
                         </div>
                         <div class="infobox-data ">
-                            <h3 class="infobox-title orange" style="font-size: 2.5rem; color: forestgreen;">11,590,000đ</h3>
+                            <h3 class="infobox-title orange" id="loinhuan" style="font-size: 2.5rem; color: forestgreen;">0đ</h3>
                             <span class="infobox-data-number text-center"  style="font-size: 1.6rem; color: #333;">Lợi nhuận</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 ">
-                <table class="table table_sp ">
+                <table class="table table_sp " style="margin-left: 0px;">
                     <thead class="heading-table">
                         <tr>
                             <th style="border-left: 1px solid rgba(0,0,0,.1);">Mã đơn hàng</th>
                             <th>Ngày bán</th>
                             <th>Khách hàng</th>
                             <th>Số lượng</th>
+                            <th>Trạng thái</th>
                             <th>Doanh số</th>
                             <th>Tiền vốn</th>
                             <th>Lợi nhuận</th>

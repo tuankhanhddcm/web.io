@@ -87,9 +87,8 @@ class Account extends Controller
     public function oders($ma_hd){
         if($ma_hd !='' && isset($_SESSION['user']) && !empty($_SESSION['user'])){
             $user = $_SESSION['user']['username'];
-            $hd = $this->Hoadon->select_hd_user($user,0,11,$ma_hd);
+            $hd = $this->Hoadon->select_hd_user($user,0,0,$ma_hd);
             $hd_detail = $this->Hoadon->select_oders_detail($user,$ma_hd);
-
             if($hd !=''){
                 $this->view('index',[
                     'page' =>'account',

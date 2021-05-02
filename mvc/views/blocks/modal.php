@@ -939,8 +939,8 @@
               <thead>
                 <tr>
                   <th>Sản phẩm</th>
-                  <th>Giá</th>
                   <th style="text-align: center;">Số lượng</th>
+                  <th>Giá</th>
                   <th>Giảm giá</th>
                   <th>Thành tiền</th>
                 </tr>

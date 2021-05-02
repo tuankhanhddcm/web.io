@@ -860,6 +860,10 @@ function logout() {
         }
     });
 
+   
+    
+}
+ function logout_admin(){
     $.ajax({
         url: "http://localhost/web_mvc/Login/logout_admin",
         method: "POST",
@@ -872,9 +876,7 @@ function logout() {
             
         }
     });
-    
-}
-
+ }
 
 function district(val) {
 

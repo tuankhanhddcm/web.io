@@ -100,9 +100,11 @@ $(document).ready(function () {
         show_hd_admin(page);
         $(".calendar").css("display", "none");
         var date = $("#result").val();
+        var date2 = $("#results").val();
         filter_hd(page, date);
         search_user($("#search").val(), page);
         detail_user(page);
+        doanhso(date,date2,page);
     });
 
 
@@ -201,12 +203,17 @@ $(document).ready(function () {
         $("#result").data('val', '0');
         $("#results").data('val', '0')
         var date = $("#result").val();
+        var date2 = $("#results").val();
         filter_hd(1, date);
+        if(date!='' && date2 !=''){
+            doanhso(date,date2,1);
+        }
 
     })
 
     $(document).on('click', '.calendar_input', function () {
         var date = $("#result").val();
+        var date2 = $("#results").val();
         filter_hd(1, date);
         data = $("#result").data('val');
         if (data == 0) {
@@ -217,11 +224,13 @@ $(document).ready(function () {
             $(".calendar").css("display", "none");
             $("#result").data('val', '0');
         }
-
-
         $("#result").val('');
+        if(date2 !=''){
+            doanhso(date,date2,1);
+        }
     });
     $(document).on('click', '.calendar_input2', function () {
+        var date = $("#result").val();
         var date2 = $("#results").val();
         data2 = $("#results").data('val');
         if (data2 == 0) {
@@ -232,6 +241,9 @@ $(document).ready(function () {
             $("#results").data('val', '0');
         }
         $("#results").val('');
+        if(date !=''){
+            doanhso(date,date2,1);
+        }
     });
 
     // Tuần
@@ -244,6 +256,7 @@ $(document).ready(function () {
         var week = year + '-0' + month + '-0' + (day + 6);
         $("#result").val(date);
         $("#results").val(week);
+        doanhso(date,week,1);
     });
     // tháng
     $(".btn_month").click(function () {
@@ -251,49 +264,49 @@ $(document).ready(function () {
         var day = today.getDate();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
-        var date = year + '-0' + month + '-0' + day;
+        var date = year + '-0' + month + '-01';
         switch (month) {
             case 1:
-                day = day + 30;
+                day = 31;
                 break;
             case 2:
-                day = day + 28;
+                day = 28;
                 break;
             case 3:
-                day = day + 30;
+                day = 31;
                 break;
             case 4:
-                day = day + 29;
+                day = 30;
                 break;
             case 5:
-                day = day + 30;
+                day = 31;
                 break;
             case 6:
-                day = day + 29;
+                day = 30;
                 break;
             case 7:
-                day = day + 30;
+                day = 31;
                 break;
             case 8:
-                day = day + 30;
+                day = 31;
                 break;
             case 9:
-                day = day + 29;
+                day = 30;
                 break;
             case 10:
-                day = day + 30;
+                day = 31;
                 break;
             case 11:
-                day = day + 29;
+                day = 30;
                 break;
             case 12:
-                day = day + 30;
+                day = 31;
                 break;
         }
         var thang = year + '-0' + month + '-' + (day);
         $("#result").val(date);
         $("#results").val(thang);
-
+        doanhso(date,thang,1);
     });
     // quý
     $(".btn_quy").click(function () {
@@ -357,6 +370,7 @@ $(document).ready(function () {
         $("#result").val(date);
         $("#results").val(quy);
 
+        doanhso(date,quy,1);
     });
 
 
@@ -388,6 +402,9 @@ $(document).ready(function () {
     // detail khách hàng
     $("#list_detail_user").html("<div class='loader'></div>");
     detail_user(1);
+
+    // doanh số
+    doanhso('','',1);
 });
 
 function fliter_admin(trang) {
@@ -606,16 +623,22 @@ function detail_user(trang) {
     });
 }
 
-function doanhso(from, to){
+function doanhso(from, to,trang){
     $.ajax({
-        url: "http://localhost/web_mvc/Ajax/doanhso",
+        url: "http://localhost/web_mvc/Ajax/doanhso/10",
         method: "post",
         data: {
             from: from,
-            to:to
+            to:to,
+            trang:trang
         },
+        dataType: "json",
         success: function(data){
-            $("#list_doanhso").html(data);
+            $("#list_doanhso").html(data['html']);
+            $("#so_don").text(data['so_don']);
+            $("#doanh_so").text(data['doanhso']+'đ');
+            $("#loinhuan").text(data['loinhuan']+'đ');
+            $("#tien_von").text(data['von']+'đ');
         }
     });
 }

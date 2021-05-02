@@ -13,7 +13,7 @@
                         <a href="http://localhost/web_mvc/Admin/account">Tài khoản của tôi</a>
                     </li>
                     <li class="header__navbar-user-item header__navbar-user-item--separate  ">
-                        <button class="logout" onclick="logout();">Đăng xuất</button>
+                        <button class="logout" onclick="logout_admin();">Đăng xuất</button>
                     </li>
                 </ul>
             </li>

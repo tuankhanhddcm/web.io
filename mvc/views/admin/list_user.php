@@ -17,6 +17,7 @@
                         <tr style="text-align: center;">
                             <th style="border-left: 1px solid rgba(0,0,0,.1);"></th>
                             <th>Tên khách hàng</th>
+                            <th>Tài khoản</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
                             <th>Địa chỉ</th>

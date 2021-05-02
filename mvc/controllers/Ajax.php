@@ -547,7 +547,7 @@ class Ajax extends Controller
 
     public function sp($method)
     {
-        
+
         if (
             !empty($_POST['tensp']) && !empty($_POST['sl']) && !empty($_POST['gia']) && !empty($_POST['giaban'])
             && !empty($_POST['maloai']) && !empty($_POST['mansx'])
@@ -560,12 +560,12 @@ class Ajax extends Controller
 
             $gia = $_POST['gia'];
             $giaban = $_POST['giaban'];
-            if(!empty($_POST['giagiam'])){
+            if (!empty($_POST['giagiam'])) {
                 $giagiam = $_POST['giagiam'];
-            }else{
+            } else {
                 $giagiam = 0;
             }
-            
+
 
             $sp_url = str_replace(' ', '-', $tensp);
             $updated = date("Y-m-d H:i:s", time());
@@ -595,13 +595,13 @@ class Ajax extends Controller
             if (!empty($_POST['img'])) {
                 $img = $_POST['img'];
                 $sp_img = "public/img/upload/" . $img;
-            }elseif($img_sp!=''){
+            } elseif ($img_sp != '') {
                 $sp_img = $img_sp['sp_img'];
             }
-            
+
             if ($method == 'insert') {
                 $kq = $this->sanpham->insert_product($masp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
-            } elseif($method =='update') {
+            } elseif ($method == 'update') {
                 $kq = $this->sanpham->update_product($masp, $tensp, $sl, $gia, $giaban, $giagiam, $sp_url, $sp_img, $sp_mota, $ma_loai, $ma_nsx, $updated);
             }
             echo $masp;
@@ -712,7 +712,7 @@ class Ajax extends Controller
 
             if ($total_links > 3) {
                 if ($page < 4) {
-                    for ($count = 1; $count < 4; $count++) {
+                    for ($count = 1; $count <4; $count++) {
                         $page_array[] = $count;
                     }
 
@@ -1275,8 +1275,8 @@ class Ajax extends Controller
                             </a>
                         </div>
                     </td>
-                    <td>' . number_format($val['sp_giaban']) . ' đ</td>
                     <td style="text-align: center;">' . $val['soluong'] . '</td>
+                    <td>' . number_format($val['sp_giaban']) . ' đ</td>
                     <td>' . $giagiam . ' đ</td>
                     <td>' . $tong . ' đ</td>
                 </tr>
@@ -1368,6 +1368,7 @@ class Ajax extends Controller
                                 <tr>   
                                     <td >' . $count . '</td>
                                     <td ><a class="btn-user" data-user="' . $val['username'] . '" href="http://localhost/web_mvc/Admin/detail_user/' . $val['username'] . '" >' . $val["ho_ten"] . '</a> </td>
+                                    <td >' . $val["username"] . '</td>
                                     <td >' . $val["sdt"] . '</td>
                                     <td >' . $val["email"] . '</td>
                                     <td  >' . $val["diachi"] . '</td>
@@ -1451,11 +1452,13 @@ class Ajax extends Controller
                     }
                     $ouput .= '
                         <tr> 
-                            <td style ="text-align:center;">' . $count . '</td>
-                            <td style ="text-align:center;">' . $val["ma_hd"] . '</td>
-                            <td style ="text-align:center;">' . $val["date"] . '</td>
-                            <td style ="text-align:center;" >' . number_format($val["total_money"]) . ' đ</td>
-                            <td style ="text-align:center;" ><span class="' . $class . ' " >' . $text . '</span></td>
+                            <td style ="text-align:center;padding-top:20px; font-size:1.6rem;font-weight:400;">' . $count . '</td>
+                            <td style="padding-top:12px">
+                                <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
+                            </td>
+                            <td style ="text-align:center;padding-top:20px; font-size:1.6rem;font-weight:400;">' . $val["date"] . '</td>
+                            <td style ="text-align:center;padding-top:20px; font-size:1.6rem;font-weight:400;" >' . number_format($val["total_money"]) . ' đ</td>
+                            <td style ="text-align:center;padding-top:20px; font-size:1.6rem;font-weight:400;" ><span class="' . $class . ' " >' . $text . '</span></td>
                         </tr>
         
                     ';
@@ -1473,12 +1476,72 @@ class Ajax extends Controller
         }
     }
 
-    public function doanhso()
+    public function doanhso($limit)
     {
+        $from ='';
+        $to ='';
         if (!empty($_POST['from']) && !empty($_POST['to'])) {
             $from = $_POST['from'];
             $to = $_POST['to'];
-            // $hd = $this->Hoadon->select_hd_detail($mahd,$from,$to);
         }
+        if (isset($_POST['trang'])) {
+            $page = 1;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+        }
+        $temp = $this->Hoadon->doanh_so($from, $to);
+        $ds = $this->Hoadon->doanh_so($from, $to, $start, $limit);
+        if (!empty($temp)) {
+            $row = count($temp);
+        } else {
+            $row = 0;
+        }
+        $output = '';
+        $doanhso =0;
+        $von = 0;
+        $lai =0;
+        $so_don =0;
+        if (!empty($ds)) {
+            
+            $so_don =count($ds);
+            foreach ($ds as $val) {
+                if($val['trangthai']==2){
+                    $text = "Đã giao hàng";
+                }
+                $doanhso +=$val['total_money'];
+                $von +=$val['gia'];
+                $loinhuan = $val['total_money']-$val['gia'];
+                $lai +=$loinhuan;
+                $output .= '
+                    <tr>
+                        <td style="padding-top:12px">
+                            <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
+                        </td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;">' . $val["date"] . '</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;">' . $val['khachhang'] . '</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . $val['soluong'].'</td>
+                        <td style="padding-top:20px; font-size:1.6rem;text-align:center;"><span style="background-color: #0B87C9;color: #fff;padding: 5px;border-radius: 4px;
+                        font-weight: 600;">' . $text . '</span></td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['total_money']). ' đ</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['gia']). ' đ</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($loinhuan). ' đ</td>
+                    </tr>
+                    ';
+            }
+            $output .=$this->_trang($row,$page,$limit,8);
+            
+        }else{
+            $output .= '
+                <tr  class="no_product">
+                    <td colspan="8" style="font-size:1.6rem;font-weight:400;">Không có dữ liệu !!!</td>
+                </tr>
+            ';
+        }
+        
+        echo json_encode(['html'=>$output,'so_don'=>$so_don,'doanhso'=>number_format($doanhso),'von'=>number_format($von),'loinhuan'=>number_format($lai)]);
     }
 }

@@ -1,14 +1,27 @@
 <div class="user_main">
     <div class="user_main-title " style="display: flex; justify-content: space-between;">
         <div style="display: flex;align-items: center;">
-            <h3>Chi tiết đơn hàng#<?= $data['hd']['ma_hd'] ?></h3>
-            <span style="font-size: 1.8rem;padding-left: 5px;">-</span>
-            <span style="font-size: 1.8rem; padding-left: 5px;margin-bottom: 5px;">
-                <?php switch($data['hd']['trangthai']){
+            <h3>Chi tiết đơn hàng#<?= $data['hd']['ma_hd']?></h3>
+            <span style="font-size: 2rem;padding-left: 5px;">-</span>
+            <span style="font-size: 2.5rem; padding-left: 5px;margin-bottom: 5px;">
+                <?php 
+                   switch ($data['hd']["trangthai"]) {
                     case 0:
-                        echo 'Đã tiếp nhận đơn hàng';
-                    break;
-                    }
+                        echo "Chờ xác nhận";
+                        break;
+                    case 1:
+                        echo "Đã xác nhận";
+                        break;
+                    case 2:
+                        echo "Đã giao hàng";
+                        break;
+                    case 3:
+                        echo "Chờ xử lý";
+                        break;
+                    case 4:
+                        echo "Đơn hàng đã hủy";
+                        break;
+                }
                 ?>  
             </span>
         </div>
@@ -51,9 +64,9 @@
         <table style="margin: 0;">
             <thead>
                 <tr>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
+                    <th>Sản phẩm</th> 
                     <th>Số lượng</th>
+                    <th>Giá</th>
                     <th>Giảm giá</th>
                     <th>Tạm tính</th>
                 </tr>
@@ -71,8 +84,8 @@
                             </a>
                         </div>
                     </td>
-                    <td><?= number_format($val['sp_giaban'])?> đ</td>
                     <td style="text-align: center;"><?= $val['soluong']?></td>
+                    <td><?= number_format($val['sp_giaban'])?> đ</td>
                     <td><?= $val['sp_giagiam'] >0 ? number_format($val['sp_giaban']-$val['sp_giagiam']):'0' ?> đ</td>
                     <td><?= $val['sp_giagiam'] >0 ? number_format($val['sp_giagiam']*$val['soluong']): number_format($val['sp_giaban']*$val['soluong'])?> đ</td>
                 </tr>

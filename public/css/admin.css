@@ -579,7 +579,7 @@ button.btn-deletd {
 }
 
 .modal_admin {
-    top: 122px;
+    top: 50px;
     left: 0px;
 }
 
@@ -661,6 +661,6 @@ button.btn_date{
 }
 
 .infobox-data {
-    width: 75%;
+    width: 80%;
     float: right;
 }
