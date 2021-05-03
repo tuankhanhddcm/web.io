@@ -1380,11 +1380,11 @@ class Ajax extends Controller
                             ';
                     $count += 1;
                 }
-                $ouput .= $this->_trang($row, $page, $limit, 7);
+                $ouput .= $this->_trang($row, $page, $limit, 8);
             } else {
                 $ouput .= '
                     <tr  class="no_product">
-                        <td colspan="9">Không có khách hàng nào !!!</td>
+                        <td colspan="8">Không có khách hàng nào !!!</td>
                     </tr>
                     ';
             }

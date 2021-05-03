@@ -27,7 +27,7 @@ class Admin extends Controller
         $date = date('Y-m-d', time());
         $newdate = date('Y-m-d', strtotime('+1 day', strtotime($date)));
         $olddate = date('Y-m-d', strtotime('-1 day', strtotime($date)));
-        $count_hd = count($this->Hoadon->hd_theo_ngay($date, $olddate));
+        $count_hd = count($this->Hoadon->hd_theo_ngay($date, $newdate));
         $tongsp = 0;
         foreach ($this->Hoadon->hd_theo_ngay($date, $newdate, 0, 0, 'chitiethoadon') as $val) {
             $tongsp += $val['soluong'];
@@ -49,7 +49,6 @@ class Admin extends Controller
         } else {
             $sum = 0;
         }
-
         $this->view('admin', [
             "page" => 'home',
             "so_hd" => $count_hd,
