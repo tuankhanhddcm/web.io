@@ -49,4 +49,9 @@
             
             
         }
+        public function form_mail(){
+            $this->view('index',[
+               "page"=>"form_mail"
+            ]);
+        }
     }

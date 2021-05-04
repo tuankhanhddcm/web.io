@@ -5,7 +5,7 @@
 
             <div class="form-btn">
                 <input type="hidden" id="ma_sp" value="">
-                <button class="btn_cus btn-addsp" style="border-radius: 4px; margin-right: 20px;" onclick='location.href="http://localhost/web_mvc/Admin/update_sp/<?= $data['sp']['sp_ma']?>"'><i class='fa fa-pencil-square-o' style="font-weight: 600;"></i>Sửa sản phẩm</button>
+                <button class="btn_cus btn-addsp" style="border-radius: 4px; margin-right: 20px;" onclick='location.href="http://localhost/web_mvc/Admin/update_sp/<?= $data['sp']['sp_ma'] ?>"'><i class='fa fa-pencil-square-o' style="font-weight: 600;"></i>Sửa sản phẩm</button>
                 <button class="btn_cus btn-back" onclick="location.href='http://localhost/web_mvc/Admin/list_sp';"><i class='bx bx-left-arrow-alt'></i> Trở về</button>
             </div>
 
@@ -35,7 +35,17 @@
                         <div class="form-group " style="margin-bottom: 20px; margin-top: 200px;" style=" padding-top: 120px;">
                             <label for="" class="form-label">Mô tả sản phẩm:</label>
                             <div class="form-wrap form-span" style="background-color: #ffff;">
-                                <p><?= $data['sp']['sp_mota'] != '' ? $data['sp']['sp_mota'] : 'Không có mô tả' ?></p>
+                                <span class="detail-info-value " style="display: inline-block;vertical-align: top; left: 150px;top: -15px;">
+                                    <?php
+                                        $mota = array_values(explode('.',$data['sp']['sp_mota']));
+                                        foreach ($mota as $val) :
+                                        if ($val != '') {
+                                    ?>
+                                            <p><?= $val ?></p>
+                                    <?php }
+                                    endforeach;
+                                    ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -81,7 +91,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="tab2" role="tabpanel">
-                <div class="row" >
+                <div class="row">
                     <?php
                     switch ($data['sp']['ma_loai']) {
                         case 1:

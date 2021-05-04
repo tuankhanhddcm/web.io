@@ -161,7 +161,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                     </div>
                     <div class="col-sm-12">
                         <div class="thank--btn">
-                            <a href="../home<?php unset($_SESSION['hd_detail']); unset($_SESSION['mahd']); ?>" class="btn_cus btn-thank">Tiếp tục mua hàng</a>
+                            <a href="../home" class="btn_cus btn-thank">Tiếp tục mua hàng</a>
                         </div>
                     </div>
                 </div>

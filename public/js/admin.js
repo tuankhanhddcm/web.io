@@ -253,7 +253,13 @@ $(document).ready(function () {
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
         var date = year + '-0' + month + '-0' + day;
-        var week = year + '-0' + month + '-0' + (day + 6);
+        var d = day + 6;
+        if(d<9){
+            var week = year + '-0' + month + '-0' + d;
+        }else{
+            var week = year + '-0' + month + '-' + d;
+        }
+        
         $("#result").val(date);
         $("#results").val(week);
         doanhso(date,week,1);

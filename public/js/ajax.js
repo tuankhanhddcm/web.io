@@ -827,7 +827,6 @@ function thanhtoan() {
     if (provi !== '') {
         diachi += provi;
     }
-    console.log(diachi);
     $.ajax({
         url: "./Payment/thanhtoan",
         method: "post",
@@ -840,6 +839,13 @@ function thanhtoan() {
             diachi: diachi
         },
         success: function (data) {
+            $.ajax({
+                url: "http://localhost/web_mvc/mvc/core/php_mailer.php",
+                method: "post",
+                data: {
+                   to:email
+                }
+            });
             location.href = 'http://localhost/web_mvc/Payment/camon';
         }
 

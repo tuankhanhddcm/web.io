@@ -53,6 +53,8 @@ class Payment extends Controller
     public function thanhtoan()
     {
         if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            unset($_SESSION['hd_detail']); 
+            unset($_SESSION['mahd']);
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $updated = date("Y-m-d H:i:s", time());
             $date = date("Y-m-d H:i:s", time());
@@ -115,6 +117,8 @@ class Payment extends Controller
                     $detail = $this->Hoadon->select_hd_detail($mahd);
                     $_SESSION['hd_detail'] = $detail;
                     $_SESSION['mahd'] = $mahd;
+                   
+                   
                 }
             }
         }
