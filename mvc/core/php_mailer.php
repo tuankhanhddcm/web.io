@@ -104,14 +104,17 @@
                         $gia =number_format($val['sp_giaban']);
                         $sum = number_format($val['sp_giaban'] * $val['soluong']);
                     }
+                    $lengt= strlen(substr(substr($val['sp_img'],18),strpos(substr($val['sp_img'],18),'.')) );
+                    $img =substr(substr($val['sp_img'],18),0,strlen(substr($val['sp_img'],18))-$lengt) ;
                     $body .='
                         <tr>
                             <td style="width:100%;padding:25px 10px 0px 0" colspan="2">
                             <div style="float:left;width:80px;border:1px solid #ebeff2;overflow:hidden">
-                                <img style="max-width:100%;max-height:100%" src=" http://localhost/web_mvc/'. $val['sp_img'] .'">
+                            
+                                <img style="max-width:100%;max-height:100%" src=" https://api.cloudinary.com/v1_1/doxapxuid/image/download?api_key=129255888711299&attachment=true&audit_context=eyJhY3Rvcl90eXBlIjoidXNlciIsImFjdG9yX2lkIjoiMzc4YmY0MTg4ZmFmMWJhMTVhZjQ1OGUxNDVhMDU0YWMiLCJ1c2VyX2V4dGVybmFsX2lkIjoiNGExZjUzNTMxN2Y4ZWNkYmU5ZGQwZWI5N2ZjYmVjIiwidXNlcl9jdXN0b21faWQiOiJraGFuaHByaW5jZTI3QGdtYWlsLmNvbSIsImNvbXBvbmVudCI6ImNvbnNvbGUifQ%3D%3D&public_id=upload%2F'.$img.'&signature=bf1228e4de40fe32a4c009202542f9f69d183bdc&target_filename='.substr($val['sp_img'],18).'&timestamp=1620187156&type=upload">
                             </div>
                             <div style="margin-left:100px;font-size: 1.6rem;">
-                                <a href="http://localhost/web_mvc/Detail/'. $val['sp_url'].'" style="color:#357ebd;text-decoration:none">'. $val['sp_name'].'</a>
+                                <a href="http://localhost/web_mvc/Detail/'. $val['sp_url'].'" style="color:#357ebd;text-decoration:none;line-height: 30px;">'. $val['sp_name'].'</a>
                             </div>
                             </td>
                         </tr>
