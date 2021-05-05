@@ -7,7 +7,7 @@
                         <li class="url-item home">
                             <a href="../home" class="url-link">Trang chủ</a>
                             <span><i class=' right-icon bx bx-chevron-right'></i></span>
-                            <a href=' ../danhmuc/<?= $data["sanpham"]["ma_loai"] ?>' class="url-link"><?= $data["sanpham"]['ten_loai'] ?></a>
+                            <a href=' http://localhost/web_mvc/danhmuc/<?= $data["sanpham"]["ma_loai"] ?>' class="url-link"><?= $data["sanpham"]['ten_loai'] ?></a>
                             <span><i class=' right-icon bx bx-chevron-right'></i></span>
                         </li>
                         <li class="url-item">

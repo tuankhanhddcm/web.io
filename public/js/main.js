@@ -55,6 +55,10 @@ $(document).ready(function () {
             }
         }
     });
+    
+    $('.sl').inputFilter(function (value) {
+        return /^\d*$/.test(value);
+    });
 
     var path = window.location.pathname.split('/').pop(6);
     if(path =='' ||path=='Account'){
