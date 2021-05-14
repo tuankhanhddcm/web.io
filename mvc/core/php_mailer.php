@@ -126,13 +126,21 @@
                             </td>
                             <td style="text-align:right;width:30%;padding:5px 0px 25px">'.$sum .' đ</td>
                         </tr>';
-                if ($val['sp_giagiam'] > 0) {
-                    $tong += $val['soluong'] * $val["sp_giagiam"];
-                } else {
-                    $tong += $val['soluong'] * $val["sp_giaban"];
-                }
+                        if(isset($_SESSION['code_sale'])){
+                            if ($val['sp_giagiam'] > 0) {
+                                $tong += $val['soluong'] * ($val["sp_giagiam"]-($val["sp_giagiam"])*(int)$_SESSION['code_sale']/100);
+                            } else {
+                                $tong += $val['soluong'] * ($val["sp_giaban"]-($val["sp_giaban"])*(int)$_SESSION['code_sale']/100);
+                            }
+                        }else{
+                            if ($val['sp_giagiam'] > 0) {
+                                $tong += $val['soluong'] * $val["sp_giagiam"];
+                            } else {
+                                $tong += $val['soluong'] * $val["sp_giaban"];
+                            }
+                        }
                 endforeach;
-                        
+            $code =isset($_SESSION['code_sale'])? $_SESSION['code_sale']:"0";
             $body .='</tbody>
                     </table>
                 </li>
@@ -146,10 +154,16 @@
                         <table style="width:100%;float:right">
                         <tbody>
                             <tr>
-                            <td style="padding-top:10px">Thành tiền</td>
-                            <td style="font-weight:bold;text-align:right;font-size:16px;padding-top:10px">
-                            '. number_format($tong).' đ
-                            </td>
+                                <td style="padding-top:10px">Giảm giá: </td>
+                                <td style="font-weight:bold;text-align:right;font-size:16px;padding-top:10px">
+                                '.$code .'%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px">Thành tiền: </td>
+                                <td style="font-weight:bold;text-align:right;font-size:16px;padding-top:10px">
+                                '. number_format($tong).' đ
+                                </td>
                             </tr>
                         </tbody>
                         </table>

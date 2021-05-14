@@ -215,30 +215,31 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                                 <div class="code_wrap">
                                     <div class="oder-total__temp">
                                         <div class="pay-input code-div ">
-                                            <input type="text" class="form__input text_code--sale" id="code-sale"  placeholder=" " value="">
+                                            <input type="text" class="form__input text_code--sale code" id="code-sale"  placeholder=" " value="">
                                             <label for="" class="form__label label-code">Nhập mã giảm giá</label>
                                         </div>
-                                        <button type="button" class="btn_cus btn-pay btn-code" id="btn-sale">Áp dụng</button>
+                                        <button type="button" class="btn_cus btn-pay btn-code" disabled="disabled" id="btn-sale" >Áp dụng</button>
                                     </div>
 
                                     <div style="display: flex;">
-                                        <i class='bx bxs-error-circle ' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
-                                        <span class="error_code error"></span>
+                                        <i class='bx bxs-error-circle code-sale-icon' style="display: none;position: relative;top: -1px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
+                                        <span class="error-code error" style="top:0px;"></span>
                                     </div>
                                 </div>
 
                                 <div class="oder-total__temp">
                                     <span class="temp__price-text">Tạm tính:</span>
+                                    <input type="hidden" id="temp_total" value="<?= $tong ?>">
                                     <span class="temp__price-text"><?= number_format($tong) ?>đ</span>
                                 </div>
                                 <div class="oder-total__temp oder-sale">
                                     <span class="temp__price-text">Giảm giá:</span>
-                                    <span class="temp__price-text">0%</span>
+                                    <span class="temp__price-text" id="text_sale">0%</span>
                                 </div>
                                 <div class="oder-total">
                                     <span class="oder-total__label">Tổng cộng:</span>
                                     <input type="hidden" name="total" id="total" value="<?= $tong ?>">
-                                    <span class="oder-price__total"><?= number_format($tong) ?>đ</span>
+                                    <span class="oder-price__total" id="text_total"><?= number_format($tong) ?>đ</span>
                                 </div>
                                 <div class="oder-btn">
                                     <a href="./cart" class="oder-link">

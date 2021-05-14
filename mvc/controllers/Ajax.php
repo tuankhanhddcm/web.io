@@ -8,6 +8,7 @@ class Ajax extends Controller
     public $Nhasanxuat;
     public $Thongsokythuat;
     public $Hoadon;
+    public $Coupon;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Ajax extends Controller
         $this->Nhasanxuat = $this->model("Nhasanxuat");
         $this->Thongsokythuat = $this->model("Thongsokythuat");
         $this->Hoadon = $this->model("Hoadon");
+        $this->Coupon = $this->model("Coupon");
     }
 
 
@@ -1543,5 +1545,103 @@ class Ajax extends Controller
         }
         
         echo json_encode(['html'=>$output,'so_don'=>$so_don,'doanhso'=>number_format($doanhso),'von'=>number_format($von),'loinhuan'=>number_format($lai)]);
+    }
+
+    public function coupon($limit){
+        $text = '';
+        $soluong = '';
+        if (isset($_POST['text']) && !empty($_POST['text'])) {
+            $text = $_POST['text'];
+        }
+        if (isset($_POST['sl']) && !empty($_POST['sl'])) {
+            $soluong = $_POST['sl'];
+        }
+        if (isset($_POST['trang'])) {
+            $page = 1;
+            $limit = $limit;
+            if ($_POST['trang'] > 1) {
+                $start = (($_POST['trang'] - 1) * $limit);
+                $page = $_POST['trang'];
+            } else {
+                $start = 0;
+            }
+            $ouput = '';
+            $temp = $this->Coupon->select($text,$soluong,0,0 );
+            $coupon = $this->Coupon->select($text, $soluong, $start, $limit);
+            
+            if (!empty($temp)) {
+                $row = count($temp);
+            } else {
+                $row = 0;
+            }
+            if (!empty($temp) && !empty($coupon)) {
+
+                if ($page > 1) {
+                    $count = $limit + 1;
+                } else {
+                    $count = 1;
+                }
+                
+                foreach ($coupon as $val) {
+                    $ouput .= '
+                                <tr style="text-align:center;">   
+                                    <td >' . $count . '</td>
+                                    <td >' . $val["ma_code"] . '</td>
+                                    <td >' . $val["so_luong"] . '</td>
+                                    <td >' . $val["phan_tram"] . '%</td>
+                                    <td >' . $val["created"] . '</td>
+                                    <td style="display: flex;align-items: center;justify-content: center;border-right: none;">
+                                    <button type="button" data-mydata="' . $val['id'] . '" class="btn-deleted" title="Xóa"><i class="bx bxs-trash"></i></button>
+                                </td>
+                                </tr>
+        
+                            ';
+                    $count += 1;
+                }
+                $ouput .= $this->_trang($row, $page, $limit, 6);
+            } else {
+                $ouput .= '
+                    <tr  class="no_product">
+                        <td colspan="8">Không có mã giảm giá nào !!!</td>
+                    </tr>
+                    ';
+            }
+
+            echo $ouput;
+        }
+    }
+
+    public function insert_coupon(){
+        if(isset($_POST['ma']) && isset($_POST['sl']) && isset($_POST['phan_tram'])){
+            $ma = $_POST['ma'];
+            $phantram = $_POST['phan_tram'];
+            $sl = $_POST['sl'];
+            $kq = $this->Coupon->insert($ma,$sl,$phantram);
+            echo $kq;
+        }
+    }
+    public function delete_coupon(){
+        if(isset($_POST['id'])){
+            $kq = $this->Coupon->delete($_POST['id']);
+            echo $kq;
+        }
+    }
+
+    public function check_coupon(){
+        if(isset($_POST['ma'])){
+            $ma = $_POST['ma'];
+            $kq = $this->Coupon->check($ma);
+            $_SESSION['code_sale'] =$kq[2];
+            echo json_encode($kq);
+            
+        }
+    }
+    public function update_sl_coupon(){
+        if(isset($_POST['ma']) && isset($_POST['sl'])){
+            if($_SESSION['code'] != $_POST['ma']){
+                $kq =$this->Coupon->update_sl($_POST['ma'],$_POST['sl']);
+                $_SESSION['code']=$_POST['ma'];
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ $(document).ready(function () {
     $("#list_hd").html("<div class='loader'></div>");
     fliter_admin(1);
     filter_hd(1);
+    coupon(1);
     $("#search").keyup(function () {
         $("#list_product").html("<div class='loader'></div>");
         $("#list_hd").html("<div class='loader'></div>");
@@ -15,9 +16,7 @@ $(document).ready(function () {
             fliter_admin(1);
             filter_hd(1, date);
         }, 1000);
-
-
-
+        coupon(1);
     });
 
     $(".select-loaisp").click(function () {
@@ -25,7 +24,7 @@ $(document).ready(function () {
         setTimeout(function () {
             fliter_admin(1);
         }, 1000);
-
+        coupon(1);
     });
 
     $('.select-nsx').click(function () {
@@ -104,7 +103,8 @@ $(document).ready(function () {
         filter_hd(page, date);
         search_user($("#search").val(), page);
         detail_user(page);
-        doanhso(date,date2,page);
+        doanhso(date, date2, page);
+        coupon(page);
     });
 
 
@@ -195,6 +195,56 @@ $(document).ready(function () {
         });
 
     });
+    
+
+    // xóa mã giảm giá
+    $(document).on("click", ".btn-deleted", function () {
+        var id = $(this).data("mydata");
+        $.confirm({
+            title: 'Thông báo!!!',
+            content: 'Bạn có chắc muốn xóa mã giảm giá',
+            draggable: true,
+            dragWindowBorder: false,
+            boxWidth: "30%",
+            useBootstrap: false,
+            type: 'red',
+            icon: 'fa fa-warning',
+            typeAnimated: true,
+            dragWindowGap: 50,
+            alignMiddle: true,
+            offsetTop: 0,
+            offsetBottom: 500,
+            buttons: {
+                Xóa: {
+                    btnClass: "btn-red",
+                    action: function (Xóa) {
+                        $.ajax({
+                            url: "http://localhost/web_mvc/Ajax/delete_coupon",
+                            data: { id: id },
+                            method: "post",
+                            success: function (data) {
+                                if(data=='true'){
+                                    $(document).ready(function () {
+                                        page = $(".active a").data("page_number");
+                                        coupon(page);
+                                        showdelete('delete', 'mã giảm giá');
+                                    });
+                                }
+                               
+
+                            }
+                        });
+                    }
+                },
+                Hủy: {
+
+                }
+
+            }
+        });
+
+    });
+
 
     // calendar
     $(document).on('click', '.rd-day-selected', function () {
@@ -205,8 +255,8 @@ $(document).ready(function () {
         var date = $("#result").val();
         var date2 = $("#results").val();
         filter_hd(1, date);
-        if(date!='' && date2 !=''){
-            doanhso(date,date2,1);
+        if (date != '' && date2 != '') {
+            doanhso(date, date2, 1);
         }
 
     })
@@ -225,8 +275,8 @@ $(document).ready(function () {
             $("#result").data('val', '0');
         }
         $("#result").val('');
-        if(date2 !=''){
-            doanhso(date,date2,1);
+        if (date2 != '') {
+            doanhso(date, date2, 1);
         }
     });
     $(document).on('click', '.calendar_input2', function () {
@@ -241,8 +291,8 @@ $(document).ready(function () {
             $("#results").data('val', '0');
         }
         $("#results").val('');
-        if(date !=''){
-            doanhso(date,date2,1);
+        if (date != '') {
+            doanhso(date, date2, 1);
         }
     });
 
@@ -254,15 +304,15 @@ $(document).ready(function () {
         var year = today.getFullYear();
         var date = year + '-0' + month + '-0' + day;
         var d = day + 6;
-        if(d<9){
+        if (d < 9) {
             var week = year + '-0' + month + '-0' + d;
-        }else{
+        } else {
             var week = year + '-0' + month + '-' + d;
         }
-        
+
         $("#result").val(date);
         $("#results").val(week);
-        doanhso(date,week,1);
+        doanhso(date, week, 1);
     });
     // tháng
     $(".btn_month").click(function () {
@@ -312,28 +362,28 @@ $(document).ready(function () {
         var thang = year + '-0' + month + '-' + (day);
         $("#result").val(date);
         $("#results").val(thang);
-        doanhso(date,thang,1);
+        doanhso(date, thang, 1);
     });
     // quý
     $(".btn_quy").click(function () {
         var today = new Date();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
-        
+
         if (month < 4) {
             month = 3;
-            date = year + '-01'+'-01';
+            date = year + '-01' + '-01';
         } else if (month < 7) {
             month = 6;
-            date = year + '-04'+'-01';
+            date = year + '-04' + '-01';
         } else if (month < 10) {
             month = 9;
-            date = year + '-07'+'-01';
-        }else{
+            date = year + '-07' + '-01';
+        } else {
             month = 12;
-            date = year + '-10'+'-01';
+            date = year + '-10' + '-01';
         }
-        
+
         switch (month) {
             case 1:
                 day = 31;
@@ -376,7 +426,7 @@ $(document).ready(function () {
         $("#result").val(date);
         $("#results").val(quy);
 
-        doanhso(date,quy,1);
+        doanhso(date, quy, 1);
     });
 
 
@@ -410,7 +460,7 @@ $(document).ready(function () {
     detail_user(1);
 
     // doanh số
-    doanhso('','',1);
+    doanhso('', '', 1);
 });
 
 function fliter_admin(trang) {
@@ -614,22 +664,70 @@ function detail_user(trang) {
     });
 }
 
-function doanhso(from, to,trang){
+function doanhso(from, to, trang) {
+   
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/doanhso/10",
         method: "post",
         data: {
             from: from,
-            to:to,
-            trang:trang
+            to: to,
+            trang: trang
         },
         dataType: "json",
-        success: function(data){
+        success: function (data) {
             $("#list_doanhso").html(data['html']);
             $("#so_don").text(data['so_don']);
-            $("#doanh_so").text(data['doanhso']+'đ');
-            $("#loinhuan").text(data['loinhuan']+'đ');
-            $("#tien_von").text(data['von']+'đ');
+            $("#doanh_so").text(data['doanhso'] + 'đ');
+            $("#loinhuan").text(data['loinhuan'] + 'đ');
+            $("#tien_von").text(data['von'] + 'đ');
         }
     });
+}
+
+function coupon(trang) {
+    var text = $("#search").val();
+    var sl = $('#loaisp option:selected').val();
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/coupon/8",
+        method: "post",
+        data: {
+            text: text,
+            sl: sl,
+            trang: trang
+        },
+        success: function (data) {
+            $("#list_coupon").html(data);
+        }
+    });
+}
+function insert_coupon(val) {
+    check(".sp_lb");
+    check(".sl_lb");
+    check(".gia_lb");
+    if (check(".sp_lb") =='true' && check(".sl_lb")=='true' && check(".gia_lb")=='true'){
+        var ma = $('.sp').val();
+        var sl = $('.sl').val();
+        var phan_tram = $('.gia').val();
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/insert_coupon",
+            method: "post",
+            data: {
+                ma:ma,
+                sl:sl,
+                phan_tram:phan_tram
+            },
+            success: function (data) {
+                if(data =='true'){
+                    showinsert('insert', 'mã giảm giá');
+                    if(val ==0){
+                        location.href ="http://localhost/web_mvc/Admin/coupon";
+                    }else if(val==1){
+                        $('input').val('');
+                    }
+                }
+            }
+        });
+    }
+    
 }

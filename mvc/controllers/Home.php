@@ -8,6 +8,7 @@
         }
 
         public function trangchu(){
+            unset($_SESSION['code_sale']);
             $sp = $this->sanpham->getSP();
             $sp_sale = $this->sanpham->getSP(['*'],[],1000);
             $row = $this->sanpham->num_rows();

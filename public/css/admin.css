@@ -213,9 +213,10 @@ button.btn {
 }
 
 
-.btn-update,
-.btn-copy, 
-.btn-deletd{
+button.btn-update,
+button.btn-copy, 
+button.btn-deletd,
+button.btn-deleted{
     display: block;
     background-color: transparent;
     border: none;
@@ -236,10 +237,11 @@ button.btn {
 .btn-copy:hover {
     color: #c49407;
 }
-.btn-deletd {
+.btn-deletd,.btn-deleted {
     color: red;
 }
-.btn-deletd:hover {
+.btn-deletd:hover,
+.btn-deleted:hover {
     color: #d53f40;
 }
 

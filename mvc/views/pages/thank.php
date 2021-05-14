@@ -3,7 +3,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
     header('location:http://localhost/web_mvc/home');
 } else {
 ?>
-    <div class="main" >
+    <div class="main">
         <section class="url-heading">
             <div class="grid">
                 <div class="grid__row">
@@ -128,15 +128,38 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                                                     </div>
                                                     <div class="col-sm-3 padding-9">
                                                         <div class="oder-product__price">
+                                                            <?php if ($val['sp_giagiam'] > 0) {
+                                                                $phantram = ((float)$val['sp_giagiam'] / (float)$val['sp_giaban'] - 1) * 100;
+                                                            ?>
+                                                                <strong class="oder-product__price-text" style="color: var(--text-color); padding: 10px 0px"><?= number_format($val['sp_giagiam']) ?>đ</strong>
+                                                                <div style="display: flex;">
+                                                                    <strong class="card__oldprice " style="margin:0px 10px 0px 15px; font-size: 1.3rem;font-weight: 500;"><?= number_format($val["sp_giaban"]) ?>đ</strong>
+                                                                    <span class="card__precent" style="margin: 0px;font-size: 1.3rem;font-weight: 500;"><?= round($phantram, 0) ?>%</span>
+                                                                </div>
 
-                                                            <span class="oder-product__price-text"><?= number_format($val["sp_giaban"]) ?>đ</span>
+                                                            <?php } else { ?>
+                                                                <span class="oder-product__price-text " style="color: var(--text-color);"><?php echo number_format($val["sp_giaban"]) ?>đ</span>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                         <?php
-                                            $tong += $val['soluong'] * $val["sp_giaban"];
+                                            if(isset($_SESSION['code_sale'])){
+                                                if ($val['sp_giagiam'] > 0) {
+                                                    $tong += $val['soluong'] * ($val["sp_giagiam"]-($val["sp_giagiam"])*(int)$_SESSION['code_sale']/100);
+                                                } else {
+                                                    $tong += $val['soluong'] * ($val["sp_giaban"]-($val["sp_giaban"])*(int)$_SESSION['code_sale']/100);
+                                                }
+                                            }else{
+                                                if ($val['sp_giagiam'] > 0) {
+                                                    $tong += $val['soluong'] * $val["sp_giagiam"];
+                                                } else {
+                                                    $tong += $val['soluong'] * $val["sp_giaban"];
+                                                }
+                                            }
+                                            
                                         endforeach;
                                         ?>
                                     </div>
@@ -148,7 +171,7 @@ if (!isset($_SESSION['hd_detail']) && empty($_SESSION['hd_detail'])) {
                                     </div>
                                     <div class="oder-total__temp oder-sale">
                                         <span class="temp__price-text">Giảm giá:</span>
-                                        <span class="temp__price-text">20%</span>
+                                        <span class="temp__price-text"><?= isset($_SESSION['code_sale'])? $_SESSION['code_sale']:"0" ?>%</span>
                                     </div>
                                     <div class="oder-total">
                                         <span class="oder-total__label">Tổng cộng:</span>

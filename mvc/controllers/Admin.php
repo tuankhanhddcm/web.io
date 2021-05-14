@@ -147,10 +147,21 @@ class Admin extends Controller
         ]);
     }
 
+    public function coupon(){
+        $this->view("admin",[
+            "page" =>"coupon"
+        ]);
+    }
     public function doanhso(){
         
         $this->view("admin",[
             "page" =>"doanhso"
+        ]);
+    }
+    public function create_coupon(){
+        
+        $this->view("admin",[
+            "page" =>"insert_coupon"
         ]);
     }
 }
