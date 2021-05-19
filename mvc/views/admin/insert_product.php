@@ -46,7 +46,7 @@
                                         <select class=" select select-loaisp form-control" id="loaisp" data-dropup-auto="false" data-size='5' data-live-search="true">
                                             <option value="">--Chọn nhóm hàng hóa--</option>
                                             <?php if (!empty($data['loai'])) {
-                                                foreach ($data['loai'] as $val) :
+                                                foreach ($data['loai'] as $val):
                                             ?>
                                                     <option value="<?= $val['ma_loai'] ?>"><?= $val['ten_loai'] ?></option>
                                             <?php endforeach;

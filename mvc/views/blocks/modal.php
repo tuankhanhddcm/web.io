@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Quản lý nhóm hàng hoá</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" onclick="location.reload()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body modal_admin--body">
         <div class="tabtable">
@@ -31,13 +31,14 @@
                     <tbody id="list_loai">
                       <?php foreach ($data['loai'] as $val) :
                       ?>
-                        <tr>
-                          <td class="text_td item_<?= $val['ma_loai'] ?>" style=" padding-top: 15px;"><?= $val['ten_loai'] ?></td>
+                        <tr id="<?= $val['ma_loai'] ?>">
+                          <td class="text_td item_<?= $val['ma_loai'] ?>" style=" padding-top: 15px;"><span><?= $val['ten_loai'] ?></span></td>
                           <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
-                            <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
-                            <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
+                            <button type="button" class=" btn-update loaisp_update" title="Sửa" data-loai="<?= $val['ma_loai'] ?>"><i class="fa fa-pencil-square-o"></i></button>
+                            <!-- <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button> -->
                           </td>
                         </tr>
+                      
                       <?php endforeach;
                       ?>
                     </tbody>
@@ -103,7 +104,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn_cus btn-default btn-sm btn-close" data-dismiss="modal"><i class="fa fa-undo"></i> Đóng
+        <button type="button" class="btn_cus btn-default btn-sm btn-close" onclick="location.reload()" data-dismiss="modal"><i class="fa fa-undo"></i> Đóng
         </button>
       </div>
     </div>
@@ -116,7 +117,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Quản lý thương hiệu</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" onclick="location.reload()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body modal_admin--body">
         <div class="tabtable">
@@ -207,7 +208,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn_cus btn-default btn-sm btn-close" data-dismiss="modal"><i class="fa fa-undo"></i> Đóng
+        <button type="button" class="btn_cus btn-default btn-sm btn-close" onclick="location.reload()" data-dismiss="modal"><i class="fa fa-undo"></i> Đóng
         </button>
       </div>
     </div>

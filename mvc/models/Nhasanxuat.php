@@ -40,6 +40,16 @@ class Nhasanxuat extends DB {
         }
         return $kq;
     }
+
+    public function update($ma_loai,$name){
+        $sql = "UPDATE nhasanxuat set ten_nsx='$name' where ma_nsx ='$ma_loai'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = "true";
+        }else{
+            $kq = "false";
+        }
+        return $kq;
+    }
 }
 
 ?>

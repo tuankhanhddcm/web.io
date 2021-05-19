@@ -47,6 +47,15 @@ class Danhmucmodel extends DB{
         $sql =" SELECT * FROM $table limit $trang,$item_in_page";
         return $this->_query($sql);
     }
+    public function update($ma_loai,$name){
+        $sql = "UPDATE loaisanpham set ten_loai='$name' where ma_loai ='$ma_loai'";
+        if(mysqli_query($this->conn,$sql)){
+            $kq = "true";
+        }else{
+            $kq = "false";
+        }
+        return $kq;
+    }
 }
 
 ?>

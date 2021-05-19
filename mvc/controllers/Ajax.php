@@ -641,7 +641,7 @@ class Ajax extends Controller
             }
         }
     }
-
+// show modal mã loại và nsx
     public function page($table, $limit)
     {
         if (isset($_POST['trang']) && !empty($_POST['trang'])) {
@@ -660,12 +660,19 @@ class Ajax extends Controller
                 if ($kq) {
                     foreach ($kq as $val) {
                         $ouput .= '
-                        <tr>
-                        <td class="text_td item_' . $val['ma_nsx'] . '" style=" padding-top: 15px;">' . $val['ten_nsx'] . '</td>
-                        <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
-                          <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
-                          <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
-                        </td>
+                        <tr id="nsx_'.$val['ma_nsx'].'">
+                            <td class="text_td item_' . $val['ma_nsx'] . '" style=" padding-top: 15px;"><span>'.$val['ten_nsx'] . '</span></td>
+                            <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                                <button type="button" class=" btn-update nsx_update" data-nsx="'.$val['ma_nsx'].'" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                                
+                            </td>
+                        </tr>
+                        <tr style="display: none;" id="update_nsx'.$val['ma_nsx'].'">
+                          <td class="text_td item_'.$val['ma_nsx'].'"style="padding:4px" ><input type="text" name="" class="input_loaisp" id="input_'.$val['ma_nsx'].'" value="'.$val['ten_nsx'].'"></td>
+                          <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                            <button type="button" class=" btn-update nsx_btn" title="Lưu" data-nsx_id="'.$val['ma_nsx'].'"><i class="bx bx-save" style="color: forestgreen;"></i></button>
+                            <button type="button" class=" btn-update nsx_back" data-nsx_back="'.$val['ma_nsx'].'" title="Trở về"><i style="color: #f30;" class="bx bx-rotate-left"></i></button>
+                          </td>
                         </tr>
                         ';
                     }
@@ -679,12 +686,19 @@ class Ajax extends Controller
                 if ($kq) {
                     foreach ($kq as $val) {
                         $ouput .= '
-                        <tr>
-                        <td class="text_td item_' . $val['ma_loai'] . '" style=" padding-top: 15px;">' . $val['ten_loai'] . '</td>
-                        <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
-                          <button type="button" class=" btn-update" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
-                          <button type="button" class=" btn-deletd" title="Xóa"><i class="bx bxs-trash"></i></button>
-                        </td>
+                        <tr id="'.$val['ma_loai'].'">
+                            <td class="text_td item_' . $val['ma_loai'] . '" style=" padding-top: 15px;"><span>' . $val['ten_loai'] . '</span></td>
+                            <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                                <button type="button" class=" btn-update loaisp_update" data-loai="'.$val['ma_loai'].'" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                                
+                            </td>
+                        </tr>
+                        <tr style="display: none;" id="update_'.$val['ma_loai'].'">
+                          <td class="text_td item_'.$val['ma_loai'].'"style="padding:4px" ><input type="text" name="" class="input_loaisp" id="input_'.$val['ma_loai'].'" value="'.$val['ten_loai'].'"></td>
+                          <td style="display: flex;align-items: center;justify-content: center;padding-top: 10px;border-right: none;">
+                            <button type="button" class=" btn-update loaisp_btn" title="Lưu" data-loai_id="'.$val['ma_loai'].'"><i class="bx bx-save" style="color: forestgreen;"></i></button>
+                            <button type="button" class=" btn-update loaisp_back" data-loai_back="'.$val['ma_loai'].'" title="Trở về"><i style="color: #f30;" class="bx bx-rotate-left"></i></button>
+                          </td>
                         </tr>
                         ';
                     }
@@ -1644,4 +1658,18 @@ class Ajax extends Controller
             }
         }
     }
+
+    public function update_loai($table){
+        if(isset($_POST['val']) && $_POST['val']!="" && isset($_POST['ma_loai'])){
+            $name = $_POST['val'];
+            $ma_loai = $_POST['ma_loai'];
+            if($table =='loaisp'){
+                echo $kq = $this->Danhmuc->update($ma_loai,$name);
+            }
+            if($table =="nsx" ){
+                echo $kq = $this->Nhasanxuat->update($ma_loai,$name);
+            }
+        }
+    }
 }
+

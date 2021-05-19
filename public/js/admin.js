@@ -461,6 +461,53 @@ $(document).ready(function () {
 
     // doanh số
     doanhso('', '', 1);
+
+
+    $(document).on("click",".loaisp_update",function(){
+        var id =$(this).data('loai');
+        $("#"+id).css("display","none");
+        $("#update_"+id).css("display","table-row");
+        
+    });
+
+    $(document).on("click",".loaisp_back",function(){
+        var id =$(this).data('loai_back');
+        $("#"+id).css("display","table-row");
+        $("#update_"+id).css("display","none");
+        if($("#input_"+id).val()==''){
+            $("#input_"+id).val($(".item_"+id +" span").text());
+        }
+        
+    });
+
+    $(document).on("click",".loaisp_btn",function(){
+        var id =$(this).data('loai_id');
+        update_loaisp(id,"loaisp");
+    });
+
+    $(document).on("click",".nsx_update",function(){
+        var id =$(this).data('nsx');
+        $("#nsx_"+id).css("display","none");
+        $("#update_nsx"+id).css("display","table-row");
+        
+    });
+
+    $(document).on("click",".nsx_back",function(){
+        var id =$(this).data('nsx_back');
+        $("#nsx_"+id).css("display","table-row");
+        $("#update_nsx"+id).css("display","none");
+        if($("#input_"+id).val()==''){
+            $("#input_"+id).val($(".item_"+id +" span").text());
+        }
+        
+    });
+
+    $(document).on("click",".nsx_btn",function(){
+        var id =$(this).data('nsx_id');
+        update_loaisp(id,"nsx");
+    });
+
+
 });
 
 function fliter_admin(trang) {
@@ -730,4 +777,37 @@ function insert_coupon(val) {
         });
     }
     
+}
+
+function update_loaisp(id,table){
+    var val = $("#input_"+id).val();
+    if(val !=''){
+        $.ajax({
+            url:"http://localhost/web_mvc/Ajax/update_loai/"+table,
+            method: "post",
+            data:{
+                val:val,
+                ma_loai:id
+            },
+            success:function(data){
+                if(data=='true'){
+                    showupdate("update","nhóm hàng hóa");
+                    $(document).ready(function(){
+                        $("#"+id).css("display","table-row");
+                        $("#update_"+id).css("display","none");
+                        $("#nsx_"+id).css("display","table-row");
+                        $("#update_nsx"+id).css("display","none");
+                        $(".item_"+id +" span").text(val);
+                        
+                    });
+                    
+                }else{
+                    showupdate_error("update","nhóm hàng hóa");
+                }
+            }
+        })
+    }else{
+        
+        showupdate_error("update","nhóm hàng hóa");
+    }
 }

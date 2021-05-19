@@ -666,3 +666,12 @@ button.btn_date{
     width: 80%;
     float: right;
 }
+
+.input_loaisp {
+    width: 90%;
+    height: 35px;
+    border: 1px solid #f39406;
+    outline: none;
+    border-radius: 3px;
+    padding: 10px;
+}
