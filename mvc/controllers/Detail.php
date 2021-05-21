@@ -28,10 +28,11 @@
             }else {
                 $gia= $sptheoloai['sp_giaban'];
             }
+            $gia_start= $gia - 4000000;
             $ma_sp =$sptheoloai['sp_ma'];
             $loai_sp = $sptheoloai['ma_loai'];
             $gia_end = $gia + 4000000;
-            $sp_gia = $this->sanpham->sptheogia($gia,$gia_end,$loai_sp,$ma_sp);
+            $sp_gia = $this->sanpham->sptheogia($gia_start,$gia_end,$loai_sp,$ma_sp);
             //xu ly mo ta san pham
             $mota = array_values(explode('.',$sptheoloai['sp_mota']));
             $cong_nghe = array_values(explode(',',$thongso['cong_nghe']));
