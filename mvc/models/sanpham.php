@@ -4,14 +4,25 @@ class sanpham extends DB {
     public $table ="sanpham";
     // lấy sản phẩm với tham số cột , sắp xếp, limit
     public function getSP($column =["*"],$orderbys = [],$limit=2){
+        if(!empty($orderbys)){
+            $oderby = implode(" ",$orderbys);
+            $qr ="SELECT * from sanpham where trang_thai = 0 order by $oderby limit $limit";
+        }else{
+            $qr ="SELECT * from sanpham where trang_thai = 0 limit $limit";
+        }
+       
+        $kq = $this->_query($qr);
+        return $kq;
         
-        $data = $this->selectall($this->table,$column,$orderbys,$limit);
-        return $data;
 
     }
 
-    public function num_rows(){
-        return $this->num_row('sanpham');
+    public function num_rows($trang_thai =''){
+        $sql = "SELECT * from sanpham where trang_thai = 0";
+        if($trang_thai !=''){
+            $sql ="SELECT * from sanpham where trang_thai = 1";
+        }
+        return mysqli_num_rows(mysqli_query($this->conn,$sql));
     }
 
     public function max_id($table,$col,$str){
@@ -31,7 +42,7 @@ class sanpham extends DB {
 
     public function sptheoloai($column,$val,$limit=0){
         $qr = "SELECT * from sanpham 
-                join loaisanpham on sanpham.ma_loai = loaisanpham.ma_loai join nhasanxuat on sanpham.ma_nsx=nhasanxuat.ma_nsx where sanpham.$column = '$val'";
+                join loaisanpham on sanpham.ma_loai = loaisanpham.ma_loai join nhasanxuat on sanpham.ma_nsx=nhasanxuat.ma_nsx where sanpham.$column = '$val' and trang_thai =0";
         if($limit >0){
             $qr .= " limit $limit";
         }
@@ -43,7 +54,7 @@ class sanpham extends DB {
         return $kq;
     }
     public function sptheotskt($column,$val){
-        $qr = "SELECT * from sanpham join thongsokythuat on sanpham.sp_ma=thongsokythuat.ma_sp where sanpham.$column = '$val'";
+        $qr = "SELECT * from sanpham join thongsokythuat on sanpham.sp_ma=thongsokythuat.ma_sp where sanpham.$column = '$val' and trang_thai =0";
         if(mysqli_num_rows(mysqli_query($this->conn,$qr)) == 1){
             $kq = $this->fristquery($qr);
         }else{
@@ -61,7 +72,7 @@ class sanpham extends DB {
 
     public function filter_data($ma_loai,$gias =[],$hangs=[],$kichco =[],$loai_sp=[],$order,$sl=0,$limit=0){
         $dk = 0;
-        $qr ="SELECT * FROM $this->table join thongsokythuat on sanpham.sp_ma = thongsokythuat.ma_sp  WHERE ma_loai =$ma_loai";
+        $qr ="SELECT * FROM $this->table join thongsokythuat on sanpham.sp_ma = thongsokythuat.ma_sp  WHERE ma_loai =$ma_loai and trang_thai =0";
         if(!empty($hangs)){
             $hang = implode(',',$hangs);
             $qr .=" ". "and ma_nsx in($hang)";
@@ -206,13 +217,13 @@ class sanpham extends DB {
     
 
     public function search($text,$count=5){
-        $sql = "SELECT * from sanpham where sp_name like '%$text%' limit $count";
+        $sql = "SELECT * from sanpham where sp_name like '%$text%'and trang_thai =0 limit $count";
         
         return $this->_query($sql);
     }
 
     public function search_home($text,$count=0,$sort,$banchay){
-        $sql = "SELECT * from sanpham where 1";
+        $sql = "SELECT * from sanpham where  trang_thai =0";
         if(!empty($text)){
             $sql .=" and sp_name like '%$text%' ";
         }
@@ -233,7 +244,7 @@ class sanpham extends DB {
     }
 
 
-    public function list_product($text='',$ma_loai='',$ma_nsx='',$start=0,$limit=0){
+    public function list_product($text='',$ma_loai='',$ma_nsx='',$start=0,$limit=0,$trang_thai =''){
         $sql ="SELECT * FROM `sanpham` JOIN loaisanpham on sanpham.ma_loai=loaisanpham.ma_loai JOIN nhasanxuat on sanpham.ma_nsx = nhasanxuat.ma_nsx where 1";
         if($text !==''){
             $sql .= " and sanpham.sp_ma like '%$text%' or sanpham.sp_name like '%$text%' ";
@@ -244,6 +255,11 @@ class sanpham extends DB {
         }
         if(!empty($ma_nsx)){
             $sql .= " and sanpham.ma_nsx=$ma_nsx";
+        }
+        if(!empty($trang_thai)){
+            $sql .= " and sanpham.trang_thai = 1";
+        }else{
+            $sql .= " and sanpham.trang_thai = 0";
         }
         if( $limit !==0){
             $sql .= " limit ".$start.",".$limit;
@@ -276,7 +292,7 @@ class sanpham extends DB {
         return $kq;
     }
     public function delete($id){
-        $sql = "DELETE from sanpham where sp_ma = '$id'";
+        $sql = "UPDATE  sanpham set trang_thai = 1 where sp_ma = '$id'";
         if(mysqli_query($this->conn,$sql)){
             $kq = "true";
         }else{
@@ -284,6 +300,8 @@ class sanpham extends DB {
         }
         return $kq;
     }
+
+    
 }
 
 

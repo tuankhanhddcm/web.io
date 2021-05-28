@@ -51,7 +51,7 @@ class Cart extends Controller{
                 if(array_key_exists($id,$_SESSION['cart'])){
                     unset($_SESSION['cart'][$id]);
                 }
-                $url = "";
+       
                 
             }
         }

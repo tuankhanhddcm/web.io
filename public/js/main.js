@@ -425,3 +425,26 @@ function check_coupon() {
     }
 
 }
+
+function sosanh_sp(id,id_sosanh){
+    $.ajax({
+        url:"http://localhost/web_mvc/Detail/ma_sp/",
+        method:"post",
+        data:{
+            id:id,
+            id_sosanh:id_sosanh
+        },
+        success:function(data){
+            location.href ="http://localhost/web_mvc/Detail/sosanh";
+        }
+    });
+    
+}
+
+$(document).ready(function(){
+    $(document).on("click",".btn_sosanh",function(){
+        var id = $(this).data('sp');
+        var id_sosanh = $(this).data('sosanh');
+        sosanh_sp(id,id_sosanh);
+    });
+});

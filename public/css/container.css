@@ -1006,3 +1006,20 @@ button.btn-oders,
     font-weight: 400;
     padding-top: 20px;
 }
+
+button.btn_sosanh {
+    position: relative;
+    bottom: 40px;
+    left: 10px;
+    color: #357ebd;
+    font-weight: bold;
+    font-size: 1.6rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn_sosanh:hover{
+    color: #1ba8ff;
+}

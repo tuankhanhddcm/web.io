@@ -50,6 +50,25 @@
             
         }
 
+        public function ma_sp(){
+            $_SESSION['id'] =$_POST['id'];
+            $_SESSION['id_sosanh'] = $_POST['id_sosanh'];
+        }
+
+        public function sosanh(){
+            if(isset($_SESSION['id']) && !empty($_SESSION['id']) && isset($_SESSION['id_sosanh']) && !empty($_SESSION['id_sosanh'])){
+                $sp_ht= $this->sanpham->sptheotskt("sp_ma",$_SESSION["id"]);
+                $sp_ss= $this->sanpham->sptheotskt("sp_ma",$_SESSION["id_sosanh"]);
+            }
+            $this->view("index",[
+                "page"=>"sosanh",
+                "sp_ht" =>$sp_ht,
+                "sp_ss" =>$sp_ss
+                
+            ]);
+            
+        }
+
        
     }
 ?>
