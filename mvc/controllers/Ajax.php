@@ -1671,5 +1671,6 @@ class Ajax extends Controller
             }
         }
     }
+    
 }
 

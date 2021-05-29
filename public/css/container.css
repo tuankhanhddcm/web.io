@@ -1009,7 +1009,7 @@ button.btn-oders,
 
 button.btn_sosanh {
     position: relative;
-    bottom: 40px;
+    bottom: 30px;
     left: 10px;
     color: #357ebd;
     font-weight: bold;
@@ -1022,4 +1022,88 @@ button.btn_sosanh {
 
 .btn_sosanh:hover{
     color: #1ba8ff;
+}
+
+/* trang so sánh */
+
+.sosanh_link {
+    display: block;
+    color: #333;
+    overflow: hidden;
+    text-decoration: none;
+    width: 80%;
+    margin-left: 100px;
+}
+.sosanh_link:hover{
+    color: #333;
+}
+.sosanh_img img {
+    width: 40%;
+    display: block;
+    
+}
+.box-detail {
+    overflow: hidden;
+    border-bottom: unset;
+    max-width:1199px;
+}
+
+
+.box-detail strong {
+    display: block;
+    overflow: hidden;
+    text-transform: uppercase;
+    background-color: #f1f1f1;
+    padding: 15px;
+    font-size: 1.6rem;
+}
+
+.check_box {
+    display: block;
+    overflow: hidden;
+    background: #f4f9ff;
+    border-radius: 40px;
+    padding: 5px;
+    margin: 10px;
+    width: 65%;
+    max-width: 300px;
+    cursor: pointer;
+}
+
+.check_box input[type=checkbox] {
+    transform: scale(1.8);
+    margin: 10px 10px 0px 10px;
+}
+
+.check_box label {
+    font-size: 1.6rem;
+    color: #1ba8ff;
+    font-weight: 500;
+}
+.detail_ts strong {
+    text-transform: none;
+}
+
+.span_ts {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 15px;
+}
+.khac{
+    color: #1066cb;
+    font-weight: 600;
+}
+
+.box_button {
+    border-top: 1px solid #e6e6e6;
+    
+}
+
+.btn_cus.btn_ss {
+    display: flex;
+    margin: 20px;
+    margin-left: 90px;
+    padding: 0px;
+    width: 70%;
 }

@@ -447,4 +447,57 @@ $(document).ready(function(){
         var id_sosanh = $(this).data('sosanh');
         sosanh_sp(id,id_sosanh);
     });
+    $(document).on("click",".btn_sosanh_them",function(){
+        var id = $(this).data('idsp');
+        addcart(id,1);
+    });
+    $(document).on("click",".btn_sosanh_mua",function(){
+        var id = $(this).data('idsp');
+        addcart(id,1);
+        checkuser_status();
+    });
+
+    $("#check_tskt").click(function(){
+        var check = $("#check_tskt:checked").val();
+        if(check !=undefined){
+            sosanh('loai');
+            sosanh('kich_co_tv');
+            sosanh('phan_giai');
+            sosanh('hdh');
+            sosanh('cong_nghe');
+            sosanh('tinh_nang');
+            sosanh('ket_noi');
+            sosanh('loa');
+            sosanh('chat_lieu');
+            sosanh('cong_suat');
+            sosanh('dung_tich');
+            sosanh('kieu_tu');
+            sosanh('so_canh_cua');
+            sosanh('kich_thuoc');
+            sosanh('khoi_luong');
+            sosanh('bao_hanh');
+            sosanh('nam_sx');
+            sosanh('noi_san_xuat');
+            sosanh('ung_dung');
+            
+
+        }else{
+            $(".detail_ts").css("display","block");
+            $(".span_ts").removeClass('khac');
+        }
+        
+
+    });
 });
+
+
+function sosanh(ht){
+    if($('.'+ht+'_ht').text() !== $('.'+ht+'_ss').text()){
+        $('.'+ht+'_ht').addClass('khac');
+    }else{
+        $('.'+ht+'_ht').removeClass('khac');
+        $('.'+ht).css("display","none");
+    }
+}
+
+

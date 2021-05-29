@@ -79,7 +79,7 @@ $(document).ready(function () {
     //số lượng sp trên cart
     sl_cart();
 
-    // ucheck thanh toán
+    // check thanh toán
     $("#tt").click(function () {
         checkuser_status();
     });
@@ -357,9 +357,12 @@ function checkuser_status() {
 }
 
 //thêm sản phẩm
-function addcart() {
-    var productID = $("#productID").val();
-    var soluong = $('.sl').val();
+function addcart(productID='',soluong=0) {
+    if(productID =='' && soluong ==0){
+        var productID = $("#productID").val();
+        var soluong = $('.sl').val();
+    }
+
     $.ajax({
         url: "../cart/addcart",
         method: "POST",

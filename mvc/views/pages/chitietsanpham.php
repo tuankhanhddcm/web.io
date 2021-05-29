@@ -337,7 +337,7 @@
                                                 <div class="col-2-5 ">
                                                     <a class="card-item card_height" href="http://localhost/web_mvc/Detail/<?= $val['sp_url']; ?>">
                                                         <div class="card-item__img">
-                                                            <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img img-fluid">
+                                                            <img src="http://localhost/web_mvc/<?= $val["sp_img"]  ?>" alt="" class="card__img  -fluid">
                                                         </div>
                                                         <div class="card__name">
                                                             <span class="card__name-sp"><?= $val["sp_name"] ?></span>
