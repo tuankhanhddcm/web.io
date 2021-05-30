@@ -322,7 +322,7 @@
                              <?php if($data["ma_loai"]==4 || $data["ma_loai"]==5){?>
                                 <div class="col-sm-6">
                                      <div class="form-check home-sceen__item">
-                                         <input class="form-check-input gia" type="checkbox" value="1000000" id="">
+                                         <input class="form-check-input gia" type="checkbox" value="999999" id="">
                                          <label class="form-check-label" for="">
                                              Dưới 1 triệu
                                          </label>
@@ -330,33 +330,33 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-check home-sceen__item">
-                                        <input class="form-check-input gia" type="checkbox" value="1000001" id="">
+                                        <input class="form-check-input gia" type="checkbox" value="1000000" id="">
                                         <label class="form-check-label" for="">
-                                            Từ 1 - 3 triệu
+                                            Từ 1 - 4 triệu
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-check home-sceen__item">
-                                        <input class="form-check-input gia" type="checkbox" value="3000000" id="">
+                                        <input class="form-check-input gia" type="checkbox" value="4000000" id="">
                                         <label class="form-check-label" for="">
-                                            Từ 3 - 6 triệu
+                                            Từ 4 - 7 triệu
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-check home-sceen__item">
-                                        <input class="form-check-input gia" type="checkbox" value="6000000" id="">
+                                        <input class="form-check-input gia" type="checkbox" value="7000000" id="">
                                         <label class="form-check-label" for="">
-                                            Từ 6 - 9 triệu
+                                            Từ 7 - 10 triệu
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-check home-sceen__item">
-                                        <input class="form-check-input gia" type="checkbox" value="9000000" id="">
+                                        <input class="form-check-input gia" type="checkbox" value="9999999" id="">
                                         <label class="form-check-label" for="">
-                                            Trên 9 triệu
+                                            Trên 10 triệu
                                         </label>
                                     </div>
                                 </div>

@@ -217,6 +217,7 @@ function filter_data(order, sl = 0, limit = 0) {
                 $('#view_dm').text(data[0]);
                 $('#btn_view_dm').data('count', limit + 8);
             }
+           
             $('#danhmuc_loai').html(data[1]);
 
 

@@ -67,6 +67,7 @@ class Payment extends Controller
                     $diachi = $_POST['diachi'];
                     $_SESSION['user']['ho_ten'] = $hoten;
                     $email = $_POST['email'];
+                    $_SESSION ['user']['email'] =$email;
                     $_SESSION['user']['diachi'] = $diachi;
                 }
                 $note = $_POST['note'];

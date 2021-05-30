@@ -126,30 +126,34 @@ class sanpham extends DB {
             $gia = implode(',',$gias);
             $mang = array_values(explode(",",$gia));
             $sql ="";
-            for ($i=0; $i < count($mang) ; $i++) { 
+            for ($i=0; $i < count($mang) ; $i++) {
+                
                     if($mang[$i] == 5000000){
                         $sql .=" ". "sp_giaban < $mang[$i]";
                         
                     }
-
-                    if($mang[$i] > 5000000 && $mang[$i] < 25000000){
-                        $tong = (int)$mang[$i]+3000000;
+                
+                    if($mang[$i] >= 1000000 && $mang[$i] < 9999999 && $mang[$i] !=5000000 && $mang[$i] !=5000001){
+                        
+                        $tong = (int)$mang[$i]+2999999;
                         $sql .=" or sp_giaban between $mang[$i] and $tong";
+                    }elseif($mang[$i] > 5000000 && $mang[$i] < 25000000){
+                        $tong = (int)$mang[$i]+5000000;
+                        $sql .=" or sp_giaban between $mang[$i] and $tong";
+                        
                     }
+                    
                     
                     if($mang[$i] >= 25000000){
                         $sql .=" or sp_giaban > $mang[$i]";
                     }
 
-                    if($mang[$i] ==1000000){
+                    if($mang[$i] ==999999){
                         $sql .=" ". "sp_giaban < $mang[$i]";
                     }
-                    if($mang[$i] > 1000000 && $mang[$i] < 9000000){
-                        $tong = (int)$mang[$i]+3000000;
-                        $sql .=" or sp_giaban between $mang[$i] and $tong";
-                    }
                     
-                    if($mang[$i] >= 9000000){
+                    
+                    if($mang[$i] >= 9999999 &&$mang[$i] !=10000000  && $mang[$i] !=15000000  && $mang[$i] !=20000000){
                         $sql .=" or sp_giaban > $mang[$i]";
                     }
             }
@@ -175,6 +179,7 @@ class sanpham extends DB {
         if(mysqli_num_rows(mysqli_query($this->conn,$qr)) > 0){
             $kq = $this->_query($qr);
         }
+        
         return $kq;
 
     }
@@ -303,6 +308,4 @@ class sanpham extends DB {
 
     
 }
-
-
 ?>
