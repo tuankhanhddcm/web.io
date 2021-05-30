@@ -118,9 +118,10 @@
                                                         <button type="button" onclick="giamsl('<?= $key ?>')" class="btn-calc btn-sl_tru  tru">
                                                             <i class='btn-sl__icon bx bx-minus'></i>
                                                         </button>
+                                                        <input type="hidden" class="id_sp" value="<?= $key?>">
                                                         <input type="hidden" name="" class="price" value="<?= $val["sp_giaban"] ?>">
-                                                        <input class="btn-sl sl " type="text" name="qtys" onkeyup="updatecart('<?= $key ?>');" min="1" id="<?= $key ?>" value="<?= $val['soluongdat'] ?>">
-                                                        <button type="button" onclick="  tangsl('<?= $key ?>')" class=" btn-calc btn-sl_cong cong ">
+                                                        <input class="btn-sl sl sl2 " type="text" name="qtys" onchange ="updatecart('<?= $key ?>');" min="1" id="<?= $key ?>" value="<?= $val['soluongdat'] ?>">
+                                                        <button type="button" onclick="  tangsl('<?= $key ?>','tt')" class=" btn-calc btn-sl_cong cong ">
                                                             <i class='btn-sl__icon bx bx-plus '></i>
                                                         </button>
                                                     </div>

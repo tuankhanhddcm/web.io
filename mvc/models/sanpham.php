@@ -306,6 +306,30 @@ class sanpham extends DB {
         return $kq;
     }
 
-    
+    public function kiemtra_sl($id,$sl){
+        $sql ="Select sp_sl from sanpham where sp_ma = '$id'";
+        if(mysqli_query($this->conn,$sql)){
+            $sp_sl = mysqli_fetch_assoc(mysqli_query($this->conn,$sql));
+            if( $sl > $sp_sl['sp_sl']){
+                $kq1 = 'false';
+
+            }else{
+                $kq1 = 'true';
+            }
+            if(isset($_SESSION['cart'][$id])){
+                if ( $_SESSION['cart'][$id]['soluongdat'] > $sp_sl['sp_sl']){
+                    $kq = 'false';
+                }elseif(($sl + $_SESSION['cart'][$id]['soluongdat']) > $sp_sl['sp_sl']){
+                    $kq = 'false';
+                }else{
+                    $kq= 'true';
+                }
+            }else{
+                $kq ='true';
+            }
+                
+        }
+        return json_encode([$kq1,$kq]);
+    }
 }
 ?>

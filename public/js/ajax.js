@@ -44,7 +44,7 @@ $(document).ready(function () {
         $('body,html').animate({
             scrollTop: 0
         }, 400);
-        setTimeout(function (){
+        setTimeout(function () {
             filter_data('', 0, 8);
         }, 1000);
 
@@ -62,7 +62,7 @@ $(document).ready(function () {
             filter_gia_search($('#giacao').val(), $(this).data('search'))
             filter_data($('#giacao').val(), 0, $(this).data('count'));
 
-        } else if (giathap == "1"){
+        } else if (giathap == "1") {
             filter_gia_search($('#giathap').val(), $(this).data('search'))
             filter_data($('#giathap').val(), 0, $(this).data('count'));
         } else {
@@ -81,7 +81,32 @@ $(document).ready(function () {
 
     // check thanh toán
     $("#tt").click(function () {
-        checkuser_status();
+        var kq = [];
+        var check = '';
+        $(".sl").each(function () {
+            var id =$(this).attr("id");
+            var so_luong =$('#'+id).val();
+            kq.push(id ,check_sl(id,so_luong)[0]);
+            
+        });
+
+        for(i= 0; i<kq.length ; i++){
+            if(kq[i] == 'false'){
+                check = 'false';
+                $('#'+kq[i-1]).focus();
+                break;
+            }else{
+                check = 'true';
+            }
+        }
+        
+        if(check == 'true'){
+            checkuser_status();
+        }else{
+            show_sl_error('');
+            
+        }
+        
     });
 
     //add cart va check login in btn mua ngay
@@ -119,9 +144,10 @@ $(document).ready(function () {
 
     // thanh toán
     $('#btn-tt').click(function () {
+        
         check('.hoten');
-        check('#tinh')
-        if (email('.email') == 'true' && check('.hoten') == 'true' && check('#tinh') == 'true') {
+        check('#tinh');
+        if (email('.email') == 'true' && check('.hoten') == 'true' && check('#tinh') == 'true' ) {
             thanhtoan();
         }
     });
@@ -217,7 +243,7 @@ function filter_data(order, sl = 0, limit = 0) {
                 $('#view_dm').text(data[0]);
                 $('#btn_view_dm').data('count', limit + 8);
             }
-           
+
             $('#danhmuc_loai').html(data[1]);
 
 
@@ -290,12 +316,12 @@ function sp_cart() {
         },
         dataType: 'json',
         success: function (data) {
-            if(data[1] !='' && data[0]==''){
+            if (data[1] != '' && data[0] == '') {
                 $("#sp_cart").html(data[1]);
                 $(".no-cart").html('');
-            }else {
+            } else {
                 $(".no-cart").html(data[0]);
-            }    
+            }
         }
     });
 
@@ -311,6 +337,23 @@ function sl_cart() {
         }
     });
 }
+function check_sl(id,sl){
+    var kq = [];
+    $.ajax({
+        url:"http://localhost/web_mvc/Ajax/check_sl",
+        method: "post",
+        data: {
+            id:id,
+            sl:sl,
+        },
+        async : false,
+        dataType: 'json',
+        success: function(data){
+                kq = data;
+        }
+    });
+    return kq;
+}
 
 function updatecart(id) {
     var mang = [];
@@ -322,23 +365,36 @@ function updatecart(id) {
     for (i = 0; i < mang.length; i++) {
         sl = Number($("#" + mang[i]).val());
         if (id == mang[i]) {
-            qty[mang[i]] = sl;
-
+            if(sl == 0){
+                $("#" + mang[i]).val(1);
+                qty[mang[i]] = 1;
+            }else{
+                qty[mang[i]] = sl;
+            }
+            
         }
     }
-    $.ajax({
-        url: "./Ajax/updatecart",
-        method: "POST",
-        data: {
-            id: id,
-            qty: qty
-        },
-        dataType: "json",
-        success: function (data) {
-            $("#tt_" + id + " span").text(String(data[0]));
-            $(".cart-pay__pay span").text(String(data[1]));
-        }
-    });
+    var so_luong =$('#'+id).val();
+    
+    if(check_sl(id,so_luong)[0] == 'true'){
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/updatecart",
+            method: "POST",
+            data: {
+                id: id,
+                qty: qty
+            },
+            dataType: "json",
+            success: function (data) {
+                $("#tt_" + id + " span").text(String(data[0]));
+                $(".cart-pay__pay span").text(String(data[1]));
+            }
+        });
+    }else{
+        show_sl_error('');
+        
+    }
+    
 }
 
 //check có login hay chưa
@@ -358,27 +414,32 @@ function checkuser_status() {
 }
 
 //thêm sản phẩm
-function addcart(productID='',soluong=0) {
-    if(productID =='' && soluong ==0){
+function addcart(productID = '', soluong = 0) {
+    if (productID == '' && soluong == 0) {
         var productID = $("#productID").val();
         var soluong = $('.sl').val();
     }
-
-    $.ajax({
-        url: "../cart/addcart",
-        method: "POST",
-        data: {
-            productID: productID,
-            soluong: soluong
-        },
-        success: function (data) {
-            $(document).ready(function(){
-                sl_cart();
-                sp_cart();
-                showproduct();
-            });
-        }
-    });
+    if(check_sl(productID,soluong)[0] == 'true' && check_sl(productID,soluong)[1] =='true'){
+        $.ajax({
+            url: "../cart/addcart",
+            method: "POST",
+            data: {
+                productID: productID,
+                soluong: soluong
+            },
+            success: function (data) {
+                $(document).ready(function () {
+                    sl_cart();
+                    sp_cart();
+                    showproduct();
+                });
+            }
+        });
+    
+    }else{
+        show_sl_error('');
+    }
+        
 }
 
 
@@ -408,7 +469,7 @@ function dangky() {
             pass_again: pass_again
         },
         success: function (data) {
-            console.log(data);
+            
         }
     });
 
@@ -639,11 +700,11 @@ function login(id) {
     var pass = $('.passs').val();
     check('.user');
     check('.passs');
-    
+
     if (check('.user') == 'true' && check('.passs') == 'true') {
-        
+
         $.ajax({
-            url: "http://localhost/web_mvc/Ajax/login/"+id,
+            url: "http://localhost/web_mvc/Ajax/login/" + id,
             method: 'post',
             data: {
                 user: user,
@@ -672,13 +733,13 @@ function login(id) {
                     $(".error_passs").css("display", "none");
                 }
                 if (data[0] == 'true' && data[1] == 'true') {
-                    if(id == 1){
+                    if (id == 1) {
                         location.reload();
-                    }else if(id==2){
-                        location.href="http://localhost/web_mvc/Admin";
+                    } else if (id == 2) {
+                        location.href = "http://localhost/web_mvc/Admin";
                     }
 
-                    
+
                 }
 
             }
@@ -807,6 +868,14 @@ function showerror(text) {
         duration: 3000
     });
 }
+function show_sl_error(text){
+    toast({
+        title: 'Thất bại !',
+        message: "Số lượng tồn kho không đủ !!!",
+        type: "error",
+        duration: 3000
+    });
+}
 
 function thanhtoan() {
     var hoten = $('.hoten').val();
@@ -847,7 +916,7 @@ function thanhtoan() {
                 url: "http://localhost/web_mvc/mvc/core/php_mailer.php",
                 method: "post",
                 data: {
-                   to:email
+                    to: email
                 }
             });
             location.href = 'http://localhost/web_mvc/Payment/camon';
@@ -863,30 +932,30 @@ function logout() {
         data: {
         },
         success: function (data) {
-            if(data =="true"){
+            if (data == "true") {
                 location.href = 'http://localhost/web_mvc/home';
             }
-            
+
         }
     });
 
-   
-    
+
+
 }
- function logout_admin(){
+function logout_admin() {
     $.ajax({
         url: "http://localhost/web_mvc/Login/logout_admin",
         method: "POST",
         data: {
         },
         success: function (data) {
-            if(data =="true"){
+            if (data == "true") {
                 location.href = 'http://localhost/web_mvc/login';
             }
-            
+
         }
     });
- }
+}
 
 function district(val) {
 
@@ -978,9 +1047,9 @@ function street() {
 
 function search_header() {
     var text = $("#input-search").val();
-    if (text !='') {
+    if (text != '') {
         $("#list-search").html("<div class='loadsearch'></div>");
-        $('#list-search').css("display","block");
+        $('#list-search').css("display", "block");
         setTimeout(function () {
             $.ajax({
                 url: "http://localhost/web_mvc/Ajax/search_product",
@@ -989,13 +1058,13 @@ function search_header() {
                     text: text
                 },
                 success: function (data) {
-                   
+
                     $('#list-search').html(data);
                 }
             });
         }, 1000);
-    }else{
-        $('#list-search').css("display","none");
+    } else {
+        $('#list-search').css("display", "none");
     }
 
 
@@ -1095,7 +1164,7 @@ function insert_sp(val, url, ma_sp) {
             async: false,
             success: function (data) {
                 masp = data;
-               
+
             }
         });
 
@@ -1420,7 +1489,7 @@ function update_sp_tskt(val) {
 
     if (check_thongso() == 'true' && check_sp() == 'true' && check_thongso_loai() == 'true') {
         insert_tskt(ma_sp, 'update');
-        insert_sp(val,'update', ma_sp);
+        insert_sp(val, 'update', ma_sp);
 
     }
 }
@@ -1450,7 +1519,7 @@ function more_sp(limit) {
 
 
 // thay đổi trạng thái
-function change_status_hd(val, id, dk = 0,text='') {
+function change_status_hd(val, id, dk = 0, text = '') {
     id_td = '#' + id;
     txt = ".txt_" + id;
     span = ".span_" + id;
@@ -1466,7 +1535,7 @@ function change_status_hd(val, id, dk = 0,text='') {
         dataType: "json",
         success: function (data) {
             $(id_td).html(data[0]);
-            if (data[1] == 'true' && text=='btn') {
+            if (data[1] == 'true' && text == 'btn') {
                 $(span).text('Đơn hàng đã hủy');
                 $(btn_td).html("<button class='btn_cus btn_delete' data-id='" + id + "' >Xóa đơn</button>");
             }

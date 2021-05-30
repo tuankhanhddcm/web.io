@@ -57,6 +57,7 @@ class Cart extends Controller{
         }
         header("location:http://localhost/web_mvc/cart ");
     }
+   
 }
 
 ?>

@@ -65,6 +65,9 @@ $(document).ready(function () {
         return /^\d*$/.test(value);
     });
 
+  
+    
+
     var path = window.location.pathname.split('/').pop(6);
     if (path == '' || path == 'Account') {
         path = 'edit';
@@ -106,7 +109,7 @@ $(document).ready(function () {
 });
 
 
-function tangsl(id) {
+function tangsl(id,text='') {
     var mang = [];
     var qty = {};
     $(".sl").each(function () {
@@ -121,19 +124,47 @@ function tangsl(id) {
             $("#" + mang[i]).val(sl);
         }
     }
-    $.ajax({
-        url: "./Ajax/updatecart",
-        method: "POST",
-        data: {
-            id: id,
-            qty: qty
-        },
-        dataType: "json",
-        success: function (data) {
-            $("#tt_" + id + " span").text(String(data[0]));
-            $(".cart-pay__pay span").text(String(data[1]));
+    var so_luong = $("#" + id).val()
+    if(text =='tt'){
+        if(check_sl(id,so_luong)[0] == 'true'){
+            $.ajax({
+                url: "./Ajax/updatecart",
+                method: "POST",
+                data: {
+                    id: id,
+                    qty: qty
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#tt_" + id + " span").text(String(data[0]));
+                    $(".cart-pay__pay span").text(String(data[1]));
+                }
+            });
+        }else{
+            show_sl_error('');
         }
-    });
+    }else{
+        if(check_sl(id,so_luong)[0] == 'true' && check_sl(id,so_luong)[1] == 'true' ){
+            $.ajax({
+                url: "./Ajax/updatecart",
+                method: "POST",
+                data: {
+                    id: id,
+                    qty: qty
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#tt_" + id + " span").text(String(data[0]));
+                    $(".cart-pay__pay span").text(String(data[1]));
+                }
+            });
+        }else{
+            show_sl_error('');
+        }
+    }
+    
+    
+    
 
 }
 

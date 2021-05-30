@@ -1671,6 +1671,11 @@ class Ajax extends Controller
             }
         }
     }
+    public function check_sl(){
+        if(isset($_POST['id']) && isset($_POST['sl'])){
+            echo $this->sanpham->kiemtra_sl($_POST['id'],$_POST['sl']);
+        }
+    }
     
 }
 
