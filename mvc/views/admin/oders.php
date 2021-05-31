@@ -20,7 +20,16 @@
                             </div>
                         </form>
                     </div>
-
+                    <div class="select_wrap">
+                        <select class=" select select_trangthai form-control" id="trang_thai" data-dropup-auto="false" title="Trạng thái đơn hàng" data-size='5' data-live-search="true">
+                            <option value="" selected>--Chọn trạng thái--</option>
+                            <option value="10" >Chờ xác nhận</option>
+                            <option value="1" >Đã xác nhận</option>
+                            <option value="2" >Đã giao hàng</option>
+                            <option value="3" >Yêu cầu hủy đơn</option>
+                            <option value="4" >Đơn hàng đã hủy</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12 ">

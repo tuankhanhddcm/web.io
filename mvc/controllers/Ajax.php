@@ -1166,11 +1166,15 @@ class Ajax extends Controller
     {
         $search = '';
         $date = '';
+        $trangthai ='';
         if (!empty($_POST['search'])) {
             $search = $_POST['search'];
         }
         if (!empty($_POST['date'])) {
             $date = $_POST['date'];
+        }
+        if (!empty($_POST['trangthai'])) {
+            $trangthai = $_POST['trangthai'];
         }
         if (!empty($_POST['trang'])) {
             $page = 1;
@@ -1183,13 +1187,13 @@ class Ajax extends Controller
             }
 
             $ouput = '';
-            $rows = $this->Hoadon->filter_hd($search, $date);
+            $rows = $this->Hoadon->filter_hd($search, $date,$trangthai);
             if (!empty($rows)) {
                 $row = count($rows);
             } else {
                 $row = 0;
             }
-            $hd = $this->Hoadon->filter_hd($search, $date, $start, $limit);
+            $hd = $this->Hoadon->filter_hd($search, $date,$trangthai, $start, $limit);
 
             if (!empty($hd)) {
                 foreach ($hd as $val) {

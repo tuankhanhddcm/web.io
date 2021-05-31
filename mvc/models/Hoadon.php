@@ -79,7 +79,7 @@ class Hoadon extends DB {
         return $kq;
     }
     
-    public function filter_hd($txt_search='',$date='',$start=0,$limit=0){
+    public function filter_hd($txt_search='',$date='',$trangthai='',$start=0,$limit=0){
         $sql ="SELECT * FROM hoadon join user on hoadon.khachhang=user.username where 1";
         if($txt_search !=''){
             $sql .=" and (ma_hd like '%$txt_search%' or khachhang like '%$txt_search%')";
@@ -87,6 +87,12 @@ class Hoadon extends DB {
         if($date !=''){
             $newdate = date('Y-m-d', strtotime('+1 day', strtotime($date)));
             $sql .=" and date >='$date' and date < '$newdate' ";
+        }
+        if($trangthai !=''){
+            if($trangthai == 10){
+                $trangthai =0;
+            }
+            $sql .=" and trangthai = '$trangthai'";
         }
         $sql .=" ORDER by date";
         if($limit >0){

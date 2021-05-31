@@ -1,37 +1,27 @@
 $(document).ready(function () {
 
     // lọc trang admin
-
-    $("#list_product").html("<div class='loader'></div>");
-    $("#list_hd").html("<div class='loader'></div>");
     fliter_admin(1);
     filter_hd(1);
     coupon(1);
     $("#search").keyup(function () {
-        $("#list_product").html("<div class='loader'></div>");
-        $("#list_hd").html("<div class='loader'></div>");
         $(".calendar").css("display", "none");
         var date = $("#result").val();
-        setTimeout(function () {
-            fliter_admin(1);
-            filter_hd(1, date);
-        }, 1000);
+        fliter_admin(1);
+        filter_hd(1, date);
         coupon(1);
     });
 
     $(".select-loaisp").click(function () {
-        $("#list_product").html("<div class='loader'></div>");
-        setTimeout(function () {
-            fliter_admin(1);
-        }, 1000);
+        fliter_admin(1);
         coupon(1);
     });
 
     $('.select-nsx').click(function () {
-        $("#list_product").html("<div class='loader'></div>");
-        setTimeout(function () {
-            fliter_admin(1);
-        }, 1000);
+        fliter_admin(1);
+    });
+    $('.select_trangthai').click(function () {
+        filter_hd(1);
     });
     //end lọc
 
@@ -100,6 +90,7 @@ $(document).ready(function () {
         $(".calendar").css("display", "none");
         var date = $("#result").val();
         var date2 = $("#results").val();
+
         filter_hd(page, date);
         search_user($("#search").val(), page);
         detail_user(page);
@@ -195,7 +186,7 @@ $(document).ready(function () {
         });
 
     });
-    
+
 
     // xóa mã giảm giá
     $(document).on("click", ".btn-deleted", function () {
@@ -223,14 +214,14 @@ $(document).ready(function () {
                             data: { id: id },
                             method: "post",
                             success: function (data) {
-                                if(data=='true'){
+                                if (data == 'true') {
                                     $(document).ready(function () {
                                         page = $(".active a").data("page_number");
                                         coupon(page);
                                         showdelete('delete', 'mã giảm giá');
                                     });
                                 }
-                               
+
 
                             }
                         });
@@ -456,57 +447,55 @@ $(document).ready(function () {
     });
 
     // detail khách hàng
-    $("#list_detail_user").html("<div class='loader'></div>");
     detail_user(1);
 
     // doanh số
     doanhso('', '', 1);
 
 
-    $(document).on("click",".loaisp_update",function(){
-        var id =$(this).data('loai');
-        $("#"+id).css("display","none");
-        $("#update_"+id).css("display","table-row");
-        
+    $(document).on("click", ".loaisp_update", function () {
+        var id = $(this).data('loai');
+        $("#" + id).css("display", "none");
+        $("#update_" + id).css("display", "table-row");
+
     });
 
-    $(document).on("click",".loaisp_back",function(){
-        var id =$(this).data('loai_back');
-        $("#"+id).css("display","table-row");
-        $("#update_"+id).css("display","none");
-        if($("#input_"+id).val()==''){
-            $("#input_"+id).val($(".item_"+id +" span").text());
+    $(document).on("click", ".loaisp_back", function () {
+        var id = $(this).data('loai_back');
+        $("#" + id).css("display", "table-row");
+        $("#update_" + id).css("display", "none");
+        if ($("#input_" + id).val() == '') {
+            $("#input_" + id).val($(".item_" + id + " span").text());
         }
-        
+
     });
 
-    $(document).on("click",".loaisp_btn",function(){
-        var id =$(this).data('loai_id');
-        update_loaisp(id,"loaisp");
+    $(document).on("click", ".loaisp_btn", function () {
+        var id = $(this).data('loai_id');
+        update_loaisp(id, "loaisp");
     });
 
-    $(document).on("click",".nsx_update",function(){
-        var id =$(this).data('nsx');
-        $("#nsx_"+id).css("display","none");
-        $("#update_nsx"+id).css("display","table-row");
-        
+    $(document).on("click", ".nsx_update", function () {
+        var id = $(this).data('nsx');
+        $("#nsx_" + id).css("display", "none");
+        $("#update_nsx" + id).css("display", "table-row");
+
     });
 
-    $(document).on("click",".nsx_back",function(){
-        var id =$(this).data('nsx_back');
-        $("#nsx_"+id).css("display","table-row");
-        $("#update_nsx"+id).css("display","none");
-        if($("#input_"+id).val()==''){
-            $("#input_"+id).val($(".item_"+id +" span").text());
+    $(document).on("click", ".nsx_back", function () {
+        var id = $(this).data('nsx_back');
+        $("#nsx_" + id).css("display", "table-row");
+        $("#update_nsx" + id).css("display", "none");
+        if ($("#input_" + id).val() == '') {
+            $("#input_" + id).val($(".item_" + id + " span").text());
         }
-        
+
     });
 
-    $(document).on("click",".nsx_btn",function(){
-        var id =$(this).data('nsx_id');
-        update_loaisp(id,"nsx");
+    $(document).on("click", ".nsx_btn", function () {
+        var id = $(this).data('nsx_id');
+        update_loaisp(id, "nsx");
     });
-
 
 });
 
@@ -633,22 +622,19 @@ function check_giagiam() {
 
 
 function show_hd_admin(trang) {
-    $("#list_oder").html("<div class='loader'></div>");
-    setTimeout(function () {
-        $.ajax({
-            url: "http://localhost/web_mvc/Ajax/show_hd_admin/5",
-            method: "post",
-            data: { trang: trang },
-            success: function (data) {
-                $('#list_oder').html(data);
-            }
-        });
-    }, 1000);
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/show_hd_admin/5",
+        method: "post",
+        data: { trang: trang },
+        success: function (data) {
+            $('#list_oder').html(data);
+        }
+    });
 }
 
 
 function filter_hd(trang, date) {
-
+    var trangthai = $('#trang_thai option:selected').val();
     var search = $('#search').val();
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/filter_hd_ad/8",
@@ -656,7 +642,8 @@ function filter_hd(trang, date) {
         data: {
             trang: trang,
             search: search,
-            date: date
+            date: date,
+            trangthai: trangthai
         },
         success: function (data) {
             $("#list_hd").html(data);
@@ -678,20 +665,17 @@ function show_detail(id) {
 }
 
 function search_user(text, trang) {
-    $("#list_user").html("<div class='loader'></div>");
-    setTimeout(function () {
-        $.ajax({
-            url: "http://localhost/web_mvc/Ajax/search_user/10",
-            method: "post",
-            data: {
-                trang: trang,
-                text: text
-            },
-            success: function (data) {
-                $("#list_user").html(data);
-            }
-        });
-    }, 500);
+    $.ajax({
+        url: "http://localhost/web_mvc/Ajax/search_user/10",
+        method: "post",
+        data: {
+            trang: trang,
+            text: text
+        },
+        success: function (data) {
+            $("#list_user").html(data);
+        }
+    });
 
 }
 
@@ -712,7 +696,7 @@ function detail_user(trang) {
 }
 
 function doanhso(from, to, trang) {
-   
+
     $.ajax({
         url: "http://localhost/web_mvc/Ajax/doanhso/10",
         method: "post",
@@ -752,7 +736,7 @@ function insert_coupon(val) {
     check(".sp_lb");
     check(".sl_lb");
     check(".gia_lb");
-    if (check(".sp_lb") =='true' && check(".sl_lb")=='true' && check(".gia_lb")=='true'){
+    if (check(".sp_lb") == 'true' && check(".sl_lb") == 'true' && check(".gia_lb") == 'true') {
         var ma = $('.sp').val();
         var sl = $('.sl').val();
         var phan_tram = $('.gia').val();
@@ -760,54 +744,54 @@ function insert_coupon(val) {
             url: "http://localhost/web_mvc/Ajax/insert_coupon",
             method: "post",
             data: {
-                ma:ma,
-                sl:sl,
-                phan_tram:phan_tram
+                ma: ma,
+                sl: sl,
+                phan_tram: phan_tram
             },
             success: function (data) {
-                if(data =='true'){
+                if (data == 'true') {
                     showinsert('insert', 'mã giảm giá');
-                    if(val ==0){
-                        location.href ="http://localhost/web_mvc/Admin/coupon";
-                    }else if(val==1){
+                    if (val == 0) {
+                        location.href = "http://localhost/web_mvc/Admin/coupon";
+                    } else if (val == 1) {
                         $('input').val('');
                     }
                 }
             }
         });
     }
-    
+
 }
 
-function update_loaisp(id,table){
-    var val = $("#input_"+id).val();
-    if(val !=''){
+function update_loaisp(id, table) {
+    var val = $("#input_" + id).val();
+    if (val != '') {
         $.ajax({
-            url:"http://localhost/web_mvc/Ajax/update_loai/"+table,
+            url: "http://localhost/web_mvc/Ajax/update_loai/" + table,
             method: "post",
-            data:{
-                val:val,
-                ma_loai:id
+            data: {
+                val: val,
+                ma_loai: id
             },
-            success:function(data){
-                if(data=='true'){
-                    showupdate("update","nhóm hàng hóa");
-                    $(document).ready(function(){
-                        $("#"+id).css("display","table-row");
-                        $("#update_"+id).css("display","none");
-                        $("#nsx_"+id).css("display","table-row");
-                        $("#update_nsx"+id).css("display","none");
-                        $(".item_"+id +" span").text(val);
-                        
+            success: function (data) {
+                if (data == 'true') {
+                    showupdate("update", "nhóm hàng hóa");
+                    $(document).ready(function () {
+                        $("#" + id).css("display", "table-row");
+                        $("#update_" + id).css("display", "none");
+                        $("#nsx_" + id).css("display", "table-row");
+                        $("#update_nsx" + id).css("display", "none");
+                        $(".item_" + id + " span").text(val);
+
                     });
-                    
-                }else{
-                    showupdate_error("update","nhóm hàng hóa");
+
+                } else {
+                    showupdate_error("update", "nhóm hàng hóa");
                 }
             }
         })
-    }else{
-        
-        showupdate_error("update","nhóm hàng hóa");
+    } else {
+
+        showupdate_error("update", "nhóm hàng hóa");
     }
 }
