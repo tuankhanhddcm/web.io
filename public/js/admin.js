@@ -266,10 +266,12 @@ $(document).ready(function () {
             $("#result").data('val', '0');
         }
         $("#result").val('');
+
         if (date2 != '') {
             doanhso(date, date2, 1);
         }
     });
+
     $(document).on('click', '.calendar_input2', function () {
         var date = $("#result").val();
         var date2 = $("#results").val();
@@ -290,17 +292,63 @@ $(document).ready(function () {
     // Tuần
     $(".btn_week").click(function () {
         var today = new Date();
-        var day = today.getDate();
+        var day1 = today.getDate();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
-        var date = year + '-0' + month + '-0' + day;
-        var d = day + 6;
+        var d = day1 + 6;
+
         if (d < 9) {
             var week = year + '-0' + month + '-0' + d;
         } else {
             var week = year + '-0' + month + '-' + d;
         }
-
+        if (day1 < 9) {
+            var date = year + '-0' + month + '-0' + day1;
+        } else {
+            var date = year + '-0' + month + '-' + day1;
+        }
+        switch (month) {
+            case 1:
+                day = 31;
+                break;
+            case 2:
+                day = 28;
+                break;
+            case 3:
+                day = 31;
+                break;
+            case 4:
+                day = 30;
+                break;
+            case 5:
+                day = 31;
+                break;
+            case 6:
+                day = 30;
+                break;
+            case 7:
+                day = 31;
+                break;
+            case 8:
+                day = 31;
+                break;
+            case 9:
+                day = 30;
+                break;
+            case 10:
+                day = 31;
+                break;
+            case 11:
+                day = 30;
+                break;
+            case 12:
+                day = 31;
+                break;
+        }
+        if(day1 == day){
+            week = year + '-0' + (month+1) + '-06';
+        }
+        console.log(week);
         $("#result").val(date);
         $("#results").val(week);
         doanhso(date, week, 1);
@@ -707,6 +755,7 @@ function doanhso(from, to, trang) {
         },
         dataType: "json",
         success: function (data) {
+            
             $("#list_doanhso").html(data['html']);
             $("#so_don").text(data['so_don']);
             $("#doanh_so").text(data['doanhso'] + 'đ');

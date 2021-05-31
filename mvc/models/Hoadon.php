@@ -150,7 +150,7 @@ class Hoadon extends DB {
         if($limit > 0){
             $sql .=" Limit $start,$limit";
         }
-        // echo  $sql;
+        
         return $this->_query($sql);
     }   
 }
