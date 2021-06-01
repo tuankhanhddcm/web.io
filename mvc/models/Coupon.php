@@ -10,12 +10,10 @@ class Coupon extends DB {
         if($soluong !=""){
             if($soluong ==2){
                 $sql .= " and so_luong >'0'";
-            }elseif($soluong ==1){
-                $sql .= " and so_luong <'0'";
+            }elseif($soluong == 1){
+                $sql .= " and so_luong <='0'";
             }
         }
-        
-
         if($limit >0){
             $sql .=" limit $start,$limit";
         }
@@ -47,7 +45,7 @@ class Coupon extends DB {
         $sql ="select * from code_giamgia where ma_code = '$ma'";
         $mang =[];
         $phantram =0;
-        $soluong =0;
+        $soluong = 0;
         if(mysqli_num_rows(mysqli_query($this->conn,$sql)) >0){
             $dk1 ='true';
             $kq = $this->fristquery($sql);
