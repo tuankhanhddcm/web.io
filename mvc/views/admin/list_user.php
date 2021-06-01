@@ -22,7 +22,7 @@
                             <th>Email</th>
                             <th>Địa chỉ</th>
                             <th>Số đơn hàng</th>
-                            <th>Tổng tiền</th>
+                            <th style="width: 120px;">Tổng tiền</th>
                         </tr>
                     </thead>
                     <tbody id="list_user">
