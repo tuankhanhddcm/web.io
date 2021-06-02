@@ -21,7 +21,8 @@ $(document).ready(function () {
         fliter_admin(1);
     });
     $('.select_trangthai').click(function () {
-        filter_hd(1);
+        var date = $("#result").val();
+        filter_hd(1,date);
     });
     //end lọc
 
@@ -348,7 +349,7 @@ $(document).ready(function () {
         if(day1 == day){
             week = year + '-0' + (month+1) + '-06';
         }
-        console.log(week);
+        
         $("#result").val(date);
         $("#results").val(week);
         doanhso(date, week, 1);

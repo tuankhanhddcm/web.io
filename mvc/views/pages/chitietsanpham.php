@@ -354,7 +354,6 @@
                                                             <?php } ?>
                                                             
                                                         </div>
-                                                        
                                                     </a>
                                                     <button class="btn_sosanh" data-sosanh="<?=$val['sp_ma']?>" data-sp="<?= $data["sanpham"]["sp_ma"]  ?>">So sánh</button>
                                                 </div>
@@ -380,9 +379,10 @@
                                                                 <?php } else { ?>
                                                                     <strong class="card__price"><?= number_format($val["sp_giaban"]) ?>đ</strong>
                                                                 <?php } ?>
-                                                                <a href="http://">So sánh</a>
+                                                            
                                                             </div>
                                                         </a>
+                                                        <button class="btn_sosanh" data-sosanh="<?=$val['sp_ma']?>" data-sp="<?= $data["sanpham"]["sp_ma"]  ?>">So sánh</button>
                                                     </div>
                                             <?php }?>
                                         </div>

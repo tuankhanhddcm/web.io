@@ -2,12 +2,9 @@ $(document).ready(function () {
 
     //click button sapxep
     $("#giacao").click(function () {
-        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
         $("#div_view_dm").css("display", "none");
-        setTimeout(function () {
 
-            filter_data($('#giacao').val(), 0, 8);
-        }, 1000);
+        filter_data($('#giacao').val(), 0, 8);
 
         filter_gia_search($('#giacao').val(), 15);
         $(this).attr('data-order', '1');
@@ -17,12 +14,8 @@ $(document).ready(function () {
 
     $("#giathap").click(function () {
         // loading
-        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
         $("#div_view_dm").css("display", "none");
-        setTimeout(function () {
-            filter_data($('#giathap').val(), 0, 8);
-        }, 1000);
-
+        filter_data($('#giathap').val(), 0, 8);
         filter_gia_search($('#giathap').val(), 15);
         $(this).attr('data-order', '1');
         $("#banchay").val('');
@@ -39,14 +32,11 @@ $(document).ready(function () {
     });
 
     $(".form-check-input").click(function () {
-        $("#danhmuc_loai").html("<div class='loadmoresp'></div>");
         $("#div_view_dm").css("display", "none");
         $('body,html').animate({
             scrollTop: 0
         }, 400);
-        setTimeout(function () {
-            filter_data('', 0, 8);
-        }, 1000);
+        filter_data('', 0, 8);
 
     });
 
@@ -84,29 +74,29 @@ $(document).ready(function () {
         var kq = [];
         var check = '';
         $(".sl").each(function () {
-            var id =$(this).attr("id");
-            var so_luong =$('#'+id).val();
-            kq.push(id ,check_sl(id,so_luong)[0]);
-            
+            var id = $(this).attr("id");
+            var so_luong = $('#' + id).val();
+            kq.push(id, check_sl(id, so_luong)[0]);
+
         });
 
-        for(i= 0; i<kq.length ; i++){
-            if(kq[i] == 'false'){
+        for (i = 0; i < kq.length; i++) {
+            if (kq[i] == 'false') {
                 check = 'false';
-                $('#'+kq[i-1]).focus();
+                $('#' + kq[i - 1]).focus();
                 break;
-            }else{
+            } else {
                 check = 'true';
             }
         }
-        
-        if(check == 'true'){
+
+        if (check == 'true') {
             checkuser_status();
-        }else{
+        } else {
             show_sl_error('');
-            
+
         }
-        
+
     });
 
     //add cart va check login in btn mua ngay
@@ -144,10 +134,10 @@ $(document).ready(function () {
 
     // thanh toán
     $('#btn-tt').click(function () {
-        
+
         check('.hoten');
         check('#tinh');
-        if (email('.email') == 'true' && check('.hoten') == 'true' && check('#tinh') == 'true' ) {
+        if (email('.email') == 'true' && check('.hoten') == 'true' && check('#tinh') == 'true') {
             thanhtoan();
         }
     });
@@ -337,19 +327,19 @@ function sl_cart() {
         }
     });
 }
-function check_sl(id,sl){
+function check_sl(id, sl) {
     var kq = [];
     $.ajax({
-        url:"http://localhost/web_mvc/Ajax/check_sl",
+        url: "http://localhost/web_mvc/Ajax/check_sl",
         method: "post",
         data: {
-            id:id,
-            sl:sl,
+            id: id,
+            sl: sl,
         },
-        async : false,
+        async: false,
         dataType: 'json',
-        success: function(data){
-                kq = data;
+        success: function (data) {
+            kq = data;
         }
     });
     return kq;
@@ -365,18 +355,18 @@ function updatecart(id) {
     for (i = 0; i < mang.length; i++) {
         sl = Number($("#" + mang[i]).val());
         if (id == mang[i]) {
-            if(sl == 0){
+            if (sl == 0) {
                 $("#" + mang[i]).val(1);
                 qty[mang[i]] = 1;
-            }else{
+            } else {
                 qty[mang[i]] = sl;
             }
-            
+
         }
     }
-    var so_luong =$('#'+id).val();
-    
-    if(check_sl(id,so_luong)[0] == 'true'){
+    var so_luong = $('#' + id).val();
+
+    if (check_sl(id, so_luong)[0] == 'true') {
         $.ajax({
             url: "http://localhost/web_mvc/Ajax/updatecart",
             method: "POST",
@@ -390,11 +380,11 @@ function updatecart(id) {
                 $(".cart-pay__pay span").text(String(data[1]));
             }
         });
-    }else{
+    } else {
         show_sl_error('');
-        
+
     }
-    
+
 }
 
 //check có login hay chưa
@@ -419,7 +409,7 @@ function addcart(productID = '', soluong = 0) {
         var productID = $("#productID").val();
         var soluong = $('.sl').val();
     }
-    if(check_sl(productID,soluong)[0] == 'true' && check_sl(productID,soluong)[1] =='true'){
+    if (check_sl(productID, soluong)[0] == 'true' && check_sl(productID, soluong)[1] == 'true') {
         $.ajax({
             url: "../cart/addcart",
             method: "POST",
@@ -435,11 +425,11 @@ function addcart(productID = '', soluong = 0) {
                 });
             }
         });
-    
-    }else{
+
+    } else {
         show_sl_error('');
     }
-        
+
 }
 
 
@@ -469,7 +459,7 @@ function dangky() {
             pass_again: pass_again
         },
         success: function (data) {
-            
+
         }
     });
 
@@ -868,7 +858,7 @@ function showerror(text) {
         duration: 3000
     });
 }
-function show_sl_error(text){
+function show_sl_error(text) {
     toast({
         title: 'Thất bại !',
         message: "Số lượng tồn kho không đủ !!!",
@@ -1048,21 +1038,18 @@ function street() {
 function search_header() {
     var text = $("#input-search").val();
     if (text != '') {
-        $("#list-search").html("<div class='loadsearch'></div>");
         $('#list-search').css("display", "block");
-        setTimeout(function () {
-            $.ajax({
-                url: "http://localhost/web_mvc/Ajax/search_product",
-                method: "post",
-                data: {
-                    text: text
-                },
-                success: function (data) {
+        $.ajax({
+            url: "http://localhost/web_mvc/Ajax/search_product",
+            method: "post",
+            data: {
+                text: text
+            },
+            success: function (data) {
 
-                    $('#list-search').html(data);
-                }
-            });
-        }, 1000);
+                $('#list-search').html(data);
+            }
+        });
     } else {
         $('#list-search').css("display", "none");
     }
