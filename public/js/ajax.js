@@ -841,6 +841,7 @@ function showupdate(text, mess) {
         load: text
     });
 }
+
 function showupdate_error(text, mess) {
     toast({
         title: 'Thất bại !',

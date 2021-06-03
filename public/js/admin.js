@@ -296,7 +296,7 @@ $(document).ready(function () {
         var day1 = today.getDate();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
-        var d = day1 + 6;
+        var d = day1 + 7;
 
         if (d < 9) {
             var week = year + '-0' + month + '-0' + d;

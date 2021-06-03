@@ -90,6 +90,7 @@ $(document).ready(function () {
     $(".btn_pass").click(function () {
         set_pass();
     });
+
     show_hd(1);
     $(document).on('click', '.page-link', function () {
         var page = $(this).data('page_number');
@@ -290,7 +291,7 @@ function set_pass() {
     check('.old_pass_lb');
     check_set_pass();
     check_pass_again();
-    if (check('.old_pass_lb') == 'true' && check_pass() == 'true' && check_pass_again() == 'true') {
+    if (check('.old_pass_lb') == 'true' && check_set_pass() == 'true' && check_pass_again() == 'true') {
         var old_pass = $(".old_pass").val();
         var new_pass = $('.new_pass').val();
         var new_pass_again = $(".new_pass_again").val();
@@ -304,19 +305,18 @@ function set_pass() {
             },
             success: function (data) {
                 if (data == 'true') {
-                    showupdate('addsp', 'mật khẩu');
+                    showupdate('', 'mật khẩu');
                     $('.old_pass').removeClass('error_input');
                     $(".old_passs_icon").css("display", "none");
                     $(".error_old_pass").css("display", "none");
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000)
+
                 } else {
-                    showupdate_error('addsp', 'mật khẩu');
+                    showupdate_error('', 'mật khẩu');
                     $('.old_pass').addClass('error_input');
                     $(".old_pass_icon").css("display", "block");
                     $(".error_old_pass").text("Mật khẩu cũ không đúng");
                     $(".error_old_pass").css("display", "block");
+                    
                 }
             }
         });

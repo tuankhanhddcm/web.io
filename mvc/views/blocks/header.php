@@ -190,7 +190,7 @@
                                 <div class="error__wrap" style="margin-bottom: 20px;">
                                     <div class="pay-input ">
                                         <input type="text" class="form__input dk" name="sdt" id="sdt" onkeyup="sdt()" placeholder=" " value="">
-                                        <label for="" class="form__label  ">Só điện thoại</label>
+                                        <label for="" class="form__label  ">Số điện thoại</label>
                                     </div>
                                     <div style="display: flex;">
                                         <i class='bx bxs-error-circle sdt_icon' style="display: none;position: relative;top: 6px;left: 10px;color: red;font-size: 1.8rem;padding-right: 5px;"></i>
