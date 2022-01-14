@@ -675,3 +675,6 @@ button.btn_date{
     border-radius: 3px;
     padding: 10px;
 }
+.body-td td{
+    border-right:1px solid rgba(0, 0, 0, 0.1) ;
+}

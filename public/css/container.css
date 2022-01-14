@@ -647,7 +647,6 @@ button.btn-detail-info {
 
 .user-name {
     display: flex;
-    justify-content: end;
     align-items: center;
 }
 .user-avatar {

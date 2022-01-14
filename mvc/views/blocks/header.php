@@ -30,7 +30,7 @@
                 <?php } else { ?>
                     <li class="header__navbar-item header__navbar-item--separate">
                         <!-- Button trigger modal -->
-                        <button type="button" class="  btn-lg " id="btn-dangky" data-toggle="modal" data-target="#form-sign">
+                        <button type="button" class="  btn-lg " id="btn-dangky"   data-toggle="modal" data-target="#form-sign">
                             Đăng ký
                         </button>
                     </li>
@@ -100,8 +100,8 @@
     </div>
 </header>
 <!-- Modal đăng ký đăng nhập -->
-<div class="modal fade " id="form-sign" tabindex="-1" role="dialog" aria-labelledby="form-sign">
-    <div class="  modal-dialog modal-dialog-centered  " id="modal-form">
+<div class="modal fade "  data-keyboard="false" data-backdrop="static" id="form-sign" tabindex="-1" role="dialog" aria-labelledby="form-sign">
+    <div class="  modal-dialog modal-dialog-centered " id="modal-form">
         <div class="modal-content">
             <!-- dangky form -->
             <div class="auth-form">

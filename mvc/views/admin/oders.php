@@ -35,7 +35,7 @@
             <div class="col-sm-12 ">
                 <table class="table table_sp ">
                     <thead class="heading-table">
-                        <tr>
+                        <tr class="body-table">
                             <th style="border-left: 1px solid rgba(0,0,0,.1);">Mã đơn hàng</th>
                             <th>Khách hàng</th>
                             <th>Email</th>

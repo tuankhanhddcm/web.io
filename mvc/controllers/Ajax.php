@@ -1051,9 +1051,9 @@ class Ajax extends Controller
                             </td>
                             <td>' . $val["date"] . '</td>
                             <td>' . $diachi . '</td>
-                            <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
+                            <td style="width: 120px;">' . number_format($val['total_money']) . 'đ</td>
                             <td style="width: 140px;"><span class="' . $class . ' txt_' . $val['ma_hd'] . ' ">' . $text . '</span></td>
-                            <td style="width: 125px;" id="' . $val['ma_hd'] . '">
+                            <td style="width: 135px;" id="' . $val['ma_hd'] . '">
                                 ' . $html . '
                             </td>
                         </tr>
@@ -1133,7 +1133,7 @@ class Ajax extends Controller
                             break;
                     }
                     $ouput .= '
-                        <tr>
+                        <tr class="body-td">
                             <td>
                                 <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
                             </td>
@@ -1141,10 +1141,10 @@ class Ajax extends Controller
                             <td>' . $val['email'] . '</td>
                             <td>' . $val['diachi'] . '</td>
                             <td>' . $val['sdt'] . '</td>
-                            <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
-                            <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td class="span_' . $val['ma_hd'] . '" style="width: 170px;font-weight:bold;' . $style . '">' . $option . '</td>
-                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;">
+                            <td style="width: 120px;">' . number_format($val['total_money']) . 'đ</td>
+                            <td style="width: 100px;">' . $val['date'] . '</td>
+                            <td class="span_' . $val['ma_hd'] . '" style="width: 170px;font-weight:bold;text-align:center;' . $style . '">' . $option . '</td>
+                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;text-align:center;">
                                 ' . $html . '
                             </td>
                         </tr>
@@ -1219,13 +1219,14 @@ class Ajax extends Controller
                             $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
                             break;
                         case 2:
-                            $option = '
-                                <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
-                                <option     value="0">Chờ xác nhận</option>
-                                <option     value="1">Đã xác nhận</option>
-                                <option     selected value="2">Đã giao hàng</option>
-                                </select>';
-                            $html = '<span class="span_huy" style="color:#333">Không có yêu cầu</span>';
+                            // $option = '
+                            //     <select class=" select select-oders " data-id="' . $val['ma_hd'] . '"  data-dropup-auto="false" data-size="5" >
+                            //     <option     value="0">Chờ xác nhận</option>
+                            //     <option     value="1">Đã xác nhận</option>
+                            //     <option     selected value="2">Đã giao hàng</option>
+                            //     </select>';
+                            $option ='<span class="span_huy" style="background-color: #0B87C9;color: #fff;padding: 5px;border-radius: 4px;font-weight: 600;">Đã giao hàng</span>';
+                            $html = '<span class="span_huy" style="color:#333"></span>';
                             break;
                         case 3:
                             $option = 'Yêu cầu hủy đơn';
@@ -1239,7 +1240,7 @@ class Ajax extends Controller
                             break;
                     }
                     $ouput .= '
-                        <tr>
+                        <tr class="body-td">
                             <td style="padding-top:12px">
                                 <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
                             </td>
@@ -1247,10 +1248,10 @@ class Ajax extends Controller
                             <td>' . $val['email'] . '</td>
                             <td>' . $val['diachi'] . '</td>
                             <td>' . $val['sdt'] . '</td>
-                            <td style="width: 120px;">' . number_format($val['total_money']) . ' đ</td>
-                            <td style="width: 160px;">' . $val['date'] . '</td>
-                            <td class="span_' . $val['ma_hd'] . '" style="width: 170px; font-weight: bold;font-size: 1.45rem;' . $style . '">' . $option . '</td>
-                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;">
+                            <td style="width: 120px;">' . number_format($val['total_money']) . 'đ</td>
+                            <td style="width: 100px;">' . $val['date'] . '</td>
+                            <td class="span_' . $val['ma_hd'] . '" style="width: 150px; font-weight: bold;font-size: 1.45rem;text-align:center;' . $style . '">' . $option . '</td>
+                            <td id="td_ad_' . $val['ma_hd'] . '" style="width: 120px;text-align:center;">
                                 ' . $html . '
                             </td>
                         </tr>
@@ -1298,7 +1299,7 @@ class Ajax extends Controller
                     <td style="text-align: center;">' . $val['soluong'] . '</td>
                     <td>' . number_format($val['sp_giaban']) . ' đ</td>
                     <td>' . $giagiam . ' đ</td>
-                    <td>' . $tong . ' đ</td>
+                    <td>' . $tong . 'đ</td>
                 </tr>
                     ';
                 }
@@ -1385,15 +1386,15 @@ class Ajax extends Controller
                 }
                 foreach ($mang as $val) {
                     $ouput .= '
-                                <tr>   
+                                <tr class="body-td">   
                                     <td >' . $count . '</td>
                                     <td ><a class="btn-user" data-user="' . $val['username'] . '" href="http://localhost/web_mvc/Admin/detail_user/' . $val['username'] . '" >' . $val["ho_ten"] . '</a> </td>
                                     <td >' . $val["username"] . '</td>
                                     <td >' . $val["sdt"] . '</td>
                                     <td >' . $val["email"] . '</td>
                                     <td  >' . $val["diachi"] . '</td>
-                                    <td >' . $val["so_hd"] . '</td>
-                                    <td >' . number_format($val["total"]) . ' đ</td>
+                                    <td style="text-align:center;">' . $val["so_hd"] . '</td>
+                                    <td >' . number_format($val["total"]) . 'đ</td>
                                 
                                 </tr>
         
@@ -1471,7 +1472,7 @@ class Ajax extends Controller
                             break;
                     }
                     $ouput .= '
-                        <tr> 
+                        <tr class="body-td"> 
                             <td style ="text-align:center;padding-top:20px; font-size:1.6rem;font-weight:400;">' . $count . '</td>
                             <td style="padding-top:12px">
                                 <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
@@ -1537,7 +1538,7 @@ class Ajax extends Controller
                 $loinhuan = $val['total_money']-$val['gia'];
                 $lai +=$loinhuan;
                 $output .= '
-                    <tr>
+                    <tr class="body-td">
                         <td style="padding-top:12px">
                             <button class="btn_cus btn-oders"   data-id="' . $val['ma_hd'] . '" data-toggle="modal" data-target="#detail_oder">' . $val["ma_hd"] . '</button>
                         </td>
@@ -1546,9 +1547,9 @@ class Ajax extends Controller
                         <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . $val['soluong'].'</td>
                         <td style="padding-top:20px; font-size:1.6rem;text-align:center;"><span style="background-color: #0B87C9;color: #fff;padding: 5px;border-radius: 4px;
                         font-weight: 600;">' . $text . '</span></td>
-                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['total_money']). ' đ</td>
-                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['gia']). ' đ</td>
-                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($loinhuan). ' đ</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['total_money']). 'đ</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($val['gia']). 'đ</td>
+                        <td style="padding-top:20px; font-size:1.6rem;font-weight:400;text-align:center">' . number_format($loinhuan). 'đ</td>
                     </tr>
                     ';
             }
@@ -1602,7 +1603,7 @@ class Ajax extends Controller
                 
                 foreach ($coupon as $val) {
                     $ouput .= '
-                                <tr style="text-align:center;">   
+                                <tr class="body-td" style="text-align:center;">   
                                     <td >' . $count . '</td>
                                     <td >' . $val["ma_code"] . '</td>
                                     <td >' . $val["so_luong"] . '</td>

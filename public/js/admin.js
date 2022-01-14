@@ -303,11 +303,8 @@ $(document).ready(function () {
         } else {
             var week = year + '-0' + month + '-' + d;
         }
-        if (day1 < 9) {
-            var date = year + '-0' + month + '-0' + day1;
-        } else {
-            var date = year + '-0' + month + '-' + day1;
-        }
+        
+        
         switch (month) {
             case 1:
                 day = 31;
@@ -346,9 +343,22 @@ $(document).ready(function () {
                 day = 31;
                 break;
         }
-        if(day1 == day){
-            week = year + '-0' + (month+1) + '-06';
+        if(d > day){
+            if((d-day) <9){
+                d1 = '-0'+(d-day);
+            }else{
+                d1 = (d-day);
+            }
+            week = year + '-' + (month+1) + d1;
         }
+        if (day1 < 9) {
+            var date = year + '-0' + month + '-0' + day1;
+        } else {
+            var date = year + '-' + month + '-' + day1;
+        }
+        // if (d > day) {
+        //     var date = year + '-0' + (month+1) + '-0' + d-day;
+        // } 
         
         $("#result").val(date);
         $("#results").val(week);
@@ -360,7 +370,7 @@ $(document).ready(function () {
         var day = today.getDate();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
-        var date = year + '-0' + month + '-01';
+        
         switch (month) {
             case 1:
                 day = 31;
@@ -399,7 +409,13 @@ $(document).ready(function () {
                 day = 31;
                 break;
         }
-        var thang = year + '-0' + month + '-' + (day);
+        if(month <9){
+            m1 = "0" +month;
+        }else{
+            m1 = month;
+        }
+        var date = year + '-' + m1 + '-01';
+        var thang = year +"-"+ m1 + '-' + (day);
         $("#result").val(date);
         $("#results").val(thang);
         doanhso(date, thang, 1);
@@ -462,7 +478,12 @@ $(document).ready(function () {
                 day = 31;
                 break;
         }
-        var quy = year + '-0' + month + '-' + (day);
+        if(month <9){
+            m1 = "0" +month;
+        }else{
+            m1 = month;
+        }
+        var quy = year + '-' + m1 + '-' + (day);
         $("#result").val(date);
         $("#results").val(quy);
 

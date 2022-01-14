@@ -5,7 +5,7 @@ class Hoadon extends DB {
     public $table ="hoadon";
 
     public function select_all($limit=18){
-        $sql = "SELECT * from $this->table limit $limit ";
+        $sql = "SELECT * from $this->table order by date desc limit $limit ";
         return $this->_query($sql);
     }
 
@@ -53,8 +53,9 @@ class Hoadon extends DB {
         }else{
             $kq = $this->_query($sql);
         }
+        $sql .= " order by date desc";
         if($limit >0){
-            $sql .="  limit $start,$limit";
+            $sql .="  limit $start,$limit ";
             $kq = $this->_query($sql);
         }
             
@@ -69,11 +70,11 @@ class Hoadon extends DB {
 
     public function hd_theo_ngay($date,$newdate,$start=0,$limit =0,$detail =''){
         if($limit >0){
-            $sql ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username  WHERE date >= '$date' and date <'$newdate' ORDER by date limit $start,$limit";
+            $sql ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username  WHERE date >= '$date' and date <'$newdate' ORDER by date desc limit $start,$limit";
         }elseif($detail !=''){
-            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username join chitiethoadon on chitiethoadon.ma_hd=hoadon.ma_hd WHERE date >= '$date' and date <'$newdate' ORDER by date";
+            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username join chitiethoadon on chitiethoadon.ma_hd=hoadon.ma_hd WHERE date >= '$date' and date <'$newdate' ORDER by date desc";
         }else{
-            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username WHERE date >= '$date' and date <'$newdate' ORDER by date";
+            $sql  ="SELECT * FROM hoadon join user on hoadon.khachhang = user.username WHERE date >= '$date' and date <'$newdate' ORDER by date desc";
         }
         $kq = $this->_query($sql);
         return $kq;
@@ -94,7 +95,7 @@ class Hoadon extends DB {
             }
             $sql .=" and trangthai = '$trangthai'";
         }
-        $sql .=" ORDER by date";
+        $sql .=" ORDER by date desc";
         if($limit >0){
             $sql .= " limit $start,$limit";
         }
